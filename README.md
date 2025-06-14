@@ -1,12 +1,12 @@
-# You Don't Know JS (book series) - 1st Edition
+# Bạn Không hiểu JS (loạt sách) - Phiên bản thứ nhất
 
-| UPDATE: You are viewing the 1st edition of the book series, as they were published by O'Reilly from 2014-2015. ***This edition is archived but included here for posterity.*** As of now, [2nd edition](https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed) work is underway. Any issues or PRs should be directed against the latest edition. |
+| CẬP NHẬT: Bạn đang xem phiên bản đầu tiên của loạt sách, đã được xuất bản bởi O'Reilly từ 2014-2015. ***Phiên bản này đã dược lưu trữ nhưng vẫn ở đây để lưu giữ lâu dài.*** Tính đến hiện tại, [phiên bản thứ hai](https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed) đang được tiến hành. Mọi vấn đề hoặc yêu cầu đóng góp nên được gửi đến ấn bản mới nhất. |
 | :--- |
 
 ----
 ----
 
-This is a series of books diving deep into the core mechanisms of the JavaScript language. The first edition of the series is now complete. Also, these first-edition books are now **out of print** and can no longer be purchased. They can only be read for free online here in this markdown format.
+Đây là loạt sách đào sâu vào các cơ chế cốt lõi của ngôn ngữ Javascript. Phiên bản thứ nhất đã hoàn thiện. Ngoài ra, các cuốn sách trong phiên bản thứ nhất hiện đã **ngừng phát hành** và không còn được bán nữa. Chúng chỉ có thể đọc miễn phí trực tiếp tại đây dưới định dạng đánh dấu giản lược.
 
 <img src="up %26 going/cover.jpg" width="75">&nbsp;
 <img src="scope %26 closures/cover.jpg" width="75">&nbsp;
@@ -15,35 +15,35 @@ This is a series of books diving deep into the core mechanisms of the JavaScript
 <img src="async %26 performance/cover.jpg" width="75">&nbsp;
 <img src="es6 %26 beyond/cover.jpg" width="75">
 
-**To read more about the motivations and perspective behind this book series, check out the [Preface](preface.md).**
+**Để biết thêm về động lực và góc nhìn đăng sau loạt sách này, xin xem [Lời nói đầu](preface.md)**
 
-## Titles
+## Tiêu đề
 
-* Read online (free!): ["Up & Going"](up\%20&\%20going/README.md#you-dont-know-js-up--going)
-* Read online (free!): ["Scope & Closures"](scope\%20&\%20closures/README.md#you-dont-know-js-scope--closures)
-* Read online (free!): ["this & Object Prototypes"](this\%20&\%20object\%20prototypes/README.md#you-dont-know-js-this--object-prototypes)
-* Read online (free!): ["Types & Grammar"](types\%20&\%20grammar/README.md#you-dont-know-js-types--grammar)
-* Read online (free!): ["Async & Performance"](async\%20&\%20performance/README.md#you-dont-know-js-async--performance)
-* Read online (free!): ["ES6 & Beyond"](es6\%20&\%20beyond/README.md#you-dont-know-js-es6--beyond)
+* Đọc trực tuyến (miễn phí!): ["Khởi động và tiến lên"](up\%20&\%20going/README.md#you-dont-know-js-up--going)
+* Đọc trực tuyến (miễn phí!): ["Phạm vi và hàm khép kín"](scope\%20&\%20closures/README.md#you-dont-know-js-scope--closures)
+* Đọc trực tuyến (miễn phí!): ["this và nguyên mẫu đối tượng"](this\%20&\%20object\%20prototypes/README.md#you-dont-know-js-this--object-prototypes)
+* Đọc trực tuyến (miễn phí!): ["Kiểu và ngữ pháp"](types\%20&\%20grammar/README.md#you-dont-know-js-types--grammar)
+* Đọc trực tuyến (miễn phí!): ["Bất đồng bộ và hiệu suất"](async\%20&\%20performance/README.md#you-dont-know-js-async--performance)
+* Đọc trực tuyến (miễn phí!): ["ES6 và thêm nữa"](es6\%20&\%20beyond/README.md#you-dont-know-js-es6--beyond)
 
-## Publishing
+## Xuất bản
 
-The content of these books was released here, and the books were also edited, produced, and published through O'Reilly (2014-2015).
+Nội dung của những cuốn sách này được phát hành tại đây, và chúng cũng được biên tập, sản xuất và xuất bản thông qua O'Reilly (2014-2015).
 
-To contribute financially in support, I have a [patreon](https://www.patreon.com/getify) that I appreciate your generosity towards.
+Để hỗ trợ tài chính, tôi có một tài khoản [patreon](https://www.patreon.com/getify) mà sẽ rất cảm kích sự hào phóng của bạn.
 
 <a href="https://www.patreon.com/getify">[![patreon.png](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/getify)</a>
 
-## Online Video Training
+## Khóa học video trực tuyến
 
-I also have some JS training material available in on-demand video format. I teach courses through [Frontend Masters](https://FrontendMasters.com). You can find [all my courses here](https://frontendmasters.com/kyle-simpson/).
+Tôi cũng có một vài khóa học JS với các định dạng video theo yêu cầu. Tôi dạy học trên [Frontend Masters](https://FrontendMasters. Bạn có thể tìm thấy [tất cả các khóa học của tôi tại đây](https://frontendmasters.com/kyle-simpson/).
 
-## Contributions
+## Đóng góp
 
-These first-edition books are complete and published and will not be changed in any way, so there's no further need for contributions. They will remain here for posterity, but are not being maintained. See the [2nd edition books](https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed) for the active work in this repository.
+Những cuốn sách của phiên bản đầu tiên đã hoàn thành và được xuất bản và sẽ không thay đổi theo bất kì cách nào, vì thế không cần bất kì sự đóng góp nào nữa. Chúng sẽ ở đây vì mục đích lưu giữ lâu dài nhưng không được bảo trì nữa. Hãy xem [phiên bản thứ hai](https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed) cho những hoạt động mới trong kho này.
 
-## License & Copyright
+## Giấy phép và bản quyền
 
-The materials herein are all &copy; 2013-2019 Kyle Simpson.
+Các tài liệu ở đây thuộc bản quyền của &copy; 2013-2019 Kyle Simpson.
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivs 4.0 Unported License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Tác phẩm này được cấp <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Giấy phép Quốc tế về Sáng tạo chung - Phi thương mại - Không phái sinh 4.0</a>.

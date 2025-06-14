@@ -1,40 +1,45 @@
-# You Don't Know JS
-# Preface
+# Bạn Không hiểu JS
+# Lời mở đầu
 
-I'm sure you noticed, but "JS" in the book series title is not an abbreviation for words used to curse about JavaScript, though cursing at the language's quirks is something we can probably all identify with!
+Chắc hẳn bạn cũng nhận ra, nhưng "JS" trong tiêu đề loạt sách này không phải là từ viết tắt để nguyền rủa JavaScript, dù việc bực bội vì những điều kỳ quặc của ngôn ngữ này thì ai cũng từng trải qua!
 
-From the earliest days of the web, JavaScript has been a foundational technology that drives interactive experience around the content we consume. While flickering mouse trails and annoying pop-up prompts may be where JavaScript started, nearly 2 decades later, the technology and capability of JavaScript has grown many orders of magnitude, and few doubt its importance at the heart of the world's most widely available software platform: the web.
+Từ những ngày đầu của web, JavaScript đã là một công nghệ nền tảng giúp tạo ra các trải nghiệm tương tác xung quanh nội dung mà ta tiêu thụ. Dù ban đầu chỉ là những vệt chuột lấp lánh hay các hộp thoại bật lên khó chịu, gần hai thập kỷ sau, công nghệ và khả năng của JavaScript đã phát triển vượt bậc, và hiếm ai còn nghi ngờ vai trò quan trọng của nó trong nền tảng phần mềm phổ biến nhất thế giới: web.
 
-But as a language, it has perpetually been a target for a great deal of criticism, owing partly to its heritage but even more to its design philosophy. Even the name evokes, as Brendan Eich once put it, "dumb kid brother" status next to its more mature older brother "Java". But the name is merely an accident of politics and marketing. The two languages are vastly different in many important ways. "JavaScript" is as related to "Java" as "Carnival" is to "Car".
+Tuy nhiên, với tư cách là một ngôn ngữ, JavaScript luôn là mục tiêu bị chỉ trích rất nhiều, một phần do nguồn gốc của nó, nhưng phần lớn hơn đến từ triết lý thiết kế. Ngay cả cái tên cũng từng khiến Brendan Eich gọi nó là "đứa em ngốc nghếch" bên cạnh người anh trưởng thành hơn là "Java". Nhưng cái tên đó chỉ là hệ quả của chính trị và tiếp thị. Hai ngôn ngữ này khác nhau hoàn toàn ở nhiều điểm quan trọng. "JavaScript" và "Java" khác nhau như "Đường kính" khác với "Đường kính trắng".
 
-Because JavaScript borrows concepts and syntax idioms from several languages, including proud C-style procedural roots as well as subtle, less obvious Scheme/Lisp-style functional roots, it is exceedingly approachable to a broad audience of developers, even those with just little to no programming experience. The "Hello World" of JavaScript is so simple that the language is inviting and easy to get comfortable with in early exposure.
+JavaScript vay mượn ý tưởng và cú pháp từ nhiều ngôn ngữ khác nhau, từ phong cách thủ tục kiểu C đến những ảnh hưởng sâu sắc nhưng ít thấy hơn từ Scheme/Lisp, nên rất dễ tiếp cận với nhiều đối tượng lập trình viên, kể cả những người gần như chưa có kinh nghiệm lập trình. Câu lệnh "Chào thế giới" trong JavaScript rất đơn giản, khiến ngôn ngữ này trở nên thân thiện và dễ làm quen ngay từ lần đầu tiếp xúc.
 
-While JavaScript is perhaps one of the easiest languages to get up and running with, its eccentricities make solid mastery of the language a vastly less common occurrence than in many other languages. Where it takes a pretty in-depth knowledge of a language like C or C++ to write a full-scale program, full-scale production JavaScript can, and often does, barely scratch the surface of what the language can do.
+Tuy JavaScript là một trong những ngôn ngữ dễ bắt đầu nhất, nhưng những tính chất "quái lạ" của nó lại khiến việc nắm vững ngôn ngữ trở nên hiếm gặp hơn nhiều so với các ngôn ngữ khác. Nếu như để viết một chương trình C hoặc C++ hoàn chỉnh cần kiến thức chuyên sâu, thì nhiều sản phẩm JavaScript quy mô lớn thường chỉ mới gãi nhẹ lên bề mặt những gì ngôn ngữ này có thể làm được.
 
-Sophisticated concepts which are deeply rooted into the language tend instead to surface themselves in *seemingly* simplistic ways, such as passing around functions as callbacks, which encourages the JavaScript developer to just use the language as-is and not worry too much about what's going on under the hood.
+Những khái niệm tinh vi và sâu sắc ăn sâu vào ngôn ngữ lại thường xuất hiện dưới những hình thức *có vẻ* đơn giản, như việc truyền hàm dưới dạng gọi lại, điều này dễ khiến lập trình viên JavaScript chỉ dùng một cách nghiễm nhiên mà không quan tâm đến cơ chế vận hành thực sự phía sau.
 
-It is simultaneously a simple, easy-to-use language that has broad appeal, and a complex and nuanced collection of language mechanics which without careful study will elude *true understanding* even for the most seasoned of JavaScript developers.
+JavaScript vừa là một ngôn ngữ đơn giản, dễ sử dụng và phổ biến, vừa là một hệ thống ngôn ngữ phức tạp và tinh vi mà nếu không nghiên cứu cẩn thận thì ngay cả lập trình viên dày dạn cũng khó hiểu được *tường tận*.
 
-Therein lies the paradox of JavaScript, the Achilles' Heel of the language, the challenge we are presently addressing. Because JavaScript *can* be used without understanding, the understanding of the language is often never attained.
+Đó chính là nghịch lý của JavaScript, là gót chân Achilles của ngôn ngữ này, và là thách thức mà loạt sách này hướng đến giải quyết. Bởi vì JavaScript *có thể* sử dụng mà không cần hiểu rõ, nên việc thấu hiểu nó lại thường bị bỏ qua.
 
-## Mission
+---
 
-If at every point that you encounter a surprise or frustration in JavaScript, your response is to add it to the blacklist, as some are accustomed to doing, you soon will be relegated to a hollow shell of the richness of JavaScript.
+## Sứ mệnh
 
-While this subset has been famously dubbed "The Good Parts", I would implore you, dear reader, to instead consider it the "The Easy Parts", "The Safe Parts", or even "The Incomplete Parts".
+Nếu mỗi khi bạn gặp điều kỳ quặc hay khó chịu trong JavaScript mà phản ứng đầu tiên là gạch bỏ nó, như cách nhiều người vẫn làm, thì chẳng mấy chốc bạn sẽ chỉ còn lại một vỏ bọc rỗng của những điều phong phú mà JavaScript mang lại.
 
-This *You Don't Know JavaScript* book series offers a contrary challenge: learn and deeply understand *all* of JavaScript, even and especially "The Tough Parts".
+Tập hợp tính năng hạn chế này đã từng được gọi là "Những phần tốt đẹp", nhưng tôi mong bạn, người đọc thân mến, hãy nhìn nhận chúng là "Những phần dễ dùng", "Những phần an toàn", hay thậm chí là "Những phần chưa đầy đủ".
 
-Here, we address head on the tendency of JS developers to learn "just enough" to get by, without ever forcing themselves to learn exactly how and why the language behaves the way it does. Furthermore, we eschew the common advice to *retreat* when the road gets rough.
+Loạt sách *Bạn không hiểu Javascript* này đưa ra một thách thức ngược lại: hãy học và hiểu sâu *tất cả* về JavaScript, nhất là "những phần khó nhằn".
 
-I am not content, nor should you be, at stopping once something *just works*, and not really knowing *why*. I gently challenge you to journey down that bumpy "road less traveled" and embrace all that JavaScript is and can do. With that knowledge, no technique, no framework, no popular buzzword acronym of the week, will be beyond your understanding.
+Chúng tôi đi thẳng vào thói quen phổ biến của lập trình viên JS là chỉ học "vừa đủ dùng", mà không bao giờ buộc bản thân tìm hiểu rõ ràng cách thức và lý do vì sao ngôn ngữ hoạt động như vậy. Chúng tôi cũng bác bỏ lời khuyên thường thấy là nên "rút lui" khi mọi thứ trở nên khó hiểu.
 
-These books each take on specific core parts of the language which are most commonly misunderstood or under-understood, and dive very deep and exhaustively into them. You should come away from reading with a firm confidence in your understanding, not just of the theoretical, but the practical "what you need to know" bits.
+Tôi không hài lòng, và bạn cũng đừng nên, với việc dừng lại khi mọi thứ "chạy được" mà chẳng hiểu lý do thực sự. Tôi mời bạn bước lên con đường gập ghềnh, ít người đi đó, để đón nhận toàn bộ những gì JavaScript là và có thể làm được. Khi có được kiến thức ấy, không có kỹ thuật nào, không bộ khung nào, không từ viết tắt mới nổi nào có thể nằm ngoài tầm hiểu biết của bạn.
 
-The JavaScript you know *right now* is probably *parts* handed down to you by others who've been burned by incomplete understanding. *That* JavaScript is but a shadow of the true language. You don't *really* know JavaScript, *yet*, but if you dig into this series, you *will*. Read on, my friends. JavaScript awaits you.
+Mỗi cuốn sách trong loạt này tập trung vào những phần cốt lõi của JavaScript, những phần thường bị hiểu sai hoặc chưa được hiểu kỹ, và đi sâu, rất sâu vào chúng. Khi đọc xong, bạn sẽ có được sự tự tin vững chắc, không chỉ về mặt lý thuyết mà cả những điều thực tiễn "cần phải biết".
 
-## Summary
+Phần JavaScript mà bạn đang biết *ngay lúc này* có lẽ chỉ là *một phần* do người khác truyền lại, những người đã từng bị thiêu đốt bởi việc hiểu chưa tới nơi tới chốn. JavaScript ấy chỉ là cái bóng của ngôn ngữ thực sự. Bạn không *thực sự* hiểu JavaScript, *chưa hề*, nhưng nếu đi sâu vào loạt sách này, bạn *sẽ hiểu*. Hãy tiếp tục đọc nhé. JavaScript đang đợi bạn.
 
-JavaScript is awesome. It's easy to learn partially, and much harder to learn completely (or even *sufficiently*). When developers encounter confusion, they usually blame the language instead of their lack of understanding. These books aim to fix that, inspiring a strong appreciation for the language you can now, and *should*, deeply *know*.
+---
 
-Note: Many of the examples in this book assume modern (and future-reaching) JavaScript engine environments, such as ES6. Some code may not work as described if run in older (pre-ES6) engines.
+## Tóm tắt
+
+JavaScript thật tuyệt vời. Học một phần thì dễ, nhưng học cho đầy đủ (hay thậm chí là *đủ dùng*) thì khó hơn nhiều. Khi lập trình viên gặp điều khó hiểu, họ thường đổ lỗi cho ngôn ngữ hơn là do chưa hiểu rõ. Loạt sách này muốn thay đổi điều đó, truyền cảm hứng để bạn thật sự trân trọng và nắm bắt ngôn ngữ mà bạn hoàn toàn có thể, và *nên*, hiểu *sâu sắc*.
+
+**Lưu ý:** Nhiều ví dụ trong sách giả định rằng bạn đang sử dụng các môi trường JavaScript hiện đại (và hướng tới tương lai), như ES6. Một số đoạn mã có thể không hoạt động đúng nếu chạy trong các chương trình thông dịch cũ (trước ES6).
+
