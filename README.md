@@ -36,11 +36,11 @@ Nội dung của những cuốn sách này được phát hành tại đây, và
 
 ## Khóa học video trực tuyến
 
-Tôi cũng có một vài khóa học JS với các định dạng video theo yêu cầu. Tôi dạy học trên [Frontend Masters](https://FrontendMasters. Bạn có thể tìm thấy [tất cả các khóa học của tôi tại đây](https://frontendmasters.com/kyle-simpson/).
+Tôi cũng có một vài khóa học JS với các định dạng video theo yêu cầu. Tôi dạy học trên [Frontend Masters](https://frontendmasters.com/) Bạn có thể tìm thấy [tất cả các khóa học của tôi tại đây](https://frontendmasters.com/kyle-simpson/).
 
 ## Đóng góp
 
-Những cuốn sách của phiên bản đầu tiên đã hoàn thành và được xuất bản và sẽ không thay đổi theo bất kì cách nào, vì thế không cần bất kì sự đóng góp nào nữa. Chúng sẽ ở đây vì mục đích lưu giữ lâu dài nhưng không được bảo trì nữa. Hãy xem [phiên bản thứ hai](https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed) cho những hoạt động mới trong kho này.
+Những cuốn sách của phiên bản đầu tiên đã hoàn thành và được xuất bản và sẽ không thay đổi theo bất kì cách nào, vì thế không cần sự đóng góp nào nữa. Chúng sẽ ở đây vì mục đích lưu giữ lâu dài nhưng không được duy trì nữa. Hãy xem [phiên bản thứ hai](https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed) cho những hoạt động mới trong kho này.
 
 ## Giấy phép và bản quyền
 
