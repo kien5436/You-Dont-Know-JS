@@ -1,6 +1,6 @@
-# You Don't Know JS: Up & Going - 1st Edition
+# Bạn không hiểu JS: Khởi động và tiến lên - Phiên bản 1
 
-| UPDATE: You are viewing the 1st edition of the book series, as they were published by O'Reilly from 2014-2015. As of now, [2nd edition](https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed) work is underway. Any issues or PRs should be directed against the latest edition. |
+| CẬP NHẬT: Bạn đang xem phiên bản đầu tiên của loạt sách, đã được xuất bản bởi O'Reilly từ 2014-2015. ***Phiên bản này đã dược lưu trữ nhưng vẫn ở đây để lưu giữ lâu dài.*** Tính đến hiện tại, [phiên bản thứ hai](https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed) đang được tiến hành. Mọi vấn đề hoặc yêu cầu đóng góp nên được gửi đến ấn bản mới nhất. |
 | :--- |
 
 ----
@@ -10,15 +10,15 @@
 
 -----
 
-**[Purchase digital/print copy from O'Reilly](http://shop.oreilly.com/product/0636920039303.do)**
+**[Mua bản số/in từ O'Reilly](http://shop.oreilly.com/product/0636920039303.do)**
 
 -----
 
-[Table of Contents](toc.md)
+[Mục lục](toc.md)
 
-* [Foreword](foreword.md) (by [Jenn Lukas](http://jennlukas.com))
-* [Preface](../preface.md)
-* [Chapter 1: Into Programming](ch1.md)
-* [Chapter 2: Into JavaScript](ch2.md)
-* [Chapter 3: Into YDKJS](ch3.md)
-* [Appendix A: Thank You's!](apA.md)
+* [Lời mở đầu](foreword.md) (bởi [Jenn Lukas](http://jennlukas.com))
+* [Lời mỏ đầu](../preface.md)
+* [Chương 1: Bước vào con đường lập trình](ch1.md)
+* [Chương 2: Đến với JavaScript](ch2.md)
+* [Chương 3: Đến với BKHJS](ch3.md)
+* [Phụ lục A: Cảm ơn!](apA.md)

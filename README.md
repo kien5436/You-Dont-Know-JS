@@ -1,4 +1,4 @@
-# Bạn Không hiểu JS (loạt sách) - Phiên bản thứ nhất
+# Bạn không hiểu JS (loạt sách) - Phiên bản thứ nhất
 
 | CẬP NHẬT: Bạn đang xem phiên bản đầu tiên của loạt sách, đã được xuất bản bởi O'Reilly từ 2014-2015. ***Phiên bản này đã dược lưu trữ nhưng vẫn ở đây để lưu giữ lâu dài.*** Tính đến hiện tại, [phiên bản thứ hai](https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed) đang được tiến hành. Mọi vấn đề hoặc yêu cầu đóng góp nên được gửi đến ấn bản mới nhất. |
 | :--- |

@@ -1,10 +1,10 @@
-# You Don't Know JS: Up & Going
+# Bạn không hiểu JS: Khởi động và tiến lên
 
-## Table of Contents
+## Mục lục
 
-* Foreword
-* Preface
-* Chapter 1: Into Programming
+* Lời mở đầu
+* Lời mở đầu
+* Chương 1: Bước vào con đường lập trình
 	* Code
 	* Try It Yourself
 	* Operators
