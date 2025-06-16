@@ -5,17 +5,17 @@
 * Lời mở đầu
 * Lời mở đầu
 * Chương 1: Bước vào con đường lập trình
-	* Code
-	* Try It Yourself
-	* Operators
-	* Values & Types
-	* Code Comments
-	* Variables
-	* Blocks
-	* Conditionals
-	* Loops
-	* Functions
-	* Practice
+	* Mã
+	* Tự Thử Nghiệm
+	* Toán tử
+	* Giá trị và Kiểu dữ liệu
+	* Chú thích mã
+	* Biến
+	* Khối lệnh
+	* Câu lệnh điều kiện
+	* Vòng lặp
+	* Hàm
+	* Luyện tập
 * Chapter 2: Into JavaScript
 	* Values & Types
 	* Variables
@@ -27,7 +27,7 @@
 	* Old & New
 	* Non-JavaScript
 * Chapter 3: Into YDKJS
-	* Scope & Closures
+	* Phạm vi và hàm khép kín
 	* this & Object Prototypes
 	* Types & Grammar
 	* Async & Performance

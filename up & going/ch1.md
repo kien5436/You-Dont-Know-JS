@@ -1,25 +1,25 @@
-# You Don't Know JS: Up & Going
-# Chapter 1: Into Programming
+# Bạn không hiểu JS: Khởi động và tiến lên
+# Chương 1: Bước vào con đường lập trình
 
-Chào mừng anh đến với loạt sách *Bạn không hiểu JS* (*BKHJS*).
+Chào mừng bạn đến với loạt sách *Bạn không hiểu JS* (*BKHJS*).
 
-Quyển *Khởi động và tiến lên* là phần giới thiệu về một số khái niệm cơ bản trong lập trình - tất nhiên có xu hướng thiên về JavaScript (thường viết tắt là JS) - và cách tiếp cận cũng như hiểu các đầu sách còn lại trong loạt này. Đặc biệt nếu anh mới bắt đầu học lập trình và/hoặc JavaScript, quyển sách này sẽ lướt qua những gì anh cần để bắt đầu *lên đường*.
+Quyển *Khởi động và tiến lên* là phần giới thiệu về một số khái niệm cơ bản trong lập trình - tất nhiên có xu hướng thiên về JavaScript (thường viết tắt là JS) - và cách tiếp cận cũng như hiểu các đầu sách còn lại trong loạt này. Đặc biệt nếu bạn mới bắt đầu học lập trình và/hoặc JavaScript, quyển sách này sẽ lướt qua những gì bạn cần để bắt đầu *lên đường*.
 
 Sách bắt đầu bằng việc giải thích các nguyên lý lập trình cơ bản ở mức rất tổng quan. Nó chủ yếu dành cho những ai bắt đầu *BKHJS* mà chưa có (hoặc gần như chưa có) kinh nghiệm lập trình, và muốn dùng loạt sách này như một con đường để hiểu lập trình thông qua lăng kính JavaScript.
 
-Chương 1 nên được tiếp cận như một cái nhìn khái quát về những thứ anh muốn học và làm để *bắt đầu lập trình*. Cũng có nhiều tài nguyên tuyệt vời khác để nhập môn lập trình giúp anh đào sâu hơn vào các chủ đề này, và tôi khuyến khích anh học thêm từ chúng bên cạnh chương này.
+Chương 1 nên được tiếp cận như một cái nhìn khái quát về những thứ bạn muốn học và làm để *bắt đầu lập trình*. Cũng có nhiều tài nguyên tuyệt vời khác để nhập môn lập trình giúp bạn đào sâu hơn vào các chủ đề này, và tôi khuyến khích bạn học thêm từ chúng bên cạnh chương này.
 
-Khi đã thấy thoải mái với các kiến thức lập trình cơ bản, chương 2 sẽ giúp anh làm quen với phong cách lập trình của JavaScript. Chương này giới thiệu về JavaScript là gì, nhưng một lần nữa, nó không phải là hướng dẫn toàn diện - đó là nhiệm vụ của những quyển *BKHJS* còn lại!
+Khi đã thấy thoải mái với các kiến thức lập trình cơ bản, chương 2 sẽ giúp bạn làm quen với phong cách lập trình của JavaScript. Chương này giới thiệu về JavaScript là gì, nhưng một lần nữa, nó không phải là hướng dẫn toàn diện - đó là nhiệm vụ của những quyển *BKHJS* còn lại!
 
-Nếu anh đã khá thoải mái với JavaScript, hãy đọc thử chương 3 để có cái nhìn thoáng qua về những gì *BKHJS* sẽ mang lại, rồi bắt đầu ngay!
+Nếu bạn đã khá thoải mái với JavaScript, hãy đọc thử chương 3 để có cái nhìn thoáng qua về những gì *BKHJS* sẽ mang lại, rồi bắt đầu ngay!
 
 ## Mã
 
 Chúng ta hãy bắt đầu từ những điều cơ bản.
 
-Một chương trình, thường được gọi là *mã nguồn* hoặc đơn giản là *mã*, là một tập hợp các chỉ dẫn đặc biệt để nói cho máy tính biết cần thực hiện những tác vụ nào. Thông thường, mã được lưu trong một tập tin văn bản, mặc dù với JavaScript, anh cũng có thể gõ trực tiếp vào bảng điều khiển dành cho nhà phát triển trong chương trình duyệt, thứ mà chúng ta sẽ bàn ngay sau đây.
+Một chương trình, thường được gọi là *mã nguồn* hoặc đơn giản là *mã*, là một tập hợp các chỉ dẫn đặc biệt để nói cho máy tính biết cần thực hiện những tác vụ nào. Thông thường, mã được lưu trong một tập tin văn bản, mặc dù với JavaScript, bạn cũng có thể gõ trực tiếp vào bảng điều khiển dành cho nhà phát triển trong chương trình duyệt, thứ mà chúng ta sẽ bàn ngay sau đây.
 
-Các quy tắc về định dạng hợp lệ và cách kết hợp các chỉ dẫn được gọi là *ngôn ngữ máy tính*, đôi khi còn được gọi là *cú pháp*, tương tự như tiếng Anh có các quy tắc về cách viết đúng chính tả và cách tạo câu hợp lệ bằng từ vựng và dấu câu.
+Các quy tắc về định dạng hợp lệ và cách kết hợp các chỉ dẫn được gọi là *ngôn ngữ máy tính*, đôi khi còn được gọi là *cú pháp*, tương tự như tiếng bạn có các quy tắc về cách viết đúng chính tả và cách tạo câu hợp lệ bằng từ vựng và dấu câu.
 
 ### Câu lệnh
 
@@ -66,7 +66,7 @@ b * 2;
 
 Kiểu câu lệnh biểu thức này không quá phổ biến hay hữu ích, vì thường thì nó không tạo ra tác động gì đến việc thực thi chương trình - nó chỉ lấy giá trị của `b` và nhân với `2`, nhưng sau đó không làm gì với kết quả đó cả.
 
-Một câu lệnh biểu thức phổ biến hơn là *câu lệnh gọi hàm* (xem phần “Hàm”), vì toàn bộ câu lệnh chính là một biểu thức gọi hàm:
+Một câu lệnh biểu thức phổ biến hơn là *câu lệnh gọi hàm* (xem phần "Hàm"), vì toàn bộ câu lệnh chính là một biểu thức gọi hàm:
 
 ```js
 alert( a );
@@ -76,13 +76,13 @@ alert( a );
 
 Làm cách nào mà những tập hợp các câu lệnh lập trình hướng dẫn được cho máy tính phải làm gì? Chương trình cần được *thực thi*, hay còn gọi là *chạy chương trình*.
 
-Những câu lệnh như `a = b * 2` rất hữu ích với lập trình viên trong quá trình đọc và viết mã, nhưng không thực sự ở dạng mà máy tính có thể hiểu trực tiếp. Vì vậy, cần có một công cụ đặc biệt trên máy tính (gọi là *chương trình thông dịch* hoặc *chương trình biên dịch*) để dịch mã anh viết thành các lệnh mà máy tính hiểu được.
+Những câu lệnh như `a = b * 2` rất hữu ích với lập trình viên trong quá trình đọc và viết mã, nhưng không thực sự ở dạng mà máy tính có thể hiểu trực tiếp. Vì vậy, cần có một công cụ đặc biệt trên máy tính (gọi là *chương trình thông dịch* hoặc *chương trình biên dịch*) để dịch mã bạn viết thành các lệnh mà máy tính hiểu được.
 
 Với một số ngôn ngữ lập trình, việc dịch lệnh thường được thực hiện từ trên xuống dưới, hết dòng này đến dòng khác, mỗi khi chương trình được chạy, cách này thường được gọi là *thông dịch* mã.
 
 Với các ngôn ngữ được dịch sẵn từ trước, gọi là *biên dịch* mã, vì vậy khi chương trình *chạy* sau đó, thứ thực sự chạy là những lệnh đã được biên dịch sẵn, sẵn sàng để thực thi.
 
-Thông thường người ta cho rằng JavaScript là một ngôn ngữ *thông dịch*, vì mã nguồn JavaScript của anh được xử lý mỗi lần nó chạy. Nhưng thực ra điều đó không hoàn toàn chính xác. Bộ máy JavaScript thực sự *biên dịch* chương trình ngay tại thời điểm chạy, rồi lập tức thực thi mã đã biên dịch đó.
+Thông thường người ta cho rằng JavaScript là một ngôn ngữ *thông dịch*, vì mã nguồn JavaScript của bạn được xử lý mỗi lần nó chạy. Nhưng thực ra điều đó không hoàn toàn chính xác. Bộ máy JavaScript thực sự *biên dịch* chương trình ngay tại thời điểm chạy, rồi lập tức thực thi mã đã biên dịch đó.
 
 **Lưu ý:** Để biết thêm về quá trình biên dịch trong JavaScript, hãy xem hai chương đầu tiên trong cuốn *Phạm vi và hàm đóng* của loạt sách này.
 
@@ -90,11 +90,11 @@ Thông thường người ta cho rằng JavaScript là một ngôn ngữ *thông
 
 Chương này sẽ giới thiệu từng khái niệm lập trình với những đoạn mã đơn giản, tất cả đều được viết bằng JavaScript (tất nhiên rồi!).
 
-Điều này không thể nhấn mạnh đủ: trong lúc anh đọc chương này - và có thể anh sẽ cần dành thời gian đọc lại nhiều lần - anh nên thực hành từng khái niệm bằng cách tự gõ lại mã. Cách dễ nhất để làm điều đó là mở bảng điều khiển trong công cụ dành cho nhà phát triển của chương trình duyệt gần nhất (Firefox, Chrome, IE, v.v.).
+Điều này không thể nhấn mạnh đủ: trong lúc bạn đọc chương này - và có thể bạn sẽ cần dành thời gian đọc lại nhiều lần - bạn nên thực hành từng khái niệm bằng cách tự gõ lại mã. Cách dễ nhất để làm điều đó là mở bảng điều khiển trong công cụ dành cho nhà phát triển của chương trình duyệt gần nhất (Firefox, Chrome, IE, v.v.).
 
-**Mẹo:** Thông thường, anh có thể mở bảng điều khiển bằng phím tắt hoặc thông qua bảng chọn. Để biết thêm chi tiết về cách mở và sử dụng bảng điều khiển trong chương trình duyệt yêu thích của mình, hãy xem bài viết "Làm chủ Bảng điều khiển Công cụ cho nhà phát triển" ([http://blog.teamtreehouse.com/mastering-developer-tools-console](http://blog.teamtreehouse.com/mastering-developer-tools-console)). Để gõ nhiều dòng mã cùng lúc trong bảng điều khiển, hãy dùng `<shift> + <enter>` để xuống dòng mới. Khi nhấn `<enter>`, bảng điều khiển sẽ thực thi toàn bộ những gì anh vừa gõ.
+**Mẹo:** Thông thường, bạn có thể mở bảng điều khiển bằng phím tắt hoặc thông qua bảng chọn. Để biết thêm chi tiết về cách mở và sử dụng bảng điều khiển trong chương trình duyệt yêu thích của mình, hãy xem bài viết "Làm chủ Bảng điều khiển Công cụ cho nhà phát triển" ([http://blog.teamtreehouse.com/mastering-developer-tools-console](http://blog.teamtreehouse.com/mastering-developer-tools-console)). Để gõ nhiều dòng mã cùng lúc trong bảng điều khiển, hãy dùng `<shift> + <enter>` để xuống dòng mới. Khi nhấn `<enter>`, bảng điều khiển sẽ thực thi toàn bộ những gì bạn vừa gõ.
 
-Bây giờ hãy làm quen với quá trình chạy mã trong bảng điều khiển. Trước tiên, tôi đề xuất anh mở một thẻ trống trong chương trình duyệt. Tôi thường làm điều đó bằng cách gõ `about:blank` vào thanh địa chỉ. Sau đó, đảm bảo rằng bảng điều khiển của anh đã được mở như đã nói ở trên.
+Bây giờ hãy làm quen với quá trình chạy mã trong bảng điều khiển. Trước tiên, tôi đề xuất bạn mở một thẻ trống trong chương trình duyệt. Tôi thường làm điều đó bằng cách gõ `about:blank` vào thanh địa chỉ. Sau đó, đảm bảo rằng bảng điều khiển của bạn đã được mở như đã nói ở trên.
 
 Bây giờ, hãy gõ đoạn mã sau và xem cách nó chạy:
 
@@ -116,57 +116,57 @@ Hãy thử đi. Cách học lập trình tốt nhất là bắt đầu viết m�
 
 Trong đoạn mã trước đó, chúng ta đã sử dụng `console.log(..)`. Hãy cùng xem nhanh dòng mã đó có ý nghĩa gì.
 
-Anh có thể đã đoán được, nhưng đó chính là cách chúng ta in văn bản (hay còn gọi là *xuất* cho người dùng) trong bảng điều khiển dành cho nhà phát triển. Có hai đặc điểm của câu lệnh đó cần được giải thích.
+bạn có thể đã đoán được, nhưng đó chính là cách chúng ta in văn bản (hay còn gọi là *xuất* cho người dùng) trong bảng điều khiển dành cho nhà phát triển. Có hai đặc điểm của câu lệnh đó cần được giải thích.
 
-Thứ nhất, phần `log(b)` được gọi là một lời gọi hàm (xem thêm phần “Hàm”). Điều đang diễn ra là chúng ta đưa biến `b` vào hàm đó, yêu cầu nó lấy giá trị của `b` và in ra bảng điều khiển.
+Thứ nhất, phần `log(b)` được gọi là một lời gọi hàm (xem thêm phần "Hàm"). Điều đang diễn ra là chúng ta đưa biến `b` vào hàm đó, yêu cầu nó lấy giá trị của `b` và in ra bảng điều khiển.
 
 Thứ hai, phần `console.` là một tham chiếu đến đối tượng nơi chứa hàm `log(..)`. Chúng ta sẽ tìm hiểu kỹ hơn về đối tượng và thuộc tính của chúng trong chương 2.
 
-Một cách khác để tạo đầu ra mà anh có thể nhìn thấy là dùng câu lệnh `alert(..)`. Ví dụ:
+Một cách khác để tạo đầu ra mà bạn có thể nhìn thấy là dùng câu lệnh `alert(..)`. Ví dụ:
 
 ```js
 alert( b );
 ```
 
-Nếu chạy đoạn mã đó, anh sẽ thấy thay vì in kết quả ra bảng điều khiển, chương trình duyệt sẽ hiển thị một hộp thoại với nút “OK” và nội dung là giá trị của biến `b`. Tuy nhiên, việc dùng `console.log(..)` sẽ giúp anh học lập trình và chạy các chương trình dễ dàng hơn so với `alert(..)` vì anh có thể xuất nhiều giá trị cùng lúc mà không làm gián đoạn giao diện chương trình duyệt.
+Nếu chạy đoạn mã đó, bạn sẽ thấy thay vì in kết quả ra bảng điều khiển, chương trình duyệt sẽ hiển thị một hộp thoại với nút "OK" và nội dung là giá trị của biến `b`. Tuy nhiên, việc dùng `console.log(..)` sẽ giúp bạn học lập trình và chạy các chương trình dễ dàng hơn so với `alert(..)` vì bạn có thể xuất nhiều giá trị cùng lúc mà không làm gián đoạn giao diện chương trình duyệt.
 
 Trong cuốn sách này, chúng ta sẽ sử dụng `console.log(..)` để hiển thị đầu ra.
 
 ### Đầu vào
 
-Trong khi nói về việc xuất kết quả, chắc hẳn anh cũng đang thắc mắc về *đầu vào* (ví dụ như nhận thông tin từ người dùng).
+Trong khi nói về việc xuất kết quả, chắc hẳn bạn cũng đang thắc mắc về *đầu vào* (ví dụ như nhận thông tin từ người dùng).
 
 Cách phổ biến nhất là trang HTML hiển thị các thành phần biểu mẫu (chẳng hạn như ô nhập văn bản) để người dùng nhập vào, sau đó dùng JavaScript để đọc các giá trị đó vào biến trong chương trình.
 
 Tuy nhiên, có một cách đơn giản hơn để nhận dữ liệu đầu vào trong các ví dụ học tập và trình diễn như cách mà bạn sẽ làm trong cuốn sách này: sử dụng hàm `prompt(..)`:
 
 ```js
-age = prompt( "Please tell me your age:" );
+age = prompt( "Hãy nhập tuổi của bạn:" );
 
 console.log( age );
 ```
 
-Như anh có thể đoán, thông điệp mà anh truyền vào `prompt(..)` - trong ví dụ này là `"Please tell me your age:"` - sẽ được hiển thị trong hộp thoại bật lên.
+Như bạn có thể đoán, thông điệp mà bạn truyền vào `prompt(..)` - trong ví dụ này là `"Hãy nhập tuổi của bạn:"` - sẽ được hiển thị trong hộp thoại bật lên.
 
 Nó sẽ trông giống như sau:
 
 <img src="fig2.png" width="500">
 
-Sau khi anh nhập nội dung và nhấn "OK", giá trị anh gõ vào sẽ được lưu vào biến `age`, rồi chúng ta *xuất* giá trị đó bằng `console.log(..)`:
+Sau khi bạn nhập nội dung và nhấn "OK", giá trị bạn gõ vào sẽ được lưu vào biến `age`, rồi chúng ta *xuất* giá trị đó bằng `console.log(..)`:
 
 <img src="fig3.png" width="500">
 
-Để đơn giản hoá khi học các khái niệm lập trình cơ bản, các ví dụ trong cuốn sách này sẽ không yêu cầu nhập đầu vào. Nhưng bây giờ anh đã biết cách dùng `prompt(..)`, nên nếu muốn thử thách bản thân, anh có thể dùng thêm phần nhập liệu khi khám phá các ví dụ.
+Để đơn giản hoá khi học các khái niệm lập trình cơ bản, các ví dụ trong cuốn sách này sẽ không yêu cầu nhập đầu vào. Nhưng bây giờ bạn đã biết cách dùng `prompt(..)`, nên nếu muốn thử thách bản thân, bạn có thể dùng thêm phần nhập liệu khi khám phá các ví dụ.
 
 ## Toán tử
 
-Toán tử là cách chúng ta thực hiện các thao tác trên biến và giá trị. Anh đã thấy hai toán tử JavaScript rồi: `=` và `*`.
+Toán tử là cách chúng ta thực hiện các thao tác trên biến và giá trị. bạn đã thấy hai toán tử JavaScript rồi: `=` và `*`.
 
 Toán tử `*` thực hiện phép nhân. Quá đơn giản, phải không?
 
 Toán tử `=` là toán tử *gán* - ta tính giá trị ở phía *bên phải* (giá trị nguồn) của dấu `=`, rồi gán nó vào biến được chỉ định ở phía *bên trái* (biến đích).
 
-**Cảnh báo:** Cách viết này có thể hơi ngược với suy nghĩ ban đầu. Thay vì `a = 42`, một số người có thể thích viết theo cách giá trị nguồn bên trái và biến đích bên phải, như `42 -> a` (cách này *không hợp lệ* trong JavaScript!). Tuy nhiên, cú pháp theo kiểu `a = 42` và những biến thể tương tự, lại rất phổ biến trong các ngôn ngữ lập trình hiện đại. Nếu anh thấy cách này không tự nhiên, hãy luyện tập một thời gian để quen dần với thứ tự đó.
+**Cảnh báo:** Cách viết này có thể hơi ngược với suy nghĩ ban đầu. Thay vì `a = 42`, một số người có thể thích viết theo cách giá trị nguồn bên trái và biến đích bên phải, như `42 -> a` (cách này *không hợp lệ* trong JavaScript!). Tuy nhiên, cú pháp theo kiểu `a = 42` và những biến thể tương tự, lại rất phổ biến trong các ngôn ngữ lập trình hiện đại. Nếu bạn thấy cách này không tự nhiên, hãy luyện tập một thời gian để quen dần với thứ tự đó.
 
 Xem ví dụ sau:
 
@@ -177,9 +177,9 @@ b = a + 1;
 
 Ở đây, chúng ta gán giá trị `2` cho biến `a`. Sau đó, lấy giá trị của biến `a` (vẫn là `2`), cộng thêm `1` thành `3`, rồi gán giá trị đó vào biến `b`.
 
-Mặc dù không phải là một toán tử về mặt kỹ thuật, nhưng anh sẽ cần dùng từ khóa `var` trong mọi chương trình, vì đây là cách chính để *khai báo* (hay *tạo mới*) các *biến* (xem phần “Biến”).
+Mặc dù không phải là một toán tử về mặt kỹ thuật, nhưng bạn sẽ cần dùng từ khóa `var` trong mọi chương trình, vì đây là cách chính để *khai báo* (hay *tạo mới*) các *biến* (xem phần "Biến").
 
-Anh nên luôn luôn khai báo tên biến trước khi sử dụng nó. Tuy nhiên, anh chỉ cần khai báo biến một lần trong mỗi *phạm vi* (xem phần “Phạm vi”); sau đó có thể sử dụng lại bao nhiêu lần cũng được. Ví dụ:
+bạn nên luôn luôn khai báo tên biến trước khi sử dụng nó. Tuy nhiên, bạn chỉ cần khai báo biến một lần trong mỗi *phạm vi* (xem phần "Phạm vi"); sau đó có thể sử dụng lại bao nhiêu lần cũng được. Ví dụ:
 
 ```js
 var a = 20;
@@ -201,13 +201,13 @@ Dưới đây là một số toán tử phổ biến nhất trong JavaScript:
   Đối tượng là các giá trị có thể chứa các giá trị khác tại những vị trí được đặt tên gọi là thuộc tính. `obj.a` nghĩa là một đối tượng tên `obj` có thuộc tính tên là `a`. Thuộc tính cũng có thể được truy cập bằng cú pháp `obj["a"]`. Xem chương 2.
 * **So sánh bằng:** `==` (so sánh bằng lỏng lẻo), `===` (so sánh bằng nghiêm ngặt), `!=` (khác lỏng lẻo), `!==` (khác nghiêm ngặt), ví dụ `a == b`.
 
-  Xem phần “Giá trị & Kiểu dữ liệu” và chương 2.
+  Xem phần "Giá trị & Kiểu dữ liệu" và chương 2.
 * **So sánh:** `<` (nhỏ hơn), `>` (lớn hơn), `<=` (nhỏ hơn hoặc bằng), `>=` (lớn hơn hoặc bằng), như trong `a <= b`.
 
-  Xem phần “Giá trị & Kiểu dữ liệu” và chương 2.
+  Xem phần "Giá trị & Kiểu dữ liệu" và chương 2.
 * **Logic:** `&&` (và), `||` (hoặc), như trong `a || b` nghĩa là chọn `a` *hoặc* `b`.
 
-  Các toán tử này dùng để diễn tả điều kiện phức hợp (xem phần “Điều kiện”), như khi `a` *hoặc* `b` đúng.
+  Các toán tử này dùng để diễn tả điều kiện phức hợp (xem phần "Điều kiện"), như khi `a` *hoặc* `b` đúng.
 
 **Ghi chú:** Để tìm hiểu chi tiết hơn và xem các toán tử chưa được đề cập ở đây, hãy tham khảo bài viết "Biểu thức và toán tử" trên Mozilla Developer Network (MDN): [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions\_and\_Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators).
 
@@ -215,19 +215,19 @@ Dưới đây là một số toán tử phổ biến nhất trong JavaScript:
 
 ## Giá trị & Kiểu dữ liệu
 
-Giả sử anh hỏi nhân viên bán điện thoại về giá một chiếc điện thoại, và họ nói “chín mươi chín chín mươi chín” (tức là $99.99), thì họ đang đưa cho anh một con số thật sự đại diện cho số tiền cần trả (chưa tính thuế). Nếu anh muốn mua hai cái, anh dễ dàng nhân đôi con số đó để ra $199.98.
+Giả sử bạn hỏi nhân viên bán điện thoại về giá một chiếc điện thoại, và họ nói "chín mươi chín, chín mươi chín" (tức là $99.99), thì họ đang đưa cho bạn một con số thật sự đại diện cho số tiền cần trả (chưa tính thuế). Nếu bạn muốn mua hai cái, bạn dễ dàng nhân đôi con số đó để ra $199.98.
 
-Nhưng nếu nhân viên đó chỉ một cái điện thoại khác và nói là “miễn phí” (có thể còn làm dấu ngoặc tay), thì họ không đưa ra con số, mà là một cách biểu diễn khác cho cái giá bạn mong đợi ($0.00) - đó là từ "miễn phí".
+Nhưng nếu nhân viên đó chỉ một cái điện thoại khác và nói là "miễn phí" (có thể còn làm dấu ngoặc tay), thì họ không đưa ra con số, mà là một cách biểu diễn khác cho cái giá bạn mong đợi ($0.00) - đó là từ "miễn phí".
 
-Khi anh hỏi liệu điện thoại có kèm theo sạc không, thì câu trả lời chỉ có thể là “có” hoặc “không”.
+Khi bạn hỏi liệu điện thoại có kèm theo sạc không, thì câu trả lời chỉ có thể là "có" hoặc "không".
 
 Tương tự như vậy, khi biểu diễn các giá trị trong một chương trình, ta chọn những cách biểu diễn khác nhau tùy vào mục đích sử dụng.
 
 Những cách biểu diễn giá trị khác nhau này được gọi là *kiểu dữ liệu* trong lập trình. JavaScript có các kiểu dữ liệu tích hợp sẵn cho những giá trị cơ bản như sau:
 
-* Khi cần thực hiện phép toán, anh dùng kiểu `number`.
-* Khi cần in một giá trị ra màn hình, anh dùng kiểu `string` (chuỗi ký tự, từ, câu).
-* Khi cần đưa ra quyết định trong chương trình, anh dùng kiểu `boolean` (`true` hoặc `false`).
+* Khi cần thực hiện phép toán, bạn dùng kiểu `number`.
+* Khi cần in một giá trị ra màn hình, bạn dùng kiểu `string` (chuỗi ký tự, từ, câu).
+* Khi cần đưa ra quyết định trong chương trình, bạn dùng kiểu `boolean` (`true` hoặc `false`).
 
 Giá trị được viết trực tiếp trong mã nguồn gọi là *giá trị gốc* (literal). Giá trị `string` gốc được đặt trong dấu nháy kép `"..."` hoặc nháy đơn `'...'` - khác biệt chỉ là theo sở thích. Giá trị `number` và `boolean` gốc được viết trực tiếp (ví dụ `42`, `true`, v.v.).
 
@@ -275,116 +275,112 @@ Tuy nhiên, ép kiểu ngầm định là một cơ chế *hoàn toàn có thể
 
 **Ghi chú:** Để tìm hiểu thêm về ép kiểu, hãy xem chương 2 của cuốn sách này và chương 4 của cuốn *Kiểu và ngữ pháp* trong cùng bộ sách.
 
-## mã Comments
+## Chú thích mã
 
-The phone store employee might jot down some notes on the features of a newly released phone or on the new plans her company offers. These notes are only for the employee -- they're not for customers to read. Nevertheless, these notes help the employee do her job better by documenting the hows and whys of what she should tell customers.
+Nhân viên cửa hàng điện thoại có thể ghi chú vài điều về tính năng của một mẫu điện thoại mới phát hành hoặc các kế hoạch mới mà công ty đang đề xuất. Những ghi chú này chỉ dành cho nhân viên - không phải để khách hàng xem. Tuy vậy, chúng giúp nhân viên làm việc tốt hơn bằng cách ghi lại cách thức và lý do của những gì họ nên nói với khách hàng.
 
-One of the most important lessons you can learn about writing mã is that it's not just for the computer. mã is every bit as much, if not more, for the developer as it is for the compiler.
+Một trong những bài học quan trọng nhất bạn có thể học về việc viết mã là nó không chỉ dành cho máy tính. Mã quan trọng với lập trình viên không kém gì với chương trình biên dịch.
 
-Your computer only cares about machine mã, a series of binary 0s and 1s, that comes from *compilation*. There's a nearly infinite number of programs you could write that yield the same series of 0s and 1s. The choices you make about how to write your program matter -- not only to you, but to your other team members and even to your future self.
+Máy tính của bạn chỉ quan tâm đến mã máy, một chuỗi các số nhị phân 0 và 1, được tạo ra từ quá trình *biên dịch*. Có gần như vô hạn cách viết chương trình khác nhau có thể tạo ra cùng một chuỗi 0 và 1 đó. Vì thế, cách bạn chọn viết mã rất quan trọng - không chỉ cho bạn, mà còn cho những thành viên khác trong nhóm và cho chính bạn trong tương lai.
 
-You should strive not just to write programs that work correctly, but programs that make sense when examined. You can go a long way in that effort by choosing good names for your variables (see "Variables") and functions (see "Functions").
+Bạn không chỉ cần viết chương trình chạy đúng, mà còn cần viết sao cho dễ hiểu khi đọc lại. Cách đặt tên biến (xem phần "Biến") và hàm (xem phần "Hàm") là một phần quan trọng trong việc đó.
 
-But another important part is mã comments. These are bits of text in your program that are inserted purely to explain things to a human. The interpreter/compiler will always ignore these comments.
+Nhưng một phần khác cũng rất quan trọng là chú thích mã. Đây là những dòng văn bản được chèn vào trong chương trình chỉ để giải thích cho con người. Chương trình thông dịch hoặc biên dịch sẽ luôn bỏ qua những chú thích này.
 
-There are lots of opinions on what makes well-commented mã; we can't really define absolute universal rules. But some observations and guidelines are quite useful:
+Có rất nhiều quan điểm khác nhau về cách viết chú thích mã tốt nhưng không có quy tắc tuyệt đối nào. Tuy nhiên, có một vài quan sát và hướng dẫn hữu ích như sau:
 
-* mã without comments is suboptimal.
-* Too many comments (one per line, for example) is probably a sign of poorly written mã.
-* Comments should explain *why*, not *what*. They can optionally explain *how* if that's particularly confusing.
+* Mã không có chú thích thì chưa tối ưu.
+* Quá nhiều chú thích (ví dụ, mỗi dòng một chú thích) có thể là dấu hiệu của mã viết kém.
+* Chú thích nên giải thích *tại sao*, không phải *cái gì*. Nếu cần thiết, cũng có thể giải thích *cách làm* nếu điều đó gây khó hiểu.
 
-In JavaScript, there are two types of comments possible: a single-line comment and a multiline comment.
+Trong JavaScript, có hai loại chú thích: chú thích một dòng và chú thích nhiều dòng.
 
-Consider:
+Ví dụ:
 
 ```js
-// This is a single-line comment
+// Đây là chú thích một dòng
 
-/* But this is
-       a multiline
-             comment.
-                      */
+/* Còn đây là
+   chú thích
+   nhiều dòng. */
 ```
 
-The `//` single-line comment is appropriate if you're going to put a comment right above a single statement, or even at the end of a line. Everything on the line after the `//` is treated as the comment (and thus ignored by the compiler), all the way to the end of the line. There's no restriction to what can appear inside a single-line comment.
-
-Consider:
+* Chú thích một dòng (`//`) thích hợp khi bạn viết chú thích ngay trên một câu lệnh, hoặc ở cuối dòng đó. Mọi thứ sau `//` đến hết dòng đều là chú thích (và vì thế sẽ bị chương trình biên dịch bỏ qua). Không có giới hạn gì về những thứ có thể xuất hiện bên trong chú thích một dòng.
 
 ```js
-var a = 42;		// 42 is the meaning of life
+var a = 42;	// 42 là ý nghĩa của cuộc sống
 ```
 
-The `/* .. */` multiline comment is appropriate if you have several lines worth of explanation to make in your comment.
+* Chú thích nhiều dòng (`/* ... */`) phù hợp khi bạn cần nhiều dòng để giải thích.
 
-Here's a common usage of multiline comments:
+Dưới đây là một cách dùng phổ biến của chú thích nhiều dòng:
 
 ```js
-/* The following value is used because
-   it has been shown that it answers
-   every question in the universe. */
+/* Giá trị sau được dùng vì
+   người ta cho rằng nó là
+   câu trả lời cho mọi câu hỏi trong vũ trụ. */
 var a = 42;
 ```
 
-It can also appear anywhere on a line, even in the middle of a line, because the `*/` ends it. For example:
+Nó có thể xuất hiện ở bất kì vị trí nào trên một dòng, kể cả ở giữa dòng vì `*/` kết thúc nó. Ví dụ:
 
 ```js
-var a = /* arbitrary value */ 42;
+var a = /* giá trị tuỳ ý */ 42;
 
-console.log( a );	// 42
+console.log(a);  // 42
 ```
 
-The only thing that cannot appear inside a multiline comment is a `*/`, because that would be interpreted to end the comment.
+Thứ duy nhất không được chèn vào bên trong một chú thích nhiều dòng là `*/` vì nó sẽ kết thúc chú thích.
 
-You will definitely want to begin your learning of programming by starting off with the habit of commenting mã. Throughout the rest of this chapter, you'll see I use comments to explain things, so do the same in your own practice. Trust me, everyone who reads your mã will thank you!
+Bạn nên bắt đầu học lập trình với thói quen viết chú thích mã thường xuyên. Trong phần còn lại của chương này, tôi sẽ dùng chú thích để giải thích mã, bạn cũng nên làm như vậy trong thực tế. Tin tôi đi, những người đọc mã của bạn sau này sẽ biết ơn bạn!
 
-## Variables
+## Biến
 
-Most useful programs need to track a value as it changes over the course of the program, undergoing different operations as called for by your program's intended tasks.
+Hầu hết các chương trình hữu ích đều cần theo dõi một giá trị khi nó thay đổi trong suốt quá trình chạy chương trình, trải qua các phép xử lý khác nhau tùy theo nhiệm vụ mà chương trình cần thực hiện.
 
-The easiest way to go about that in your program is to assign a value to a symbolic container, called a *variable* -- so called because the value in this container can *vary* over time as needed.
+Cách đơn giản nhất để làm điều đó là gán giá trị vào một biểu tượng chứa có tên gọi là *biến* - gọi như vậy vì giá trị trong vùng chứa này có thể *biến đổi* theo thời gian khi cần thiết.
 
-In some programming languages, you declare a variable (container) to hold a specific type of value, such as `number` or `string`. *Static typing*, otherwise known as *type enforcement*, is typically cited as a benefit for program correctness by preventing unintended value conversions.
+Trong một số ngôn ngữ lập trình, bạn khai báo một biến (vùng chứa) để giữ một loại giá trị cụ thể như `number` hoặc `string`. *Kiểu tĩnh* hay còn gọi là *kiểu ràng buộc*, thường được xem là có lợi cho độ đúng đắn của chương trình vì ngăn chặn việc chuyển đổi kiểu không chủ ý.
 
-Other languages emphasize types for values instead of variables. *Weak typing*, otherwise known as *dynamic typing*, allows a variable to hold any type of value at any time. It's typically cited as a benefit for program flexibility by allowing a single variable to represent a value no matter what type form that value may take at any given moment in the program's logic flow.
+Một số ngôn ngữ khác lại tập trung vào kiểu của giá trị thay vì kiểu của biến. *Kiểu yếu* hay còn gọi là *kiểu động*, cho phép biến giữ bất kỳ loại giá trị nào tại bất kỳ thời điểm nào. Cách này thường được đánh giá cao vì sự linh hoạt khi cho phép một biến đại diện cho nhiều loại giá trị khác nhau tùy theo luồng logic của chương trình.
 
-JavaScript uses the latter approach, *dynamic typing*, meaning variables can hold values of any *type* without any *type* enforcement.
+JavaScript chọn cách tiếp cận thứ hai, *kiểu động*, tức là các biến có thể giữ bất kỳ *loại* giá trị nào mà không bị *ràng buộc kiểu*.
 
-As mentioned earlier, we declare a variable using the `var` statement -- notice there's no other *type* information in the declaration. Consider this simple program:
+Như đã nói trước đó, ta khai báo biến bằng lệnh `var` - lưu ý là không có thông tin về *kiểu* nào trong khai báo. Xem ví dụ đơn giản sau:
 
 ```js
 var amount = 99.99;
 
 amount = amount * 2;
 
-console.log( amount );		// 199.98
+console.log(amount);      // 199.98
 
-// convert `amount` to a string, and
-// add "$" on the beginning
-amount = "$" + String( amount );
+// chuyển `amount` thành chuỗi và thêm dấu "$" vào đầu
+amount = "$" + String(amount);
 
-console.log( amount );		// "$199.98"
+console.log(amount);      // "$199.98"
 ```
 
-The `amount` variable starts out holding the number `99.99`, and then holds the `number` result of `amount * 2`, which is `199.98`.
+Biến `amount` ban đầu giữ giá trị số `99.99`, sau đó giữ kết quả phép nhân `amount * 2` là `199.98`.
 
-The first `console.log(..)` command has to *implicitly* coerce that `number` value to a `string` to print it out.
+Lệnh `console.log(..)` đầu tiên sẽ *ngầm* ép giá trị `number` đó thành `string` để in ra.
 
-Then the statement `amount = "$" + String(amount)` *explicitly* coerces the `199.98` value to a `string` and adds a `"$"` character to the beginning. At this point, `amount` now holds the `string` value `"$199.98"`, so the second `console.log(..)` statement doesn't need to do any coercion to print it out.
+Sau đó, dòng `amount = "$" + String(amount)` *rõ ràng* ép `199.98` thành `string` và nối thêm dấu `$` vào đầu. Lúc này, `amount` giữ giá trị chuỗi `"$199.98"`, nên lệnh `console.log(..)` thứ hai không cần ép kiểu gì cả.
 
-JavaScript developers will note the flexibility of using the `amount` variable for each of the `99.99`, `199.98`, and the `"$199.98"` values. Static-typing enthusiasts would prefer a separate variable like `amountStr` to hold the final `"$199.98"` representation of the value, because it's a different type.
+Các lập trình viên JavaScript sẽ thấy sự linh hoạt khi dùng biến `amount` cho cả `99.99`, `199.98` và `"$199.98"`. Những người chuộng kiểu tĩnh sẽ thích tạo một biến riêng như `amountStr` để giữ giá trị chuỗi `"$199.98"` vì đây là kiểu dữ liệu khác.
 
-Either way, you'll note that `amount` holds a running value that changes over the course of the program, illustrating the primary purpose of variables: managing program *state*.
+Dù chọn cách nào, bạn cũng sẽ thấy rằng `amount` đang giữ giá trị thay đổi theo thời gian, điều đó minh họa mục đích chính của biến: quản lý *trạng thái* chương trình.
 
-In other words, *state* is tracking the changes to values as your program runs.
+Nói cách khác, *trạng thái* là việc theo dõi sự thay đổi của các giá trị trong quá trình chương trình chạy.
 
-Another common usage of variables is for centralizing value setting. This is more typically called *constants*, when you declare a variable with a value and intend for that value to *not change* throughout the program.
+Một cách dùng phổ biến khác của biến là để tập trung việc thiết lập giá trị. Khi bạn khai báo một biến mà bạn *không muốn thay đổi* giá trị trong suốt chương trình, người ta gọi đó là *hằng số*.
 
-You declare these *constants*, often at the top of a program, so that it's convenient for you to have one place to go to alter a value if you need to. By convention, JavaScript variables as constants are usually capitalized, with underscores `_` between multiple words.
+Bạn khai báo các *hằng số* này, thường ở đầu chương trình, để tiện điều chỉnh khi cần thay vì phải sửa nhiều lần trong toàn bộ chương trình. Theo quy ước, biến đóng vai trò là hằng số trong JavaScript thường được viết in hoa, có dấu gạch dưới `_` giữa các từ.
 
-Here's a silly example:
+Dưới đây là một ví dụ đơn giản:
 
 ```js
-var TAX_RATE = 0.08;	// 8% sales tax
+var TAX_RATE = 0.08; // thuế 8%
 
 var amount = 99.99;
 
@@ -392,83 +388,83 @@ amount = amount * 2;
 
 amount = amount + (amount * TAX_RATE);
 
-console.log( amount );				// 215.9784
-console.log( amount.toFixed( 2 ) );	// "215.98"
+console.log(amount);               // 215.9784
+console.log(amount.toFixed(2));    // "215.98"
 ```
 
-**Note:** Similar to how `console.log(..)` is a function `log(..)` accessed as an object property on the `console` value, `toFixed(..)` here is a function that can be accessed on `number` values. JavaScript `number`s aren't automatically formatted for dollars -- the engine doesn't know what your intent is and there's no type for currency. `toFixed(..)` lets us specify how many decimal places we'd like the `number` rounded to, and it produces the `string` as necessary.
+**Ghi chú:** Giống như `console.log(..)`, hàm `log(..)` được truy cập như thuộc tính của đối tượng `console` thì `toFixed(..)` là một hàm có thể gọi trên giá trị kiểu `number`. JavaScript không tự động định dạng số cho đô-la - bộ máy không biết ý định của bạn là gì và cũng không có kiểu dữ liệu riêng cho tiền tệ. Hàm `toFixed(..)` giúp chúng ta chỉ định số chữ số thập phân muốn làm tròn và trả về một `string`.
 
-The `TAX_RATE` variable is only *constant* by convention -- there's nothing special in this program that prevents it from being changed. But if the city raises the sales tax rate to 9%, we can still easily update our program by setting the `TAX_RATE` assigned value to `0.09` in one place, instead of finding many occurrences of the value `0.08` strewn throughout the program and updating all of them.
+Biến `TAX_RATE` chỉ là *hằng số* theo quy ước - không có gì ngăn bạn thay đổi giá trị của nó trong chương trình cả. Nhưng nếu thành phố tăng thuế lên 9%, bạn có thể dễ dàng cập nhật chương trình bằng cách sửa một dòng `TAX_RATE = 0.09` thay vì phải sửa tất cả các chỗ có số `0.08`.
 
-The newest version of JavaScript at the time of this writing (commonly called "ES6") includes a new way to declare *constants*, by using `const` instead of `var`:
+Phiên bản mới nhất của JavaScript tính đến thời điểm viết cuốn sách này (thường gọi là "ES6") đã thêm cách khai báo *hằng số* mới là dùng từ khóa `const` thay cho `var`:
 
 ```js
-// as of ES6:
+// kể từ ES6:
 const TAX_RATE = 0.08;
 
 var amount = 99.99;
 
-// ..
+// ...
 ```
 
-Constants are useful just like variables with unchanged values, except that constants also prevent accidentally changing value somewhere else after the initial setting. If you tried to assign any different value to `TAX_RATE` after that first declaration, your program would reject the change (and in strict mode, fail with an error -- see "Strict Mode" in Chapter 2).
+Hằng số vẫn giống như biến nhưng thêm đặc điểm là chống lại việc thay đổi giá trị một cách vô tình sau khi đã khởi tạo. Nếu bạn cố gán giá trị mới cho `TAX_RATE` sau khi đã khai báo, chương trình sẽ từ chối thay đổi đó (và chế độ nghiêm ngặt sẽ báo lỗi - Xem phần "Chế độ nghiêm ngặt" trong chương 2).
 
-By the way, that kind of "protection" against mistakes is similar to the static-typing type enforcement, so you can see why static types in other languages can be attractive!
+Điều này cũng giống như cách mà kiểu dữ liệu tĩnh giúp ngăn lỗi, vì vậy bạn có thể thấy vì sao một số lập trình viên lại chuộng kiểu dữ liệu tĩnh hơn.
 
-**Note:** For more information about how different values in variables can be used in your programs, see the *Types & Grammar* title of this series.
+**Ghi chú:** Để tìm hiểu thêm về cách dùng biến với các kiểu giá trị khác nhau trong chương trình, hãy xem sách *Kiểu và ngữ pháp* thuộc cùng bộ sách này.
 
-## Blocks
+## Khối lệnh
 
-The phone store employee must go through a series of steps to complete the checkout as you buy your new phone.
+Nhân viên cửa hàng điện thoại phải thực hiện một loạt các bước để hoàn tất việc thanh toán khi bạn mua một chiếc điện thoại mới.
 
-Similarly, in mã we often need to group a series of statements together, which we often call a *block*. In JavaScript, a block is defined by wrapping one or more statements inside a curly-brace pair `{ .. }`. Consider:
+Tương tự, trong lập trình, ta thường cần nhóm nhiều câu lệnh lại với nhau và gọi đó là một *khối lệnh*. Trong JavaScript, khối lệnh được xác định bằng cách đặt một hoặc nhiều câu lệnh trong cặp ngoặc nhọn `{ .. }`. Ví dụ:
 
 ```js
 var amount = 99.99;
 
-// a general block
+// một khối lệnh chung
 {
 	amount = amount * 2;
-	console.log( amount );	// 199.98
+	console.log(amount);	// 199.98
 }
 ```
 
-This kind of standalone `{ .. }` general block is valid, but isn't as commonly seen in JS programs. Typically, blocks are attached to some other control statement, such as an `if` statement (see "Conditionals") or a loop (see "Loops"). For example:
+Khối `{ .. }` độc lập như trên là hợp lệ, nhưng không quá phổ biến trong các chương trình JS. Thông thường, khối lệnh được gắn liền với một câu lệnh điều khiển, chẳng hạn như `if` (xem phần "Câu lệnh điều kiện") hoặc vòng lặp (xem phần "Vòng lặp"). Ví dụ:
 
 ```js
 var amount = 99.99;
 
-// is amount big enough?
-if (amount > 10) {			// <-- block attached to `if`
+// amount có đủ lớn không?
+if (amount > 10) {          // <-- khối gắn với `if`
 	amount = amount * 2;
-	console.log( amount );	// 199.98
+	console.log(amount);    // 199.98
 }
 ```
 
-We'll explain `if` statements in the next section, but as you can see, the `{ .. }` block with its two statements is attached to `if (amount > 10)`; the statements inside the block will only be processed if the conditional passes.
+Tôi sẽ giải thích lệnh `if` ở phần tiếp theo, nhưng bạn có thể thấy, khối `{ .. }` chứa hai câu lệnh mà chỉ được thực hiện nếu điều kiện `amount > 10` là đúng.
 
-**Note:** Unlike most other statements like `console.log(amount);`, a block statement does not need a semicolon (`;`) to conclude it.
+**Ghi chú:** Không giống hầu hết câu lệnh khác như `console.log(amount);`, một khối lệnh không cần dấu chấm phẩy (`;`) ở cuối.
 
-## Conditionals
+## Câu lệnh điều kiện
 
-"Do you want to add on the extra screen protectors to your purchase, for $9.99?" The helpful phone store employee has asked you to make a decision. And you may need to first consult the current *state* of your wallet or bank account to answer that question. But obviously, this is just a simple "yes or no" question.
+"Bạn có muốn thêm miếng dán màn hình với giá 9.99 đô không?", nhân viên cửa hàng điện thoại đang chờ bạn đưa ra quyết định. Và có lẽ bạn cần tham khảo *tình trạng* cái ví hoặc tài khoản ngân hàng trước khi trả lời. Nhưng đó rất rõ ràng là một câu hỏi dạng "có hoặc không".
 
-There are quite a few ways we can express *conditionals* (aka decisions) in our programs.
+Trong lập trình, ta cũng có nhiều cách để thể hiện các *điều kiện* (hay quyết định).
 
-The most common one is the `if` statement. Essentially, you're saying, "*If* this condition is true, do the following...". For example:
+Cách phổ biến nhất là dùng câu lệnh `if`. Cơ bản là: "*Nếu* điều kiện đúng thì làm điều sau đây...". Ví dụ:
 
 ```js
 var bank_balance = 302.13;
 var amount = 99.99;
 
 if (amount < bank_balance) {
-	console.log( "I want to buy this phone!" );
+  console.log("Tôi muốn mua chiếc điện thoại này!");
 }
 ```
 
-The `if` statement requires an expression in between the parentheses `( )` that can be treated as either `true` or `false`. In this program, we provided the expression `amount < bank_balance`, which indeed will either evaluate to `true` or `false` depending on the amount in the `bank_balance` variable.
+Câu lệnh `if` cần một biểu thức trong dấu ngoặc tròn `( )`, biểu thức này có thể đánh giá thành `true` hoặc `false`. Trong chương trình trên, ta dùng biểu thức `amount < bank_balance` để trả về `true` hoặc `false` tùy theo số dư trong biến `bank_balance`.
 
-You can even provide an alternative if the condition isn't true, called an `else` clause. Consider:
+Bạn cũng có thể thêm một lựa chọn khác nếu điều kiện không đúng, được gọi là mệnh đề `else`. Ví dụ:
 
 ```js
 const ACCESSORY_PRICE = 9.99;
@@ -478,115 +474,115 @@ var amount = 99.99;
 
 amount = amount * 2;
 
-// can we afford the extra purchase?
-if ( amount < bank_balance ) {
-	console.log( "I'll take the accessory!" );
+// ta có đủ tiền cho món phụ kiện không?
+if (amount < bank_balance) {
+	console.log("Tôi sẽ mua món phụ kiện!");
 	amount = amount + ACCESSORY_PRICE;
 }
-// otherwise:
+// nếu không:
 else {
-	console.log( "No, thanks." );
+	console.log("Không, cảm ơn.");
 }
 ```
 
-Here, if `amount < bank_balance` is `true`, we'll print out `"I'll take the accessory!"` and add the `9.99` to our `amount` variable. Otherwise, the `else` clause says we'll just politely respond with `"No, thanks."` and leave `amount` unchanged.
+Ở đây, nếu điều kiện `amount < bank_balance` đúng, chương trình sẽ in ra `"Tôi sẽ mua món phụ kiện!"` và cộng thêm `9.99` vào biến `amount`. Nếu không, mệnh đề `else` sẽ thực hiện `"Không, cảm ơn."` và không thay đổi gì nữa.
 
-As we discussed in "Values & Types" earlier, values that aren't already of an expected type are often coerced to that type. The `if` statement expects a `boolean`, but if you pass it something that's not already `boolean`, coercion will occur.
+Như đã nói trong phần "Giá trị & Kiểu dữ liệu", các giá trị chưa thuộc kiểu mong muốn sẽ được ép về đúng dạng. Câu lệnh `if` cần một biểu thức `boolean` nhưng nếu bạn truyền vào một giá trị không phải `boolean`, ép kiểu sẽ xảy ra.
 
-JavaScript defines a list of specific values that are considered "falsy" because when coerced to a `boolean`, they become `false` -- these include values like `0` and `""`. Any other value not on the "falsy" list is automatically "truthy" -- when coerced to a `boolean` they become `true`. Truthy values include things like `99.99` and `"free"`. See "Truthy & Falsy" in Chapter 2 for more information.
+JavaScript định nghĩa một danh sách các giá trị được xem là "sai" bởi vì khi ép chúng sang `boolean` sẽ trở thành `false`, bao gồm: `0` và `""`. Mọi giá trị khác đều là "đúng" - sẽ trở thành `true` khi ép kiểu sang `boolean`. Ví dụ `99.99` hoặc `"free"` là các giá trị đúng. Xem phần "Đúng và sai" trong chương 2 để biết thêm thông tin chi tiết.
 
-*Conditionals* exist in other forms besides the `if`. For example, the `switch` statement can be used as a shorthand for a series of `if..else` statements (see Chapter 2). Loops (see "Loops") use a *conditional* to determine if the loop should keep going or stop.
+Câu lệnh điều kiện còn có các dạng khác ngoài `if`. Chẳng hạn `switch` có thể dùng thay cho nhiều câu lệnh `if..else` liên tiếp (xem chương 2). Vòng lặp (xem "Vòng lặp") cũng sử dụng điều kiện để xác định xem có tiếp tục lặp không.
 
-**Note:** For deeper information about the coercions that can occur implicitly in the test expressions of *conditionals*, see Chapter 4 of the *Types & Grammar* title of this series.
+**Ghi chú:** Để hiểu kỹ hơn về các trường hợp ép kiểu ngầm trong biểu thức điều kiện, xem chương 4 của cuốn *Kiểu và ngữ pháp* trong bộ sách này.
 
-## Loops
+## Vòng lặp
 
-During busy times, there's a waiting list for customers who need to speak to the phone store employee. While there's still people on that list, she just needs to keep serving the next customer.
+Trong những lúc đông khách, sẽ có một danh sách những khách hàng chờ nói chuyện với nhân viên cửa hàng điện thoại. Miễn là còn người trong danh sách, cô ấy chỉ cần tiếp tục phục vụ khách tiếp theo.
 
-Repeating a set of actions until a certain condition fails -- in other words, repeating only while the condition holds -- is the job of programming loops; loops can take different forms, but they all satisfy this basic behavior.
+Lặp lại một loạt hành động cho đến khi điều kiện không còn đúng - nói cách khác, chỉ lặp lại khi điều kiện vẫn khả thi - là nhiệm vụ của vòng lặp trong lập trình; vòng lặp có thể có nhiều dạng, nhưng tất cả đều tuân theo hành vi cơ bản này.
 
-A loop includes the test condition as well as a block (typically as `{ .. }`). Each time the loop block executes, that's called an *iteration*.
+Một vòng lặp bao gồm điều kiện kiểm tra cùng với một khối lệnh (thường là `{ .. }`). Mỗi lần khối lệnh trong vòng lặp được thực thi, ta gọi đó là một *lượt lặp*.
 
-For example, the `while` loop and the `do..while` loop forms illustrate the concept of repeating a block of statements until a condition no longer evaluates to `true`:
+Ví dụ, vòng lặp `while` và `do..while` minh họa ý tưởng lặp lại một khối lệnh cho đến khi điều kiện không còn được đánh giá là `true`:
 
 ```js
 while (numOfCustomers > 0) {
-	console.log( "How may I help you?" );
+	console.log("Tôi có thể giúp gì cho bạn?");
 
-	// help the customer...
+	// phục vụ khách hàng...
 
 	numOfCustomers = numOfCustomers - 1;
 }
 
-// versus:
+// so sánh với:
 
 do {
-	console.log( "How may I help you?" );
+	console.log("Tôi có thể giúp gì cho bạn?");
 
-	// help the customer...
+	// phục vụ khách hàng...
 
 	numOfCustomers = numOfCustomers - 1;
 } while (numOfCustomers > 0);
 ```
 
-The only practical difference between these loops is whether the conditional is tested before the first iteration (`while`) or after the first iteration (`do..while`).
+Sự khác biệt thực tế duy nhất giữa hai vòng lặp này là liệu điều kiện được kiểm tra trước lượt lặp đầu tiên (`while`) hay sau lượt lặp đầu tiên (`do..while`).
 
-In either form, if the conditional tests as `false`, the next iteration will not run. That means if the condition is initially `false`, a `while` loop will never run, but a `do..while` loop will run just the first time.
+Dù ở dạng nào, nếu điều kiện kiểm tra là `false`, lượt lặp tiếp theo sẽ không chạy. Nghĩa là nếu điều kiện ban đầu đã `false`, vòng lặp `while` sẽ không chạy lần nào, còn `do..while` sẽ chạy đúng một lần đầu tiên.
 
-Sometimes you are looping for the intended purpose of counting a certain set of numbers, like from `0` to `9` (ten numbers). You can do that by setting a loop iteration variable like `i` at value `0` and incrementing it by `1` each iteration.
+Đôi khi bạn lặp để đếm một tập hợp số nhất định, chẳng hạn từ `0` đến `9` (mười số). Bạn có thể làm điều đó bằng cách đặt một biến đếm như `i` ở giá trị `0` và tăng nó lên `1` mỗi lượt lặp.
 
-**Warning:** For a variety of historical reasons, programming languages almost always count things in a zero-based fashion, meaning starting with `0` instead of `1`. If you're not familiar with that mode of thinking, it can be quite confusing at first. Take some time to practice counting starting with `0` to become more comfortable with it!
+**Cảnh báo:** Vì nhiều lý do mang tính lịch sử, các ngôn ngữ lập trình hầu như luôn đếm theo kiểu bắt đầu từ số 0 thay vì 1. Nếu bạn chưa quen với cách nghĩ này, lúc đầu có thể sẽ khá rối. Hãy dành thời gian luyện tập đếm bắt đầu từ 0 để cảm thấy quen hơn!
 
-The conditional is tested on each iteration, much as if there is an implied `if` statement inside the loop.
+Điều kiện được kiểm tra mỗi lượt lặp, như thể có một câu lệnh `if` ngầm bên trong vòng lặp.
 
-We can use JavaScript's `break` statement to stop a loop. Also, we can observe that it's awfully easy to create a loop that would otherwise run forever without a `break`ing mechanism.
+Ta có thể dùng câu lệnh `break` của JavaScript để dừng vòng lặp. Ngoài ra, có thể thấy rằng rất dễ tạo ra một vòng lặp chạy mãi mãi nếu không có cơ chế `break`.
 
-Let's illustrate:
+Ví dụ minh họa:
 
 ```js
 var i = 0;
 
-// a `while..true` loop would run forever, right?
+// vòng lặp `while(true)` sẽ chạy mãi mãi đúng không?
 while (true) {
-	// stop the loop?
+	// dừng vòng lặp?
 	if ((i <= 9) === false) {
 		break;
 	}
 
-	console.log( i );
+	console.log(i);
 	i = i + 1;
 }
 // 0 1 2 3 4 5 6 7 8 9
 ```
 
-**Warning:** This is not necessarily a practical form you'd want to use for your loops. It's presented here for illustration purposes only.
+**Cảnh báo:** Đây không hẳn là cách thực tế bạn nên dùng để viết vòng lặp. Nó chỉ được trình bày nhằm minh họa.
 
-While a `while` (or `do..while`) can accomplish the task manually, there's another syntactic form called a `for` loop for just that purpose:
+Dù vòng lặp `while` (hoặc `do..while`) có thể làm được việc này một cách thủ công, có một dạng cú pháp khác gọi là vòng lặp `for` sinh ra để phục vụ việc đếm:
 
 ```js
 for (var i = 0; i <= 9; i = i + 1) {
-	console.log( i );
+	console.log(i);
 }
 // 0 1 2 3 4 5 6 7 8 9
 ```
 
-As you can see, in both cases the conditional `i <= 9` is `true` for the first 10 iterations (`i` of values `0` through `9`) of either loop form, but becomes `false` once `i` is value `10`.
+Bạn có thể thấy, trong cả hai trường hợp, điều kiện `i <= 9` là `true` trong 10 lượt lặp đầu tiên (khi `i` tăng từ `0` đến `9`), và trở thành `false` khi `i` bằng `10`.
 
-The `for` loop has three clauses: the initialization clause (`var i=0`), the conditional test clause (`i <= 9`), and the update clause (`i = i + 1`). So if you're going to do counting with your loop iterations, `for` is a more compact and often easier form to understand and write.
+Vòng lặp `for` gồm ba phần: phần khởi tạo (`var i = 0`), phần kiểm tra điều kiện (`i <= 9`), và phần cập nhật (`i = i + 1`). Vì vậy, nếu bạn cần đếm trong lượt lặp, `for` là dạng ngắn gọn hơn và thường dễ viết cũng như dễ hiểu hơn.
 
-There are other specialized loop forms that are intended to iterate over specific values, such as the properties of an object (see Chapter 2) where the implied conditional test is just whether all the properties have been processed. The "loop until a condition fails" concept holds no matter what the form of the loop.
+Còn có những dạng vòng lặp đặc biệt khác dùng để lặp qua các giá trị cụ thể, như các thuộc tính của một đối tượng (xem chương 2), trong đó điều kiện ngầm là kiểm tra xem đã duyệt hết tất cả thuộc tính hay chưa. Dù ở dạng nào, nguyên tắc "lặp cho đến khi điều kiện không còn đúng" vẫn luôn được giữ nguyên.
 
-## Functions
+## Hàm
 
-The phone store employee probably doesn't carry around a calculator to figure out the taxes and final purchase amount. That's a task she needs to define once and reuse over and over again. Odds are, the company has a checkout register (computer, tablet, etc.) with those "functions" built in.
+Nhân viên cửa hàng điện thoại có lẽ không mang máy tính theo người để tính thuế và tổng số tiền mua hàng. Đó là một công việc cô ấy cần xác định một lần rồi tái sử dụng nhiều lần. Khả năng cao là cửa hàng đã trang bị máy tính tiền (máy tính bảng, máy tính, v.v.) với các "chức năng" đó được tích hợp sẵn.
 
-Similarly, your program will almost certainly want to break up the mã's tasks into reusable pieces, instead of repeatedly repeating yourself repetitiously (pun intended!). The way to do this is to define a `function`.
+Tương tự, chương trình của bạn gần như chắc chắn sẽ muốn chia nhỏ các công việc thành các phần có thể tái sử dụng thay vì cứ lặp đi lặp lại một cách rập khuôn. Cách để làm điều đó là định nghĩa một `function` (hàm).
 
-A function is generally a named section of mã that can be "called" by name, and the mã inside it will be run each time. Consider:
+Một hàm thường là một đoạn mã có tên có thể được "gọi" bằng tên đó, và đoạn mã bên trong sẽ được chạy mỗi khi gọi. Xem ví dụ:
 
 ```js
 function printAmount() {
-	console.log( amount.toFixed( 2 ) );
+	console.log(amount.toFixed(2));
 }
 
 var amount = 99.99;
@@ -598,79 +594,79 @@ amount = amount * 2;
 printAmount(); // "199.98"
 ```
 
-Functions can optionally take arguments (aka parameters) -- values you pass in. And they can also optionally return a value back.
+Hàm có thể nhận vào các đối số (còn gọi là tham số) - các giá trị bạn truyền vào. Và chúng cũng có thể trả về một giá trị.
 
 ```js
 function printAmount(amt) {
-	console.log( amt.toFixed( 2 ) );
+	console.log(amt.toFixed(2));
 }
 
 function formatAmount() {
-	return "$" + amount.toFixed( 2 );
+	return "$" + amount.toFixed(2);
 }
 
 var amount = 99.99;
 
-printAmount( amount * 2 );		// "199.98"
+printAmount(amount * 2);       // "199.98"
 
 amount = formatAmount();
-console.log( amount );			// "$99.99"
+console.log(amount);           // "$99.99"
 ```
 
-The function `printAmount(..)` takes a parameter that we call `amt`. The function `formatAmount()` returns a value. Of course, you can also combine those two techniques in the same function.
+Hàm `printAmount(..)` nhận một tham số được gọi là `amt`. Hàm `formatAmount()` trả về một giá trị. Tất nhiên, bạn cũng có thể kết hợp cả hai kỹ thuật trong cùng một hàm.
 
-Functions are often used for mã that you plan to call multiple times, but they can also be useful just to organize related bits of mã into named collections, even if you only plan to call them once.
+Hàm thường được dùng cho đoạn mã bạn định gọi nhiều lần, nhưng chúng cũng hữu ích để tổ chức các phần mã có liên quan vào một khối được đặt tên, ngay cả khi bạn chỉ định gọi một lần.
 
-Consider:
+Xem ví dụ:
 
 ```js
 const TAX_RATE = 0.08;
 
 function calculateFinalPurchaseAmount(amt) {
-	// calculate the new amount with the tax
+	// tính tổng với thuế
 	amt = amt + (amt * TAX_RATE);
 
-	// return the new amount
+	// trả về số tiền mới
 	return amt;
 }
 
 var amount = 99.99;
 
-amount = calculateFinalPurchaseAmount( amount );
+amount = calculateFinalPurchaseAmount(amount);
 
-console.log( amount.toFixed( 2 ) );		// "107.99"
+console.log(amount.toFixed(2));     // "107.99"
 ```
 
-Although `calculateFinalPurchaseAmount(..)` is only called once, organizing its behavior into a separate named function makes the mã that uses its logic (the `amount = calculateFinal...` statement) cleaner. If the function had more statements in it, the benefits would be even more pronounced.
+Dù `calculateFinalPurchaseAmount(..)` chỉ được gọi một lần, việc tổ chức logic của nó thành một hàm riêng có tên giúp đoạn mã sử dụng nó (`amount = calculateFinal...`) trở nên sáng sủa hơn. Nếu hàm có nhiều câu lệnh hơn nữa, lợi ích sẽ càng rõ rệt.
 
-### Scope
+### Phạm vi
 
-If you ask the phone store employee for a phone model that her store doesn't carry, she will not be able to sell you the phone you want. She only has access to the phones in her store's inventory. You'll have to try another store to see if you can find the phone you're looking for.
+Nếu bạn hỏi nhân viên cửa hàng điện thoại về một mẫu điện thoại mà cửa hàng không có, cô ấy sẽ không thể bán cho bạn. Cô ấy chỉ có quyền truy cập vào những chiếc điện thoại trong kho của cửa hàng mình. Bạn sẽ phải thử tìm ở cửa hàng khác nếu muốn mua mẫu điện thoại đó.
 
-Programming has a term for this concept: *scope* (technically called *lexical scope*). In JavaScript, each function gets its own scope. Scope is basically a collection of variables as well as the rules for how those variables are accessed by name. Only mã inside that function can access that function's *scoped* variables.
+Trong lập trình có một thuật ngữ cho khái niệm này: *phạm vi* (về mặt kỹ thuật gọi là *phạm vi từ vựng*). Trong JavaScript, mỗi hàm có phạm vi riêng của nó. Phạm vi về cơ bản là một tập hợp các biến cùng với các quy tắc về cách các biến đó được truy cập bằng tên. Chỉ những đoạn mã bên trong hàm đó mới có thể truy cập các biến trong phạm vi của hàm đó.
 
-A variable name has to be unique within the same scope -- there can't be two different `a` variables sitting right next to each other. But the same variable name `a` could appear in different scopes.
+Tên biến phải là duy nhất trong cùng một phạm vi - không thể có hai biến `a` khác nhau nằm cạnh nhau. Nhưng cùng một tên biến `a` có thể xuất hiện trong các phạm vi khác nhau.
 
 ```js
 function one() {
-	// this `a` only belongs to the `one()` function
+	// biến `a` này chỉ thuộc về hàm `one()`
 	var a = 1;
-	console.log( a );
+	console.log(a);
 }
 
 function two() {
-	// this `a` only belongs to the `two()` function
+	// biến `a` này chỉ thuộc về hàm `two()`
 	var a = 2;
-	console.log( a );
+	console.log(a);
 }
 
 one();		// 1
 two();		// 2
 ```
 
-Also, a scope can be nested inside another scope, just like if a clown at a birthday party blows up one balloon inside another balloon. If one scope is nested inside another, mã inside the innermost scope can access variables from either scope.
+Ngoài ra, một phạm vi có thể được lồng trong một phạm vi khác, giống như một chú hề trong bữa tiệc sinh nhật thổi một quả bong bóng bên trong một quả bóng khác. Nếu một phạm vi được lồng bên trong một phạm vi khác, đoạn mã bên trong phạm vi hẹp hơn có thể truy cập các biến từ cả hai phạm vi.
 
-Consider:
+Xem ví dụ:
 
 ```js
 function outer() {
@@ -679,59 +675,59 @@ function outer() {
 	function inner() {
 		var b = 2;
 
-		// we can access both `a` and `b` here
-		console.log( a + b );	// 3
+		// có thể truy cập cả `a` và `b` tại đây
+		console.log(a + b);	// 3
 	}
 
 	inner();
 
-	// we can only access `a` here
-	console.log( a );			// 1
+	// chỉ có thể truy cập `a` tại đây
+	console.log(a);		// 1
 }
 
 outer();
 ```
 
-Lexical scope rules say that mã in one scope can access variables of either that scope or any scope outside of it.
+Các quy tắc phạm vi từ vựng nói rằng đoạn mã trong một phạm vi có thể truy cập các biến thuộc phạm vi đó hoặc bất kỳ phạm vi bên ngoài nào của nó.
 
-So, mã inside the `inner()` function has access to both variables `a` and `b`, but mã in `outer()` has access only to `a` -- it cannot access `b` because that variable is only inside `inner()`.
+Vì vậy, đoạn mã trong hàm `inner()` có quyền truy cập cả hai biến `a` và `b`, nhưng đoạn mã trong `outer()` chỉ truy cập được `a` - nó không thể truy cập `b` vì biến đó chỉ nằm trong `inner()`.
 
-Recall this mã snippet from earlier:
+Hãy nhớ lại đoạn mã sau:
 
 ```js
 const TAX_RATE = 0.08;
 
 function calculateFinalPurchaseAmount(amt) {
-	// calculate the new amount with the tax
+	// tính tổng với thuế
 	amt = amt + (amt * TAX_RATE);
 
-	// return the new amount
+	// trả về số tiền mới
 	return amt;
 }
 ```
 
-The `TAX_RATE` constant (variable) is accessible from inside the `calculateFinalPurchaseAmount(..)` function, even though we didn't pass it in, because of lexical scope.
+Hằng số (biến) `TAX_RATE` có thể được truy cập từ bên trong hàm `calculateFinalPurchaseAmount(..)` mặc dù ta không truyền vào nhờ phạm vi từ vựng.
 
-**Note:** For more information about lexical scope, see the first three chapters of the *Scope & Closures* title of this series.
+**Ghi chú:** Để tìm hiểu thêm về phạm vi từ vựng, xem ba chương đầu tiên của sách *Phạm vi và hàm khép kín* trong bộ sách này.
 
-## Practice
+## Luyện tập
 
-There is absolutely no substitute for practice in learning programming. No amount of articulate writing on my part is alone going to make you a programmer.
+Không có gì thay thế được việc luyện tập trong quá trình học lập trình. Dù tôi có viết hay đến đâu cũng không thể giúp bạn trở thành lập trình viên được.
 
-With that in mind, let's try practicing some of the concepts we learned here in this chapter. I'll give the "requirements," and you try it first. Then consult the mã listing below to see how I approached it.
+Với tinh thần đó, hãy thử luyện tập một vài khái niệm chúng ta đã học trong chương này. Tôi sẽ đưa ra "yêu cầu", bạn thử làm trước. Sau đó hãy tham khảo đoạn mã bên dưới để xem tôi giải quyết ra sao.
 
-* Write a program to calculate the total price of your phone purchase. You will keep purchasing phones (hint: loop!) until you run out of money in your bank account. You'll also buy accessories for each phone as long as your purchase amount is below your mental spending threshold.
-* After you've calculated your purchase amount, add in the tax, then print out the calculated purchase amount, properly formatted.
-* Finally, check the amount against your bank account balance to see if you can afford it or not.
-* You should set up some constants for the "tax rate," "phone price," "accessory price," and "spending threshold," as well as a variable for your "bank account balance.""
-* You should define functions for calculating the tax and for formatting the price with a "$" and rounding to two decimal places.
-* **Bonus Challenge:** Try to incorporate input into this program, perhaps with the `prompt(..)` covered in "Input" earlier. You may prompt the user for their bank account balance, for example. Have fun and be creative!
+* Viết một chương trình để tính tổng giá tiền khi mua điện thoại. Bạn sẽ tiếp tục mua điện thoại (gợi ý: dùng vòng lặp!) cho đến khi hết tiền trong tài khoản ngân hàng. Bạn cũng sẽ mua thêm phụ kiện cho mỗi điện thoại miễn là tổng tiền vẫn dưới ngưỡng chi tiêu của bạn.
+* Sau khi tính xong tổng tiền, hãy cộng thêm thuế, sau đó in ra tổng tiền đã tính theo đúng định dạng.
+* Cuối cùng, so sánh số tiền đó với số dư tài khoản ngân hàng để xem bạn có đủ tiền không.
+* Bạn nên khai báo một số hằng số cho "thuế suất", "giá điện thoại", "giá phụ kiện", và "ngưỡng chi tiêu", cũng như một biến cho "số dư tài khoản ngân hàng".
+* Bạn nên định nghĩa các hàm để tính thuế và định dạng số tiền với dấu `$` và làm tròn tới hai chữ số thập phân.
+* **Thử thách bổ sung:** Hãy thử kết hợp đầu vào trong chương trình này, ví dụ như dùng `prompt(..)` đã đề cập trong phần "Đầu vào" trước đó. Chẳng hạn, bạn có thể yêu cầu người dùng nhập số dư tài khoản của họ. Hãy sáng tạo và vui vẻ nhé!
 
-OK, go ahead. Try it. Don't peek at my mã listing until you've given it a shot yourself!
+Được rồi, giờ bạn hãy thử làm đi. Đừng nhìn đoạn mã mẫu của tôi cho đến khi bạn tự làm xong nhé!
 
-**Note:** Because this is a JavaScript book, I'm obviously going to solve the practice exercise in JavaScript. But you can do it in another language for now if you feel more comfortable.
+**Ghi chú:** Vì đây là sách dạy JavaScript, tôi sẽ giải bài tập bằng JavaScript. Nhưng bạn cũng có thể thử bằng ngôn ngữ khác nếu bạn thấy quen thuộc hơn.
 
-Here's my JavaScript solution for this exercise:
+Dưới đây là cách tôi giải bài tập này bằng JavaScript:
 
 ```js
 const SPENDING_THRESHOLD = 200;
@@ -747,58 +743,54 @@ function calculateTax(amount) {
 }
 
 function formatAmount(amount) {
-	return "$" + amount.toFixed( 2 );
+	return "$" + amount.toFixed(2);
 }
 
-// keep buying phones while you still have money
+// tiếp tục mua điện thoại nếu còn tiền
 while (amount < bank_balance) {
-	// buy a new phone!
+	// mua một chiếc điện thoại mới!
 	amount = amount + PHONE_PRICE;
 
-	// can we afford the accessory?
+	// có đủ tiền mua phụ kiện không?
 	if (amount < SPENDING_THRESHOLD) {
 		amount = amount + ACCESSORY_PRICE;
 	}
 }
 
-// don't forget to pay the government, too
-amount = amount + calculateTax( amount );
+// đừng quên nộp thuế nhé
+amount = amount + calculateTax(amount);
 
-console.log(
-	"Your purchase: " + formatAmount( amount )
-);
-// Your purchase: $334.76
+console.log("Đơn hàng: " + formatAmount(amount));
+// Đơn hàng: $334.76
 
-// can you actually afford this purchase?
+// bạn có đủ tiền không?
 if (amount > bank_balance) {
-	console.log(
-		"You can't afford this purchase. :("
-	);
+	console.log("Bạn không thể thanh toán đơn hàng này. :(");
 }
-// You can't afford this purchase. :(
+// Bạn không thể thanh toán đơn hàng này. :(
 ```
 
-**Note:** The simplest way to run this JavaScript program is to type it into the developer console of your nearest browser.
+**Ghi chú:** Cách đơn giản nhất để chạy chương trình JavaScript này là nhập nó vào bảng điều khiển dành cho lập trình viên của chương trình duyệt gần nhất.
 
-How did you do? It wouldn't hurt to try it again now that you've seen my mã. And play around with changing some of the constants to see how the program runs with different values.
+Bạn làm thế nào rồi? Sẽ không hại gì nếu bạn thử lại một lần nữa sau khi đã xem qua đoạn mã của tôi. Và hãy thử thay đổi một số hằng số xem chương trình chạy thế nào với các giá trị khác nhau.
 
-## Review
+## Nhìn lại
 
-Learning programming doesn't have to be a complex and overwhelming process. There are just a few basic concepts you need to wrap your head around.
+Học lập trình không nhất thiết phải là một quá trình phức tạp và quá tải. Bạn chỉ cần nắm vững một vài khái niệm cơ bản.
 
-These act like building blocks. To build a tall tower, you start first by putting block on top of block on top of block. The same goes with programming. Here are some of the essential programming building blocks:
+Những khái niệm này giống như những khối xây dựng. Để xây được một tòa tháp cao, bạn phải bắt đầu bằng cách đặt từng khối lên nhau. Lập trình cũng vậy. Dưới đây là một số khối nền thiết yếu trong lập trình:
 
-* You need *operators* to perform actions on values.
-* You need values and *types* to perform different kinds of actions like math on `number`s or output with `string`s.
-* You need *variables* to store data (aka *state*) during your program's execution.
-* You need *conditionals* like `if` statements to make decisions.
-* You need *loops* to repeat tasks until a condition stops being true.
-* You need *functions* to organize your mã into logical and reusable chunks.
+* Bạn cần các *toán tử* để thực hiện các thao tác trên giá trị.
+* Bạn cần giá trị và *kiểu dữ liệu* để thực hiện các thao tác khác nhau, như toán học với `number` hoặc xuất ra với `string`.
+* Bạn cần *biến* để lưu trữ dữ liệu (hay còn gọi là *trạng thái*) trong quá trình chương trình chạy.
+* Bạn cần các *điều kiện* như câu lệnh `if` để đưa ra quyết định.
+* Bạn cần *vòng lặp* để lặp lại các tác vụ cho đến khi một điều kiện không còn đúng.
+* Bạn cần *hàm* để tổ chức mã của mình thành các phần logic có thể tái sử dụng.
 
-mã comments are one effective way to write more readable mã, which makes your program easier to understand, maintain, and fix later if there are problems.
+Chú thích trong mã là một cách hiệu quả để viết mã dễ đọc hơn, giúp chương trình dễ hiểu, dễ bảo trì và dễ sửa lỗi khi cần.
 
-Finally, don't neglect the power of practice. The best way to learn how to write mã is to write mã.
+Cuối cùng, đừng bỏ qua sức mạnh của thực hành. Cách tốt nhất để học viết mã là hãy viết thật nhiều mã.
 
-I'm excited you're well on your way to learning how to mã, now! Keep it up. Don't forget to check out other beginner programming resources (books, blogs, online training, etc.). This chapter and this book are a great start, but they're just a brief introduction.
+Tôi rất vui vì bạn đã đi được một chặng đường đáng kể trong hành trình học lập trình rồi! Hãy tiếp tục cố gắng. Đừng quên tìm hiểu thêm các tài nguyên lập trình cho người mới bắt đầu (sách, blog, khóa học trực tuyến, v.v.). Chương này và cuốn sách này là một khởi đầu tuyệt vời, nhưng mới chỉ là phần giới thiệu sơ lược.
 
-The next chapter will review many of the concepts from this chapter, but from a more JavaScript-specific perspective, which will highlight most of the major topics that are addressed in deeper detail throughout the rest of the series.
+Chương tiếp theo sẽ đánh giá nhiều khái niệm ở chương này, nhưng dưới góc nhìn cụ thể hơn của JavaScript, từ đó làm nổi bật những chủ đề quan trọng sẽ được đào sâu hơn trong phần còn lại của loạt sách.
