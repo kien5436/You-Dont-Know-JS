@@ -3,23 +3,24 @@
 
 Chào mừng bạn đến với loạt sách *Bạn không hiểu JS* (*BKHJS*).
 
-Quyển *Khởi động và tiến lên* là phần giới thiệu về một số khái niệm cơ bản trong lập trình - tất nhiên có xu hướng thiên về JavaScript (thường viết tắt là JS) - và cách tiếp cận cũng như hiểu các đầu sách còn lại trong loạt này. Đặc biệt nếu bạn mới bắt đầu học lập trình và/hoặc JavaScript, quyển sách này sẽ lướt qua những gì bạn cần để bắt đầu *lên đường*.
+Quyển *Khởi động và tiến lên* là phần giới thiệu về một số khái niệm cơ bản trong lập trình - tất nhiên có xu hướng thiên về JavaScript (thường viết tắt là JS) - và cách tiếp cận cũng như hiểu các đầu sách còn lại trong bộ này. Đặc biệt nếu bạn mới bắt đầu học lập trình và/hoặc JavaScript, quyển sách này sẽ lướt qua những gì bạn cần để bắt đầu *lên đường*.
 
 Sách bắt đầu bằng việc giải thích các nguyên lý lập trình cơ bản ở mức rất tổng quan. Nó chủ yếu dành cho những ai bắt đầu *BKHJS* mà chưa có (hoặc gần như chưa có) kinh nghiệm lập trình, và muốn dùng loạt sách này như một con đường để hiểu lập trình thông qua lăng kính JavaScript.
 
-Chương 1 nên được tiếp cận như một cái nhìn khái quát về những thứ bạn muốn học và làm để *bắt đầu lập trình*. Cũng có nhiều tài nguyên tuyệt vời khác để nhập môn lập trình giúp bạn đào sâu hơn vào các chủ đề này, và tôi khuyến khích bạn học thêm từ chúng bên cạnh chương này.
+Chương 1 nên được tiếp cận như một cái nhìn khái quát về những thứ bạn muốn học và làm để *bắt đầu lập trình*. Cũng có nhiều tài nguyên nhập môn lập trình tuyệt vời khác để giúp bạn đào sâu hơn vào các chủ đề này, và tôi khuyến khích bạn học thêm từ chúng bên cạnh chương này.
 
 Khi đã thấy thoải mái với các kiến thức lập trình cơ bản, chương 2 sẽ giúp bạn làm quen với phong cách lập trình của JavaScript. Chương này giới thiệu về JavaScript là gì, nhưng một lần nữa, nó không phải là hướng dẫn toàn diện - đó là nhiệm vụ của những quyển *BKHJS* còn lại!
 
 Nếu bạn đã khá thoải mái với JavaScript, hãy đọc thử chương 3 để có cái nhìn thoáng qua về những gì *BKHJS* sẽ mang lại, rồi bắt đầu ngay!
 
 ## Mã
+---
 
 Chúng ta hãy bắt đầu từ những điều cơ bản.
 
 Một chương trình, thường được gọi là *mã nguồn* hoặc đơn giản là *mã*, là một tập hợp các chỉ dẫn đặc biệt để nói cho máy tính biết cần thực hiện những tác vụ nào. Thông thường, mã được lưu trong một tập tin văn bản, mặc dù với JavaScript, bạn cũng có thể gõ trực tiếp vào bảng điều khiển dành cho nhà phát triển trong chương trình duyệt, thứ mà chúng ta sẽ bàn ngay sau đây.
 
-Các quy tắc về định dạng hợp lệ và cách kết hợp các chỉ dẫn được gọi là *ngôn ngữ máy tính*, đôi khi còn được gọi là *cú pháp*, tương tự như tiếng bạn có các quy tắc về cách viết đúng chính tả và cách tạo câu hợp lệ bằng từ vựng và dấu câu.
+Các quy tắc về định dạng hợp lệ và cách kết hợp các chỉ dẫn được gọi là *ngôn ngữ máy tính*, đôi khi còn được gọi là *cú pháp*, tương tự như tiếng Anh có các quy tắc về cách viết đúng chính tả và cách tạo câu hợp lệ bằng từ vựng và dấu câu.
 
 ### Câu lệnh
 
@@ -80,17 +81,18 @@ Những câu lệnh như `a = b * 2` rất hữu ích với lập trình viên t
 
 Với một số ngôn ngữ lập trình, việc dịch lệnh thường được thực hiện từ trên xuống dưới, hết dòng này đến dòng khác, mỗi khi chương trình được chạy, cách này thường được gọi là *thông dịch* mã.
 
-Với các ngôn ngữ được dịch sẵn từ trước, gọi là *biên dịch* mã, vì vậy khi chương trình *chạy* sau đó, thứ thực sự chạy là những lệnh đã được biên dịch sẵn, sẵn sàng để thực thi.
+Với các ngôn ngữ khác, quá trình dịch được thực hiện từ đầu, gọi là *biên dịch* mã, vì vậy khi chương trình *chạy* sau đó, thứ thực sự chạy là những lệnh đã được biên dịch từ trước, sẵn sàng để thực thi.
 
 Thông thường người ta cho rằng JavaScript là một ngôn ngữ *thông dịch*, vì mã nguồn JavaScript của bạn được xử lý mỗi lần nó chạy. Nhưng thực ra điều đó không hoàn toàn chính xác. Bộ máy JavaScript thực sự *biên dịch* chương trình ngay tại thời điểm chạy, rồi lập tức thực thi mã đã biên dịch đó.
 
-**Lưu ý:** Để biết thêm về quá trình biên dịch trong JavaScript, hãy xem hai chương đầu tiên trong cuốn *Phạm vi và hàm đóng* của loạt sách này.
+**Lưu ý:** Để biết thêm về quá trình biên dịch trong JavaScript, hãy xem hai chương đầu tiên trong cuốn *Phạm vi và hàm khép kín* của loạt sách này.
 
 ## Tự Thử Nghiệm
+---
 
 Chương này sẽ giới thiệu từng khái niệm lập trình với những đoạn mã đơn giản, tất cả đều được viết bằng JavaScript (tất nhiên rồi!).
 
-Điều này không thể nhấn mạnh đủ: trong lúc bạn đọc chương này - và có thể bạn sẽ cần dành thời gian đọc lại nhiều lần - bạn nên thực hành từng khái niệm bằng cách tự gõ lại mã. Cách dễ nhất để làm điều đó là mở bảng điều khiển trong công cụ dành cho nhà phát triển của chương trình duyệt gần nhất (Firefox, Chrome, IE, v.v.).
+Điều này nhấn mạnh bao nhiêu cũng không đủ: trong lúc bạn đọc chương này - và có thể bạn sẽ cần dành thời gian đọc lại nhiều lần - bạn nên thực hành từng khái niệm bằng cách tự gõ lại mã. Cách dễ nhất để làm điều đó là mở bảng điều khiển trong công cụ dành cho nhà phát triển của chương trình duyệt gần nhất (Firefox, Chrome, IE, v.v.).
 
 **Mẹo:** Thông thường, bạn có thể mở bảng điều khiển bằng phím tắt hoặc thông qua bảng chọn. Để biết thêm chi tiết về cách mở và sử dụng bảng điều khiển trong chương trình duyệt yêu thích của mình, hãy xem bài viết "Làm chủ Bảng điều khiển Công cụ cho nhà phát triển" ([http://blog.teamtreehouse.com/mastering-developer-tools-console](http://blog.teamtreehouse.com/mastering-developer-tools-console)). Để gõ nhiều dòng mã cùng lúc trong bảng điều khiển, hãy dùng `<shift> + <enter>` để xuống dòng mới. Khi nhấn `<enter>`, bảng điều khiển sẽ thực thi toàn bộ những gì bạn vừa gõ.
 
@@ -116,7 +118,7 @@ Hãy thử đi. Cách học lập trình tốt nhất là bắt đầu viết m�
 
 Trong đoạn mã trước đó, chúng ta đã sử dụng `console.log(..)`. Hãy cùng xem nhanh dòng mã đó có ý nghĩa gì.
 
-bạn có thể đã đoán được, nhưng đó chính là cách chúng ta in văn bản (hay còn gọi là *xuất* cho người dùng) trong bảng điều khiển dành cho nhà phát triển. Có hai đặc điểm của câu lệnh đó cần được giải thích.
+Bạn có thể đã đoán được, nhưng đó chính là cách chúng ta in văn bản (hay còn gọi là *xuất* cho người dùng) trong bảng điều khiển dành cho nhà phát triển. Có hai đặc điểm của câu lệnh đó cần được giải thích.
 
 Thứ nhất, phần `log(b)` được gọi là một lời gọi hàm (xem thêm phần "Hàm"). Điều đang diễn ra là chúng ta đưa biến `b` vào hàm đó, yêu cầu nó lấy giá trị của `b` và in ra bảng điều khiển.
 
@@ -159,14 +161,15 @@ Sau khi bạn nhập nội dung và nhấn "OK", giá trị bạn gõ vào sẽ 
 Để đơn giản hoá khi học các khái niệm lập trình cơ bản, các ví dụ trong cuốn sách này sẽ không yêu cầu nhập đầu vào. Nhưng bây giờ bạn đã biết cách dùng `prompt(..)`, nên nếu muốn thử thách bản thân, bạn có thể dùng thêm phần nhập liệu khi khám phá các ví dụ.
 
 ## Toán tử
+---
 
-Toán tử là cách chúng ta thực hiện các thao tác trên biến và giá trị. bạn đã thấy hai toán tử JavaScript rồi: `=` và `*`.
+Toán tử là cách chúng ta thực hiện các thao tác trên biến và giá trị. Bạn đã thấy hai toán tử JavaScript rồi: `=` và `*`.
 
 Toán tử `*` thực hiện phép nhân. Quá đơn giản, phải không?
 
 Toán tử `=` là toán tử *gán* - ta tính giá trị ở phía *bên phải* (giá trị nguồn) của dấu `=`, rồi gán nó vào biến được chỉ định ở phía *bên trái* (biến đích).
 
-**Cảnh báo:** Cách viết này có thể hơi ngược với suy nghĩ ban đầu. Thay vì `a = 42`, một số người có thể thích viết theo cách giá trị nguồn bên trái và biến đích bên phải, như `42 -> a` (cách này *không hợp lệ* trong JavaScript!). Tuy nhiên, cú pháp theo kiểu `a = 42` và những biến thể tương tự, lại rất phổ biến trong các ngôn ngữ lập trình hiện đại. Nếu bạn thấy cách này không tự nhiên, hãy luyện tập một thời gian để quen dần với thứ tự đó.
+**Cảnh báo:** Cách viết này có thể hơi ngược với suy nghĩ ban đầu. Thay vì `a = 42`, một số người có thể thích viết theo cách giá trị nguồn bên trái và biến đích bên phải, như `42 -> a` (cách này *không hợp lệ* trong JavaScript!). Tuy nhiên, cú pháp theo kiểu `a = 42` và những biến thể tương tự lại rất phổ biến trong các ngôn ngữ lập trình hiện đại. Nếu bạn thấy cách này không tự nhiên, hãy luyện tập một thời gian để quen dần với thứ tự đó.
 
 Xem ví dụ sau:
 
@@ -179,7 +182,7 @@ b = a + 1;
 
 Mặc dù không phải là một toán tử về mặt kỹ thuật, nhưng bạn sẽ cần dùng từ khóa `var` trong mọi chương trình, vì đây là cách chính để *khai báo* (hay *tạo mới*) các *biến* (xem phần "Biến").
 
-bạn nên luôn luôn khai báo tên biến trước khi sử dụng nó. Tuy nhiên, bạn chỉ cần khai báo biến một lần trong mỗi *phạm vi* (xem phần "Phạm vi"); sau đó có thể sử dụng lại bao nhiêu lần cũng được. Ví dụ:
+Bạn nên luôn luôn khai báo tên biến trước khi sử dụng nó. Tuy nhiên, bạn chỉ cần khai báo biến một lần trong mỗi *phạm vi* (xem phần "Phạm vi"); sau đó có thể sử dụng lại bao nhiêu lần cũng được. Ví dụ:
 
 ```js
 var a = 20;
@@ -193,31 +196,30 @@ console.log( a );	// 42
 Dưới đây là một số toán tử phổ biến nhất trong JavaScript:
 
 * **Gán giá trị:** `=` như trong `a = 2`.
-* **Toán học:** `+` (cộng), `-` (trừ), `*` (nhân), và `/` (chia), ví dụ `a * 3`.
+* **Toán học:** `+` (cộng), `-` (trừ), `*` (nhân) và `/` (chia), ví dụ `a * 3`.
 * **Gán kết hợp:** `+=`, `-=`, `*=`, `/=` là các toán tử kết hợp phép toán và phép gán, ví dụ `a += 2` (tương đương với `a = a + 2`).
 * **Tăng/Giảm:** `++` (tăng), `--` (giảm), như trong `a++` (tương đương `a = a + 1`).
 * **Truy cập thuộc tính đối tượng:** `.` như trong `console.log()`.
 
-  Đối tượng là các giá trị có thể chứa các giá trị khác tại những vị trí được đặt tên gọi là thuộc tính. `obj.a` nghĩa là một đối tượng tên `obj` có thuộc tính tên là `a`. Thuộc tính cũng có thể được truy cập bằng cú pháp `obj["a"]`. Xem chương 2.
+  Đối tượng là giá trị có thể chứa các giá trị khác tại những vị trí được đặt tên gọi là thuộc tính. `obj.a` nghĩa là một đối tượng tên `obj` có thuộc tính tên là `a`. Thuộc tính cũng có thể được truy cập bằng cú pháp `obj["a"]`. Xem chương 2.
 * **So sánh bằng:** `==` (so sánh bằng lỏng lẻo), `===` (so sánh bằng nghiêm ngặt), `!=` (khác lỏng lẻo), `!==` (khác nghiêm ngặt), ví dụ `a == b`.
 
-  Xem phần "Giá trị & Kiểu dữ liệu" và chương 2.
+  Xem phần "Giá trị và Kiểu dữ liệu" và chương 2.
 * **So sánh:** `<` (nhỏ hơn), `>` (lớn hơn), `<=` (nhỏ hơn hoặc bằng), `>=` (lớn hơn hoặc bằng), như trong `a <= b`.
 
-  Xem phần "Giá trị & Kiểu dữ liệu" và chương 2.
-* **Logic:** `&&` (và), `||` (hoặc), như trong `a || b` nghĩa là chọn `a` *hoặc* `b`.
+  Xem phần "Giá trị và Kiểu dữ liệu" và chương 2.
+* **Logic:** `và&` (và), `||` (hoặc), như trong `a || b` nghĩa là chọn `a` *hoặc* `b`.
 
   Các toán tử này dùng để diễn tả điều kiện phức hợp (xem phần "Điều kiện"), như khi `a` *hoặc* `b` đúng.
 
-**Ghi chú:** Để tìm hiểu chi tiết hơn và xem các toán tử chưa được đề cập ở đây, hãy tham khảo bài viết "Biểu thức và toán tử" trên Mozilla Developer Network (MDN): [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions\_and\_Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators).
+**Ghi chú:** Để tìm hiểu chi tiết hơn và xem các toán tử chưa được đề cập ở đây, hãy tham khảo bài viết "Biểu thức và toán tử" ([https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions\_and\_Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators)) trên Mozilla Developer Network (MDN).
 
+## Giá trị và Kiểu dữ liệu
 ---
-
-## Giá trị & Kiểu dữ liệu
 
 Giả sử bạn hỏi nhân viên bán điện thoại về giá một chiếc điện thoại, và họ nói "chín mươi chín, chín mươi chín" (tức là $99.99), thì họ đang đưa cho bạn một con số thật sự đại diện cho số tiền cần trả (chưa tính thuế). Nếu bạn muốn mua hai cái, bạn dễ dàng nhân đôi con số đó để ra $199.98.
 
-Nhưng nếu nhân viên đó chỉ một cái điện thoại khác và nói là "miễn phí" (có thể còn làm dấu ngoặc tay), thì họ không đưa ra con số, mà là một cách biểu diễn khác cho cái giá bạn mong đợi ($0.00) - đó là từ "miễn phí".
+Nhưng nếu nhân viên đó chỉ một cái điện thoại khác và nói là "miễn phí" (có lẽ là trong nháy kép), thì họ không đưa ra con số, mà là một cách biểu diễn khác cho cái giá bạn mong đợi ($0.00) - từ "miễn phí".
 
 Khi bạn hỏi liệu điện thoại có kèm theo sạc không, thì câu trả lời chỉ có thể là "có" hoặc "không".
 
@@ -269,13 +271,14 @@ Khi so sánh chuỗi `"99.99"` với số `99.99`, hầu hết mọi người đ
 
 Vì vậy, nếu bạn dùng toán tử `==` (so sánh bằng lỏng lẻo) để so sánh `"99.99" == 99.99`, JavaScript sẽ chuyển `"99.99"` sang số `99.99`. So sánh lúc đó trở thành `99.99 == 99.99`, và tất nhiên kết quả sẽ là `true`.
 
-Dù được thiết kế để giúp lập trình viên, nhưng ép kiểu ngầm định có thể gây nhầm lẫn nếu bạn không dành thời gian học rõ các quy tắc điều khiển hành vi của nó. Phần lớn lập trình viên JavaScript chưa từng làm điều đó, vì vậy họ cảm thấy việc ép kiểu ngầm định khó hiểu, dễ gây lỗi không lường trước và nên tránh. Thậm chí nó còn đôi khi bị xem là một lỗi thiết kế của ngôn ngữ.
+Dù được thiết kế để giúp lập trình viên, nhưng ép kiểu ngầm định có thể gây nhầm lẫn nếu bạn không dành thời gian học rõ các quy tắc điều khiển hành vi của nó. Phần lớn lập trình viên JavaScript chưa từng làm điều đó, vì vậy họ cảm thấy việc ép kiểu ngầm định khó hiểu, dễ gây lỗi không lường trước và nên tránh. Thậm chí đôi khi nó còn bị xem là một lỗi thiết kế của ngôn ngữ.
 
 Tuy nhiên, ép kiểu ngầm định là một cơ chế *hoàn toàn có thể học được*, và hơn nữa *nên học* nếu bạn muốn lập trình JavaScript một cách nghiêm túc. Một khi bạn đã nắm được các quy tắc, nó không còn khó hiểu nữa, mà còn giúp mã của bạn gọn gàng và hiệu quả hơn! Việc bỏ công học sẽ rất xứng đáng.
 
-**Ghi chú:** Để tìm hiểu thêm về ép kiểu, hãy xem chương 2 của cuốn sách này và chương 4 của cuốn *Kiểu và ngữ pháp* trong cùng bộ sách.
+**Ghi chú:** Để tìm hiểu thêm về ép kiểu, hãy xem chương 2 của cuốn sách này và chương 4 của cuốn *Kiểu dữ liệu và ngữ pháp* trong cùng bộ sách.
 
 ## Chú thích mã
+---
 
 Nhân viên cửa hàng điện thoại có thể ghi chú vài điều về tính năng của một mẫu điện thoại mới phát hành hoặc các kế hoạch mới mà công ty đang đề xuất. Những ghi chú này chỉ dành cho nhân viên - không phải để khách hàng xem. Tuy vậy, chúng giúp nhân viên làm việc tốt hơn bằng cách ghi lại cách thức và lý do của những gì họ nên nói với khách hàng.
 
@@ -291,7 +294,7 @@ Có rất nhiều quan điểm khác nhau về cách viết chú thích mã tố
 
 * Mã không có chú thích thì chưa tối ưu.
 * Quá nhiều chú thích (ví dụ, mỗi dòng một chú thích) có thể là dấu hiệu của mã viết kém.
-* Chú thích nên giải thích *tại sao*, không phải *cái gì*. Nếu cần thiết, cũng có thể giải thích *cách làm* nếu điều đó gây khó hiểu.
+* Chú thích nên giải thích *tại sao*, không phải *cái gì*. Nếu cần thiết thì có thể giải thích *cách làm* nếu điều đó gây khó hiểu.
 
 Trong JavaScript, có hai loại chú thích: chú thích một dòng và chú thích nhiều dòng.
 
@@ -335,6 +338,7 @@ Thứ duy nhất không được chèn vào bên trong một chú thích nhiều
 Bạn nên bắt đầu học lập trình với thói quen viết chú thích mã thường xuyên. Trong phần còn lại của chương này, tôi sẽ dùng chú thích để giải thích mã, bạn cũng nên làm như vậy trong thực tế. Tin tôi đi, những người đọc mã của bạn sau này sẽ biết ơn bạn!
 
 ## Biến
+---
 
 Hầu hết các chương trình hữu ích đều cần theo dõi một giá trị khi nó thay đổi trong suốt quá trình chạy chương trình, trải qua các phép xử lý khác nhau tùy theo nhiệm vụ mà chương trình cần thực hiện.
 
@@ -369,7 +373,7 @@ Sau đó, dòng `amount = "$" + String(amount)` *rõ ràng* ép `199.98` thành 
 
 Các lập trình viên JavaScript sẽ thấy sự linh hoạt khi dùng biến `amount` cho cả `99.99`, `199.98` và `"$199.98"`. Những người chuộng kiểu tĩnh sẽ thích tạo một biến riêng như `amountStr` để giữ giá trị chuỗi `"$199.98"` vì đây là kiểu dữ liệu khác.
 
-Dù chọn cách nào, bạn cũng sẽ thấy rằng `amount` đang giữ giá trị thay đổi theo thời gian, điều đó minh họa mục đích chính của biến: quản lý *trạng thái* chương trình.
+Dù chọn cách nào, bạn cũng sẽ thấy rằng `amount` đang giữ giá trị thay đổi theo thời gian, điều đó minh họa cho mục đích chính của biến: quản lý *trạng thái* chương trình.
 
 Nói cách khác, *trạng thái* là việc theo dõi sự thay đổi của các giá trị trong quá trình chương trình chạy.
 
@@ -407,13 +411,14 @@ var amount = 99.99;
 // ...
 ```
 
-Hằng số vẫn giống như biến nhưng thêm đặc điểm là chống lại việc thay đổi giá trị một cách vô tình sau khi đã khởi tạo. Nếu bạn cố gán giá trị mới cho `TAX_RATE` sau khi đã khai báo, chương trình sẽ từ chối thay đổi đó (và chế độ nghiêm ngặt sẽ báo lỗi - Xem phần "Chế độ nghiêm ngặt" trong chương 2).
+Hằng số vẫn giống như biến nhưng thêm đặc điểm là chống lại việc thay đổi giá trị một cách vô tình sau khi đã khởi tạo. Nếu bạn cố gán giá trị mới cho `TAX_RATE` sau khi đã khai báo, chương trình sẽ từ chối thay đổi đó (và chế độ nghiêm ngặt sẽ báo lỗi - xem phần "Chế độ nghiêm ngặt" trong chương 2).
 
 Điều này cũng giống như cách mà kiểu dữ liệu tĩnh giúp ngăn lỗi, vì vậy bạn có thể thấy vì sao một số lập trình viên lại chuộng kiểu dữ liệu tĩnh hơn.
 
-**Ghi chú:** Để tìm hiểu thêm về cách dùng biến với các kiểu giá trị khác nhau trong chương trình, hãy xem sách *Kiểu và ngữ pháp* thuộc cùng bộ sách này.
+**Ghi chú:** Để tìm hiểu thêm về cách dùng biến với các kiểu giá trị khác nhau trong chương trình, hãy xem sách *Kiểu dữ liệu và ngữ pháp* thuộc cùng bộ sách này.
 
 ## Khối lệnh
+---
 
 Nhân viên cửa hàng điện thoại phải thực hiện một loạt các bước để hoàn tất việc thanh toán khi bạn mua một chiếc điện thoại mới.
 
@@ -446,6 +451,7 @@ Tôi sẽ giải thích lệnh `if` ở phần tiếp theo, nhưng bạn có th�
 **Ghi chú:** Không giống hầu hết câu lệnh khác như `console.log(amount);`, một khối lệnh không cần dấu chấm phẩy (`;`) ở cuối.
 
 ## Câu lệnh điều kiện
+---
 
 "Bạn có muốn thêm miếng dán màn hình với giá 9.99 đô không?", nhân viên cửa hàng điện thoại đang chờ bạn đưa ra quyết định. Và có lẽ bạn cần tham khảo *tình trạng* cái ví hoặc tài khoản ngân hàng trước khi trả lời. Nhưng đó rất rõ ràng là một câu hỏi dạng "có hoặc không".
 
@@ -487,15 +493,16 @@ else {
 
 Ở đây, nếu điều kiện `amount < bank_balance` đúng, chương trình sẽ in ra `"Tôi sẽ mua món phụ kiện!"` và cộng thêm `9.99` vào biến `amount`. Nếu không, mệnh đề `else` sẽ thực hiện `"Không, cảm ơn."` và không thay đổi gì nữa.
 
-Như đã nói trong phần "Giá trị & Kiểu dữ liệu", các giá trị chưa thuộc kiểu mong muốn sẽ được ép về đúng dạng. Câu lệnh `if` cần một biểu thức `boolean` nhưng nếu bạn truyền vào một giá trị không phải `boolean`, ép kiểu sẽ xảy ra.
+Như đã nói trong phần "Giá trị và Kiểu dữ liệu", các giá trị chưa thuộc kiểu mong muốn sẽ được ép về đúng dạng. Câu lệnh `if` cần một biểu thức `boolean` nhưng nếu bạn truyền vào một giá trị không phải `boolean`, ép kiểu sẽ xảy ra.
 
 JavaScript định nghĩa một danh sách các giá trị được xem là "sai" bởi vì khi ép chúng sang `boolean` sẽ trở thành `false`, bao gồm: `0` và `""`. Mọi giá trị khác đều là "đúng" - sẽ trở thành `true` khi ép kiểu sang `boolean`. Ví dụ `99.99` hoặc `"free"` là các giá trị đúng. Xem phần "Đúng và sai" trong chương 2 để biết thêm thông tin chi tiết.
 
 Câu lệnh điều kiện còn có các dạng khác ngoài `if`. Chẳng hạn `switch` có thể dùng thay cho nhiều câu lệnh `if..else` liên tiếp (xem chương 2). Vòng lặp (xem "Vòng lặp") cũng sử dụng điều kiện để xác định xem có tiếp tục lặp không.
 
-**Ghi chú:** Để hiểu kỹ hơn về các trường hợp ép kiểu ngầm trong biểu thức điều kiện, xem chương 4 của cuốn *Kiểu và ngữ pháp* trong bộ sách này.
+**Ghi chú:** Để hiểu kỹ hơn về các trường hợp ép kiểu ngầm trong biểu thức điều kiện, xem chương 4 của cuốn *Kiểu dữ liệu và ngữ pháp* trong bộ sách này.
 
 ## Vòng lặp
+---
 
 Trong những lúc đông khách, sẽ có một danh sách những khách hàng chờ nói chuyện với nhân viên cửa hàng điện thoại. Miễn là còn người trong danh sách, cô ấy chỉ cần tiếp tục phục vụ khách tiếp theo.
 
@@ -529,7 +536,7 @@ Sự khác biệt thực tế duy nhất giữa hai vòng lặp này là liệu 
 
 Dù ở dạng nào, nếu điều kiện kiểm tra là `false`, lượt lặp tiếp theo sẽ không chạy. Nghĩa là nếu điều kiện ban đầu đã `false`, vòng lặp `while` sẽ không chạy lần nào, còn `do..while` sẽ chạy đúng một lần đầu tiên.
 
-Đôi khi bạn lặp để đếm một tập hợp số nhất định, chẳng hạn từ `0` đến `9` (mười số). Bạn có thể làm điều đó bằng cách đặt một biến đếm như `i` ở giá trị `0` và tăng nó lên `1` mỗi lượt lặp.
+Đôi khi bạn lặp để đếm một tập hợp số nhất định, chẳng hạn từ `0` đến `9` (mười số). Bạn có thể làm điều đó bằng cách đặt một biến đếm như `i` có giá trị `0` và tăng nó lên `1` mỗi lượt lặp.
 
 **Cảnh báo:** Vì nhiều lý do mang tính lịch sử, các ngôn ngữ lập trình hầu như luôn đếm theo kiểu bắt đầu từ số 0 thay vì 1. Nếu bạn chưa quen với cách nghĩ này, lúc đầu có thể sẽ khá rối. Hãy dành thời gian luyện tập đếm bắt đầu từ 0 để cảm thấy quen hơn!
 
@@ -573,6 +580,7 @@ Vòng lặp `for` gồm ba phần: phần khởi tạo (`var i = 0`), phần ki�
 Còn có những dạng vòng lặp đặc biệt khác dùng để lặp qua các giá trị cụ thể, như các thuộc tính của một đối tượng (xem chương 2), trong đó điều kiện ngầm là kiểm tra xem đã duyệt hết tất cả thuộc tính hay chưa. Dù ở dạng nào, nguyên tắc "lặp cho đến khi điều kiện không còn đúng" vẫn luôn được giữ nguyên.
 
 ## Hàm
+---
 
 Nhân viên cửa hàng điện thoại có lẽ không mang máy tính theo người để tính thuế và tổng số tiền mua hàng. Đó là một công việc cô ấy cần xác định một lần rồi tái sử dụng nhiều lần. Khả năng cao là cửa hàng đã trang bị máy tính tiền (máy tính bảng, máy tính, v.v.) với các "chức năng" đó được tích hợp sẵn.
 
@@ -643,7 +651,7 @@ Dù `calculateFinalPurchaseAmount(..)` chỉ được gọi một lần, việc 
 
 Nếu bạn hỏi nhân viên cửa hàng điện thoại về một mẫu điện thoại mà cửa hàng không có, cô ấy sẽ không thể bán cho bạn. Cô ấy chỉ có quyền truy cập vào những chiếc điện thoại trong kho của cửa hàng mình. Bạn sẽ phải thử tìm ở cửa hàng khác nếu muốn mua mẫu điện thoại đó.
 
-Trong lập trình có một thuật ngữ cho khái niệm này: *phạm vi* (về mặt kỹ thuật gọi là *phạm vi từ vựng*). Trong JavaScript, mỗi hàm có phạm vi riêng của nó. Phạm vi về cơ bản là một tập hợp các biến cùng với các quy tắc về cách các biến đó được truy cập bằng tên. Chỉ những đoạn mã bên trong hàm đó mới có thể truy cập các biến trong phạm vi của hàm đó.
+Trong lập trình có một thuật ngữ cho khái niệm này: *phạm vi* (về mặt kỹ thuật gọi là *phạm vi từ vựng*). Trong JavaScript, mỗi hàm có phạm vi riêng của nó. Phạm vi về cơ bản là một tập hợp các biến cùng với các quy tắc về cách các biến đó được truy cập bằng tên. Chỉ những đoạn mã bên trong hàm mới có thể truy cập các biến trong phạm vi của hàm đó.
 
 Tên biến phải là duy nhất trong cùng một phạm vi - không thể có hai biến `a` khác nhau nằm cạnh nhau. Nhưng cùng một tên biến `a` có thể xuất hiện trong các phạm vi khác nhau.
 
@@ -709,8 +717,10 @@ function calculateFinalPurchaseAmount(amt) {
 Hằng số (biến) `TAX_RATE` có thể được truy cập từ bên trong hàm `calculateFinalPurchaseAmount(..)` mặc dù ta không truyền vào nhờ phạm vi từ vựng.
 
 **Ghi chú:** Để tìm hiểu thêm về phạm vi từ vựng, xem ba chương đầu tiên của sách *Phạm vi và hàm khép kín* trong bộ sách này.
+---
 
 ## Luyện tập
+---
 
 Không có gì thay thế được việc luyện tập trong quá trình học lập trình. Dù tôi có viết hay đến đâu cũng không thể giúp bạn trở thành lập trình viên được.
 
@@ -719,7 +729,7 @@ Với tinh thần đó, hãy thử luyện tập một vài khái niệm chúng 
 * Viết một chương trình để tính tổng giá tiền khi mua điện thoại. Bạn sẽ tiếp tục mua điện thoại (gợi ý: dùng vòng lặp!) cho đến khi hết tiền trong tài khoản ngân hàng. Bạn cũng sẽ mua thêm phụ kiện cho mỗi điện thoại miễn là tổng tiền vẫn dưới ngưỡng chi tiêu của bạn.
 * Sau khi tính xong tổng tiền, hãy cộng thêm thuế, sau đó in ra tổng tiền đã tính theo đúng định dạng.
 * Cuối cùng, so sánh số tiền đó với số dư tài khoản ngân hàng để xem bạn có đủ tiền không.
-* Bạn nên khai báo một số hằng số cho "thuế suất", "giá điện thoại", "giá phụ kiện", và "ngưỡng chi tiêu", cũng như một biến cho "số dư tài khoản ngân hàng".
+* Bạn nên khai báo một số hằng số cho "thuế", "giá điện thoại", "giá phụ kiện", và "ngưỡng chi tiêu", cũng như một biến cho "số dư tài khoản ngân hàng".
 * Bạn nên định nghĩa các hàm để tính thuế và định dạng số tiền với dấu `$` và làm tròn tới hai chữ số thập phân.
 * **Thử thách bổ sung:** Hãy thử kết hợp đầu vào trong chương trình này, ví dụ như dùng `prompt(..)` đã đề cập trong phần "Đầu vào" trước đó. Chẳng hạn, bạn có thể yêu cầu người dùng nhập số dư tài khoản của họ. Hãy sáng tạo và vui vẻ nhé!
 
@@ -775,6 +785,7 @@ if (amount > bank_balance) {
 Bạn làm thế nào rồi? Sẽ không hại gì nếu bạn thử lại một lần nữa sau khi đã xem qua đoạn mã của tôi. Và hãy thử thay đổi một số hằng số xem chương trình chạy thế nào với các giá trị khác nhau.
 
 ## Nhìn lại
+---
 
 Học lập trình không nhất thiết phải là một quá trình phức tạp và quá tải. Bạn chỉ cần nắm vững một vài khái niệm cơ bản.
 
@@ -791,6 +802,6 @@ Chú thích trong mã là một cách hiệu quả để viết mã dễ đọc 
 
 Cuối cùng, đừng bỏ qua sức mạnh của thực hành. Cách tốt nhất để học viết mã là hãy viết thật nhiều mã.
 
-Tôi rất vui vì bạn đã đi được một chặng đường đáng kể trong hành trình học lập trình rồi! Hãy tiếp tục cố gắng. Đừng quên tìm hiểu thêm các tài nguyên lập trình cho người mới bắt đầu (sách, blog, khóa học trực tuyến, v.v.). Chương này và cuốn sách này là một khởi đầu tuyệt vời, nhưng mới chỉ là phần giới thiệu sơ lược.
+Tôi rất vui vì bạn đã đi được một chặng đường đáng kể trong hành trình học lập trình rồi! Hãy tiếp tục cố gắng. Đừng quên tìm hiểu thêm các tài nguyên lập trình cho người mới bắt đầu (sách, blog, khóa học trực tuyến, v.v.). Chương này và cuốn sách này là một khởi đầu tuyệt vời, nhưng mới chỉ là phần giới thiệu sơ lược thôi.
 
-Chương tiếp theo sẽ đánh giá nhiều khái niệm ở chương này, nhưng dưới góc nhìn cụ thể hơn của JavaScript, từ đó làm nổi bật những chủ đề quan trọng sẽ được đào sâu hơn trong phần còn lại của loạt sách.
+Chương tiếp theo sẽ đánh giá nhiều khái niệm ở chương này nhưng dưới góc nhìn cụ thể hơn của JavaScript, từ đó làm nổi bật những chủ đề quan trọng sẽ được đào sâu hơn trong phần còn lại của loạt sách.

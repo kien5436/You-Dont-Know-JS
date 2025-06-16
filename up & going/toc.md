@@ -16,7 +16,7 @@
 	* Vòng lặp
 	* Hàm
 	* Luyện tập
-* Chapter 2: Into JavaScript
+* Chapter 2: Đến với JavaScript
 	* Values & Types
 	* Variables
 	* Conditionals
