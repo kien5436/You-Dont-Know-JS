@@ -17,19 +17,19 @@
 	* Hàm
 	* Luyện tập
 * Chapter 2: Đến với JavaScript
-	* Values & Types
-	* Variables
-	* Conditionals
-	* Strict Mode
-	* Functions As Values
-	* `this` Keyword
-	* Prototypes
-	* Old & New
-	* Non-JavaScript
-* Chapter 3: Into YDKJS
+	* Giá trị và kiểu dữ liệu
+	* Biến
+	* Điều kiện
+	* Chế độ nghiêm ngặt
+	* Hàm được xem như biến
+	* Từ khóa `this`
+	* Nguyên mẫu
+	* Cũ và mới
+	* Không-phải-JavaScript
+* Chapter 3: Đến với BKHJS
 	* Phạm vi và hàm khép kín
-	* this & Object Prototypes
-	* Types & Grammar
-	* Async & Performance
-	* ES6 & Beyond
-* Appendix A: Acknowledgments
+	* this và nguyên mẫu đối tượng
+	* Kiểu dữ liệu và ngữ pháp
+	* Bất đồng bộ và hiệu năng
+	* ES6 và hơn thế nữa
+* Phụ lục A: Kiến thức

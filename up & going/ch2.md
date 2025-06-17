@@ -1,28 +1,28 @@
-# You Don't Know JS: Up & Going
-# Chapter 2: Into JavaScript
+# Bạn không hiểu JS: Khởi động và tiến lên
+# Chương 2: Đến với JavaScript
 
-In the previous chapter, I introduced the basic building blocks of programming, such as variables, loops, conditionals, and functions. Of course, all the code shown has been in JavaScript. But in this chapter, we want to focus specifically on things you need to know about JavaScript to get up and going as a JS developer.
+Ở chương trước, tôi đã giới thiệu các khối xây dựng cơ bản trong lập trình như biến, vòng lặp, rẽ nhánh và hàm. Dĩ nhiên tất cả ví dụ đều dùng ngôn ngữ JavaScript. Nhưng trong chương này, ta sẽ tập trung vào những điều cụ thể mà bạn cần biết để bắt đầu với tư cách là một lập trình viên JavaScript.
 
-We will introduce quite a few concepts in this chapter that will not be fully explored until subsequent *YDKJS* books. You can think of this chapter as an overview of the topics covered in detail throughout the rest of this series.
+Chúng ta sẽ giới thiệu khá nhiều khái niệm trong chương này nhưng phần lớn sẽ được khám phá trong các cuốn *BKHJS* tiếp theo. Bạn có thể xem chương này như một bản tổng quan các chủ đề sẽ được đào sâu trong phần còn lại của bộ sách.
 
-Especially if you're new to JavaScript, you should expect to spend quite a bit of time reviewing the concepts and code examples here multiple times. Any good foundation is laid brick by brick, so don't expect that you'll immediately understand it all the first pass through.
+Đặc biệt nếu bạn là người mới bắt đầu với JavaScript, hãy chuẩn bị dành nhiều thời gian để xem lại các khái niệm và ví dụ nhiều lần. Một nền móng vững chắc được xây từ từng viên gạch một, vì vậy đừng kì vọng bản thân có thể hiểu hết mọi thứ chỉ sau một lần đọc.
 
-Your journey to deeply learn JavaScript starts here.
+Hành trình học JavaScript một cách sâu sắc của bạn bắt đầu từ đây.
 
-**Note:** As I said in Chapter 1, you should definitely try all this code yourself as you read and work through this chapter. Be aware that some of the code here assumes capabilities introduced in the newest version of JavaScript at the time of this writing (commonly referred to as "ES6" for the 6th edition of ECMAScript -- the official name of the JS specification). If you happen to be using an older, pre-ES6 browser, the code may not work. A recent update of a modern browser (like Chrome, Firefox, or IE) should be used.
+**Lưu ý:** Như tôi đã nói ở chương 1, bạn nên thử chạy tất cả các đoạn mã khi đọc qua chương này. Một số đoạn mã sử dụng những tính năng mới được giới thiệu trong phiên bản JavaScript mới nhất tại thời điểm viết sách (thường được gọi là "ES6" - phiên bản thứ 6 của ECMAScript, tên chính thức của tiêu chuẩn JS). Nếu bạn đang dùng trình duyệt cũ (trước ES6), một vài đoạn mã có thể không chạy được. Hãy đảm bảo sử dụng phiên bản mới nhất của các trình duyệt hiện đại như Chrome, Firefox hoặc IE.
 
-## Values & Types
+## Giá trị và kiểu dữ liệu
 
-As we asserted in Chapter 1, JavaScript has typed values, not typed variables. The following built-in types are available:
+Như đã khẳng định ở chương 1, JavaScript có kiểu dữ liệu cho giá trị chứ không phải kiểu cho biến. Các kiểu dữ liệu tích hợp sẵn là:
 
 * `string`
 * `number`
 * `boolean`
-* `null` and `undefined`
+* `null` và `undefined`
 * `object`
-* `symbol` (new to ES6)
+* `symbol` (mới trong ES6)
 
-JavaScript provides a `typeof` operator that can examine a value and tell you what type it is:
+JavaScript cung cấp toán tử `typeof` để kiểm tra một giá trị và cho biết kiểu của nó:
 
 ```js
 var a;
@@ -38,7 +38,7 @@ a = true;
 typeof a;				// "boolean"
 
 a = null;
-typeof a;				// "object" -- weird, bug
+typeof a;				// "object" -- kì lạ thật, lỗi
 
 a = undefined;
 typeof a;				// "undefined"
@@ -47,19 +47,19 @@ a = { b: "c" };
 typeof a;				// "object"
 ```
 
-The return value from the `typeof` operator is always one of six (seven as of ES6! - the "symbol" type) string values. That is, `typeof "abc"` returns `"string"`, not `string`.
+Giá trị trả về từ toán tử `typeof` luôn là một trong sáu chuỗi ký tự (bảy kể từ ES6 - với kiểu `"symbol"`). Tức là, `typeof "abc"` sẽ trả về `"string"`, chứ không phải `string`.
 
-Notice how in this snippet the `a` variable holds every different type of value, and that despite appearances, `typeof a` is not asking for the "type of `a`", but rather for the "type of the value currently in `a`." Only values have types in JavaScript; variables are just simple containers for those values.
+Hãy chú ý trong ví dụ, biến `a` lần lượt giữ các giá trị có kiểu khác nhau. Và dù thoạt nhìn có vẻ như `typeof a` đang hỏi "kiểu của `a`" là gì, thực chất nó đang hỏi "kiểu của giá trị hiện tại bên trong `a`" là gì. Trong JavaScript, chỉ có giá trị là có kiểu, biến chỉ đơn giản là hộp chứa cho những giá trị đó mà thôi.
 
-`typeof null` is an interesting case, because it errantly returns `"object"`, when you'd expect it to return `"null"`.
+`typeof null` là một trường hợp đặc biệt vì kết quả trả ra một cách sai lầm là `"object"`, dù bạn có thể mong đợi `"null"`.
 
-**Warning:** This is a long-standing bug in JS, but one that is likely never going to be fixed. Too much code on the Web relies on the bug and thus fixing it would cause a lot more bugs!
+**Cảnh báo**: Đây là một lỗi lâu đời trong JavaScript nhưng sẽ không bao giờ được sửa. Quá nhiều mã trên web phụ thuộc vào lỗi này, việc sửa nó sẽ gây ra nhiều lỗi hơn.
 
-Also, note `a = undefined`. We're explicitly setting `a` to the `undefined` value, but that is behaviorally no different from a variable that has no value set yet, like with the `var a;` line at the top of the snippet. A variable can get to this "undefined" value state in several different ways, including functions that return no values and usage of the `void` operator.
+Ngoài ra hãy lưu ý về cách viết `a = undefined`. Chúng ta đang gán giá trị `undefined` một cách rõ ràng cho biến `a`, hành vi này không khác gì việc khai báo một biến chưa gán giá trị, giống như `var a;` ở đầu đoạn mã. Một biến có thể mang giá trị `undefined` theo nhiều cách, chẳng hạn như hàm không trả về gì hoặc khi dùng toán tử `void`.
 
-### Objects
+### Đối tượng
 
-The `object` type refers to a compound value where you can set properties (named locations) that each hold their own values of any type. This is perhaps one of the most useful value types in all of JavaScript.
+Kiểu `object` dùng để chỉ những giá trị phức hợp nơi bạn có thể khai báo các thuộc tính (vị trí được đặt tên) giữ giá trị thuộc bất kỳ kiểu nào. Có lẽ đây là kiểu dữ liệu giá trị hữu ích nhất trong JavaScript.
 
 ```js
 var obj = {
@@ -77,35 +77,35 @@ obj["b"];	// 42
 obj["c"];	// true
 ```
 
-It may be helpful to think of this `obj` value visually:
+Sẽ hữu ích nếu bạn hình dung giá trị `obj` này một cách trực quan:
 
 <img src="fig4.png">
 
-Properties can either be accessed with *dot notation* (i.e., `obj.a`) or *bracket notation* (i.e., `obj["a"]`). Dot notation is shorter and generally easier to read, and is thus preferred when possible.
+Các thuộc tính có thể được truy cập bằng *kí hiệu chấm* (ví dụ `obj.a`) hoặc *kí hiệu ngoặc* (ví dụ `obj["a"]`). Kí hiệu chấm ngắn gọn hơn và nhìn chung dễ đọc hơn, vì vậy được ưu tiên sử dụng khi có thể.
 
-Bracket notation is useful if you have a property name that has special characters in it, like `obj["hello world!"]` -- such properties are often referred to as *keys* when accessed via bracket notation. The `[ ]` notation requires either a variable (explained next) or a `string` *literal* (which needs to be wrapped in `" .. "` or `' .. '`).
+Kí hiệu ngoặc hữu ích khi bạn có tên thuộc tính chứa ký tự đặc biệt, như `obj["hello world!"]` - những thuộc tính như vậy thường được gọi là *khóa* khi truy cập qua kí hiệu ngoặc. Cú pháp `[ ]` yêu cầu một biến (sẽ được giải thích tiếp theo) hoặc một `string` nguyên bản (phải được bao trong cặp dấu `" .. "` hoặc `' .. '`).
 
-Of course, bracket notation is also useful if you want to access a property/key but the name is stored in another variable, such as:
+Tất nhiên, kí hiệu ngoặc có thể cũng rất hữu dụng nếu bạn muốn truy cập một thuộc tính/khóa mà tên của nó được lưu trong một biến khác, ví dụ:
 
 ```js
 var obj = {
-	a: "hello world",
-	b: 42
+    a: "hello world",
+    b: 42
 };
 
 var b = "a";
 
-obj[b];			// "hello world"
-obj["b"];		// 42
+obj[b];       // "hello world"
+obj["b"];     // 42
 ```
 
-**Note:** For more information on JavaScript `object`s, see the *this & Object Prototypes* title of this series, specifically Chapter 3.
+**Ghi chú:** Để tìm hiểu thêm về `object` trong JavaScript, hãy xem cuốn *this và nguyên mẫu đối tượng* trong loạt sách này, đặc biệt là chương 3.
 
-There are a couple of other value types that you will commonly interact with in JavaScript programs: *array* and *function*. But rather than being proper built-in types, these should be thought of more like subtypes -- specialized versions of the `object` type.
+Có một vài kiểu giá trị khác mà bạn thường xuyên làm việc cùng trong chương trình JavaScript: *mảng* và *hàm*. Tuy nhiên, thay vì là kiểu dựng sẵn thì chúng nên được xem như các kiểu con - phiên bản chuyên biệt của kiểu `object`.
 
-#### Arrays
+#### Mảng
 
-An array is an `object` that holds values (of any type) not particularly in named properties/keys, but rather in numerically indexed positions. For example:
+Một mảng là một `object` chứa các giá trị (thuộc bất kỳ kiểu nào), không phải ở các thuộc tính/khóa có tên, mà ở các vị trí được đánh chỉ số bằng số. Ví dụ:
 
 ```js
 var arr = [
@@ -122,21 +122,21 @@ arr.length;		// 3
 typeof arr;		// "object"
 ```
 
-**Note:** Languages that start counting at zero, like JS does, use `0` as the index of the first element in the array.
+**Lưu ý:** Những ngôn ngữ bắt đầu đếm từ số 0, như JavaScript, sử dụng `0` làm chỉ số của phần tử đầu tiên trong mảng.
 
-It may be helpful to think of `arr` visually:
+Bạn có thể hình dung `arr` một cách trực quan như sau:
 
 <img src="fig5.png">
 
-Because arrays are special objects (as `typeof` implies), they can also have properties, including the automatically updated `length` property.
+Vì mảng là một đối tượng đặc biệt (như `typeof` cho thấy), chúng cũng có thể có các thuộc tính, bao gồm thuộc tính `length` được cập nhật tự động.
 
-You theoretically could use an array as a normal object with your own named properties, or you could use an `object` but only give it numeric properties (`0`, `1`, etc.) similar to an array. However, this would generally be considered improper usage of the respective types.
+Về mặt lý thuyết, bạn có thể dùng một mảng như một đối tượng thông thường với các thuộc tính có tên, hoặc dùng một `object` nhưng chỉ gán cho nó các thuộc tính dạng số (`"0"`, `"1"`, v.v.) giống như một mảng. Tuy nhiên, điều này nhìn chung bị xem là cách sử dụng sai của kiểu tương ứng.
 
-The best and most natural approach is to use arrays for numerically positioned values and use `object`s for named properties.
+Cách tiếp cận tốt và tự nhiên nhất là: dùng mảng cho các giá trị theo thứ tự chỉ số và dùng `object` cho các thuộc tính có tên.
 
-#### Functions
+#### Hàm
 
-The other `object` subtype you'll use all over your JS programs is a function:
+Kiểu con `object` khác mà bạn sẽ dùng xuyên suốt trong chương trình JS là hàm:
 
 ```js
 function foo() {
@@ -150,15 +150,15 @@ typeof foo();		// "number"
 typeof foo.bar;		// "string"
 ```
 
-Again, functions are a subtype of `objects` -- `typeof` returns `"function"`, which implies that a `function` is a main type -- and can thus have properties, but you typically will only use function object properties (like `foo.bar`) in limited cases.
+Một lần nữa, hàm là một kiểu con của `object` - `typeof` trả về "function", điều này ngụ ý rằng một `function` là một kiểu chính - và do đó có thể có các thuộc tính, nhưng bạn thường chỉ sử dụng thuộc tính của đối tượng hàm (như `foo.bar`) trong một số trường hợp.
 
-**Note:** For more information on JS values and their types, see the first two chapters of the *Types & Grammar* title of this series.
+**Ghi chú**: Để biết thêm thông tin về các giá trị và kiểu của chúng trong JS, hãy xem hai chương đầu tiên của cuốn *Kiểu dữ liệu và ngữ pháp* trong loạt sách này.
 
-### Built-In Type Methods
+### Các phương thức của kiểu dựng sẵn
 
-The built-in types and subtypes we've just discussed have behaviors exposed as properties and methods that are quite powerful and useful.
+Các kiểu và kiểu con dựng sẵn mà chúng ta vừa thảo luận có các hành vi khá mạnh mẽ và hữu ích được thể hiện dưới dạng thuộc tính và phương thức.
 
-For example:
+Ví dụ:
 
 ```js
 var a = "hello world";
@@ -169,31 +169,31 @@ a.toUpperCase();		// "HELLO WORLD"
 b.toFixed(4);			// "3.1416"
 ```
 
-The "how" behind being able to call `a.toUpperCase()` is more complicated than just that method existing on the value.
+Việc có thể gọi `a.toUpperCase()` không chỉ đơn giản là do phương thức đó tồn tại trên giá trị.
 
-Briefly, there is a `String` (capital `S`) object wrapper form, typically called a "native," that pairs with the primitive `string` type; it's this object wrapper that defines the `toUpperCase()` method on its prototype.
+Nói một cách ngắn gọn, có một dạng đối tượng `String` (chữ `S` viết hoa) bọc ngoài, thường được gọi là "nguyên bản", tương ứng với kiểu nguyên thủy `string`; chính đối tượng bao bọc này định nghĩa phương thức `toUpperCase()` trên nguyên mẫu của nó.
 
-When you use a primitive value like `"hello world"` as an `object` by referencing a property or method (e.g., `a.toUpperCase()` in the previous snippet), JS automatically "boxes" the value to its object wrapper counterpart (hidden under the covers).
+Khi bạn sử dụng một giá trị nguyên thủy như `"hello world"` như một `object` bằng cách truy cập thuộc tính hoặc phương thức (ví dụ, `a.toUpperCase()` trong đoạn mã trước), JS tự động "đóng hộp" giá trị đó thành đối tượng bao tương ứng (ẩn dưới bề mặt).
 
-A `string` value can be wrapped by a `String` object, a `number` can be wrapped by a `Number` object, and a `boolean` can be wrapped by a `Boolean` object. For the most part, you don't need to worry about or directly use these object wrapper forms of the values -- prefer the primitive value forms in practically all cases and JavaScript will take care of the rest for you.
+Một giá trị `string` có thể được bao bởi một đối tượng `String`, một `number` có thể được bao bởi một đối tượng `Number`, và một `boolean` có thể được bao bởi một đối tượng `Boolean`. Trong hầu hết các trường hợp, bạn không cần quan tâm hay sử dụng trực tiếp các dạng đối tượng bao ngoài này - hãy ưu tiên dùng các giá trị nguyên thủy trong hầu hết mọi tình huống và JavaScript sẽ tự lo phần còn lại cho bạn.
 
-**Note:** For more information on JS natives and "boxing," see Chapter 3 of the *Types & Grammar* title of this series. To better understand the prototype of an object, see Chapter 5 of the *this & Object Prototypes* title of this series.
+**Ghi chú:** Để tìm hiểu thêm về các đối tượng nguyên bản trong JavaScript và quá trình "đóng hộp", hãy xem chương 3 trong cuốn *Kiểu dữ liệu và ngữ pháp* của loạt sách này. Để hiểu rõ hơn về nguyên mẫu của một đối tượng, hãy xem chương 5 trong cuốn *this và nguyên mẫu đối tượng* của loạt sách này.
 
-### Comparing Values
+### So sánh giá trị
 
-There are two main types of value comparison that you will need to make in your JS programs: *equality* and *inequality*. The result of any comparison is a strictly `boolean` value (`true` or `false`), regardless of what value types are compared.
+Có hai kiểu so sánh giá trị chính mà bạn sẽ cần thực hiện trong các chương trình JS của mình: *bằng nhau* và *khác nhau*. Kết quả của bất kỳ phép so sánh nào cũng luôn là một giá trị `boolean` nghiêm ngặt (`true` hoặc `false`), bất kể kiểu của các giá trị được so sánh là gì.
 
-#### Coercion
+#### Ép kiểu
 
-We talked briefly about coercion in Chapter 1, but let's revisit it here.
+Chúng ta đã đề cập sơ lược về ép kiểu ở chương 1, nhưng hãy quay lại chủ đề này ở đây.
 
-Coercion comes in two forms in JavaScript: *explicit* and *implicit*. Explicit coercion is simply that you can see obviously from the code that a conversion from one type to another will occur, whereas implicit coercion is when the type conversion can happen as more of a non-obvious side effect of some other operation.
+Ép kiểu trong JavaScript có hai hình thức: *tường minh* và *ngầm định*. Ép kiểu tường minh là khi bạn có thể dễ dàng thấy rõ trong mã rằng có sự chuyển đổi kiểu dữ liệu xảy ra, trong khi ép kiểu ngầm định là khi việc chuyển đổi kiểu xảy ra như một hệ quả không rõ ràng của một thao tác khác.
 
-You've probably heard sentiments like "coercion is evil" drawn from the fact that there are clearly places where coercion can produce some surprising results. Perhaps nothing evokes frustration from developers more than when the language surprises them.
+Có lẽ bạn đã nghe những quan điểm như "ép kiểu là điều tệ hại" vì rõ ràng trong một số trường hợp, ép kiểu có thể tạo ra những kết quả bất ngờ. Có lẽ không gì gây bực bội hơn cho lập trình viên bằng việc ngôn ngữ gây bất ngờ cho họ.
 
-Coercion is not evil, nor does it have to be surprising. In fact, the majority of cases you can construct with type coercion are quite sensible and understandable, and can even be used to *improve* the readability of your code. But we won't go much further into that debate -- Chapter 4 of the *Types & Grammar* title of this series covers all sides.
+Ép kiểu không phải là điều xấu, và nó cũng không nhất thiết phải gây bất ngờ. Thực tế, phần lớn các trường hợp sử dụng ép kiểu có thể được xây dựng một cách hợp lý và dễ hiểu, và thậm chí có thể giúp *cải thiện* tính dễ đọc của mã nguồn. Nhưng chúng ta sẽ không đi sâu hơn vào cuộc tranh luận này - chương 4 của cuốn *Kiểu dữ liệu và ngữ pháp* của loạt sách này sẽ trình bày đầy đủ mọi góc nhìn.
 
-Here's an example of *explicit* coercion:
+Dưới đây là một ví dụ về ép kiểu *tường minh*:
 
 ```js
 var a = "42";
@@ -201,49 +201,49 @@ var a = "42";
 var b = Number( a );
 
 a;				// "42"
-b;				// 42 -- the number!
+b;				// 42 -- con số!
 ```
 
-And here's an example of *implicit* coercion:
+Và đây là ví dụ về ép kiểu *ngầm định*:
 
 ```js
 var a = "42";
 
-var b = a * 1;	// "42" implicitly coerced to 42 here
+var b = a * 1;	// "42" ngầm ép về 42
 
 a;				// "42"
-b;				// 42 -- the number!
+b;				// 42 -- con số!
 ```
 
-#### Truthy & Falsy
+#### Đúng và sai
 
-In Chapter 1, we briefly mentioned the "truthy" and "falsy" nature of values: when a non-`boolean` value is coerced to a `boolean`, does it become `true` or `false`, respectively?
+Trong chương 1, chúng ta đã nói sơ qua đến tính chất "đúng" và "sai" của giá trị: khi một giá trị không phải `boolean` bị ép kiểu sang `boolean`, nó sẽ trở thành `true` hay `false`?
 
-The specific list of "falsy" values in JavaScript is as follows:
+Danh sách cụ thể các giá trị "sai" trong JavaScript như sau:
 
-* `""` (empty string)
-* `0`, `-0`, `NaN` (invalid `number`)
+* `""` (chuỗi rỗng)
+* `0`, `-0`, `NaN` (not a number - không phải `number`)
 * `null`, `undefined`
 * `false`
 
-Any value that's not on this "falsy" list is "truthy." Here are some examples of those:
+Bất kỳ giá trị nào không nằm trong danh sách "sai" trên đều là "đúng". Dưới đây là một số ví dụ về những giá trị như vậy:
 
 * `"hello"`
 * `42`
 * `true`
-* `[ ]`, `[ 1, "2", 3 ]` (arrays)
-* `{ }`, `{ a: 42 }` (objects)
-* `function foo() { .. }` (functions)
+* `[ ]`, `[ 1, "2", 3 ]` (mảng)
+* `{ }`, `{ a: 42 }` (đối tượng)
+* `function foo() { .. }` (hàm)
 
-It's important to remember that a non-`boolean` value only follows this "truthy"/"falsy" coercion if it's actually coerced to a `boolean`. It's not all that difficult to confuse yourself with a situation that seems like it's coercing a value to a `boolean` when it's not.
+Điều quan trọng là phải nhớ rằng một giá trị không phải `boolean` chỉ tuân theo quy tắc ép kiểu "đúng"/"sai" nếu nó thực sự bị ép kiểu sang `boolean`. Không khó để bạn tự làm mình bối rối với những tình huống tưởng như đang ép kiểu sang `boolean` nhưng thực ra lại không phải.
 
-#### Equality
+#### So sánh bằng
 
-There are four equality operators: `==`, `===`, `!=`, and `!==`. The `!` forms are of course the symmetric "not equal" versions of their counterparts; *non-equality* should not be confused with *inequality*.
+Có bốn toán tử so sánh bằng: `==`, `===`, `!=` và `!==`. Các dạng có `!` dĩ nhiên là phiên bản "khác" tương ứng với các toán tử còn lại; *so sánh không bằng* không nên bị nhầm với *so sánh khác biệt*.
 
-The difference between `==` and `===` is usually characterized that `==` checks for value equality and `===` checks for both value and type equality. However, this is inaccurate. The proper way to characterize them is that `==` checks for value equality with coercion allowed, and `===` checks for value equality without allowing coercion; `===` is often called "strict equality" for this reason.
+Sự khác biệt giữa `==` và `===` thường được mô tả là `==` kiểm tra giá trị còn `===` kiểm tra cả giá trị và kiểu. Tuy nhiên, mô tả này không hoàn toàn chính xác. Cách diễn giải đúng hơn là: `==` kiểm tra giá trị cho phép ép kiểu, còn `===` kiểm tra giá trị mà không cho phép ép kiểu; vì lý do đó, `===` thường được gọi là so sánh "bằng nghiêm ngặt".
 
-Consider the implicit coercion that's allowed by the `==` loose-equality comparison and not allowed with the `===` strict-equality:
+Hãy xem xét phép ép kiểu ngầm định được phép bởi phép so sánh bằng lỏng lẻo (`==`) nhưng không được phép với so sánh bằng nghiêm ngặt (`===`):
 
 ```js
 var a = "42";
@@ -253,93 +253,93 @@ a == b;			// true
 a === b;		// false
 ```
 
-In the `a == b` comparison, JS notices that the types do not match, so it goes through an ordered series of steps to coerce one or both values to a different type until the types match, where then a simple value equality can be checked.
+Trong phép so sánh `a == b`, JS nhận thấy kiểu của hai giá trị không khớp, nên nó sẽ thực hiện một loạt các bước theo thứ tự để ép kiểu một hoặc cả hai giá trị sang kiểu khác cho đến khi kiểu khớp nhau, lúc đó phép so sánh giá trị đơn giản mới được thực hiện.
 
-If you think about it, there's two possible ways `a == b` could give `true` via coercion. Either the comparison could end up as `42 == 42` or it could be `"42" == "42"`. So which is it?
+Nếu bạn nghĩ về điều này, có hai cách mà `a == b` có thể cho kết quả `true` thông qua ép kiểu. Hoặc là phép so sánh trở thành `42 == 42`, hoặc là `"42" == "42"`. Nhưng cái nào mới đúng?
 
-The answer: `"42"` becomes `42`, to make the comparison `42 == 42`. In such a simple example, it doesn't really seem to matter which way that process goes, as the end result is the same. There are more complex cases where it matters not just what the end result of the comparison is, but *how* you get there.
+Câu trả lời là: `"42"` được chuyển thành `42`, để phép so sánh trở thành `42 == 42`. Trong ví dụ đơn giản như vậy, có vẻ không quan trọng cách ép kiểu diễn ra theo hướng nào vì kết quả cuối cùng giống nhau. Nhưng có những trường hợp phức tạp hơn, nơi mà không chỉ kết quả so sánh quan trọng, mà còn cả *cách* đạt được kết quả đó.
 
-The `a === b` produces `false`, because the coercion is not allowed, so the simple value comparison obviously fails. Many developers feel that `===` is more predictable, so they advocate always using that form and staying away from `==`. I think this view is very shortsighted. I believe `==` is a powerful tool that helps your program, *if you take the time to learn how it works.*
+Phép so sánh `a === b` trả về `false`, vì không có phép ép kiểu nào được cho phép, nên so sánh giá trị đơn giản tất nhiên sẽ thất bại. Nhiều lập trình viên cảm thấy `===` dễ dự đoán hơn, nên họ khuyên nên luôn dùng nó và tránh xa `==`. Tôi cho rằng quan điểm này quá hạn hẹp. Tôi tin rằng `==` là một công cụ mạnh mẽ giúp ích cho chương trình của bạn, *miễn là bạn chịu khó học cách nó hoạt động*.
 
-We're not going to cover all the nitty-gritty details of how the coercion in `==` comparisons works here. Much of it is pretty sensible, but there are some important corner cases to be careful of. You can read section 11.9.3 of the ES5 specification (http://www.ecma-international.org/ecma-262/5.1/) to see the exact rules, and you'll be surprised at just how straightforward this mechanism is, compared to all the negative hype surrounding it.
+Chúng ta sẽ không đi sâu vào tất cả chi tiết phức tạp về cách ép kiểu trong phép so sánh `==`. Phần lớn trong số đó khá hợp lý, nhưng cũng có một số trường hợp góc cần chú ý. Bạn có thể đọc phần 11.9.3 trong đặc tả ES5 ([http://www.ecma-international.org/ecma-262/5.1/](http://www.ecma-international.org/ecma-262/5.1/)) để xem các quy tắc chính xác, và bạn sẽ ngạc nhiên vì cơ chế này thực ra khá đơn giản so với mọi lời bàn tán tiêu cực xung quanh nó.
 
-To boil down a whole lot of details to a few simple takeaways, and help you know whether to use `==` or `===` in various situations, here are my simple rules:
+Để tóm gọn rất nhiều chi tiết thành vài điều cần nhớ đơn giản, giúp bạn biết nên dùng `==` hay `===` trong từng tình huống, dưới đây là một số quy tắc của tôi:
 
-* If either value (aka side) in a comparison could be the `true` or `false` value, avoid `==` and use `===`.
-* If either value in a comparison could be one of these specific values (`0`, `""`, or `[]` -- empty array), avoid `==` and use `===`.
-* In *all* other cases, you're safe to use `==`. Not only is it safe, but in many cases it simplifies your code in a way that improves readability.
+* Nếu một trong hai giá trị trong phép so sánh có thể là `true` hoặc `false`, tránh dùng `==` và hãy dùng `===`.
+* Nếu một trong hai giá trị trong phép so sánh có thể là một trong các giá trị sau (`0`, `""`, hoặc `[]` - mảng rỗng), tránh dùng `==` và hãy dùng `===`.
+* Trong *mọi* trường hợp khác, bạn có thể dùng `==` một cách an toàn. Không chỉ an toàn, mà trong nhiều trường hợp nó còn giúp đơn giản hóa mã của bạn, làm tăng tính dễ đọc.
 
-What these rules boil down to is requiring you to think critically about your code and about what kinds of values can come through variables that get compared for equality. If you can be certain about the values, and `==` is safe, use it! If you can't be certain about the values, use `===`. It's that simple.
+Những quy tắc này chủ yếu yêu cầu bạn phải suy nghĩ cẩn thận về mã của mình và về kiểu giá trị nào có thể được gán cho các biến dùng để so sánh. Nếu bạn có thể chắc chắn về các giá trị, và `==` an toàn, thì hãy dùng nó! Nếu bạn không chắc, hãy dùng `===`. Đơn giản vậy thôi.
 
-The `!=` non-equality form pairs with `==`, and the `!==` form pairs with `===`. All the rules and observations we just discussed hold symmetrically for these non-equality comparisons.
+Toán tử `!=` (so sánh không bằng) đi đôi với `==`, và toán tử `!==` đi đôi với `===`. Tất cả các quy tắc và quan sát mà chúng ta vừa thảo luận cũng áp dụng tương tự cho các phép so sánh không bằng này.
 
-You should take special note of the `==` and `===` comparison rules if you're comparing two non-primitive values, like `object`s (including `function` and `array`). Because those values are actually held by reference, both `==` and `===` comparisons will simply check whether the references match, not anything about the underlying values.
+Bạn nên đặc biệt lưu ý các quy tắc so sánh `==` và `===` nếu bạn đang so sánh hai giá trị không phải nguyên thủy, như `object` (bao gồm `function` và `array`). Vì những giá trị này thực ra được giữ bằng tham chiếu, nên cả phép so sánh `==` lẫn `===` sẽ chỉ kiểm tra xem hai tham chiếu có khớp nhau hay không chứ không quan tâm đến giá trị bên trong.
 
-For example, `array`s are by default coerced to `string`s by simply joining all the values with commas (`,`) in between. You might think that two `array`s with the same contents would be `==` equal, but they're not:
+Ví dụ, mặc định thì `array` sẽ bị ép kiểu sang `string` bằng cách nối tất cả các phần tử với dấu phẩy (`,`) ở giữa. Bạn có thể nghĩ rằng hai `array` có cùng nội dung sẽ bằng nhau theo `==`, nhưng thực tế thì không:
 
 ```js
 var a = [1,2,3];
 var b = [1,2,3];
 var c = "1,2,3";
 
-a == c;		// true
-b == c;		// true
-a == b;		// false
+a == c;        // true
+b == c;        // true
+a == b;        // false
 ```
 
-**Note:** For more information about the `==` equality comparison rules, see the ES5 specification (section 11.9.3) and also consult Chapter 4 of the *Types & Grammar* title of this series; see Chapter 2 for more information about values versus references.
+**Chú ý:** Để biết thêm thông tin về các quy tắc so sánh bằng `==`, xem đặc tả ES5 (phần 11.9.3) và tham khảo chương 4 của cuốn *Kiểu dữ liệu và ngữ pháp* trong loạt sách này; xem chương 2 để hiểu thêm về giá trị và tham chiếu.
 
-#### Inequality
+#### So sánh không bằng
 
-The `<`, `>`, `<=`, and `>=` operators are used for inequality, referred to in the specification as "relational comparison." Typically they will be used with ordinally comparable values like `number`s. It's easy to understand that `3 < 4`.
+Toán tử `<`, `>`, `<=`, và `>=` được dùng để so sánh không bằng, trong đặc tả gọi là “so sánh quan hệ”. Thông thường, chúng được dùng với các giá trị có thể so sánh theo thứ tự như `number`. Dễ thấy rằng `3 < 4`.
 
-But JavaScript `string` values can also be compared for inequality, using typical alphabetic rules (`"bar" < "foo"`).
+Tuy nhiên, các giá trị `string` trong JavaScript cũng có thể được so sánh không bằng, theo quy tắc bảng chữ cái thông thường (`"bar" < "foo"`).
 
-What about coercion? Similar rules as `==` comparison (though not exactly identical!) apply to the inequality operators. Notably, there are no "strict inequality" operators that would disallow coercion the same way `===` "strict equality" does.
+Còn việc ép kiểu thì sao? Các quy tắc tương tự như phép so sánh `==` (dù không hoàn toàn giống nhau!) cũng được áp dụng cho các toán tử không bằng. Đáng chú ý là không có toán tử “không bằng nghiêm ngặt” nào không cho ép kiểu như `===` làm với so sánh bằng nghiêm ngặt.
 
-Consider:
+Xem ví dụ:
 
 ```js
 var a = 41;
 var b = "42";
 var c = "43";
 
-a < b;		// true
-b < c;		// true
+a < b;        // true
+b < c;        // true
 ```
 
-What happens here? In section 11.8.5 of the ES5 specification, it says that if both values in the `<` comparison are `string`s, as it is with `b < c`, the comparison is made lexicographically (aka alphabetically like a dictionary). But if one or both is not a `string`, as it is with `a < b`, then both values are coerced to be `number`s, and a typical numeric comparison occurs.
+Chuyện gì đang xảy ra? Phần 11.8.5 của đặc tả ES5 có ghi rằng nếu cả hai giá trị trong phép so sánh `<` đều là `string`, như với `b < c`, thì phép so sánh sẽ được thực hiện theo thứ tự từ điển (thứ tự sắp xếp của chữ cái trong từ điển). Nhưng nếu một hoặc cả hai không phải `string`, như với `a < b`, thì cả hai giá trị sẽ được ép kiểu sang `number` và phép so sánh số học thông thường được thực hiện.
 
-The biggest gotcha you may run into here with comparisons between potentially different value types -- remember, there are no "strict inequality" forms to use -- is when one of the values cannot be made into a valid number, such as:
+Một lỗi thường gặp bạn có thể vướng phải khi so sánh các kiểu giá trị khác nhau - hãy nhớ rằng không có dạng “không bằng nghiêm ngặt” để dùng - là khi một trong các giá trị không thể chuyển thành số hợp lệ, ví dụ:
 
 ```js
 var a = 42;
 var b = "foo";
 
-a < b;		// false
-a > b;		// false
-a == b;		// false
+a < b;        // false
+a > b;        // false
+a == b;       // false
 ```
 
-Wait, how can all three of those comparisons be `false`? Because the `b` value is being coerced to the "invalid number value" `NaN` in the `<` and `>` comparisons, and the specification says that `NaN` is neither greater-than nor less-than any other value.
+Khoan đã, sao cả ba phép so sánh đều `false`? Vì `b` bị ép kiểu thành giá trị số không hợp lệ `NaN` trong hai phép so sánh `<` và `>`, và đặc tả nói rằng `NaN` không lớn hơn cũng không nhỏ hơn bất kỳ giá trị nào.
 
-The `==` comparison fails for a different reason. `a == b` could fail if it's interpreted either as `42 == NaN` or `"42" == "foo"` -- as we explained earlier, the former is the case.
+Phép so sánh `==` thất bại vì lý do khác. `a == b` có thể bị hiểu là `42 == NaN` hoặc `"42" == "foo"` - như đã giải thích trước đó, trường hợp đầu là đúng.
 
-**Note:** For more information about the inequality comparison rules, see section 11.8.5 of the ES5 specification and also consult Chapter 4 of the *Types & Grammar* title of this series.
+**Chú ý:** Để biết thêm thông tin về các quy tắc so sánh không bằng, xem phần 11.8.5 trong đặc tả ES5 và cả chương 4 của cuốn *Kiểu dữ liệu và ngữ pháp* trong loạt sách này.
 
-## Variables
+## Biến
 
-In JavaScript, variable names (including function names) must be valid *identifiers*. The strict and complete rules for valid characters in identifiers are a little complex when you consider nontraditional characters such as Unicode. If you only consider typical ASCII alphanumeric characters though, the rules are simple.
+Trong JavaScript, tên biến (kể cả tên hàm) phải là các *định danh* hợp lệ. Các quy tắc đầy đủ và nghiêm ngặt cho định danh hợp lệ có phần phức tạp nếu bạn xét đến các ký tự không truyền thống như Unicode. Nhưng nếu chỉ xét các ký tự chữ và số trong bảng mã ASCII thông thường thì quy tắc khá đơn giản.
 
-An identifier must start with `a`-`z`, `A`-`Z`, `$`, or `_`. It can then contain any of those characters plus the numerals `0`-`9`.
+Một định danh phải bắt đầu bằng `a`-`z`, `A`-`Z`, `$`, hoặc `_`. Sau đó có thể chứa thêm các ký tự này và các chữ số từ `0` đến `9`.
 
-Generally, the same rules apply to a property name as to a variable identifier. However, certain words cannot be used as variables, but are OK as property names. These words are called "reserved words," and include the JS keywords (`for`, `in`, `if`, etc.) as well as `null`, `true`, and `false`.
+Thông thường, quy tắc tương tự cũng áp dụng cho tên thuộc tính như với tên biến. Tuy nhiên, có một số từ không thể dùng làm tên biến nhưng lại hợp lệ làm tên thuộc tính. Những từ này được gọi là “từ dành riêng” bao gồm các từ khóa của JS (`for`, `in`, `if`, v.v.) cũng như `null`, `true`, và `false`.
 
-**Note:** For more information about reserved words, see Appendix A of the *Types & Grammar* title of this series.
+**Chú ý:** Để biết thêm về các từ dành riêng, xem Phụ lục A của cuốn *Kiểu dữ liệu và ngữ pháp* trong loạt sách này.
 
-### Function Scopes
+### Phạm vi của hàm
 
-You use the `var` keyword to declare a variable that will belong to the current function scope, or the global scope if at the top level outside of any function.
+Bạn dùng từ khóa `var` để khai báo một biến sẽ thuộc về phạm vi của hàm hiện tại, hoặc phạm vi toàn cục nếu nằm ở cấp cao nhất bên ngoài mọi hàm.
 
 #### Hoisting
 
