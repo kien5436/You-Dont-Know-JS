@@ -909,32 +909,32 @@ Hiện tại có khá nhiều công cụ chuyển mã tuyệt vời để bạn 
 * Babel ([https://babeljs.io](https://babeljs.io)) (trước đây là 6to5): Chuyển mã ES6+ sang ES5
 * Traceur ([https://github.com/google/traceur-compiler](https://github.com/google/traceur-compiler)): Chuyển mã ES6, ES7 và hơn nữa sang ES5
 
-## Non-JavaScript
+## Không-phải-JavaScript
 
-So far, the only things we've covered are in the JS language itself. The reality is that most JS is written to run in and interact with environments like browsers. A good chunk of the stuff that you write in your code is, strictly speaking, not directly controlled by JavaScript. That probably sounds a little strange.
+Cho đến giờ, mọi thứ chúng ta đã tìm hiểu đều thuộc về ngôn ngữ JavaScript. Thực tế là phần lớn JS được viết ra để chạy và tương tác với các môi trường như chương trình duyệt. Một phần đáng kể những gì bạn viết trong mã của mình, xét cho cùng, không hoàn toàn do JavaScript kiểm soát. Điều đó nghe có vẻ hơi lạ.
 
-The most common non-JavaScript JavaScript you'll encounter is the DOM API. For example:
+Phần JavaScript không phải JavaScript phổ biến nhất mà bạn sẽ gặp là API DOM. Ví dụ:
 
 ```js
-var el = document.getElementById( "foo" );
+var el = document.getElementById("foo");
 ```
 
-The `document` variable exists as a global variable when your code is running in a browser. It's not provided by the JS engine, nor is it particularly controlled by the JavaScript specification. It takes the form of something that looks an awful lot like a normal JS `object`, but it's not really exactly that. It's a special `object,` often called a "host object."
+Biến `document` tồn tại như một biến toàn cục khi mã của bạn chạy trong chương trình duyệt. Nó không được cung cấp bởi bộ máy JS, cũng không thực sự được kiểm soát bởi đặc tả JavaScript. Nó mang hình thức của một thứ trông giống như một `object` JavaScript bình thường, nhưng thực ra thì không hẳn như vậy. Nó là một `object` đặc biệt, thường được gọi là “đối tượng chủ” (host object).
 
-Moreover, the `getElementById(..)` method on `document` looks like a normal JS function, but it's just a thinly exposed interface to a built-in method provided by the DOM from your browser. In some (newer-generation) browsers, this layer may also be in JS, but traditionally the DOM and its behavior is implemented in something more like C/C++.
+Hơn nữa, phương thức `getElementById(..)` trên `document` trông giống như một hàm JavaScript bình thường, nhưng thực ra nó chỉ là một giao diện mỏng được lộ ra bên ngoài để tiếp cận một phương thức có sẵn do DOM của trình duyệt cung cấp. Trong một số trình duyệt đời mới, lớp giao tiếp này có thể cũng viết bằng JavaScript, nhưng truyền thống thì DOM và hành vi của nó được hiện thực bằng thứ gì đó giống như C/C++.
 
-Another example is with input/output (I/O).
+Một ví dụ khác là với việc nhập/xuất (I/O).
 
-Everyone's favorite `alert(..)` pops up a message box in the user's browser window. `alert(..)` is provided to your JS program by the browser, not by the JS engine itself. The call you make sends the message to the browser internals and it handles drawing and displaying the message box.
+Hàm `alert(..)` quen thuộc sẽ bật ra một hộp thoại trong cửa sổ trình duyệt của người dùng. `alert(..)` được trình duyệt cung cấp cho chương trình JavaScript của bạn, chứ không phải do chính JavaScript cung cấp. Lệnh gọi đó gửi thông điệp đến bên trong trình duyệt và nó sẽ xử lý việc vẽ và hiển thị hộp thoại đó.
 
-The same goes with `console.log(..)`; your browser provides such mechanisms and hooks them up to the developer tools.
+Tương tự với `console.log(..)`; trình duyệt của bạn cung cấp cơ chế này và kết nối nó với các công cụ dành cho nhà phát triển.
 
-This book, and this whole series, focuses on JavaScript the language. That's why you don't see any substantial coverage of these non-JavaScript JavaScript mechanisms. Nevertheless, you need to be aware of them, as they'll be in every JS program you write!
+Cuốn sách này, cũng như toàn bộ loạt sách này, tập trung vào JavaScript với tư cách là một ngôn ngữ. Đó là lý do tại sao bạn không thấy nội dung đề cập sâu đến các cơ chế JavaScript không thuần này. Tuy nhiên, bạn cần phải biết đến chúng, vì chúng sẽ có mặt trong mọi chương trình JavaScript mà bạn viết!
 
-## Review
+## Nhìn lại
 
-The first step to learning JavaScript's flavor of programming is to get a basic understanding of its core mechanisms like values, types, function hàm khép kíns, `this`, and prototypes.
+Bước đầu tiên để học lập trình theo phong cách JavaScript là hiểu những cơ chế cốt lõi như giá trị, kiểu dữ liệu, hàm khép kín, `this`, và nguyên mẫu.
 
-Of course, each of these topics deserves much greater coverage than you've seen here, but that's why they have chapters and books dedicated to them throughout the rest of this series. After you feel pretty comfortable with the concepts and code samples in this chapter, the rest of the series awaits you to really dig in and get to know the language deeply.
+Tất nhiên, mỗi chủ đề trong số này đều xứng đáng có một sự trình bày kỹ lưỡng hơn so với những gì bạn đã thấy ở đây, và đó là lý do tại sao chúng có các chương và cuốn sách riêng biệt trong phần còn lại của loạt sách này. Sau khi bạn cảm thấy khá thoải mái với các khái niệm và ví dụ trong chương này, phần còn lại của loạt sách sẽ chờ bạn khám phá để thực sự hiểu sâu về ngôn ngữ này.
 
-The final chapter of this book will briefly summarize each of the other titles in the series and the other concepts they cover besides what we've already explored.
+Chương cuối của cuốn sách này sẽ tóm tắt ngắn gọn từng tựa đề khác trong loạt sách và những khái niệm mà chúng đề cập ngoài những gì chúng ta đã khám phá.
