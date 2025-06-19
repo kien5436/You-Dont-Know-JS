@@ -99,7 +99,7 @@ obj[b];       // "hello world"
 obj["b"];     // 42
 ```
 
-**Ghi chú:** Để tìm hiểu thêm về `object` trong JavaScript, hãy xem cuốn *this và nguyên mẫu đối tượng* trong loạt sách này, đặc biệt là chương 3.
+**Lưu ý:** Để tìm hiểu thêm về `object` trong JavaScript, hãy xem cuốn *this và nguyên mẫu đối tượng* trong loạt sách này, đặc biệt là chương 3.
 
 Có một vài kiểu giá trị khác mà bạn thường xuyên làm việc cùng trong chương trình JavaScript: *mảng* và *hàm*. Tuy nhiên, thay vì là kiểu dựng sẵn thì chúng nên được xem như các kiểu con - phiên bản chuyên biệt của kiểu `object`.
 
@@ -152,7 +152,7 @@ typeof foo.bar;		// "string"
 
 Một lần nữa, hàm là một kiểu con của `object` - `typeof` trả về "function", điều này ngụ ý rằng một `function` là một kiểu chính - và do đó có thể có các thuộc tính, nhưng bạn thường chỉ sử dụng thuộc tính của đối tượng hàm (như `foo.bar`) trong một số trường hợp.
 
-**Ghi chú**: Để biết thêm thông tin về các giá trị và kiểu của chúng trong JS, hãy xem hai chương đầu tiên của cuốn *Kiểu dữ liệu và ngữ pháp* trong loạt sách này.
+**Lưu ý**: Để biết thêm thông tin về các giá trị và kiểu của chúng trong JS, hãy xem hai chương đầu tiên của cuốn *Kiểu dữ liệu và ngữ pháp* trong loạt sách này.
 
 ### Các phương thức của kiểu dựng sẵn
 
@@ -177,7 +177,7 @@ Khi bạn sử dụng một giá trị nguyên thủy như `"hello world"` như 
 
 Một giá trị `string` có thể được bao bởi một đối tượng `String`, một `number` có thể được bao bởi một đối tượng `Number`, và một `boolean` có thể được bao bởi một đối tượng `Boolean`. Trong hầu hết các trường hợp, bạn không cần quan tâm hay sử dụng trực tiếp các dạng đối tượng bao ngoài này - hãy ưu tiên dùng các giá trị nguyên thủy trong hầu hết mọi tình huống và JavaScript sẽ tự lo phần còn lại cho bạn.
 
-**Ghi chú:** Để tìm hiểu thêm về các đối tượng nguyên bản trong JavaScript và quá trình "đóng hộp", hãy xem chương 3 trong cuốn *Kiểu dữ liệu và ngữ pháp* của loạt sách này. Để hiểu rõ hơn về nguyên mẫu của một đối tượng, hãy xem chương 5 trong cuốn *this và nguyên mẫu đối tượng* của loạt sách này.
+**Lưu ý:** Để tìm hiểu thêm về các đối tượng nguyên bản trong JavaScript và quá trình "đóng hộp", hãy xem chương 3 trong cuốn *Kiểu dữ liệu và ngữ pháp* của loạt sách này. Để hiểu rõ hơn về nguyên mẫu của một đối tượng, hãy xem chương 5 trong cuốn *this và nguyên mẫu đối tượng* của loạt sách này.
 
 ### So sánh giá trị
 
@@ -291,11 +291,11 @@ a == b;        // false
 
 #### So sánh không bằng
 
-Toán tử `<`, `>`, `<=`, và `>=` được dùng để so sánh không bằng, trong đặc tả gọi là “so sánh quan hệ”. Thông thường, chúng được dùng với các giá trị có thể so sánh theo thứ tự như `number`. Dễ thấy rằng `3 < 4`.
+Toán tử `<`, `>`, `<=`, và `>=` được dùng để so sánh không bằng, trong đặc tả gọi là "so sánh quan hệ". Thông thường, chúng được dùng với các giá trị có thể so sánh theo thứ tự như `number`. Dễ thấy rằng `3 < 4`.
 
 Tuy nhiên, các giá trị `string` trong JavaScript cũng có thể được so sánh không bằng, theo quy tắc bảng chữ cái thông thường (`"bar" < "foo"`).
 
-Còn việc ép kiểu thì sao? Các quy tắc tương tự như phép so sánh `==` (dù không hoàn toàn giống nhau!) cũng được áp dụng cho các toán tử không bằng. Đáng chú ý là không có toán tử “không bằng nghiêm ngặt” nào không cho ép kiểu như `===` làm với so sánh bằng nghiêm ngặt.
+Còn việc ép kiểu thì sao? Các quy tắc tương tự như phép so sánh `==` (dù không hoàn toàn giống nhau!) cũng được áp dụng cho các toán tử không bằng. Đáng chú ý là không có toán tử "không bằng nghiêm ngặt" nào không cho ép kiểu như `===` làm với so sánh bằng nghiêm ngặt.
 
 Xem ví dụ:
 
@@ -310,7 +310,7 @@ b < c;        // true
 
 Chuyện gì đang xảy ra? Phần 11.8.5 của đặc tả ES5 có ghi rằng nếu cả hai giá trị trong phép so sánh `<` đều là `string`, như với `b < c`, thì phép so sánh sẽ được thực hiện theo thứ tự từ điển (thứ tự sắp xếp của chữ cái trong từ điển). Nhưng nếu một hoặc cả hai không phải `string`, như với `a < b`, thì cả hai giá trị sẽ được ép kiểu sang `number` và phép so sánh số học thông thường được thực hiện.
 
-Một lỗi thường gặp bạn có thể vướng phải khi so sánh các kiểu giá trị khác nhau - hãy nhớ rằng không có dạng “không bằng nghiêm ngặt” để dùng - là khi một trong các giá trị không thể chuyển thành số hợp lệ, ví dụ:
+Một lỗi thường gặp bạn có thể vướng phải khi so sánh các kiểu giá trị khác nhau - hãy nhớ rằng không có dạng "không bằng nghiêm ngặt" để dùng - là khi một trong các giá trị không thể chuyển thành số hợp lệ, ví dụ:
 
 ```js
 var a = 42;
@@ -333,7 +333,7 @@ Trong JavaScript, tên biến (kể cả tên hàm) phải là các *định dan
 
 Một định danh phải bắt đầu bằng `a`-`z`, `A`-`Z`, `$`, hoặc `_`. Sau đó có thể chứa thêm các ký tự này và các chữ số từ `0` đến `9`.
 
-Thông thường, quy tắc tương tự cũng áp dụng cho tên thuộc tính như với tên biến. Tuy nhiên, có một số từ không thể dùng làm tên biến nhưng lại hợp lệ làm tên thuộc tính. Những từ này được gọi là “từ dành riêng” bao gồm các từ khóa của JS (`for`, `in`, `if`, v.v.) cũng như `null`, `true`, và `false`.
+Thông thường, quy tắc tương tự cũng áp dụng cho tên thuộc tính như với tên biến. Tuy nhiên, có một số từ không thể dùng làm tên biến nhưng lại hợp lệ làm tên thuộc tính. Những từ này được gọi là "từ dành riêng" bao gồm các từ khóa của JS (`for`, `in`, `if`, v.v.) cũng như `null`, `true`, và `false`.
 
 **Chú ý:** Để biết thêm về các từ dành riêng, xem Phụ lục A của cuốn *Kiểu dữ liệu và ngữ pháp* trong loạt sách này.
 
@@ -341,595 +341,573 @@ Thông thường, quy tắc tương tự cũng áp dụng cho tên thuộc tính
 
 Bạn dùng từ khóa `var` để khai báo một biến sẽ thuộc về phạm vi của hàm hiện tại, hoặc phạm vi toàn cục nếu nằm ở cấp cao nhất bên ngoài mọi hàm.
 
-#### Hoisting
+### Kéo lên
 
-Wherever a `var` appears inside a scope, that declaration is taken to belong to the entire scope and accessible everywhere throughout.
+Bất cứ khi nào `var` xuất hiện bên trong một phạm vi, khai báo đó sẽ được xem là thuộc về phạm vi đó và có thể truy cập ở bất kỳ đâu trong nó.
 
-Metaphorically, this behavior is called *hoisting*, when a `var` declaration is conceptually "moved" to the top of its enclosing scope. Technically, this process is more accurately explained by how code is compiled, but we can skip over those details for now.
+Một cách ẩn dụ, hành vi này được gọi là *kéo lên* khi một khai báo `var` coi như được "di chuyển" lên đầu của phạm vi bao quanh nó. Về mặt kỹ thuật, quá trình này được giải thích chính xác hơn bởi cách mã được biên dịch, nhưng ta sẽ bỏ qua chi tiết đó lúc này.
 
-Consider:
+Xem ví dụ:
 
 ```js
 var a = 2;
-
-foo();					// works because `foo()`
-						// declaration is "hoisted"
+foo();                    // chạy được vì `foo()` đã được "kéo lên"
 
 function foo() {
-	a = 3;
-
-	console.log( a );	// 3
-
-	var a;				// declaration is "hoisted"
-						// to the top of `foo()`
+    a = 3;
+    console.log(a);       // 3
+    var a;                // khai báo được "kéo lên" đầu hàm `foo()`
 }
 
-console.log( a );	// 2
+console.log(a);           // 2
 ```
 
-**Warning:** It's not common or a good idea to rely on variable *hoisting* to use a variable earlier in its scope than its `var` declaration appears; it can be quite confusing. It's much more common and accepted to use *hoisted* function declarations, as we do with the `foo()` call appearing before its formal declaration.
+**Cảnh báo:** Việc dựa vào *kéo lên* để sử dụng biến trước khi khai báo bằng `var` trong cùng một phạm vi không phải là một ý tưởng hay hoặc phổ biến - nó dễ gây nhầm lẫn. Tuy nhiên, khai báo hàm thì có thể chấp nhận vì hàm được *kéo lên*, như trong ví dụ gọi `foo()` phía trên.
 
-#### Nested Scopes
+### Phạm vi lồng nhau
 
-When you declare a variable, it is available anywhere in that scope, as well as any lower/inner scopes. For example:
+Khi bạn khai báo một biến, nó có thể được sử dụng ở bất kỳ đâu trong phạm vi hiện tại cũng như các phạm vi thấp hơn/nhỏ hơn. Ví dụ:
 
 ```js
 function foo() {
-	var a = 1;
+    var a = 1;
 
-	function bar() {
-		var b = 2;
+    function bar() {
+        var b = 2;
 
-		function baz() {
-			var c = 3;
+        function baz() {
+            var c = 3;
+            console.log(a, b, c);  // 1 2 3
+        }
 
-			console.log( a, b, c );	// 1 2 3
-		}
+        baz();
+        console.log(a, b);        // 1 2
+    }
 
-		baz();
-		console.log( a, b );		// 1 2
-	}
-
-	bar();
-	console.log( a );				// 1
+    bar();
+    console.log(a);              // 1
 }
 
 foo();
 ```
 
-Notice that `c` is not available inside of `bar()`, because it's declared only inside the inner `baz()` scope, and that `b` is not available to `foo()` for the same reason.
+Chú ý rằng `c` không có sẵn bên trong `bar()` vì nó chỉ được khai báo trong phạm vi `baz()`. Tương tự, `b` không có sẵn cho `foo()` vì cùng lí do.
 
-If you try to access a variable's value in a scope where it's not available, you'll get a `ReferenceError` thrown. If you try to set a variable that hasn't been declared, you'll either end up creating a variable in the top-level global scope (bad!) or getting an error, depending on "strict mode" (see "Strict Mode"). Let's take a look:
-
-```js
-function foo() {
-	a = 1;	// `a` not formally declared
-}
-
-foo();
-a;			// 1 -- oops, auto global variable :(
-```
-
-This is a very bad practice. Don't do it! Always formally declare your variables.
-
-In addition to creating declarations for variables at the function level, ES6 *lets* you declare variables to belong to individual blocks (pairs of `{ .. }`), using the `let` keyword. Besides some nuanced details, the scoping rules will behave roughly the same as we just saw with functions:
+Nếu bạn cố gắng truy cập một biến không có trong phạm vi hiện tại, bạn sẽ gặp lỗi `ReferenceError`. Nếu bạn gán giá trị cho một biến chưa khai báo, bạn có thể vô tình tạo ra một biến toàn cục (rất tệ!), hoặc gặp lỗi nếu đang ở chế độ nghiêm ngặt (Xem phần "Chế độ nghiêm ngặt"). Hãy xem xét ví dụ sau:
 
 ```js
 function foo() {
-	var a = 1;
-
-	if (a >= 1) {
-		let b = 2;
-
-		while (b < 5) {
-			let c = b * 2;
-			b++;
-
-			console.log( a + c );
-		}
-	}
+    a = 1;   // `a` chưa được khai báo chính thức
 }
 
 foo();
-// 5 7 9
+
+a;          // 1 - ôi không, biến toàn cục được tạo ra tự động :(
 ```
 
-Because of using `let` instead of `var`, `b` will belong only to the `if` statement and thus not to the whole `foo()` function's scope. Similarly, `c` belongs only to the `while` loop. Block scoping is very useful for managing your variable scopes in a more fine-grained fashion, which can make your code much easier to maintain over time.
+Đây là một cách làm rất tệ. Đừng làm vậy! Hãy luôn luôn khai báo rõ ràng các biến của bạn.
 
-**Note:** For more information about scope, see the *Scope & Closures* title of this series. See the *ES6 & Beyond* title of this series for more information about `let` block scoping.
+Ngoài việc tạo khai báo biến ở cấp độ hàm, ES6 cho phép bạn khai báo biến ở phạm vi khối (các cặp `{ .. }`) bằng từ khóa `let`. Về cơ bản, các quy tắc phạm vi sẽ hoạt động gần giống như những gì chúng ta vừa thấy với các hàm:
 
-## Conditionals
+```js
+function foo() {
+    var a = 1;
 
-In addition to the `if` statement we introduced briefly in Chapter 1, JavaScript provides a few other conditionals mechanisms that we should take a look at.
+    if (a >= 1) {
+        let b = 2;
 
-Sometimes you may find yourself writing a series of `if..else..if` statements like this:
+        while (b < 5) {
+            let c = b * 2;
+            b++;
+            console.log(a + c);
+        }
+    }
+}
+
+foo(); // 5 7 9
+```
+
+Sử dụng `let` thay vì `var`, biến `b` chỉ tồn tại trong khối `if`, không thuộc toàn bộ hàm `foo()`. Tương tự, `c` chỉ tồn tại trong vòng lặp `while`. Phạm vi khối rất hữu ích cho việc quản lý biến một cách chi tiết hơn, giúp mã của bạn dễ bảo trì hơn theo thời gian.
+
+**Lưu ý:** Xem thêm chủ đề *Phạm vi và hàm khép kín* trong loạt sách này để hiểu thêm về phạm vi. Và xem *ES6 và hơn thế nữa* để tìm hiểu thêm về phạm vi khối với `let`.
+
+## Câu lệnh điều kiện
+
+Ngoài câu lệnh `if` được giới thiệu sơ lược ở chương 1, JavaScript cung cấp thêm một vài cơ chế điều kiện khác mà bạn nên xem qua.
+
+Đôi khi bạn có thể viết một chuỗi câu lệnh `if..else..if` như sau:
 
 ```js
 if (a == 2) {
-	// do something
-}
-else if (a == 10) {
-	// do another thing
-}
-else if (a == 42) {
-	// do yet another thing
-}
-else {
-	// fallback to here
+    // làm gì đó
+} else if (a == 10) {
+    // làm việc khác
+} else if (a == 42) {
+    // làm việc khác nữa
+} else {
+    // các trường hợp khác vào đây
 }
 ```
 
-This structure works, but it's a little verbose because you need to specify the `a` test for each case. Here's another option, the `switch` statement:
+Cấu trúc này hoạt động tốt nhưng hơi dài vì bạn phải lặp lại việc kiểm tra `a` cho mỗi trường hợp. Đây là một lựa chọn khác: câu lệnh `switch`:
 
 ```js
 switch (a) {
-	case 2:
-		// do something
-		break;
-	case 10:
-		// do another thing
-		break;
-	case 42:
-		// do yet another thing
-		break;
-	default:
-		// fallback to here
+    case 2:
+        // làm gì đó
+        break;
+    case 10:
+        // làm việc khác
+        break;
+    case 42:
+        // làm việc khác nữa
+        break;
+    default:
+        // các trường hợp khác vào đây
 }
 ```
 
-The `break` is important if you want only the statement(s) in one `case` to run. If you omit `break` from a `case`, and that `case` matches or runs, execution will continue with the next `case`'s statements regardless of that `case` matching. This so called "fall through" is sometimes useful/desired:
+Từ khóa `break` rất quan trọng nếu bạn chỉ muốn các câu lệnh trong một `case` chạy. Nếu bạn bỏ `break` trong một `case`, và `case` đó khớp, việc thực thi sẽ tiếp tục sang các câu lệnh của `case` tiếp theo bất kể nó có khớp hay không. Điều này còn được gọi là "rơi tiếp", đôi khi lại hữu ích/mong muốn:
 
 ```js
 switch (a) {
-	case 2:
-	case 10:
-		// some cool stuff
-		break;
-	case 42:
-		// other stuff
-		break;
-	default:
-		// fallback
+    case 2:
+    case 10:
+        // vài thao tác
+        break;
+    case 42:
+        // thao tác khác
+        break;
+    default:
+        // các trường hợp khác vào đây
 }
 ```
 
-Here, if `a` is either `2` or `10`, it will execute the "some cool stuff" code statements.
+Ở đây, nếu `a` là `2` hoặc `10`, nó sẽ thực thi đoạn mã trong phần "vài thao tác".
 
-Another form of conditional in JavaScript is the "conditional operator," often called the "ternary operator." It's like a more concise form of a single `if..else` statement, such as:
+Một dạng điều kiện khác trong JavaScript là "toán tử điều kiện", thường gọi là "toán tử ba ngôi". Nó là một dạng ngắn gọn hơn của `if..else` như sau:
 
 ```js
 var a = 42;
-
 var b = (a > 41) ? "hello" : "world";
 
-// similar to:
-
+// tương đương:
 // if (a > 41) {
-//    b = "hello";
-// }
-// else {
-//    b = "world";
+//     b = "hello";
+// } else {
+//     b = "world";
 // }
 ```
 
-If the test expression (`a > 41` here) evaluates as `true`, the first clause (`"hello"`) results, otherwise the second clause (`"world"`) results, and whatever the result is then gets assigned to `b`.
+Nếu biểu thức kiểm tra (`a > 41`) trả về `true`, phần đầu (`"hello"`) sẽ được chọn, ngược lại là phần sau (`"world"`), và kết quả sẽ được gán cho `b`.
 
-The conditional operator doesn't have to be used in an assignment, but that's definitely the most common usage.
+Toán tử điều kiện không bắt buộc phải dùng để gán, nhưng đây là cách dùng phổ biến nhất.
 
-**Note:** For more information about testing conditions and other patterns for `switch` and `? :`, see the *Types & Grammar* title of this series.
+**Lưu ý:** Để biết thêm về kiểm tra điều kiện và các khuôn mẫu sử dụng `switch` và `? :`, xem phần *Kiểu dữ liệu và ngữ pháp* trong loạt sách này.
 
-## Strict Mode
+## Chế độ nghiêm ngặt
 
-ES5 added a "strict mode" to the language, which tightens the rules for certain behaviors. Generally, these restrictions are seen as keeping the code to a safer and more appropriate set of guidelines. Also, adhering to strict mode makes your code generally more optimizable by the engine. Strict mode is a big win for code, and you should use it for all your programs.
+ES5 đã thêm "chế độ nghiêm ngặt" vào ngôn ngữ, giúp siết chặt các hành vi nhất định. Nói chung, các giới hạn này được xem là giúp mã an toàn và hợp lý hơn. Ngoài ra, tuân theo chế độ nghiêm ngặt cũng giúp mã của bạn được tối ưu hóa hơn bởi công cụ. Chế độ nghiêm ngặt là một cải tiến lớn mà bạn nên dùng cho tất cả chương trình của mình.
 
-You can opt in to strict mode for an individual function, or an entire file, depending on where you put the strict mode pragma:
+Bạn có thể bật chế độ nghiêm ngặt cho một hàm riêng lẻ hoặc cho toàn bộ tập tin, tùy vào nơi đặt chỉ thị:
 
 ```js
 function foo() {
-	"use strict";
-
-	// this code is strict mode
-
-	function bar() {
-		// this code is strict mode
-	}
+    "use strict";
+    // mã ở đây thuộc chế độ nghiêm ngặt
+    function bar() {
+        // mã ở đây cũng thuộc chế độ nghiêm ngặt
+    }
 }
-
-// this code is not strict mode
+// mã ở ngoài không thuộc chế độ nghiêm ngặt
 ```
 
-Compare that to:
+So với:
 
 ```js
 "use strict";
-
 function foo() {
-	// this code is strict mode
-
-	function bar() {
-		// this code is strict mode
-	}
+    // mã ở đây thuộc chế độ nghiêm ngặt
+    function bar() {
+        // mã ở đây cũng thuộc chế độ nghiêm ngặt
+    }
 }
-
-// this code is strict mode
+// mã ở ngoài cũng thuộc chế độ nghiêm ngặt
 ```
 
-One key difference (improvement!) with strict mode is disallowing the implicit auto-global variable declaration from omitting the `var`:
+Một điểm khác biệt chính (cải tiến!) của chế độ nghiêm ngặt là không cho phép tạo biến toàn cục một cách ngầm định nếu thiếu `var`:
 
 ```js
 function foo() {
-	"use strict";	// turn on strict mode
-	a = 1;			// `var` missing, ReferenceError
+    "use strict";
+    a = 1;  // thiếu `var`, gây lỗi ReferenceError
 }
 
 foo();
 ```
 
-If you turn on strict mode in your code, and you get errors, or code starts behaving buggy, your temptation might be to avoid strict mode. But that instinct would be a bad idea to indulge. If strict mode causes issues in your program, almost certainly it's a sign that you have things in your program you should fix.
+Nếu bạn bật chế độ nghiêm ngặt và thấy lỗi, hoặc mã hoạt động kỳ lạ, có thể bạn sẽ muốn bỏ chế độ nghiêm ngặt. Nhưng điều đó là sai lầm. Nếu chế độ nghiêm ngặt gây ra lỗi, gần như chắc chắn là chương trình của bạn đang có vấn đề cần sửa.
 
-Not only will strict mode keep your code to a safer path, and not only will it make your code more optimizable, but it also represents the future direction of the language. It'd be easier on you to get used to strict mode now than to keep putting it off -- it'll only get harder to convert later!
+Chế độ nghiêm ngặt không chỉ giúp mã an toàn hơn, dễ tối ưu hơn, mà còn phản ánh định hướng tương lai của ngôn ngữ. Làm quen với chế độ nghiêm ngặt từ bây giờ sẽ dễ hơn nhiều so với việc trì hoãn và phải chuyển đổi sau này.
 
-**Note:** For more information about strict mode, see the Chapter 5 of the *Types & Grammar* title of this series.
+**Lưu ý:** Để biết thêm về chế độ nghiêm ngặt, xem chương 5 trong *Kiểu dữ liệu và ngữ pháp*.
 
-## Functions As Values
+## Hàm như giá trị
 
-So far, we've discussed functions as the primary mechanism of *scope* in JavaScript. You recall typical `function` declaration syntax as follows:
+Cho đến giờ, ta đã nói về hàm như cơ chế chính để tạo *phạm vi* trong JavaScript. Cú pháp khai báo hàm thường như sau:
 
 ```js
 function foo() {
-	// ..
+    // ..
 }
 ```
 
-Though it may not seem obvious from that syntax, `foo` is basically just a variable in the outer enclosing scope that's given a reference to the `function` being declared. That is, the `function` itself is a value, just like `42` or `[1,2,3]` would be.
+Mặc dù cú pháp này có vẻ không rõ ràng nhưng thật ra `foo` chỉ là một biến trong phạm vi bao ngoài, được gán tham chiếu đến một giá trị kiểu `function`. Tức là bản thân hàm cũng là một giá trị giống như `42` hoặc `[1, 2, 3]`.
 
-This may sound like a strange concept at first, so take a moment to ponder it. Not only can you pass a value (argument) *to* a function, but *a function itself can be a value* that's assigned to variables, or passed to or returned from other functions.
+Ban đầu điều này có thể nghe hơi lạ nên bạn hãy dừng lại và suy nghĩ một chút. Không chỉ có thể truyền một giá trị (tham số) *vào* hàm, mà *chính hàm cũng có thể là giá trị* để gán cho biến, truyền vào hoặc trả về từ một hàm khác.
 
-As such, a function value should be thought of as an expression, much like any other value or expression.
+Vì vậy, giá trị hàm nên được xem như một biểu thức, tương tự như mọi giá trị hoặc biểu thức khác.
 
-Consider:
+Xem ví dụ:
 
 ```js
 var foo = function() {
-	// ..
+    // ..
 };
 
-var x = function bar(){
-	// ..
+var x = function bar() {
+    // ..
 };
 ```
 
-The first function expression assigned to the `foo` variable is called *anonymous* because it has no `name`.
+Hàm đầu tiên gán cho biến `foo` là *hàm ẩn danh* vì nó không có tên.
 
-The second function expression is *named* (`bar`), even as a reference to it is also assigned to the `x` variable. *Named function expressions* are generally more preferable, though *anonymous function expressions* are still extremely common.
+Hàm thứ hai là *hàm có tên* (`bar`) dù nó cũng được gán cho biến `x`. *Hàm có tên* thường được ưu tiên hơn, dù *hàm ẩn danh* vẫn rất phổ biến.
 
-For more information, see the *Scope & Closures* title of this series.
+Để tìm hiểu thêm, xem phần *Phạm vi và hàm khép kín* trong loạt sách này.
 
-### Immediately Invoked Function Expressions (IIFEs)
+### Biểu thức hàm được gọi ngay lập tức (IIFE)
 
-In the previous snippet, neither of the function expressions are executed -- we could if we had included `foo()` or `x()`, for instance.
+Trong đoạn mã trước, cả hai biểu thức hàm đều không được thực thi - ta có thể làm thế nếu thêm `foo()` hoặc `x()` chẳng hạn.
 
-There's another way to execute a function expression, which is typically referred to as an *immediately invoked function expression* (IIFE):
+Có một cách khác để thực thi một biểu thức hàm thường được gọi là *biểu thức hàm được gọi ngay lập tức* (Immediately Invoked Function Expression - IIFE):
 
 ```js
 (function IIFE(){
-	console.log( "Hello!" );
+    console.log( "Hello!" );
 })();
-// "Hello!"
 ```
 
-The outer `( .. )` that surrounds the `(function IIFE(){ .. })` function expression is just a nuance of JS grammar needed to prevent it from being treated as a normal function declaration.
+Cặp dấu ngoặc ngoài `( .. )` bao quanh `(function IIFE(){ .. })` chỉ là một chi tiết ngữ pháp của JS để ngăn nó bị xử lý như một khai báo hàm thông thường.
 
-The final `()` on the end of the expression -- the `})();` line -- is what actually executes the function expression referenced immediately before it.
+Cặp `()` ở cuối dòng `})();` là phần thực thi biểu thức hàm vừa được tham chiếu ngay trước đó.
 
-That may seem strange, but it's not as foreign as first glance. Consider the similarities between `foo` and `IIFE` here:
+Nghe có vẻ lạ, nhưng không quá khác biệt như tưởng tượng. Xét sự tương đồng giữa `foo` và `IIFE`:
 
 ```js
 function foo() { .. }
 
-// `foo` function reference expression,
-// then `()` executes it
+// tham chiếu đến hàm `foo`,
+// sau đó `()` thực thi nó
 foo();
 
-// `IIFE` function expression,
-// then `()` executes it
+// biểu thức hàm `IIFE`,
+// sau đó `()` thực thi nó
 (function IIFE(){ .. })();
 ```
 
-As you can see, listing the `(function IIFE(){ .. })` before its executing `()` is essentially the same as including `foo` before its executing `()`; in both cases, the function reference is executed with `()` immediately after it.
+Như bạn thấy, việc đặt `(function IIFE(){ .. })` trước dấu `()` thực thi nó về bản chất giống như đặt `foo` trước dấu `()` - trong cả hai trường hợp, tham chiếu hàm được thực thi ngay lập tức bằng `()`.
 
-Because an IIFE is just a function, and functions create variable *scope*, using an IIFE in this fashion is often used to declare variables that won't affect the surrounding code outside the IIFE:
+Vì IIFE chỉ là một hàm, và hàm tạo ra *phạm vi* biến nên việc dùng IIFE theo cách này thường được áp dụng để khai báo các biến không ảnh hưởng đến mã bên ngoài IIFE:
 
 ```js
 var a = 42;
 
 (function IIFE(){
-	var a = 10;
-	console.log( a );	// 10
+    var a = 10;
+    console.log( a );
+    // 10
 })();
 
-console.log( a );		// 42
+console.log( a );        // 42
 ```
 
-IIFEs can also have return values:
+IIFE cũng có thể trả về giá trị:
 
 ```js
 var x = (function IIFE(){
-	return 42;
+    return 42;
 })();
 
-x;	// 42
+x;    // 42
 ```
 
-The `42` value gets `return`ed from the `IIFE`-named function being executed, and is then assigned to `x`.
+Giá trị `42` được `return` từ hàm tên `IIFE` khi được thực thi, sau đó được gán cho `x`.
 
-### Closure
+### Hàm khép kín
 
-*Closure* is one of the most important, and often least understood, concepts in JavaScript. I won't cover it in deep detail here, and instead refer you to the *Scope & Closures* title of this series. But I want to say a few things about it so you understand the general concept. It will be one of the most important techniques in your JS skillset.
+*Hàm khép kín* là một trong những khái niệm quan trọng nhất và thường bị hiểu sai nhất trong JavaScript. Tôi sẽ không trình bày quá sâu ở đây mà giới thiệu bạn đến phần *Phạm vi và Hàm khép kín* trong loạt sách này. Nhưng tôi muốn nói một vài điều để bạn hiểu được khái niệm chung. Đây sẽ là một trong những kỹ thuật quan trọng nhất trong bộ kỹ năng JS của bạn.
 
-You can think of closure as a way to "remember" and continue to access a function's scope (its variables) even once the function has finished running.
+Bạn có thể hiểu hàm khép kín là một cách để "ghi nhớ" và tiếp tục truy cập vào phạm vi của một hàm (các biến của nó) ngay cả khi hàm đó đã thực thi xong.
 
-Consider:
+Xét ví dụ:
 
 ```js
 function makeAdder(x) {
-	// parameter `x` is an inner variable
+    // tham số `x` là một biến bên trong
 
-	// inner function `add()` uses `x`, so
-	// it has a "closure" over it
-	function add(y) {
-		return y + x;
-	};
-
-	return add;
+    // hàm bên trong `add()` dùng `x`, nên
+    // nó có "sự khép kín" với `x`
+    function add(y) {
+        return y + x;
+    };
+    return add;
 }
 ```
 
-The reference to the inner `add(..)` function that gets returned with each call to the outer `makeAdder(..)` is able to remember whatever `x` value was passed in to `makeAdder(..)`. Now, let's use `makeAdder(..)`:
+Tham chiếu đến hàm `add(..)` bên trong được trả về mỗi lần gọi đến `makeAdder(..)` bên ngoài có thể ghi nhớ giá trị `x` đã được truyền vào `makeAdder(..)`. Bây giờ, ta sử dụng `makeAdder(..)`:
 
 ```js
-// `plusOne` gets a reference to the inner `add(..)`
-// function with closure over the `x` parameter of
-// the outer `makeAdder(..)`
 var plusOne = makeAdder( 1 );
-
-// `plusTen` gets a reference to the inner `add(..)`
-// function with closure over the `x` parameter of
-// the outer `makeAdder(..)`
 var plusTen = makeAdder( 10 );
 
-plusOne( 3 );		// 4  <-- 1 + 3
-plusOne( 41 );		// 42 <-- 1 + 41
-
-plusTen( 13 );		// 23 <-- 10 + 13
+plusOne( 3 );         // 4  <-- 1 + 3
+plusOne( 41 );        // 42 <-- 1 + 41
+plusTen( 13 );        // 23 <-- 10 + 13
 ```
 
-More on how this code works:
+Cách đoạn mã trên hoạt động:
 
-1. When we call `makeAdder(1)`, we get back a reference to its inner `add(..)` that remembers `x` as `1`. We call this function reference `plusOne(..)`.
-2. When we call `makeAdder(10)`, we get back another reference to its inner `add(..)` that remembers `x` as `10`. We call this function reference `plusTen(..)`.
-3. When we call `plusOne(3)`, it adds `3` (its inner `y`) to the `1` (remembered by `x`), and we get `4` as the result.
-4. When we call `plusTen(13)`, it adds `13` (its inner `y`) to the `10` (remembered by `x`), and we get `23` as the result.
+1. Khi gọi `makeAdder(1)`, ta nhận được một tham chiếu đến hàm `add(..)` bên trong mà ghi nhớ `x = 1`. Ta gọi tham chiếu này là `plusOne(..)`.
 
-Don't worry if this seems strange and confusing at first -- it can be! It'll take lots of practice to understand it fully.
+2. Khi gọi `makeAdder(10)`, ta nhận được một tham chiếu khác đến hàm `add(..)` bên trong mà ghi nhớ `x = 10`. Ta gọi tham chiếu này là `plusTen(..)`.
 
-But trust me, once you do, it's one of the most powerful and useful techniques in all of programming. It's definitely worth the effort to let your brain simmer on closures for a bit. In the next section, we'll get a little more practice with closure.
+3. Khi gọi `plusOne(3)`, nó cộng `3` (là `y`) với `1` (được `x` ghi nhớ) và trả về `4`.
 
-#### Modules
+4. Khi gọi `plusTen(13)`, nó cộng `13` (là `y`) với `10` (được `x` ghi nhớ) và trả về `23`.
 
-The most common usage of closure in JavaScript is the module pattern. Modules let you define private implementation details (variables, functions) that are hidden from the outside world, as well as a public API that *is* accessible from the outside.
+Đừng lo nếu điều này có vẻ lạ và khó hiểu lúc đầu - có thể đúng là như vậy! Bạn sẽ cần luyện tập nhiều để thực sự hiểu rõ.
 
-Consider:
+Nhưng tin tôi đi, một khi hiểu được, đây là một trong những kỹ thuật mạnh mẽ và hữu dụng nhất trong lập trình. Rất đáng để dành thời gian suy ngẫm về hàm khép kín. Trong phần tiếp theo, ta sẽ luyện tập thêm một chút với hàm khép kín.
+
+#### Khối chức năng 
+
+Cách sử dụng hàm khép kín phổ biến nhất trong JavaScript là mô hình khối chức năng. Khối chức năng cho phép bạn định nghĩa các chi tiết triển khai riêng tư (biến, hàm) ẩn khỏi thế giới bên ngoài, cùng với một API công khai *có thể* được truy cập từ bên ngoài.
+
+Xem ví dụ:
 
 ```js
 function User(){
-	var username, password;
+    var username, password;
 
-	function doLogin(user,pw) {
-		username = user;
-		password = pw;
+    function doLogin(user, pw) {
+        username = user;
+        password = pw;
+        // thực hiện phần còn lại của đăng nhập
+    }
 
-		// do the rest of the login work
-	}
+    var publicAPI = {
+        login: doLogin
+    };
 
-	var publicAPI = {
-		login: doLogin
-	};
-
-	return publicAPI;
+    return publicAPI;
 }
 
-// create a `User` module instance
+// tạo một phiên bản khối chức năng `User`
 var fred = User();
 
 fred.login( "fred", "12Battery34!" );
 ```
 
-The `User()` function serves as an outer scope that holds the variables `username` and `password`, as well as the inner `doLogin()` function; these are all private inner details of this `User` module that cannot be accessed from the outside world.
+Hàm `User()` đóng vai trò là phạm vi bên ngoài chứa các biến `username` và `password`, cũng như hàm `doLogin()` bên trong; tất cả đều là các chi tiết bên trong riêng tư của khối `User` này và không thể truy cập từ bên ngoài.
 
-**Warning:** We are not calling `new User()` here, on purpose, despite the fact that probably seems more common to most readers. `User()` is just a function, not a class to be instantiated, so it's just called normally. Using `new` would be inappropriate and actually waste resources.
+**Cảnh báo:** Ta không gọi `new User()` ở đây là có chủ đích, mặc dù điều này có thể sẽ quen thuộc hơn với đa số lập trình viên. `User()` chỉ là một hàm, không phải một lớp để khởi tạo, nên chỉ cần gọi bình thường. Dùng `new` là không phù hợp và thực tế còn lãng phí tài nguyên.
 
-Executing `User()` creates an *instance* of the `User` module -- a whole new scope is created, and thus a whole new copy of each of these inner variables/functions. We assign this instance to `fred`. If we run `User()` again, we'd get a new instance entirely separate from `fred`.
+Gọi `User()` sẽ tạo ra một *phiên bản* của khối `User` - một phạm vi mới được tạo ra, và do đó là một bản sao hoàn toàn mới của mỗi biến/hàm bên trong. Ta gán phiên bản này vào biến `fred`. Nếu gọi `User()` lần nữa, ta sẽ có một phiên bản mới hoàn toàn tách biệt với `fred`.
 
-The inner `doLogin()` function has a closure over `username` and `password`, meaning it will retain its access to them even after the `User()` function finishes running.
+Hàm `doLogin()` bên trong có một hàm khép kín với `username` và `password`, nghĩa là nó vẫn giữ được quyền truy cập đến chúng ngay cả sau khi hàm `User()` kết thúc thực thi.
 
-`publicAPI` is an object with one property/method on it, `login`, which is a reference to the inner `doLogin()` function. When we return `publicAPI` from `User()`, it becomes the instance we call `fred`.
+`publicAPI` là một đối tượng có một thuộc tính/phương thức là `login`, chính là một tham chiếu đến hàm `doLogin()` bên trong. Khi ta trả về `publicAPI` từ `User()`, nó trở thành phiên bản mà ta gán vào `fred`.
 
-At this point, the outer `User()` function has finished executing. Normally, you'd think the inner variables like `username` and `password` have gone away. But here they have not, because there's a closure in the `login()` function keeping them alive.
+Tại thời điểm này, hàm `User()` bên ngoài đã kết thúc thực thi. Thông thường, ta sẽ nghĩ rằng các biến bên trong như `username` và `password` sẽ biến mất. Nhưng ở đây thì không, vì hàm khép kín trong hàm `login()` vẫn giữ chúng tồn tại.
 
-That's why we can call `fred.login(..)` -- the same as calling the inner `doLogin(..)` -- and it can still access `username` and `password` inner variables.
+Đó là lý do vì sao ta có thể gọi `fred.login(..)` - thực chất là gọi `doLogin(..)` bên trong - và nó vẫn có thể truy cập đến các biến `username` và `password` bên trong.
 
-There's a good chance that with just this brief glimpse at closure and the module pattern, some of it is still a bit confusing. That's OK! It takes some work to wrap your brain around it.
+Có khả năng cao là chỉ với cái nhìn thoáng qua về hàm khép kín và mô hình khối chức năng như trên, một số phần vẫn còn khá mơ hồ. Không sao cả! Cần có thời gian để não bộ của bạn tiếp nhận và hiểu rõ vấn đề này.
 
-From here, go read the *Scope & Closures* title of this series for a much more in-depth exploration.
+Từ đây, hãy đọc phần *Phạm vi và Hàm khép kín* trong loạt sách này để khám phá sâu hơn.
 
-## `this` Identifier
+## Định danh `this`
 
-Another very commonly misunderstood concept in JavaScript is the `this` identifier. Again, there's a couple of chapters on it in the *this & Object Prototypes* title of this series, so here we'll just briefly introduce the concept.
+Một khái niệm khác cũng thường bị hiểu nhầm trong JavaScript là định danh `this`. Một lần nữa, có vài chương về nó trong phần *this và Nguyên mẫu đối tượng* của loạt sách này, nên ở đây ta chỉ giới thiệu ngắn gọn.
 
-While it may often seem that `this` is related to "object-oriented patterns," in JS `this` is a different mechanism.
+Dù `this` thường có vẻ như liên quan đến "mô hình hướng đối tượng", nhưng trong JS `this` là một cơ chế khác.
 
-If a function has a `this` reference inside it, that `this` reference usually points to an `object`. But which `object` it points to depends on how the function was called.
+Nếu một hàm có tham chiếu `this` bên trong, thì `this` thường trỏ đến một `object`. Nhưng `object` nào thì tùy thuộc vào cách hàm được gọi.
 
-It's important to realize that `this` *does not* refer to the function itself, as is the most common misconception.
+Điều quan trọng là hãy hiểu rằng `this` *không* trỏ đến chính bản thân hàm, đây là một hiểu lầm phổ biến nhất.
 
-Here's a quick illustration:
+Dưới đây là ví dụ minh họa nhanh:
 
 ```js
 function foo() {
-	console.log( this.bar );
+    console.log( this.bar );
 }
 
 var bar = "global";
 
 var obj1 = {
-	bar: "obj1",
-	foo: foo
+    bar: "obj1",
+    foo: foo
 };
 
 var obj2 = {
-	bar: "obj2"
+    bar: "obj2"
 };
 
 // --------
-
-foo();				// "global"
-obj1.foo();			// "obj1"
-foo.call( obj2 );		// "obj2"
-new foo();			// undefined
+foo();               // "global"
+obj1.foo();          // "obj1"
+foo.call( obj2 );    // "obj2"
+new foo();           // undefined
 ```
 
-There are four rules for how `this` gets set, and they're shown in those last four lines of that snippet.
+Có bốn quy tắc để xác định `this`, và chúng được thể hiện trong bốn dòng cuối cùng của đoạn mã trên:
 
-1. `foo()` ends up setting `this` to the global object in non-strict mode -- in strict mode, `this` would be `undefined` and you'd get an error in accessing the `bar` property -- so `"global"` is the value found for `this.bar`.
-2. `obj1.foo()` sets `this` to the `obj1` object.
-3. `foo.call(obj2)` sets `this` to the `obj2` object.
-4. `new foo()` sets `this` to a brand new empty object.
+1. `foo()` coi `this` là đối tượng toàn cục - trong chế độ nghiêm ngặt, `this` sẽ là `undefined` và bạn sẽ gặp lỗi khi truy cập thuộc tính `bar` - nên `"global"` là giá trị tìm được từ `this.bar`.
 
-Bottom line: to understand what `this` points to, you have to examine how the function in question was called. It will be one of those four ways just shown, and that will then answer what `this` is.
+2. `obj1.foo()` gán `this` cho đối tượng `obj1`.
 
-**Note:** For more information about `this`, see Chapters 1 and 2 of the *this & Object Prototypes* title of this series.
+3. `foo.call(obj2)` gán `this` cho đối tượng `obj2`.
 
-## Prototypes
+4. `new foo()` gán `this` cho một đối tượng rỗng mới hoàn toàn.
 
-The prototype mechanism in JavaScript is quite complicated. We will only glance at it here. You will want to spend plenty of time reviewing Chapters 4-6 of the *this & Object Prototypes* title of this series for all the details.
+Tóm lại: để hiểu `this` trỏ đến đâu, bạn phải xem xét cách mà hàm đó được gọi. Nó sẽ rơi vào một trong bốn cách vừa liệt kê, và điều đó sẽ quyết định `this` là gì.
 
-When you reference a property on an object, if that property doesn't exist, JavaScript will automatically use that object's internal prototype reference to find another object to look for the property on. You could think of this almost as a fallback if the property is missing.
+**Lưu ý:** Để tìm hiểu thêm về `this`, hãy xem chương 1 và 2 trong phần *this và nguyên mẫu đối tượng* của loạt sách này.
 
-The internal prototype reference linkage from one object to its fallback happens at the time the object is created. The simplest way to illustrate it is with a built-in utility called `Object.create(..)`.
+## Nguyên mẫu
 
-Consider:
+Cơ chế nguyên mẫu trong JavaScript khá phức tạp. Ở đây, chúng ta chỉ lướt qua nó. Bạn sẽ muốn dành nhiều thời gian xem lại chương 4-6 của cuốn "this và nguyên mẫu đối tượng" trong loạt sách này để biết mọi chi tiết.
+
+Khi bạn tham chiếu đến một thuộc tính trên một đối tượng, nếu thuộc tính đó không tồn tại, JavaScript sẽ tự động sử dụng tham chiếu nguyên mẫu nội bộ của đối tượng đó để tìm một đối tượng khác và kiểm tra thuộc tính trên đó. Bạn có thể xem điều này như một phương án dự phòng nếu thuộc tính bị thiếu.
+
+Liên kết tham chiếu nguyên mẫu nội bộ từ một đối tượng đến đối tượng dự phòng của nó xảy ra vào thời điểm đối tượng được tạo. Cách đơn giản nhất để minh họa điều này là với một tiện ích dựng sẵn có tên là `Object.create(..)`.
+
+Xem xét ví dụ:
 
 ```js
 var foo = {
-	a: 42
+    a: 42
 };
 
-// create `bar` and link it to `foo`
+// tạo `bar` và liên kết nó với `foo`
 var bar = Object.create( foo );
 
 bar.b = "hello world";
 
-bar.b;		// "hello world"
-bar.a;		// 42 <-- delegated to `foo`
+bar.b;        // "hello world"
+bar.a;        // 42 <-- được ủy nhiệm cho `foo`
 ```
 
-It may help to visualize the `foo` and `bar` objects and their relationship:
+Có thể sẽ hữu ích nếu bạn hình dung các đối tượng `foo` và `bar` cùng mối quan hệ của chúng như sau:
 
 <img src="fig6.png">
 
-The `a` property doesn't actually exist on the `bar` object, but because `bar` is prototype-linked to `foo`, JavaScript automatically falls back to looking for `a` on the `foo` object, where it's found.
+Thuộc tính `a` thực tế không tồn tại trên đối tượng `bar`, nhưng vì `bar` được liên kết nguyên mẫu với `foo`, JavaScript sẽ tự động tìm đến `a` trên đối tượng `foo`, nơi nó được tìm thấy.
 
-This linkage may seem like a strange feature of the language. The most common way this feature is used -- and I would argue, abused -- is to try to emulate/fake a "class" mechanism with "inheritance."
+Sự liên kết này có thể trông giống như một đặc điểm kỳ lạ của ngôn ngữ. Cách phổ biến nhất mà tính năng này được sử dụng - và tôi cho rằng là lạm dụng - là để cố gắng bắt chước/giả lập một cơ chế "lớp" với "sự kế thừa".
 
-But a more natural way of applying prototypes is a pattern called "behavior delegation," where you intentionally design your linked objects to be able to *delegate* from one to the other for parts of the needed behavior.
+Nhưng một cách áp dụng tự nhiên hơn của nguyên mẫu là một mô hình được gọi là "ủy nhiệm hành vi", nơi bạn cố ý thiết kế các đối tượng được liên kết để có thể *ủy nhiệm* từ đối tượng này sang đối tượng kia cho các phần hành vi cần thiết.
 
-**Note:** For more information about prototypes and behavior delegation, see Chapters 4-6 of the *this & Object Prototypes* title of this series.
+**Lưu ý:** Để biết thêm thông tin về nguyên mẫu và ủy nhiệm hành vi, xem chương 4-6 của tiêu đề "this và nguyên mẫu đối tượng" trong loạt sách này.
 
-## Old & New
+## Cũ & Mới
 
-Some of the JS features we've already covered, and certainly many of the features covered in the rest of this series, are newer additions and will not necessarily be available in older browsers. In fact, some of the newest features in the specification aren't even implemented in any stable browsers yet.
+Một số tính năng JS mà chúng ta đã đề cập, và chắc chắn nhiều tính năng sẽ được đề cập trong phần còn lại của loạt sách này, là những bổ sung mới hơn và sẽ không nhất thiết có sẵn trong các trình duyệt cũ. Thực tế là một số tính năng mới nhất trong đặc tả thậm chí còn chưa được triển khai trong bất kỳ trình duyệt ổn định nào.
 
-So, what do you do with the new stuff? Do you just have to wait around for years or decades for all the old browsers to fade into obscurity?
+Vậy bạn làm gì với các tính năng mới? Có phải bạn chỉ ngồi chờ nhiều năm hoặc nhiều thập kỷ cho đến khi tất cả các trình duyệt cũ trở nên lỗi thời?
 
-That's how many people think about the situation, but it's really not a healthy approach to JS.
+Đó là cách nhiều người nghĩ về tình huống này, nhưng thực sự đây không phải là cách tiếp cận lành mạnh với JS.
 
-There are two main techniques you can use to "bring" the newer JavaScript stuff to the older browsers: polyfilling and transpiling.
+Có hai kỹ thuật chính bạn có thể sử dụng để "mang" những tính năng JavaScript mới đến trình duyệt cũ: vá lỗ hổng và biên dịch chuyển đổi.
 
-### Polyfilling
+### Vá lỗ hổng
 
-The word "polyfill" is an invented term (by Remy Sharp) (https://remysharp.com/2010/10/08/what-is-a-polyfill) used to refer to taking the definition of a newer feature and producing a piece of code that's equivalent to the behavior, but is able to run in older JS environments.
+Từ "vá lỗ hổng" là một thuật ngữ được sáng tạo ra (bởi Remy Sharp) ([https://remysharp.com/2010/10/08/what-is-a-vá lỗ hổng](https://remysharp.com/2010/10/08/what-is-a-vá lỗ hổng)) để chỉ việc lấy định nghĩa của một tính năng mới và tạo ra một đoạn mã có hành vi tương đương, nhưng có thể chạy trong môi trường JS cũ hơn.
 
-For example, ES6 defines a utility called `Number.isNaN(..)` to provide an accurate non-buggy check for `NaN` values, deprecating the original `isNaN(..)` utility. But it's easy to polyfill that utility so that you can start using it in your code regardless of whether the end user is in an ES6 browser or not.
+Ví dụ, ES6 định nghĩa một tiện ích có tên `Number.isNaN(..)` để cung cấp một cách kiểm tra chính xác và không lỗi đối với giá trị `NaN`, thay thế tiện ích `isNaN(..)` cũ. Nhưng việc vá lỗ hổng tiện ích đó rất dễ để bạn có thể bắt đầu sử dụng nó trong mã của mình bất kể người dùng đang dùng trình duyệt ES6 hay không.
 
-Consider:
+Xem ví dụ:
 
 ```js
 if (!Number.isNaN) {
-	Number.isNaN = function isNaN(x) {
-		return x !== x;
-	};
+    Number.isNaN = function isNaN(x) {
+        return x !== x;
+    };
 }
 ```
 
-The `if` statement guards against applying the polyfill definition in ES6 browsers where it will already exist. If it's not already present, we define `Number.isNaN(..)`.
+Câu lệnh `if` giúp tránh việc áp dụng định nghĩa vá lỗ hổng trong các trình duyệt ES6 nơi tiện ích đó đã tồn tại. Nếu chưa tồn tại, ta định nghĩa `Number.isNaN(..)`.
 
-**Note:** The check we do here takes advantage of a quirk with `NaN` values, which is that they're the only value in the whole language that is not equal to itself. So the `NaN` value is the only one that would make `x !== x` be `true`.
+**Lưu ý:** Việc kiểm tra ở đây tận dụng một đặc điểm kỳ lạ của giá trị `NaN`: nó là giá trị duy nhất trong toàn bộ ngôn ngữ không bằng chính nó. Vì vậy `NaN` là giá trị duy nhất khiến `x !== x` trả về `true`.
 
-Not all new features are fully polyfillable. Sometimes most of the behavior can be polyfilled, but there are still small deviations. You should be really, really careful in implementing a polyfill yourself, to make sure you are adhering to the specification as strictly as possible.
+Không phải tất cả các tính năng mới đều có thể vá lỗ hổng đầy đủ. Đôi khi hầu hết hành vi có thể được vá nhưng vẫn có một vài sai khác nhỏ. Bạn cần thực sự cẩn thận khi tự viết một bản vá để đảm bảo tuân thủ đặc tả càng chặt chẽ càng tốt.
 
-Or better yet, use an already vetted set of polyfills that you can trust, such as those provided by ES5-Shim (https://github.com/es-shims/es5-shim) and ES6-Shim (https://github.com/es-shims/es6-shim).
+Hoặc tốt hơn hết là sử dụng một bộ vá lỗ hổng đã được kiểm chứng, chẳng hạn như ES5-Shim ([https://github.com/es-shims/es5-shim](https://github.com/es-shims/es5-shim)) và ES6-Shim ([https://github.com/es-shims/es6-shim](https://github.com/es-shims/es6-shim)).
 
-### Transpiling
+### Chuyển mã
 
-There's no way to polyfill new syntax that has been added to the language. The new syntax would throw an error in the old JS engine as unrecognized/invalid.
+Không có cách nào để vá lỗ hổng cú pháp mới được thêm vào ngôn ngữ. Cú pháp mới sẽ gây lỗi trong các chương trình thông dịch JS cũ vì không thể nhận diện/không hợp lệ.
 
-So the better option is to use a tool that converts your newer code into older code equivalents. This process is commonly called "transpiling," a term for transforming + compiling.
+Vì vậy, lựa chọn tốt hơn là sử dụng một công cụ chuyển đổi mã mới thành mã cũ tương đương. Quá trình này thường được gọi là "chuyển mã" (chuyển mã), thuật ngữ được tạo thành từ chuyển đổi (transform) + biên dịch (compile).
 
-Essentially, your source code is authored in the new syntax form, but what you deploy to the browser is the transpiled code in old syntax form. You typically insert the transpiler into your build process, similar to your code linter or your minifier.
+Về cơ bản, mã nguồn của bạn được viết bằng cú pháp mới, nhưng những gì bạn triển khai lên trình duyệt là mã đã được chuyển đổi sang cú pháp cũ. Bạn thường sẽ tích hợp công cụ chuyển mã vào quy trình xây dựng của mình, tương tự như chương trình kiểm tra mã hoặc chương trình nén mã.
 
-You might wonder why you'd go to the trouble to write new syntax only to have it transpiled away to older code -- why not just write the older code directly?
+Bạn có thể thắc mắc tại sao lại phải viết cú pháp mới rồi lại chuyển đổi về cú pháp cũ - tại sao không viết mã cũ ngay từ đầu?
 
-There are several important reasons you should care about transpiling:
+Có một số lý do quan trọng khiến bạn nên quan tâm đến việc chuyển mã:
 
-* The new syntax added to the language is designed to make your code more readable and maintainable. The older equivalents are often much more convoluted. You should prefer writing newer and cleaner syntax, not only for yourself but for all other members of the development team.
-* If you transpile only for older browsers, but serve the new syntax to the newest browsers, you get to take advantage of browser performance optimizations with the new syntax. This also lets browser makers have more real-world code to test their implementations and optimizations on.
-* Using the new syntax earlier allows it to be tested more robustly in the real world, which provides earlier feedback to the JavaScript committee (TC39). If issues are found early enough, they can be changed/fixed before those language design mistakes become permanent.
+* Cú pháp mới được thêm vào ngôn ngữ được thiết kế để làm cho mã của bạn dễ đọc và bảo trì hơn. Cách viết cũ thường rối rắm hơn rất nhiều. Bạn nên ưu tiên viết cú pháp mới và sáng sủa hơn, không chỉ cho bạn mà còn cho tất cả thành viên khác trong nhóm phát triển.
 
-Here's a quick example of transpiling. ES6 adds a feature called "default parameter values." It looks like this:
+* Nếu bạn chỉ chuyển mã cho trình duyệt cũ, nhưng cung cấp cú pháp mới cho trình duyệt mới nhất, bạn có thể tận dụng các tối ưu hiệu năng trình duyệt với cú pháp mới. Điều này cũng cho phép các nhà phát triển trình duyệt có mã thực tế để kiểm thử và tối ưu.
+
+* Việc sử dụng cú pháp mới sớm hơn cho phép nó được kiểm thử nhiều hơn trong thực tế, giúp Ủy ban JavaScript (TC39) nhận phản hồi sớm hơn. Nếu có vấn đề được phát hiện đủ sớm, chúng có thể được sửa trước khi các sai lầm thiết kế ngôn ngữ trở nên cố định vĩnh viễn.
+
+Dưới đây là một ví dụ nhanh về chuyển mã. ES6 thêm một tính năng gọi là "giá trị tham số mặc định". Nó trông như sau:
 
 ```js
 function foo(a = 2) {
-	console.log( a );
+    console.log( a );
 }
 
-foo();		// 2
-foo( 42 );	// 42
+foo();        // 2
+foo( 42 );    // 42
 ```
 
-Simple, right? Helpful, too! But it's new syntax that's invalid in pre-ES6 engines. So what will a transpiler do with that code to make it run in older environments?
+Đơn giản phải không? Và cũng hữu ích nữa! Nhưng đây là cú pháp mới không hợp lệ trong các chương trình thông dịch trước ES6. Vậy công cụ chuyển mã sẽ làm gì với đoạn mã đó để chạy được trong môi trường cũ?
 
 ```js
 function foo() {
-	var a = arguments[0] !== (void 0) ? arguments[0] : 2;
-	console.log( a );
+    var a = arguments[0] !== (void 0) ? arguments[0] : 2;
+    console.log( a );
 }
 ```
 
-As you can see, it checks to see if the `arguments[0]` value is `void 0` (aka `undefined`), and if so provides the `2` default value; otherwise, it assigns whatever was passed.
+Như bạn thấy, nó kiểm tra xem giá trị `arguments[0]` có phải là `void 0` (tức là `undefined`) hay không, và nếu có thì cung cấp giá trị mặc định là `2`; nếu không, nó gán giá trị đã truyền vào.
 
-In addition to being able to now use the nicer syntax even in older browsers, looking at the transpiled code actually explains the intended behavior more clearly.
+Ngoài việc có thể sử dụng cú pháp tốt hơn ngay cả trong trình duyệt cũ, việc xem mã sau khi chuyển đổi thực sự giúp giải thích hành vi mong muốn một cách rõ ràng hơn.
 
-You may not have realized just from looking at the ES6 version that `undefined` is the only value that can't get explicitly passed in for a default-value parameter, but the transpiled code makes that much more clear.
+Bạn có thể chưa nhận ra chỉ từ việc nhìn vào cú pháp ES6 rằng `undefined` là giá trị duy nhất không thể được truyền vào một cách rõ ràng cho một tham số có giá trị mặc định, nhưng mã đã được chuyển đổi làm điều đó rõ ràng hơn nhiều.
 
-The last important detail to emphasize about transpilers is that they should now be thought of as a standard part of the JS development ecosystem and process. JS is going to continue to evolve, much more quickly than before, so every few months new syntax and new features will be added.
+Chi tiết cuối cùng quan trọng cần nhấn mạnh về các công cụ chuyển mã là: chúng nên được coi là một phần tiêu chuẩn trong hệ sinh thái và quy trình phát triển JavaScript. JS sẽ tiếp tục phát triển nhanh hơn trước rất nhiều, vì vậy cứ vài tháng lại có cú pháp và tính năng mới được thêm vào.
 
-If you use a transpiler by default, you'll always be able to make that switch to newer syntax whenever you find it useful, rather than always waiting for years for today's browsers to phase out.
+Nếu bạn mặc định sử dụng công cụ chuyển mã, bạn sẽ luôn có thể chuyển sang cú pháp mới bất cứ khi nào thấy hữu ích thay vì luôn phải chờ nhiều năm cho đến khi trình duyệt hôm nay trở nên lỗi thời.
 
-There are quite a few great transpilers for you to choose from. Here are some good options at the time of this writing:
+Hiện tại có khá nhiều công cụ chuyển mã tuyệt vời để bạn lựa chọn. Dưới đây là một vài cái tên tốt vào thời điểm viết cuốn sách này:
 
-* Babel (https://babeljs.io) (formerly 6to5): Transpiles ES6+ into ES5
-* Traceur (https://github.com/google/traceur-compiler): Transpiles ES6, ES7, and beyond into ES5
+* Babel ([https://babeljs.io](https://babeljs.io)) (trước đây là 6to5): Chuyển mã ES6+ sang ES5
+* Traceur ([https://github.com/google/traceur-compiler](https://github.com/google/traceur-compiler)): Chuyển mã ES6, ES7 và hơn nữa sang ES5
 
 ## Non-JavaScript
 
@@ -955,7 +933,7 @@ This book, and this whole series, focuses on JavaScript the language. That's why
 
 ## Review
 
-The first step to learning JavaScript's flavor of programming is to get a basic understanding of its core mechanisms like values, types, function closures, `this`, and prototypes.
+The first step to learning JavaScript's flavor of programming is to get a basic understanding of its core mechanisms like values, types, function hàm khép kíns, `this`, and prototypes.
 
 Of course, each of these topics deserves much greater coverage than you've seen here, but that's why they have chapters and books dedicated to them throughout the rest of this series. After you feel pretty comfortable with the concepts and code samples in this chapter, the rest of the series awaits you to really dig in and get to know the language deeply.
 
