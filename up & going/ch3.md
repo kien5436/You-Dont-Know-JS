@@ -1,104 +1,104 @@
-# You Don't Know JS: Up & Going
-# Chapter 3: Into YDKJS
+# Bạn không hiểu JS: Khởi động và tiến lên
+# Chương 3: Đến với BKHJS
 
-What is this series all about? Put simply, it's about taking seriously the task of learning *all parts of JavaScript*, not just some subset of the language that someone called "the good parts," and not just whatever minimal amount you need to get your job done at work.
+Bộ sách này nói về điều gì? Nói một cách đơn giản, đó là việc nghiêm túc với nhiệm vụ học *mọi thứ về JavaScript* chứ không chỉ một tập con của ngôn ngữ mà người ta gọi là "những phần tốt đẹp", cũng không chỉ là lượng kiến thức tối thiểu bạn cần để cho xong việc.
 
-Serious developers in other languages expect to put in the effort to learn most or all of the language(s) they primarily write in, but JS developers seem to stand out from the crowd in the sense of typically not learning very much of the language. This is not a good thing, and it's not something we should continue to allow to be the norm.
+Lập trình viên chuyên nghiệp ở các ngôn ngữ khác đều xác định sẽ nỗ lực học hỏi hầu hết hoặc toàn bộ (các) ngôn ngữ mà họ chủ yếu dùng để viết mã, nhưng lập trình viên JS dường như nổi bật giữa đám đông theo cái cách là thường không học hỏi bao nhiêu về ngôn ngữ này. Đây không phải là điều hay ho và cũng không phải là điều chúng ta nên mặc nhiên cho là bình thường.
 
-The *You Don't Know JS* (*YDKJS*) series stands in stark contrast to the typical approaches to learning JS, and is unlike almost any other JS books you will read. It challenges you to go beyond your comfort zone and to ask the deeper "why" questions for every single behavior you encounter. Are you up for that challenge?
+Bộ sách *Bạn không hiểu JS* (*BKHJS*) hoàn toàn tương phản với những cách tiếp cận thông thường để học JS, và không giống với hầu hết bất kỳ cuốn sách JS nào khác mà bạn sẽ đọc. Nó thách thức bạn vượt ra khỏi vùng thoải mái của mình và đặt ra những câu hỏi "tại sao" sâu sắc hơn cho mỗi một hành vi mà bạn gặp phải. Bạn có sẵn sàng cho thử thách đó không?
 
-I'm going to use this final chapter to briefly summarize what to expect from the rest of the books in the series, and how to most effectively go about building a foundation of JS learning on top of *YDKJS*.
+Tôi sẽ dùng chương cuối cùng này để tóm lược ngắn gọn những gì sẽ có trong các cuốn sách còn lại của bộ sách, và cách hiệu quả nhất để xây dựng nền tảng học JS từ *BKHJS*.
 
-## Scope & Closures
+## Phạm vi và Hàm khép kín
 
-Perhaps one of the most fundamental things you'll need to quickly come to terms with is how scoping of variables really works in JavaScript. It's not enough to have anecdotal fuzzy *beliefs* about scope.
+Có lẽ một trong những điều căn bản nhất bạn cần nhanh chóng nắm bắt được là cách phạm vi của biến thực sự hoạt động trong JavaScript. Chỉ có những *niềm tin* mơ hồ, mang tính truyền miệng về phạm vi là không đủ.
 
-The *Scope & Closures* title starts by debunking the common misconception that JS is an "interpreted language" and therefore not compiled. Nope.
+Cuốn *Phạm vi và Hàm khép kín* bắt đầu bằng việc lật tẩy một quan niệm sai lầm phổ biến rằng JS là một "ngôn ngữ thông dịch" và do đó không được biên dịch. Sai bét.
 
-The JS engine compiles your code right before (and sometimes during!) execution. So we use some deeper understanding of the compiler's approach to our code to understand how it finds and deals with variable and function declarations. Along the way, we see the typical metaphor for JS variable scope management, "Hoisting."
+Bộ máy JS biên dịch mã của bạn ngay trước khi (và đôi khi là trong cả lúc!) thực thi. Vì vậy, chúng ta sẽ vận dụng hiểu biết sâu hơn về cách tiếp cận của chương trình biên dịch để hiểu cách nó tìm và xử lý các khai báo biến và hàm. Trong quá trình đó, ta sẽ thấy thuật ngữ hình tượng điển hình cho việc quản lý phạm vi biến trong JS, "Kéo lên" ("Hoisting").
 
-This critical understanding of "lexical scope" is what we then base our exploration of closure on for the last chapter of the book. Closure is perhaps the single most important concept in all of JS, but if you haven't first grasped firmly how scope works, closure will likely remain beyond your grasp.
+Sự am tường cốt lõi về "phạm vi từ vựng" chính là nền tảng để chúng ta khám phá về hàm khép kín trong chương cuối của cuốn sách. Hàm khép kín có lẽ là khái niệm quan trọng bậc nhất trong toàn bộ JS, nhưng nếu bạn chưa nắm vững cách hoạt động của phạm vi, hàm khép kín rất có thể sẽ vẫn nằm ngoài tầm tay của bạn.
 
-One important application of closure is the module pattern, as we briefly introduced in this book in Chapter 2. The module pattern is perhaps the most prevalent code organization pattern in all of JavaScript; deep understanding of it should be one of your highest priorities.
+Một ứng dụng quan trọng của hàm khép kín là mô hình khối chức năng, như chúng ta đã giới thiệu ngắn gọn trong cuốn sách này ở chương 2. Khối chức năng có lẽ là mô hình tổ chức mã phổ biến nhất trong toàn bộ JavaScript; hiểu biết sâu sắc về nó nên là một trong những ưu tiên hàng đầu của bạn.
 
-## this & Object Prototypes
+## `this` và Nguyên mẫu Đối tượng
 
-Perhaps one of the most widespread and persistent mistruths about JavaScript is that the `this` keyword refers to the function it appears in. Terribly mistaken.
+Có lẽ một trong những lầm tưởng tai hại và dai dẳng nhất về JavaScript là từ khóa `this` chỉ đến cái hàm mà nó xuất hiện bên trong. Một sai lầm tệ hại.
 
-The `this` keyword is dynamically bound based on how the function in question is executed, and it turns out there are four simple rules to understand and fully determine `this` binding.
+Từ khóa `this` được ràng buộc một cách linh động dựa vào cách mà hàm đó được thực thi, và hóa ra có bốn quy tắc đơn giản để thấu hiểu và xác định toàn bộ ràng buộc của `this`.
 
-Closely related to the `this` keyword is the object prototype mechanism, which is a look-up chain for properties, similar to how lexical scope variables are found. But wrapped up in the prototypes is the other huge miscue about JS: the idea of emulating (fake) classes and (so-called "prototypal") inheritance.
+Liên quan mật thiết đến từ khóa `this` là cơ chế nguyên mẫu đối tượng (object prototype), một chuỗi tra cứu thuộc tính tương tự như cách các biến trong phạm vi từ vựng được tìm thấy. Nhưng ẩn chứa bên trong các nguyên mẫu là một ngộ nhận tai hại khác về JS: ý tưởng mô phỏng (làm giả) các lớp và sự kế thừa (còn gọi là "kế thừa qua nguyên mẫu").
 
-Unfortunately, the desire to bring class and inheritance design pattern thinking to JavaScript is just about the worst thing you could try to do, because while the syntax may trick you into thinking there's something like classes present, in fact the prototype mechanism is fundamentally opposite in its behavior.
+Thật không may, ước muốn đem tư duy thiết kế theo lớp và kế thừa vào JavaScript gần như là điều tồi tệ nhất bạn có thể làm, bởi vì trong khi cú pháp có thể đánh lừa bạn tin rằng có một thứ gì đó giống như lớp đang hiện diện, thực tế cơ chế nguyên mẫu lại có hành vi, về cơ bản, hoàn toàn trái ngược.
 
-What's at issue is whether it's better to ignore the mismatch and pretend that what you're implementing is "inheritance," or whether it's more appropriate to learn and embrace how the object prototype system actually works. The latter is more appropriately named "behavior delegation."
+Vấn đề nằm ở chỗ liệu sẽ tốt hơn nếu phớt lờ sự bất tương đồng và giả vờ rằng những gì bạn đang triển khai là "kế thừa", hay sẽ phù hợp hơn nếu học hỏi và trân trọng cách hệ thống nguyên mẫu đối tượng thực sự vận hành. Cách thứ hai được đặt một cái tên thích hợp hơn là "ủy quyền hành vi".
 
-This is more than syntactic preference. Delegation is an entirely different, and more powerful, design pattern, one that replaces the need to design with classes and inheritance. But these assertions will absolutely fly in the face of nearly every other blog post, book, and conference talk on the subject for the entirety of JavaScript's lifetime.
+Đây không chỉ là sở thích về cú pháp. Ủy quyền là một mô hình thiết kế hoàn toàn khác biệt và mạnh mẽ hơn, một mô hình thay thế cho nhu cầu thiết kế bằng lớp và kế thừa. Nhưng những khẳng định này chắc chắn sẽ đi ngược lại gần như mọi bài blog, sách và bài nói chuyện tại hội thảo về chủ đề này trong suốt chiều dài lịch sử của JavaScript.
 
-The claims I make regarding delegation versus inheritance come not from a dislike of the language and its syntax, but from the desire to see the true capability of the language properly leveraged and the endless confusion and frustration wiped away.
+Luận điểm tôi đưa ra về ủy quyền so với kế thừa không phải đến từ sự ghét bỏ ngôn ngữ này và cú pháp của nó, mà từ khao khát được thấy tiềm năng thực sự của ngôn ngữ được khai thác đúng cách và xóa sạch những mơ hồ cùng bức xúc không hồi kết.
 
-But the case I make regarding prototypes and delegation is a much more involved one than what I will indulge here. If you're ready to reconsider everything you think you know about JavaScript "classes" and "inheritance," I offer you the chance to "take the red pill" (*Matrix* 1999) and check out Chapters 4-6 of the *this & Object Prototypes* title of this series.
+Nhưng luận điểm tôi đưa ra về nguyên mẫu và ủy quyền còn phức tạp hơn nhiều so với những gì tôi sẽ trình bày ở đây. Nếu bạn đã sẵn sàng để xem xét lại mọi thứ bạn nghĩ rằng bạn biết về "lớp" và "kế thừa" trong JavaScript, tôi mời bạn hãy "chọn viên thuốc đỏ" (*Ma Trận* 1999) và tìm đọc chương 4-6 của cuốn *`this` và Nguyên mẫu Đối tượng* trong bộ sách này.
 
-## Types & Grammar
+## Kiểu dữ liệu và Ngữ pháp
 
-The third title in this series primarily focuses on tackling yet another highly controversial topic: type coercion. Perhaps no topic causes more frustration with JS developers than when you talk about the confusions surrounding implicit coercion.
+Cuốn thứ ba trong bộ sách này chủ yếu tập trung vào việc giải quyết một chủ đề gây tranh cãi nảy lửa khác: ép kiểu. Có lẽ không có chủ đề nào gây ra nhiều sự bực dọc cho lập trình viên JS hơn khi bàn về những rối rắm quanh việc ép kiểu ngầm.
 
-By far, the conventional wisdom is that implicit coercion is a "bad part" of the language and should be avoided at all costs. In fact, some have gone so far as to call it a "flaw" in the design of the language. Indeed, there are tools whose entire job is to do nothing but scan your code and complain if you're doing anything even remotely like coercion.
+Cho đến nay, lối nghĩ thông thường cho rằng ép kiểu ngầm là một "phần tồi tệ" của ngôn ngữ và phải tránh bằng mọi giá. Trên thực tế, một số người đã đi xa đến mức gọi nó là một "khiếm khuyết" trong thiết kế ngôn ngữ. Thật vậy, có những công cụ mà toàn bộ công việc của nó chỉ là quét mã của bạn và phàn nàn nếu bạn đang làm bất cứ điều gì dù chỉ hơi giống với ép kiểu.
 
-But is coercion really so confusing, so bad, so treacherous, that your code is doomed from the start if you use it?
+Nhưng liệu ép kiểu có thực sự rối rắm, tệ hại, và nguy hiểm đến mức mã của bạn cầm chắc thất bại ngay từ đầu nếu dùng nó?
 
-I say no. After having built up an understanding of how types and values really work in Chapters 1-3, Chapter 4 takes on this debate and fully explains how coercion works, in all its nooks and crevices. We see just what parts of coercion really are surprising and what parts actually make complete sense if given the time to learn.
+Tôi sẽ nói không. Sau khi đã xây dựng được sự hiểu biết về cách các kiểu và giá trị thực sự hoạt động trong chương 1-3, chương 4 sẽ đi vào cuộc tranh luận này và giải thích cặn kẽ cách ép kiểu hoạt động đến từng ngóc ngách. Chúng ta sẽ thấy rõ những phần nào của ép kiểu thực sự gây ngạc nhiên và những phần nào thực sự hoàn toàn có lý nếu dành thời gian để học.
 
-But I'm not merely suggesting that coercion is sensible and learnable, I'm asserting that coercion is an incredibly useful and totally underestimated tool that *you should be using in your code.* I'm saying that coercion, when used properly, not only works, but makes your code better. All the naysayers and doubters will surely scoff at such a position, but I believe it's one of the main keys to upping your JS game.
+Nhưng tôi không chỉ đơn thuần cho rằng ép kiểu là hợp lý và có thể học được, tôi còn khẳng định rằng ép kiểu là một công cụ cực kỳ hữu ích và hoàn toàn bị đánh giá thấp mà *bạn nên sử dụng trong mã của mình*. Tôi muốn nói rằng khi ép kiểu được sử dụng đúng cách, nó không chỉ hoạt động mà còn khiến mã của bạn tốt hơn. Tất cả những kẻ phản đối và hoài nghi chắc chắn sẽ chế nhạo một lập trường như vậy, nhưng tôi tin rằng đó là một trong những chìa khóa chính để nâng trình JS của bạn.
 
-Do you want to just keep following what the crowd says, or are you willing to set all the assumptions aside and look at coercion with a fresh perspective? The *Types & Grammar* title of this series will coerce your thinking.
+Bạn muốn tiếp tục nghe theo đám đông hay sẵn sàng gạt bỏ mọi giả định sang một bên và nhìn nhận việc ép kiểu với một con mắt hoàn toàn mới? Cuốn *Kiểu dữ liệu và Ngữ pháp* trong bộ sách này sẽ ép buộc cả tư duy của bạn.
 
-## Async & Performance
+## Bất đồng bộ và Hiệu năng
 
-The first three titles of this series focus on the core mechanics of the language, but the fourth title branches out slightly to cover patterns on top of the language mechanics for managing asynchronous programming. Asynchrony is not only critical to the performance of our applications, it's increasingly becoming *the* critical factor in writability and maintainability.
+Ba cuốn sách đầu tiên của bộ sách tập trung vào các cơ chế cốt lõi của ngôn ngữ, nhưng cuốn thứ tư mở rộng ra một chút để bao quát các mẫu hình được xây dựng trên các cơ chế đó nhằm quản lý lập trình bất đồng bộ. Tính bất đồng bộ không chỉ tối quan trọng với hiệu năng của các ứng dụng mà ngày càng trở thành yếu tố then chốt quyết định khả năng viết và bảo trì mã nguồn.
 
-The book starts first by clearing up a lot of terminology and concept confusion around things like "async," "parallel," and "concurrent," and explains in depth how such things do and do not apply to JS.
+Cuốn sách bắt đầu bằng việc làm sáng tỏ rất nhiều thuật ngữ và khái niệm mơ hồ xoay quanh những thứ như "bất đồng bộ" (async), "song song" (parallel), và "đồng thời" (concurrent), và giải thích sâu về cách chúng áp dụng và không áp dụng cho JS như thế nào.
 
-Then we move into examining callbacks as the primary method of enabling asynchrony. But it's here that we quickly see that the callback alone is hopelessly insufficient for the modern demands of asynchronous programming. We identify two major deficiencies of callbacks-only coding: *Inversion of Control* (IoC) trust loss and lack of linear reason-ability.
+Sau đó, chúng ta chuyển sang xem xét hàm gọi lại là phương pháp chính để hiện thực hóa tính bất đồng bộ. Nhưng chính tại đây, chúng ta nhanh chóng thấy rằng chỉ riêng hàm gọi lại thì không đáp ứng đủ cho các yêu cầu hiện đại của lập trình bất đồng bộ. Chúng ta xác định hai khiếm khuyết lớn của việc lập trình chỉ dùng hàm gọi lại: mất đi sự tin cậy do *Điều khiển nghịch đảo* (Inversion of Control - IoC) và thiếu đi khả năng suy luận tuần tự.
 
-To address these two major deficiencies, ES6 introduces two new mechanisms (and indeed, patterns): promises and generators.
+Để giải quyết hai khiếm khuyết lớn này, ES6 giới thiệu hai cơ chế (và thực ra là các mô hình) mới: lời hứa (promise) và hàm sinh (generator).
 
-Promises are a time-independent wrapper around a "future value," which lets you reason about and compose them regardless of if the value is ready or not yet. Moreover, they effectively solve the IoC trust issues by routing callbacks through a trustable and composable promise mechanism.
+Lời hứa là một lớp vỏ bọc độc lập với thời gian quanh một "giá trị tương lai", cho phép bạn suy luận và kết hợp chúng bất kể giá trị đã sẵn sàng hay chưa. Hơn nữa, chúng giải quyết hiệu quả các vấn đề về sự tin cậy trong IoC bằng cách điều hướng các hàm gọi lại thông qua một cơ chế hứa hẹn đáng tin cậy và có khả năng kết hợp.
 
-Generators introduce a new mode of execution for JS functions, whereby the generator can be paused at `yield` points and be resumed asynchronously later. The pause-and-resume capability enables synchronous, sequential looking code in the generator to be processed asynchronously behind the scenes. By doing so, we address the non-linear, non-local-jump confusions of callbacks and thereby make our asynchronous code sync-looking so as to be more reason-able.
+Hàm sinh giới thiệu một chế độ thực thi mới cho các hàm JS, theo đó hàm có thể được tạm dừng tại các điểm `yield` và được tiếp tục một cách bất đồng bộ sau đó. Khả năng tạm dừng và tiếp tục này cho phép đoạn mã trông có vẻ đồng bộ, tuần tự trong hàm sinh được xử lý bất đồng bộ dưới nền. Bằng cách đó, chúng ta giải quyết được những rối rắm do các bước nhảy phi tuyến tính, không cục bộ của hàm gọi lại và do đó khiến mã bất đồng bộ của chúng ta trông giống như đồng bộ, từ đó dễ suy luận hơn.
 
-But it's the combination of promises and generators that "yields" our most effective asynchronous coding pattern to date in JavaScript. In fact, much of the future sophistication of asynchrony coming in ES7 and later will certainly be built on this foundation. To be serious about programming effectively in an async world, you're going to need to get really comfortable with combining promises and generators.
+Nhưng chính sự kết hợp của lời hứa và hàm sinh đã "mang lại" mẫu hình lập trình bất đồng bộ hiệu quả nhất của chúng ta cho đến nay trong JavaScript. Trên thực tế, phần lớn những sự tinh vi trong tương lai của tính bất đồng bộ sắp tới trong ES7 và các phiên bản sau này chắc chắn sẽ được xây dựng trên nền tảng này. Để nghiêm túc về việc lập trình hiệu quả trong một thế giới bất đồng bộ, bạn sẽ cần phải thực sự thoải mái với việc kết hợp lời hứa và hàm sinh.
 
-If promises and generators are about expressing patterns that let our programs run more concurrently and thus get more processing accomplished in a shorter period, JS has many other facets of performance optimization worth exploring.
+Nếu lời hứa và hàm sinh là về việc thể hiện các mô hình cho phép chương trình của chúng ta chạy đồng thời hơn và do đó hoàn thành nhiều xử lý hơn trong một khoảng thời gian ngắn hơn, thì JS còn có nhiều khía cạnh khác về tối ưu hóa hiệu năng đáng để khám phá.
 
-Chapter 5 delves into topics like program parallelism with Web Workers and data parallelism with SIMD, as well as low-level optimization techniques like ASM.js. Chapter 6 takes a look at performance optimization from the perspective of proper benchmarking techniques, including what kinds of performance to worry about and what to ignore.
+Chương 5 đi sâu vào các chủ đề như tính song song của chương trình với Web Worker và tính song song của dữ liệu với SIMD, cũng như các kỹ thuật tối ưu hóa cấp thấp như ASM.js. Chương 6 xem xét tối ưu hóa hiệu năng từ góc độ các kỹ thuật đo lường hiệu năng đúng đắn, bao gồm cả những loại hiệu năng nào cần lo lắng và những loại nào có thể bỏ qua.
 
-Writing JavaScript effectively means writing code that can break the constraint barriers of being run dynamically in a wide range of browsers and other environments. It requires a lot of intricate and detailed planning and effort on our parts to take a program from "it works" to "it works well."
+Viết JavaScript hiệu quả có nghĩa là viết mã có thể phá vỡ rào cản ràng buộc của việc chạy động trong một loạt các trình duyệt và môi trường khác nhau. Nó đòi hỏi rất nhiều kế hoạch và nỗ lực chi tiết và phức tạp từ phía chúng ta để đưa một chương trình từ chỗ "chạy được" đến chỗ "chạy tốt".
 
-The *Async & Performance* title is designed to give you all the tools and skills you need to write reasonable and performant JavaScript code.
+Cuốn *Bất đồng bộ và Hiệu năng* được thiết kế để cung cấp cho bạn tất cả các công cụ và kỹ năng cần thiết để viết mã JavaScript hợp lý và hiệu quả.
 
-## ES6 & Beyond
+## ES6 và hơn thế nữa
 
-No matter how much you feel you've mastered JavaScript to this point, the truth is that JavaScript is never going to stop evolving, and moreover, the rate of evolution is increasing rapidly. This fact is almost a metaphor for the spirit of this series, to embrace that we'll never fully *know* every part of JS, because as soon as you master it all, there's going to be new stuff coming down the line that you'll need to learn.
+Bất kể bạn cảm thấy mình đã làm chủ JavaScript đến mức nào, sự thật là JavaScript sẽ không bao giờ ngừng phát triển, và hơn nữa, tốc độ phát triển đang tăng lên nhanh chóng. Thực tế này gần như là một phép ẩn dụ cho tinh thần của bộ sách này, đó là hãy chấp nhận rằng chúng ta sẽ không bao giờ *hiểu* trọn vẹn mọi phần của JS, bởi vì ngay khi bạn làm chủ tất cả, sẽ có những thứ mới xuất hiện mà bạn sẽ cần phải học.
 
-This title is dedicated to both the short- and mid-term visions of where the language is headed, not just the *known* stuff like ES6 but the *likely* stuff beyond.
+Cuốn sách này dành riêng cho cả tầm nhìn ngắn hạn và trung hạn về hướng đi của ngôn ngữ, không chỉ những thứ *đã biết* như ES6 mà còn cả những thứ *có khả năng* sẽ vượt xa hơn thế.
 
-While all the titles of this series embrace the state of JavaScript at the time of this writing, which is mid-way through ES6 adoption, the primary focus in the series has been more on ES5. Now, we want to turn our attention to ES6, ES7, and ...
+Trong khi tất cả các cuốn sách của bộ này đều đón nhận trạng thái của JavaScript tại thời điểm viết cuốn sách này, tức là giữa giai đoạn áp dụng ES6, trọng tâm chính trong bộ sách vẫn là ES5. Bây giờ, chúng ta muốn chuyển sự chú ý sang ES6, ES7, và ...
 
-Since ES6 is nearly complete at the time of this writing, *ES6 & Beyond* starts by dividing up the concrete stuff from the ES6 landscape into several key categories, including new syntax, new data structures (collections), and new processing capabilities and APIs. We cover each of these new ES6 features, in varying levels of detail, including reviewing details that are touched on in other books of this series.
+Vì ES6 đã gần như hoàn thiện tại thời điểm viết cuốn sách này, *ES6 và hơn thế nữa* bắt đầu bằng cách phân chia những thứ hữu hình từ toàn cảnh ES6 thành nhiều loại chính, bao gồm cú pháp mới, cấu trúc dữ liệu mới (bộ sưu tập), và các khả năng xử lý cùng API mới. Chúng ta đề cập đến từng tính năng mới này của ES6 ở các mức độ chi tiết khác nhau, bao gồm cả việc xem lại các chi tiết được đề cập trong các cuốn khác của bộ sách.
 
-Some exciting ES6 things to look forward to reading about: destructuring, default parameter values, symbols, concise methods, computed properties, arrow functions, block scoping, promises, generators, iterators, modules, proxies, weakmaps, and much, much more! Phew, ES6 packs quite a punch!
+Một số điều thú vị của ES6 mong chờ bạn khám phá: phân rã cấu trúc, giá trị tham số mặc định, biểu tượng, phương thức tinh gọn, thuộc tính được tính toán, hàm mũi tên, phạm vi khối lệnh, lời hứa, hàm sinh, bộ lặp, khối chức năng, lớp ủy quyền, WeakMap, và còn nhiều, nhiều nữa! Quả thật, nội lực của ES6 mạnh mẽ vô cùng!
 
-The first part of the book is a roadmap for all the stuff you need to learn to get ready for the new and improved JavaScript you'll be writing and exploring over the next couple of years.
+Phần đầu của cuốn sách là lộ trình cho tất cả những gì bạn cần học để sẵn sàng cho một JavaScript mới và cải tiến mà bạn sẽ viết và khám phá trong vài năm tới.
 
-The latter part of the book turns attention to briefly glance at things that we can likely expect to see in the near future of JavaScript. The most important realization here is that post-ES6, JS is likely going to evolve feature by feature rather than version by version, which means we can expect to see these near-future things coming much sooner than you might imagine.
+Phần sau của cuốn sách chuyển sự chú ý sang việc lướt qua những điều mà chúng ta có thể mong đợi sẽ thấy trong tương lai gần của JavaScript. Nhận thức quan trọng nhất ở đây là sau ES6, JS có khả năng sẽ phát triển theo từng tính năng hơn là theo từng phiên bản, điều đó có nghĩa là chúng ta có thể mong đợi thấy những thứ trong tương lai gần này đến sớm hơn nhiều so với bạn tưởng tượng.
 
-The future for JavaScript is bright. Isn't it time we start learning it!?
+Tương lai của JavaScript thật xán lạn. Đã đến lúc chúng ta bắt đầu học nó rồi, phải không!?
 
-## Review
+## Nhìn lại
 
-The *YDKJS* series is dedicated to the proposition that all JS developers can and should learn all of the parts of this great language. No person's opinion, no framework's assumptions, and no project's deadline should be the excuse for why you never learn and deeply understand JavaScript.
+Bộ sách *BKHJS* tập trung vào một mục tiêu rằng tất cả các lập trình viên JS đều có thể và nên học tất cả các phần của ngôn ngữ tuyệt vời này. Không một ý kiến cá nhân, không một giả định của bộ khung, và không một hạn chót của dự án nào có thể là cái cớ để bạn không bao giờ học và am hiểu sâu sắc JavaScript.
 
-We take each important area of focus in the language and dedicate a short but very dense book to fully explore all the parts of it that you perhaps thought you knew but probably didn't fully.
+Chúng ta sẽ xem xét từng mảng kiến thức trọng yếu của ngôn ngữ và dành cho mỗi mảng một cuốn sách ngắn gọn nhưng cô đọng, đi sâu khai phá những khía cạnh mà có lẽ bạn tưởng mình đã nắm vững nhưng thực ra lại chưa hề.
 
-"You Don't Know JS" isn't a criticism or an insult. It's a realization that all of us, myself included, must come to terms with. Learning JavaScript isn't an end goal but a process. We don't know JavaScript, yet. But we will!
+"Bạn không hiểu JS" không phải là một lời chỉ trích hay một sự sỉ nhục. Đó là một sự thật mà tất cả chúng ta, bao gồm cả tôi, phải chấp nhận. Học JavaScript không phải là đích đến mà là một quá trình. Chúng ta chưa hiểu JavaScript, chưa đâu. Nhưng chúng ta sẽ hiểu!
