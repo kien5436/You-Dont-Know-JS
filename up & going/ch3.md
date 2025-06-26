@@ -1,13 +1,13 @@
 # Bạn không hiểu JS: Khởi động và tiến lên
 # Chương 3: Đến với BKHJS
 
-Bộ sách này nói về điều gì? Nói một cách đơn giản, đó là việc nghiêm túc với nhiệm vụ học *mọi thứ về JavaScript* chứ không chỉ một tập con của ngôn ngữ mà người ta gọi là "những phần tốt đẹp", cũng không chỉ là lượng kiến thức tối thiểu bạn cần để cho xong việc.
+Loạt sách này nói về điều gì? Nói một cách đơn giản, đó là việc nghiêm túc với nhiệm vụ học *mọi thứ về JavaScript* chứ không chỉ một tập con của ngôn ngữ mà người ta gọi là "những phần tốt đẹp", cũng không chỉ là lượng kiến thức tối thiểu bạn cần để cho xong việc.
 
 Lập trình viên chuyên nghiệp ở các ngôn ngữ khác đều xác định sẽ nỗ lực học hỏi hầu hết hoặc toàn bộ (các) ngôn ngữ mà họ chủ yếu dùng để viết mã, nhưng lập trình viên JS dường như nổi bật giữa đám đông theo cái cách là thường không học hỏi bao nhiêu về ngôn ngữ này. Đây không phải là điều hay ho và cũng không phải là điều chúng ta nên mặc nhiên cho là bình thường.
 
-Bộ sách *Bạn không hiểu JS* (*BKHJS*) hoàn toàn tương phản với những cách tiếp cận thông thường để học JS, và không giống với hầu hết bất kỳ cuốn sách JS nào khác mà bạn sẽ đọc. Nó thách thức bạn vượt ra khỏi vùng thoải mái của mình và đặt ra những câu hỏi "tại sao" sâu sắc hơn cho mỗi một hành vi mà bạn gặp phải. Bạn có sẵn sàng cho thử thách đó không?
+Loạt sách *Bạn không hiểu JS* (*BKHJS*) hoàn toàn tương phản với những cách tiếp cận thông thường để học JS, và không giống với hầu hết bất kỳ cuốn sách JS nào khác mà bạn sẽ đọc. Nó thách thức bạn vượt ra khỏi vùng thoải mái của mình và đặt ra những câu hỏi "tại sao" sâu sắc hơn cho mỗi một hành vi mà bạn gặp phải. Bạn có sẵn sàng cho thử thách đó không?
 
-Tôi sẽ dùng chương cuối cùng này để tóm lược ngắn gọn những gì sẽ có trong các cuốn sách còn lại của bộ sách, và cách hiệu quả nhất để xây dựng nền tảng học JS từ *BKHJS*.
+Tôi sẽ dùng chương cuối cùng này để tóm lược ngắn gọn những gì sẽ có trong các cuốn sách còn lại của loạt sách, và cách hiệu quả nhất để xây dựng nền tảng học JS từ *BKHJS*.
 
 ## Phạm vi và Hàm khép kín
 
@@ -37,11 +37,11 @@ Vấn đề nằm ở chỗ liệu sẽ tốt hơn nếu phớt lờ sự bất 
 
 Luận điểm tôi đưa ra về ủy quyền so với kế thừa không phải đến từ sự ghét bỏ ngôn ngữ này và cú pháp của nó, mà từ khao khát được thấy tiềm năng thực sự của ngôn ngữ được khai thác đúng cách và xóa sạch những mơ hồ cùng bức xúc không hồi kết.
 
-Nhưng luận điểm tôi đưa ra về nguyên mẫu và ủy quyền còn phức tạp hơn nhiều so với những gì tôi sẽ trình bày ở đây. Nếu bạn đã sẵn sàng để xem xét lại mọi thứ bạn nghĩ rằng bạn biết về "lớp" và "kế thừa" trong JavaScript, tôi mời bạn hãy "chọn viên thuốc đỏ" (*Ma Trận* 1999) và tìm đọc chương 4-6 của cuốn *`this` và Nguyên mẫu Đối tượng* trong bộ sách này.
+Nhưng luận điểm tôi đưa ra về nguyên mẫu và ủy quyền còn phức tạp hơn nhiều so với những gì tôi sẽ trình bày ở đây. Nếu bạn đã sẵn sàng để xem xét lại mọi thứ bạn nghĩ rằng bạn biết về "lớp" và "kế thừa" trong JavaScript, tôi mời bạn hãy "chọn viên thuốc đỏ" (*Ma Trận* 1999) và tìm đọc chương 4-6 của cuốn *`this` và Nguyên mẫu Đối tượng* trong loạt sách này.
 
 ## Kiểu dữ liệu và Ngữ pháp
 
-Cuốn thứ ba trong bộ sách này chủ yếu tập trung vào việc giải quyết một chủ đề gây tranh cãi nảy lửa khác: ép kiểu. Có lẽ không có chủ đề nào gây ra nhiều sự bực dọc cho lập trình viên JS hơn khi bàn về những rối rắm quanh việc ép kiểu ngầm.
+Cuốn thứ ba trong loạt sách này chủ yếu tập trung vào việc giải quyết một chủ đề gây tranh cãi nảy lửa khác: ép kiểu. Có lẽ không có chủ đề nào gây ra nhiều sự bực dọc cho lập trình viên JS hơn khi bàn về những rối rắm quanh việc ép kiểu ngầm.
 
 Cho đến nay, lối nghĩ thông thường cho rằng ép kiểu ngầm là một "phần tồi tệ" của ngôn ngữ và phải tránh bằng mọi giá. Trên thực tế, một số người đã đi xa đến mức gọi nó là một "khiếm khuyết" trong thiết kế ngôn ngữ. Thật vậy, có những công cụ mà toàn bộ công việc của nó chỉ là quét mã của bạn và phàn nàn nếu bạn đang làm bất cứ điều gì dù chỉ hơi giống với ép kiểu.
 
@@ -51,11 +51,11 @@ Tôi sẽ nói không. Sau khi đã xây dựng được sự hiểu biết về
 
 Nhưng tôi không chỉ đơn thuần cho rằng ép kiểu là hợp lý và có thể học được, tôi còn khẳng định rằng ép kiểu là một công cụ cực kỳ hữu ích và hoàn toàn bị đánh giá thấp mà *bạn nên sử dụng trong mã của mình*. Tôi muốn nói rằng khi ép kiểu được sử dụng đúng cách, nó không chỉ hoạt động mà còn khiến mã của bạn tốt hơn. Tất cả những kẻ phản đối và hoài nghi chắc chắn sẽ chế nhạo một lập trường như vậy, nhưng tôi tin rằng đó là một trong những chìa khóa chính để nâng trình JS của bạn.
 
-Bạn muốn tiếp tục nghe theo đám đông hay sẵn sàng gạt bỏ mọi giả định sang một bên và nhìn nhận việc ép kiểu với một con mắt hoàn toàn mới? Cuốn *Kiểu dữ liệu và Ngữ pháp* trong bộ sách này sẽ ép buộc cả tư duy của bạn.
+Bạn muốn tiếp tục nghe theo đám đông hay sẵn sàng gạt bỏ mọi giả định sang một bên và nhìn nhận việc ép kiểu với một con mắt hoàn toàn mới? Cuốn *Kiểu dữ liệu và Ngữ pháp* trong loạt sách này sẽ ép buộc cả tư duy của bạn.
 
 ## Bất đồng bộ và Hiệu năng
 
-Ba cuốn sách đầu tiên của bộ sách tập trung vào các cơ chế cốt lõi của ngôn ngữ, nhưng cuốn thứ tư mở rộng ra một chút để bao quát các mẫu hình được xây dựng trên các cơ chế đó nhằm quản lý lập trình bất đồng bộ. Tính bất đồng bộ không chỉ tối quan trọng với hiệu năng của các ứng dụng mà ngày càng trở thành yếu tố then chốt quyết định khả năng viết và bảo trì mã nguồn.
+Ba cuốn sách đầu tiên của loạt sách tập trung vào các cơ chế cốt lõi của ngôn ngữ, nhưng cuốn thứ tư mở rộng ra một chút để bao quát các mẫu hình được xây dựng trên các cơ chế đó nhằm quản lý lập trình bất đồng bộ. Tính bất đồng bộ không chỉ tối quan trọng với hiệu năng của các ứng dụng mà ngày càng trở thành yếu tố then chốt quyết định khả năng viết và bảo trì mã nguồn.
 
 Cuốn sách bắt đầu bằng việc làm sáng tỏ rất nhiều thuật ngữ và khái niệm mơ hồ xoay quanh những thứ như "bất đồng bộ" (async), "song song" (parallel), và "đồng thời" (concurrent), và giải thích sâu về cách chúng áp dụng và không áp dụng cho JS như thế nào.
 
@@ -79,13 +79,13 @@ Cuốn *Bất đồng bộ và Hiệu năng* được thiết kế để cung c�
 
 ## ES6 và hơn thế nữa
 
-Bất kể bạn cảm thấy mình đã làm chủ JavaScript đến mức nào, sự thật là JavaScript sẽ không bao giờ ngừng phát triển, và hơn nữa, tốc độ phát triển đang tăng lên nhanh chóng. Thực tế này gần như là một phép ẩn dụ cho tinh thần của bộ sách này, đó là hãy chấp nhận rằng chúng ta sẽ không bao giờ *hiểu* trọn vẹn mọi phần của JS, bởi vì ngay khi bạn làm chủ tất cả, sẽ có những thứ mới xuất hiện mà bạn sẽ cần phải học.
+Bất kể bạn cảm thấy mình đã làm chủ JavaScript đến mức nào, sự thật là JavaScript sẽ không bao giờ ngừng phát triển, và hơn nữa, tốc độ phát triển đang tăng lên nhanh chóng. Thực tế này gần như là một phép ẩn dụ cho tinh thần của loạt sách này, đó là hãy chấp nhận rằng chúng ta sẽ không bao giờ *hiểu* trọn vẹn mọi phần của JS, bởi vì ngay khi bạn làm chủ tất cả, sẽ có những thứ mới xuất hiện mà bạn sẽ cần phải học.
 
 Cuốn sách này dành riêng cho cả tầm nhìn ngắn hạn và trung hạn về hướng đi của ngôn ngữ, không chỉ những thứ *đã biết* như ES6 mà còn cả những thứ *có khả năng* sẽ vượt xa hơn thế.
 
-Trong khi tất cả các cuốn sách của bộ này đều đón nhận trạng thái của JavaScript tại thời điểm viết cuốn sách này, tức là giữa giai đoạn áp dụng ES6, trọng tâm chính trong bộ sách vẫn là ES5. Bây giờ, chúng ta muốn chuyển sự chú ý sang ES6, ES7, và ...
+Trong khi tất cả các cuốn sách của bộ này đều đón nhận trạng thái của JavaScript tại thời điểm viết cuốn sách này, tức là giữa giai đoạn áp dụng ES6, trọng tâm chính trong loạt sách vẫn là ES5. Bây giờ, chúng ta muốn chuyển sự chú ý sang ES6, ES7, và ...
 
-Vì ES6 đã gần như hoàn thiện tại thời điểm viết cuốn sách này, *ES6 và hơn thế nữa* bắt đầu bằng cách phân chia những thứ hữu hình từ toàn cảnh ES6 thành nhiều loại chính, bao gồm cú pháp mới, cấu trúc dữ liệu mới (bộ sưu tập), và các khả năng xử lý cùng API mới. Chúng ta đề cập đến từng tính năng mới này của ES6 ở các mức độ chi tiết khác nhau, bao gồm cả việc xem lại các chi tiết được đề cập trong các cuốn khác của bộ sách.
+Vì ES6 đã gần như hoàn thiện tại thời điểm viết cuốn sách này, *ES6 và hơn thế nữa* bắt đầu bằng cách phân chia những thứ hữu hình từ toàn cảnh ES6 thành nhiều loại chính, bao gồm cú pháp mới, cấu trúc dữ liệu mới (bộ sưu tập), và các khả năng xử lý cùng API mới. Chúng ta đề cập đến từng tính năng mới này của ES6 ở các mức độ chi tiết khác nhau, bao gồm cả việc xem lại các chi tiết được đề cập trong các cuốn khác của loạt sách.
 
 Một số điều thú vị của ES6 mong chờ bạn khám phá: phân rã cấu trúc, giá trị tham số mặc định, biểu tượng, phương thức tinh gọn, thuộc tính được tính toán, hàm mũi tên, phạm vi khối lệnh, lời hứa, hàm sinh, bộ lặp, khối chức năng, lớp ủy quyền, WeakMap, và còn nhiều, nhiều nữa! Quả thật, nội lực của ES6 mạnh mẽ vô cùng!
 
@@ -97,7 +97,7 @@ Tương lai của JavaScript thật xán lạn. Đã đến lúc chúng ta bắt
 
 ## Nhìn lại
 
-Bộ sách *BKHJS* tập trung vào một mục tiêu rằng tất cả các lập trình viên JS đều có thể và nên học tất cả các phần của ngôn ngữ tuyệt vời này. Không một ý kiến cá nhân, không một giả định của bộ khung, và không một hạn chót của dự án nào có thể là cái cớ để bạn không bao giờ học và am hiểu sâu sắc JavaScript.
+Loạt sách *BKHJS* tập trung vào một mục tiêu rằng tất cả các lập trình viên JS đều có thể và nên học tất cả các phần của ngôn ngữ tuyệt vời này. Không một ý kiến cá nhân, không một giả định của bộ khung, và không một hạn chót của dự án nào có thể là cái cớ để bạn không bao giờ học và am hiểu sâu sắc JavaScript.
 
 Chúng ta sẽ xem xét từng mảng kiến thức trọng yếu của ngôn ngữ và dành cho mỗi mảng một cuốn sách ngắn gọn nhưng cô đọng, đi sâu khai phá những khía cạnh mà có lẽ bạn tưởng mình đã nắm vững nhưng thực ra lại chưa hề.
 
