@@ -919,22 +919,22 @@ Phần JavaScript không phải JavaScript phổ biến nhất mà bạn sẽ g�
 var el = document.getElementById("foo");
 ```
 
-Biến `document` tồn tại như một biến toàn cục khi mã của bạn chạy trong chương trình duyệt. Nó không được cung cấp bởi bộ máy JS, cũng không thực sự được kiểm soát bởi đặc tả JavaScript. Nó mang hình thức của một thứ trông giống như một `object` JavaScript bình thường, nhưng thực ra thì không hẳn như vậy. Nó là một `object` đặc biệt, thường được gọi là “đối tượng chủ” (host object).
+Biến `document` tồn tại như một biến toàn cục khi mã của bạn chạy trong chương trình duyệt. Nó không được cung cấp bởi bộ máy JS, cũng không thực sự được kiểm soát bởi đặc tả JavaScript. Nó mang hình thức của một thứ trông giống như một `object` JS bình thường, nhưng thực ra thì không hẳn như vậy. Nó là một `object` đặc biệt thường được gọi là “đối tượng chủ”.
 
-Hơn nữa, phương thức `getElementById(..)` trên `document` trông giống như một hàm JavaScript bình thường, nhưng thực ra nó chỉ là một giao diện mỏng được lộ ra bên ngoài để tiếp cận một phương thức có sẵn do DOM của trình duyệt cung cấp. Trong một số trình duyệt đời mới, lớp giao tiếp này có thể cũng viết bằng JavaScript, nhưng truyền thống thì DOM và hành vi của nó được hiện thực bằng thứ gì đó giống như C/C++.
+Hơn nữa, phương thức `getElementById(..)` trên `document` trông giống như một hàm JS bình thường nhưng thực ra nó chỉ là một giao diện mỏng được để lộ ra bên ngoài để tiếp cận một phương thức có sẵn do DOM của chương trình duyệt cung cấp. Trong một số chương trình duyệt (đời mới), lớp giao tiếp này có thể cũng viết bằng JS, nhưng thông thường thì DOM và hành vi của nó được triển khai bằng thứ gì đó giống như C/C++.
 
 Một ví dụ khác là với việc nhập/xuất (I/O).
 
-Hàm `alert(..)` quen thuộc sẽ bật ra một hộp thoại trong cửa sổ trình duyệt của người dùng. `alert(..)` được trình duyệt cung cấp cho chương trình JavaScript của bạn, chứ không phải do chính JavaScript cung cấp. Lệnh gọi đó gửi thông điệp đến bên trong trình duyệt và nó sẽ xử lý việc vẽ và hiển thị hộp thoại đó.
+Hàm `alert(..)` ưa thích của mọi lập trình viên sẽ bật ra một hộp thoại trong cửa sổ chương trình duyệt của người dùng. `alert(..)` được trình duyệt cung cấp cho chương trình JS của bạn chứ không phải do bản thân JS cung cấp. Lệnh gọi đó gửi thông điệp đến bên trong chương trình duyệt và nó sẽ xử lý việc vẽ và hiển thị hộp thoại đó.
 
-Tương tự với `console.log(..)`; trình duyệt của bạn cung cấp cơ chế này và kết nối nó với các công cụ dành cho nhà phát triển.
+Tương tự với `console.log(..)`;, chương trình duyệt của bạn cung cấp cơ chế này và kết nối nó với các công cụ dành cho nhà phát triển.
 
-Cuốn sách này, cũng như toàn bộ loạt sách này, tập trung vào JavaScript với tư cách là một ngôn ngữ. Đó là lý do tại sao bạn không thấy nội dung đề cập sâu đến các cơ chế JavaScript không thuần này. Tuy nhiên, bạn cần phải biết đến chúng, vì chúng sẽ có mặt trong mọi chương trình JavaScript mà bạn viết!
+Cuốn sách này, cũng như toàn bộ loạt sách này, tập trung vào JavaScript với tư cách là một ngôn ngữ. Đó là lý do tại sao bạn không thấy nội dung đề cập sâu đến các cơ chế không thuần JavaScript này. Tuy nhiên, bạn cần phải biết đến chúng vì chúng sẽ có mặt trong mọi chương trình JS mà bạn viết!
 
 ## Nhìn lại
 
-Bước đầu tiên để học lập trình theo phong cách JavaScript là hiểu những cơ chế cốt lõi như giá trị, kiểu dữ liệu, hàm khép kín, `this`, và nguyên mẫu.
+Bước đầu tiên để học lập trình theo phong cách JavaScript là hiểu những cơ chế cốt lõi như giá trị, kiểu dữ liệu, hàm khép kín, `this` và nguyên mẫu.
 
-Tất nhiên, mỗi chủ đề trong số này đều xứng đáng có một sự trình bày kỹ lưỡng hơn so với những gì bạn đã thấy ở đây, và đó là lý do tại sao chúng có các chương và cuốn sách riêng biệt trong phần còn lại của loạt sách này. Sau khi bạn cảm thấy khá thoải mái với các khái niệm và ví dụ trong chương này, phần còn lại của loạt sách sẽ chờ bạn khám phá để thực sự hiểu sâu về ngôn ngữ này.
+Tất nhiên, mỗi chủ đề trong số này đều xứng đáng có một sự trình bày kỹ lưỡng hơn so với những gì bạn đã thấy ở đây, và đó là lý do tại sao chúng có các chương và cuốn sách riêng biệt trong phần còn lại của loạt sách này. Sau khi bạn cảm thấy khá thoải mái với các khái niệm và ví dụ trong chương này, phần còn lại của loạt sách đang chờ bạn khám phá để thực sự hiểu sâu về ngôn ngữ này.
 
 Chương cuối của cuốn sách này sẽ tóm tắt ngắn gọn từng tựa đề khác trong loạt sách và những khái niệm mà chúng đề cập ngoài những gì chúng ta đã khám phá.
