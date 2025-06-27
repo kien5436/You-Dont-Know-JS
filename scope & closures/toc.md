@@ -1,33 +1,33 @@
-# You Don't Know JS: Scope & Closures
+# Bạn không hiểu JS: Phạm vi và Hàm khép kín
 
-## Table of Contents
+## Mục lục
 
-* Foreword
-* Preface
-* Chapter 1: What is Scope?
+* Lời tựa
+* Lời mở đầu
+* Chương 1: Phạm vi là gì?
 	* Compiler Theory
 	* Understanding Scope
 	* Nested Scope
 	* Errors
-* Chapter 2: Lexical Scope
+* Chương 2: Phạm vi Từ vựng
 	* Lex-time
 	* Cheating Lexical
-* Chapter 3: Function vs. Block Scope
+* Chương 3: Phạm vi Hàm và Phạm vi Khối
 	* Scope From Functions
 	* Hiding In Plain Scope
 	* Functions As Scopes
 	* Blocks As Scopes
-* Chapter 4: Hoisting
+* Chương 4: Kéo lên
 	* Chicken Or The Egg?
 	* The Compiler Strikes Again
 	* Functions First
-* Chapter 5: Scope Closures
+* Chương 5: Phạm vi Hàm khép kín
 	* Enlightenment
 	* Nitty Gritty
 	* Now I Can See
 	* Loops + Closure
 	* Modules
-* Appendix A: Dynamic Scope
-* Appendix B: Polyfilling Block Scope
-* Appendix C: Lexical-this
-* Appendix D: Acknowledgments
+* Phụ lục A: Phạm vi Động
+* Phụ lục B: Giả lập Phạm vi Khối
+* Phụ lục C: Từ vựng `this`
+* Phụ lục D: Lời cảm ơn!

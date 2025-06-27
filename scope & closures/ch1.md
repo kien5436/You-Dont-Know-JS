@@ -1,147 +1,123 @@
-# You Don't Know JS: Scope & Closures
-# Chapter 1: What is Scope?
+# Bạn không hiểu JS: Phạm vi & Hàm khép kín
+# Chương 1: Phạm vi là gì?
 
-One of the most fundamental paradigms of nearly all programming languages is the ability to store values in variables, and later retrieve or modify those values. In fact, the ability to store values and pull values out of variables is what gives a program *state*.
+Một trong những mô thức nền tảng nhất của gần như mọi ngôn ngữ lập trình là khả năng lưu trữ giá trị vào các biến, sau đó truy xuất hoặc sửa đổi các giá trị đó. Trong thực tế, khả năng lưu trữ và lấy giá trị ra khỏi biến tạo nên *trạng thái* cho một chương trình.
 
-Without such a concept, a program could perform some tasks, but they would be extremely limited and not terribly interesting.
+Nếu không có khái niệm này, một chương trình vẫn có thể thực hiện vài tác vụ, nhưng chúng sẽ cực kỳ hạn chế và không mấy thú vị.
 
-But the inclusion of variables into our program begets the most interesting questions we will now address: where do those variables *live*? In other words, where are they stored? And, most importantly, how does our program find them when it needs them?
+Thế nhưng việc đưa biến vào chương trình lại làm nảy sinh những câu hỏi thú vị nhất mà chúng ta sẽ giải quyết ngay bây giờ: những biến đó *tồn tại* ở đâu? Nói cách khác, chúng được lưu trữ ở đâu? Và quan trọng nhất, làm thế nào chương trình của ta tìm thấy chúng khi cần?
 
-These questions speak to the need for a well-defined set of rules for storing variables in some location, and for finding those variables at a later time. We'll call that set of rules: *Scope*.
+Những câu hỏi này cho thấy sự cần thiết của một tập hợp các quy tắc được định nghĩa rõ ràng để lưu trữ biến ở một vị trí nào đó và tìm lại chúng sau này. Ta sẽ gọi tập hợp các quy tắc đó là: *Phạm vi*.
 
-But, where and how do these *Scope* rules get set?
+Nhưng các quy tắc *Phạm vi* này được thiết lập ở đâu và như thế nào?
 
-## Compiler Theory
+## Lý thuyết chương trình biên dịch
 
-It may be self-evident, or it may be surprising, depending on your level of interaction with various languages, but despite the fact that JavaScript falls under the general category of "dynamic" or "interpreted" languages, it is in fact a compiled language. It is *not* compiled well in advance, as are many traditionally-compiled languages, nor are the results of compilation portable among various distributed systems.
+Tùy vào mức độ tương tác của bạn với các ngôn ngữ khác nhau, điều này có thể là hiển nhiên, hoặc cũng có thể gây ngạc nhiên, mặc dù JavaScript được xếp vào loại ngôn ngữ "động" hoặc "thông dịch", nó thực chất là một ngôn ngữ biên dịch. Nó *không* được biên dịch kĩ càng như nhiều ngôn ngữ biên dịch truyền thống, kết quả biên dịch của nó cũng không thể mang đi sử dụng trên các hệ thống phân tán khác nhau.
 
-But, nevertheless, the JavaScript engine performs many of the same steps, albeit in more sophisticated ways than we may commonly be aware, of any traditional language-compiler.
+Tuy nhiên, bộ máy JavaScript vẫn thực hiện nhiều bước tương tự như bất kỳ chương trình biên dịch ngôn ngữ truyền thống nào, dù theo những cách tinh vi hơn chúng ta thường nghĩ.
 
-In a traditional compiled-language process, a chunk of source code, your program, will undergo typically three steps *before* it is executed, roughly called "compilation":
+Trong một quy trình của ngôn ngữ biên dịch truyền thống, một đoạn mã nguồn, tức chương trình của bạn, thường sẽ trải qua ba bước *trước khi* được thực thi, gọi chung là "biên dịch":
 
-1. **Tokenizing/Lexing:** breaking up a string of characters into meaningful (to the language) chunks, called tokens. For instance, consider the program: `var a = 2;`. This program would likely be broken up into the following tokens: `var`, `a`, `=`, `2`, and `;`. Whitespace may or may not be persisted as a token, depending on whether it's meaningful or not.
+1. **Phân đoạn/Phân tích từ vựng (đoạnizing/Lexing):** chia một chuỗi ký tự thành các khối có ý nghĩa (đối với ngôn ngữ), gọi là đoạn. Ví dụ, xét chương trình: `var a = 2;`. Chương trình này có thể sẽ được chia thành các đoạn sau: `var`, `a`, `=`, `2`, và `;`. Khoảng trắng có thể được giữ lại hoặc không, tùy thuộc vào việc nó có ý nghĩa hay không.
 
-    **Note:** The difference between tokenizing and lexing is subtle and academic, but it centers on whether or not these tokens are identified in a *stateless* or *stateful* way. Put simply, if the tokenizer were to invoke stateful parsing rules to figure out whether `a` should be considered a distinct token or just part of another token, *that* would be **lexing**.
+    **Lưu ý:** Sự khác biệt giữa phân đoạn và phân tích từ vựng khá tinh vi và mang tính học thuật, nhưng nó xoay quanh việc liệu các đoạn này được xác định theo cách *không trạng thái* hay *có trạng thái*. Nói một cách đơn giản, nếu bộ phân đoạn phải gọi đến các quy tắc phân tích trạng thái để xác định xem `a` nên được coi là một đoạn riêng biệt hay chỉ là một phần của một đoạn khác, thì *đó* chính là **phân tích từ vựng**.
 
-2. **Parsing:** taking a stream (array) of tokens and turning it into a tree of nested elements, which collectively represent the grammatical structure of the program. This tree is called an "AST" (<b>A</b>bstract <b>S</b>yntax <b>T</b>ree).
+2. **Phân tích cú pháp (Parsing):** lấy một luồng (mảng) các đoạn và biến nó thành một cây gồm các phần tử lồng nhau, đại diện cho cấu trúc ngữ pháp của chương trình. Cây này được gọi là "AST" (<b>A</b>bstract <b>S</b>yntax <b>T</b>ree - Cây Cú pháp Trừu tượng).
 
-    The tree for `var a = 2;` might start with a top-level node called `VariableDeclaration`, with a child node called `Identifier` (whose value is `a`), and another child called `AssignmentExpression` which itself has a child called `NumericLiteral` (whose value is `2`).
+    Cây biểu diễn cho `var a = 2;` có thể bắt đầu bằng một nút cấp cao nhất gọi là `VariableDeclaration` (Khai báo biến), với một nút con gọi là `Identifier` (Định danh) (có giá trị là `a`), và một nút con khác gọi là `AssignmentExpression` (Biểu thức gán), bản thân nó lại có một nút con gọi là `NumericLiteral` (Thuần số) (có giá trị là `2`).
 
-3. **Code-Generation:** the process of taking an AST and turning it into executable code. This part varies greatly depending on the language, the platform it's targeting, etc.
+3. **Sinh mã (Code-Generation):** quá trình lấy một AST và biến nó thành mã có thể thực thi. Phần này khác nhau rất nhiều tùy thuộc vào ngôn ngữ, nền tảng mà nó nhắm đến, v.v.
 
-    So, rather than get mired in details, we'll just handwave and say that there's a way to take our above described AST for `var a = 2;` and turn it into a set of machine instructions to actually *create* a variable called `a` (including reserving memory, etc.), and then store a value into `a`.
+    Vì vậy, thay vì sa lầy vào chi tiết, ta sẽ chỉ nói một cách vắn tắt rằng có một cách để lấy AST đã mô tả ở trên cho `var a = 2;` và biến nó thành một tập hợp các lệnh máy để thực sự *tạo* ra một biến tên là `a` (bao gồm cả việc cấp phát bộ nhớ, v.v.), rồi lưu một giá trị vào `a`.
 
-    **Note:** The details of how the engine manages system resources are deeper than we will dig, so we'll just take it for granted that the engine is able to create and store variables as needed.
+    **Lưu ý:** Chi tiết về cách bộ máy quản lý tài nguyên hệ thống sâu sắc hơn những gì chúng ta sẽ tìm hiểu, vì vậy ta sẽ tạm chấp nhận rằng bộ máy có khả năng tạo và lưu trữ biến khi cần.
 
-The JavaScript engine is vastly more complex than *just* those three steps, as are most other language compilers. For instance, in the process of parsing and code-generation, there are certainly steps to optimize the performance of the execution, including collapsing redundant elements, etc.
+Bộ máy JavaScript phức tạp hơn *chỉ* ba bước trên rất nhiều, cũng như hầu hết các chương trình biên dịch ngôn ngữ khác. Ví dụ, trong quá trình phân tích cú pháp và sinh mã, chắc chắn có các bước để tối ưu hóa hiệu suất thực thi, bao gồm cả việc thu gọn các phần tử dư thừa, v.v.
 
-So, I'm painting only with broad strokes here. But I think you'll see shortly why *these* details we *do* cover, even at a high level, are relevant.
+Vì vậy, ở đây tôi chỉ đang phác thảo những nét đại cương. Nhưng tôi nghĩ bạn sẽ sớm hiểu tại sao những chi tiết *này* mà chúng ta *đề cập đến*, dù ở mức độ tổng quan, lại có liên quan.
 
-For one thing, JavaScript engines don't get the luxury (like other language compilers) of having plenty of time to optimize, because JavaScript compilation doesn't happen in a build step ahead of time, as with other languages.
+Một lý do là các bộ máy JavaScript không có được sự xa xỉ (như các chương trình biên dịch ngôn ngữ khác) là có nhiều thời gian để tối ưu hóa, bởi vì việc biên dịch JavaScript không diễn ra trong một giai đoạn xây dựng từ đầu như các ngôn ngữ khác.
 
-For JavaScript, the compilation that occurs happens, in many cases, mere microseconds (or less!) before the code is executed. To ensure the fastest performance, JS engines use all kinds of tricks (like JITs, which lazy compile and even hot re-compile, etc.) which are well beyond the "scope" of our discussion here.
+Đối với JavaScript, việc biên dịch xảy ra, trong nhiều trường hợp, chỉ vài micro giây (hoặc ít hơn!) trước khi mã được thực thi. Để đảm bảo hiệu suất nhanh nhất, các bộ máy JS sử dụng đủ mọi loại thủ thuật (như JIT, biên dịch trễ và thậm chí biên dịch lại ngay lúc chạy, v.v.) mà đã vượt ra ngoài "phạm vi" thảo luận của chúng ta ở đây.
 
-Let's just say, for simplicity's sake, that any snippet of JavaScript has to be compiled before (usually *right* before!) it's executed. So, the JS compiler will take the program `var a = 2;` and compile it *first*, and then be ready to execute it, usually right away.
+Hãy cứ nói một cách đơn giản rằng, bất kỳ đoạn mã JavaScript nào cũng phải được biên dịch trước khi (thường là *ngay* trước khi!) nó được thực thi. Vì vậy, chương trình biên dịch JS sẽ nhận lấy chương trình `var a = 2;` và biên dịch nó *trước*, sau đó sẵn sàng để thực thi, thường là ngay lập tức.
 
-## Understanding Scope
+## Hiểu về Phạm vi
 
-The way we will approach learning about scope is to think of the process in terms of a conversation. But, *who* is having the conversation?
+Cách chúng ta tiếp cận việc học về phạm vi là nghĩ về quá trình này như một cuộc trò chuyện. Nhưng, *ai* đang trò chuyện?
 
-### The Cast
+### Dàn nhân vật
 
-Let's meet the cast of characters that interact to process the program `var a = 2;`, so we understand their conversations that we'll listen in on shortly:
+Hãy cùng gặp gỡ dàn nhân vật tương tác với nhau để xử lý chương trình `var a = 2;`, từ đó chúng ta có thể hiểu được các cuộc đối thoại mà chúng ta sẽ nghe lỏm ngay sau đây:
 
-1. *Engine*: responsible for start-to-finish compilation and execution of our JavaScript program.
+1. ***Bộ máy***: chịu trách nhiệm từ đầu đến cuối việc biên dịch và thực thi chương trình JavaScript của chúng ta.
 
-2. *Compiler*: one of *Engine*'s friends; handles all the dirty work of parsing and code-generation (see previous section).
+2. ***Chương trình biên dịch***: một trong những người bạn của *Bộ máy*; xử lý tất cả phần việc nặng nhọc của việc phân tích cú pháp và sinh mã (xem phần trước).
 
-3. *Scope*: another friend of *Engine*; collects and maintains a look-up list of all the declared identifiers (variables), and enforces a strict set of rules as to how these are accessible to currently executing code.
+3. ***Phạm vi***: một người bạn khác nữa của *Bộ máy*; thu thập và duy trì một danh sách tra cứu tất cả các định danh (biến) đã được khai báo, và thực thi một bộ quy tắc nghiêm ngặt về cách mã đang thực thi có thể truy cập chúng.
 
-For you to *fully understand* how JavaScript works, you need to begin to *think* like *Engine* (and friends) think, ask the questions they ask, and answer those questions the same.
+Để *hoàn toàn thấu hiểu* cách JavaScript hoạt động, bạn cần bắt đầu *suy nghĩ* như cách *Bộ máy* (và những người bạn) suy nghĩ, hỏi theo cách họ hỏi và trả lời theo cách họ trả lời.
 
-### Back & Forth
+### Đối đáp
 
-When you see the program `var a = 2;`, you most likely think of that as one statement. But that's not how our new friend *Engine* sees it. In fact, *Engine* sees two distinct statements, one which *Compiler* will handle during compilation, and one which *Engine* will handle during execution.
+Khi bạn thấy chương trình `var a = 2;`, nhiều khả năng bạn nghĩ đó là một câu lệnh. Nhưng đó không phải là cách người bạn mới của chúng ta, *Bộ máy*, nhìn nhận nó. Thực tế, *Bộ máy* thấy hai câu lệnh riêng biệt, một câu lệnh mà *Chương trình biên dịch* sẽ xử lý trong quá trình biên dịch, và một câu lệnh mà *Bộ máy* sẽ xử lý trong quá trình thực thi.
 
-So, let's break down how *Engine* and friends will approach the program `var a = 2;`.
+Vậy hãy cùng phân tích cách *Bộ máy* và những người bạn sẽ tiếp cận chương trình `var a = 2;`.
 
-The first thing *Compiler* will do with this program is perform lexing to break it down into tokens, which it will then parse into a tree. But when *Compiler* gets to code-generation, it will treat this program somewhat differently than perhaps assumed.
+Điều đầu tiên *Chương trình biên dịch* sẽ làm với chương trình này là thực hiện phân tích từ vựng để chia nó thành các đoạn, sau đó sẽ phân tích cú pháp của chúng thành một cây. Nhưng khi *Chương trình biên dịch* đến bước sinh mã, nó sẽ xử lý chương trình này hơi khác so với những gì có thể được giả định.
 
-A reasonable assumption would be that *Compiler* will produce code that could be summed up by this pseudo-code: "Allocate memory for a variable, label it `a`, then stick the value `2` into that variable." Unfortunately, that's not quite accurate.
+Một giả định hợp lý là *Chương trình biên dịch* sẽ tạo ra mã có thể được tóm tắt bằng mã giả sau: "Cấp phát bộ nhớ cho một biến, gán nhãn là `a`, sau đó đặt giá trị `2` vào biến đó". Rất tiếc, điều đó không hoàn toàn chính xác.
 
-*Compiler* will instead proceed as:
+Thay vào đó *Chương trình biên dịch* sẽ tiến hành như sau:
 
-1. Encountering `var a`, *Compiler* asks *Scope* to see if a variable `a` already exists for that particular scope collection. If so, *Compiler* ignores this declaration and moves on. Otherwise, *Compiler* asks *Scope* to declare a new variable called `a` for that scope collection.
+1. Gặp `var a`, *Chương trình biên dịch* hỏi *Phạm vi* xem một biến `a` đã tồn tại trong tập hợp phạm vi cụ thể đó chưa. Nếu có, *Chương trình biên dịch* bỏ qua khai báo này và tiếp tục. Nếu không, *Chương trình biên dịch* yêu cầu *Phạm vi* khai báo một biến mới tên là `a` cho tập hợp phạm vi đó.
 
-2. *Compiler* then produces code for *Engine* to later execute, to handle the `a = 2` assignment. The code *Engine* runs will first ask *Scope* if there is a variable called `a` accessible in the current scope collection. If so, *Engine* uses that variable. If not, *Engine* looks *elsewhere* (see nested *Scope* section below).
+2.  *Chương trình biên dịch* sau đó tạo ra mã cho *Bộ máy* để thực thi sau này, để xử lý phép gán `a = 2`. Mã mà *Bộ máy* chạy sẽ đầu tiên hỏi *Phạm vi* xem có biến nào tên là `a` có thể truy cập được trong tập hợp phạm vi hiện tại không. Nếu có, *Bộ máy* sử dụng biến đó. Nếu không, *Bộ máy* tìm ở *nơi khác* (xem phần *Phạm vi* lồng nhau bên dưới).
 
-If *Engine* eventually finds a variable, it assigns the value `2` to it. If not, *Engine* will raise its hand and yell out an error!
+Nếu *Bộ máy* cuối cùng tìm thấy một biến, nó sẽ gán giá trị `2` cho biến đó. Nếu không, *Bộ máy* sẽ giơ tay và hét lên một lỗi!
 
-To summarize: two distinct actions are taken for a variable assignment: First, *Compiler* declares a variable (if not previously declared in the current scope), and second, when executing, *Engine* looks up the variable in *Scope* and assigns to it, if found.
+Tóm lại: hai hành động riêng biệt được thực hiện cho một phép gán biến: Thứ nhất, *Chương trình biên dịch* khai báo một biến (nếu chưa được khai báo trước đó trong phạm vi hiện tại), và thứ hai, khi thực thi, *Bộ máy* tra cứu biến trong *Phạm vi* và gán giá trị cho nó, nếu tìm thấy.
 
-### Compiler Speak
+### Thuật ngữ Trình biên dịch
 
-We need a little bit more compiler terminology to proceed further with understanding.
+Chúng ta cần thêm một chút thuật ngữ trình biên dịch để tiếp tục đi sâu vào việc tìm hiểu.
 
-When *Engine* executes the code that *Compiler* produced for step (2), it has to look-up the variable `a` to see if it has been declared, and this look-up is consulting *Scope*. But the type of look-up *Engine* performs affects the outcome of the look-up.
+Khi *Bộ máy* thực thi mã mà *Chương trình biên dịch* đã tạo ra cho bước (2), nó phải tra cứu biến `a` để xem nó đã được khai báo chưa, và việc tra cứu này là tham vấn *Phạm vi*. Nhưng loại tra cứu mà *Bộ máy* thực hiện sẽ ảnh hưởng đến kết quả của việc tra cứu.
 
-In our case, it is said that *Engine* would be performing an "LHS" look-up for the variable `a`. The other type of look-up is called "RHS".
+Trong trường hợp của chúng ta, người ta nói rằng *Bộ máy* sẽ thực hiện một tra cứu "LHS" cho biến `a`. Loại tra cứu còn lại được gọi là "RHS".
 
-I bet you can guess what the "L" and "R" mean. These terms stand for "Left-hand Side" and "Right-hand Side".
+Tôi cá là bạn có thể đoán được "L" và "R" có nghĩa là gì. Các thuật ngữ này là viết tắt của "Left-hand Side" (Vế Trái) và "Right-hand Side" (Vế Phải).
 
-Side... of what? **Of an assignment operation.**
+Vế... của cái gì? **Của một phép toán gán.**
 
-In other words, an LHS look-up is done when a variable appears on the left-hand side of an assignment operation, and an RHS look-up is done when a variable appears on the right-hand side of an assignment operation.
+Nói cách khác, một tra cứu LHS được thực hiện khi một biến xuất hiện ở vế trái của một phép toán gán, và một tra cứu RHS được thực hiện khi một biến xuất hiện ở vế phải của một phép toán gán.
 
-Actually, let's be a little more precise. An RHS look-up is indistinguishable, for our purposes, from simply a look-up of the value of some variable, whereas the LHS look-up is trying to find the variable container itself, so that it can assign. In this way, RHS doesn't *really* mean "right-hand side of an assignment" per se, it just, more accurately, means "not left-hand side".
+Thực ra, hãy nói chính xác hơn một chút. Một tra cứu RHS, đối với mục đích của chúng ta, không thể phân biệt được với việc đơn giản là tra cứu giá trị của một biến nào đó, trong khi tra cứu LHS là cố gắng tìm chính vùng chứa của biến đó, để có thể gán giá trị. Theo cách này, RHS không *thực sự* có nghĩa là "vế phải của một phép gán", mà chính xác hơn, nó chỉ có nghĩa là "không phải là vế trái".
 
-Being slightly glib for a moment, you could also think "RHS" instead means "retrieve his/her source (value)", implying that RHS means "go get the value of...".
+Nói một cách ví von, bạn có thể xem "RHS" như là "lấy giá trị nguồn của nó" (retrieve his/her source value), ngụ ý rằng RHS có nghĩa là "đi lấy giá trị của...".
 
-Let's dig into that deeper.
+Hãy cùng đào sâu hơn.
 
-When I say:
+Khi tôi viết:
 
 ```js
 console.log( a );
 ```
 
-The reference to `a` is an RHS reference, because nothing is being assigned to `a` here. Instead, we're looking-up to retrieve the value of `a`, so that the value can be passed to `console.log(..)`.
+Tham chiếu đến `a` là một tham chiếu RHS, bởi vì không có gì được gán cho `a` ở đây. Thay vào đó, chúng ta đang tra cứu để lấy giá trị của `a`, để giá trị đó có thể được truyền cho `console.log(..)`.
 
-By contrast:
+Ngược lại:
 
 ```js
 a = 2;
 ```
 
-The reference to `a` here is an LHS reference, because we don't actually care what the current value is, we simply want to find the variable as a target for the `= 2` assignment operation.
+Tham chiếu đến `a` ở đây là một tham chiếu LHS, bởi vì chúng ta không thực sự quan tâm đến giá trị hiện tại của nó là gì, chúng ta chỉ đơn giản muốn tìm biến đó như một mục tiêu cho phép toán gán `= 2`.
 
-**Note:** LHS and RHS meaning "left/right-hand side of an assignment" doesn't necessarily literally mean "left/right side of the `=` assignment operator". There are several other ways that assignments happen, and so it's better to conceptually think about it as: "who's the target of the assignment (LHS)" and "who's the source of the assignment (RHS)".
+**Lưu ý:** LHS và RHS có nghĩa là "vế trái/phải của một phép gán" không nhất thiết có nghĩa đen là "bên trái/phải của toán tử gán `=`". Có một số cách khác mà phép gán xảy ra, và vì vậy tốt hơn là nên suy nghĩ về nó một cách khái niệm là: "ai là mục tiêu của phép gán (LHS)" và "ai là nguồn của phép gán (RHS)".
 
-Consider this program, which has both LHS and RHS references:
-
-```js
-function foo(a) {
-	console.log( a ); // 2
-}
-
-foo( 2 );
-```
-
-The last line that invokes `foo(..)` as a function call requires an RHS reference to `foo`, meaning, "go look-up the value of `foo`, and give it to me." Moreover, `(..)` means the value of `foo` should be executed, so it'd better actually be a function!
-
-There's a subtle but important assignment here. **Did you spot it?**
-
-You may have missed the implied `a = 2` in this code snippet. It happens when the value `2` is passed as an argument to the `foo(..)` function, in which case the `2` value is **assigned** to the parameter `a`. To (implicitly) assign to parameter `a`, an LHS look-up is performed.
-
-There's also an RHS reference for the value of `a`, and that resulting value is passed to `console.log(..)`. `console.log(..)` needs a reference to execute. It's an RHS look-up for the `console` object, then a property-resolution occurs to see if it has a method called `log`.
-
-Finally, we can conceptualize that there's an LHS/RHS exchange of passing the value `2` (by way of variable `a`'s RHS look-up) into `log(..)`. Inside of the native implementation of `log(..)`, we can assume it has parameters, the first of which (perhaps called `arg1`) has an LHS reference look-up, before assigning `2` to it.
-
-**Note:** You might be tempted to conceptualize the function declaration `function foo(a) {...` as a normal variable declaration and assignment, such as `var foo` and `foo = function(a){...`. In so doing, it would be tempting to think of this function declaration as involving an LHS look-up.
-
-However, the subtle but important difference is that *Compiler* handles both the declaration and the value definition during code-generation, such that when *Engine* is executing code, there's no processing necessary to "assign" a function value to `foo`. Thus, it's not really appropriate to think of a function declaration as an LHS look-up assignment in the way we're discussing them here.
-
-### Engine/Scope Conversation
+Hãy xem xét chương trình này, có cả tham chiếu LHS và RHS:
 
 ```js
 function foo(a) {
@@ -151,37 +127,61 @@ function foo(a) {
 foo( 2 );
 ```
 
-Let's imagine the above exchange (which processes this code snippet) as a conversation. The conversation would go a little something like this:
+Dòng cuối cùng gọi `foo(..)` như một lời gọi hàm đòi hỏi một tham chiếu RHS đến `foo`, có nghĩa là, "đi tra cứu giá trị của `foo`, và đưa nó cho tôi." Hơn nữa, `(..)` có nghĩa là giá trị của `foo` nên được thực thi, vì vậy tốt hơn hết nó thực sự phải là một hàm!
 
-> ***Engine***: Hey *Scope*, I have an RHS reference for `foo`. Ever heard of it?
+Có một phép gán tinh vi nhưng quan trọng ở đây. **Bạn có phát hiện ra không?**
 
-> ***Scope***: Why yes, I have. *Compiler* declared it just a second ago. He's a function. Here you go.
+Bạn có thể đã bỏ lỡ phép gán ngầm `a = 2` trong đoạn mã này. Nó xảy ra khi giá trị `2` được truyền làm đối số cho hàm `foo(..)`, trong trường hợp đó giá trị `2` được **gán** cho tham số `a`. Để (ngầm) gán cho tham số `a`, một tra cứu LHS được thực hiện.
 
-> ***Engine***: Great, thanks! OK, I'm executing `foo`.
+Cũng có một tham chiếu RHS cho giá trị của `a`, và giá trị kết quả đó được truyền cho `console.log(..)`. `console.log(..)` cần một tham chiếu để thực thi. Đó là một tra cứu RHS cho đối tượng `console`, sau đó một quá trình phân giải thuộc tính xảy ra để xem nó có một phương thức tên là `log` hay không.
 
-> ***Engine***: Hey, *Scope*, I've got an LHS reference for `a`, ever heard of it?
+Cuối cùng, chúng ta có thể hình dung rằng có một sự trao đổi LHS/RHS khi truyền giá trị `2` (thông qua tra cứu RHS của biến `a`) vào `log(..)`. Bên trong việc triển khai gốc của `log(..)`, chúng ta có thể giả định nó có các tham số, tham số đầu tiên (có thể gọi là `arg1`) có một tra cứu tham chiếu LHS, trước khi gán `2` cho nó.
 
-> ***Scope***: Why yes, I have. *Compiler* declared it as a formal parameter to `foo` just recently. Here you go.
+**Lưu ý:** Bạn có thể bị cám dỗ để hình dung việc khai báo hàm `function foo(a) {...` như một khai báo biến và phép gán thông thường, chẳng hạn như `var foo` và `foo = function(a){...`. Khi làm như vậy, sẽ rất dễ nghĩ rằng việc khai báo hàm này liên quan đến một tra cứu LHS.
 
-> ***Engine***: Helpful as always, *Scope*. Thanks again. Now, time to assign `2` to `a`.
+Tuy nhiên, sự khác biệt tinh vi nhưng quan trọng là *Chương trình biên dịch* xử lý cả việc khai báo và định nghĩa giá trị trong quá trình sinh mã, sao cho khi *Bộ máy* đang thực thi mã, không có quá trình xử lý nào cần thiết để "gán" một giá trị hàm cho `foo`. Vì vậy, không thực sự phù hợp để nghĩ về một khai báo hàm như một phép gán tra cứu LHS theo cách chúng ta đang thảo luận ở đây.
 
-> ***Engine***: Hey, *Scope*, sorry to bother you again. I need an RHS look-up for `console`. Ever heard of it?
+### Cuộc trò chuyện giữa Bộ máy và Phạm vi
 
-> ***Scope***: No problem, *Engine*, this is what I do all day. Yes, I've got `console`. He's built-in. Here ya go.
+```js
+function foo(a) {
+	console.log( a ); // 2
+}
 
-> ***Engine***: Perfect. Looking up `log(..)`. OK, great, it's a function.
+foo( 2 );
+```
 
-> ***Engine***: Yo, *Scope*. Can you help me out with an RHS reference to `a`. I think I remember it, but just want to double-check.
+Hãy tưởng tượng cuộc trao đổi ở trên (xử lý đoạn mã này) như một cuộc trò chuyện. Cuộc trò chuyện sẽ diễn ra đại loại như thế này:
 
-> ***Scope***: You're right, *Engine*. Same guy, hasn't changed. Here ya go.
+> ***Bộ máy***: Này *Phạm vi* ơi, tôi có một tham chiếu RHS cho `foo`. Có nghe qua về nó chưa?
 
-> ***Engine***: Cool. Passing the value of `a`, which is `2`, into `log(..)`.
+> ***Phạm vi***: Ồ có chứ. *Chương trình biên dịch* vừa mới khai báo nó một giây trước. Nó là một hàm. Của anh đây.
+
+> ***Bộ máy***: Tuyệt, cảm ơn! OK, tôi đang thực thi `foo`.
+
+> ***Bộ máy***: Này, *Phạm vi*, tôi có một tham chiếu LHS cho `a`, có nghe qua về nó chưa?
+
+> ***Phạm vi***: Ồ có chứ. *Chương trình biên dịch* vừa mới khai báo nó như một tham số chính thức cho `foo` gần đây. Của anh đây.
+
+> ***Bộ máy***: *Phạm vi* lúc nào cũng hữu ích thật. Cảm ơn lần nữa. Bây giờ, đến lúc gán `2` cho `a`.
+
+> ***Bộ máy***: Này, *Phạm vi*, xin lỗi lại làm phiền. Tôi cần một tra cứu RHS cho `console`. Có nghe qua về nó chưa?
+
+> ***Phạm vi***: Không vấn đề gì, *Bộ máy*, đây là việc tôi làm cả ngày mà. Vâng, tôi có `console`. Nó là một đối tượng tích hợp sẵn. Đây nhé.
+
+> ***Bộ máy***: Hoàn hảo. Đang tra cứu `log(..)`. OK, tuyệt, nó là một hàm.
+
+> ***Bộ máy***: Yo, *Phạm vi*. Giúp tôi với một tham chiếu RHS đến `a` được không. Tôi nghĩ là tôi nhớ nó, nhưng chỉ muốn kiểm tra lại cho chắc.
+
+> ***Phạm vi***: Anh nói đúng rồi, *Bộ máy*. Vẫn là nó, không thay đổi gì. Đây nhé.
+
+> ***Bộ máy***: Tuyệt. Đang truyền giá trị của `a`, tức là `2`, vào `log(..)`.
 
 > ...
 
-### Quiz
+### Câu đố
 
-Check your understanding so far. Make sure to play the part of *Engine* and have a "conversation" with the *Scope*:
+Kiểm tra sự hiểu biết của bạn cho đến nay. Hãy chắc chắn rằng bạn đóng vai *Bộ máy* và có một "cuộc trò chuyện" với *Phạm vi*:
 
 ```js
 function foo(a) {
@@ -192,19 +192,19 @@ function foo(a) {
 var c = foo( 2 );
 ```
 
-1. Identify all the LHS look-ups (there are 3!).
+1.  Xác định tất cả các tra cứu LHS (có 3!).
 
-2. Identify all the RHS look-ups (there are 4!).
+2.  Xác định tất cả các tra cứu RHS (có 4!).
 
-**Note:** See the chapter review for the quiz answers!
+**Lưu ý:** Xem đáp án câu đố ở phần tổng kết chương!
 
-## Nested Scope
+## Phạm vi lồng nhau
 
-We said that *Scope* is a set of rules for looking up variables by their identifier name. There's usually more than one *Scope* to consider, however.
+Chúng ta đã nói rằng *Phạm vi* là một tập hợp các quy tắc để tra cứu các biến theo tên định danh của chúng. Tuy nhiên, thường có nhiều hơn một *Phạm vi* cần xem xét.
 
-Just as a block or function is nested inside another block or function, scopes are nested inside other scopes. So, if a variable cannot be found in the immediate scope, *Engine* consults the next outer containing scope, continuing until found or until the outermost (aka, global) scope has been reached.
+Giống như một khối lệnh hoặc hàm được lồng bên trong một khối lệnh hoặc hàm khác, các phạm vi cũng được lồng bên trong các phạm vi khác. Vì vậy, nếu một biến không thể được tìm thấy trong phạm vi ngay lập tức, *Bộ máy* sẽ tham vấn phạm vi chứa nó ở bên ngoài tiếp theo, tiếp tục cho đến khi tìm thấy hoặc cho đến khi đạt đến phạm vi ngoài cùng nhất (hay còn gọi là, toàn cục).
 
-Consider:
+Xét ví dụ:
 
 ```js
 function foo(a) {
@@ -216,37 +216,37 @@ var b = 2;
 foo( 2 ); // 4
 ```
 
-The RHS reference for `b` cannot be resolved inside the function `foo`, but it can be resolved in the *Scope* surrounding it (in this case, the global).
+Tham chiếu RHS cho `b` không thể được giải quyết bên trong hàm `foo`, nhưng nó có thể được giải quyết trong *Phạm vi* bao quanh nó (trong trường hợp này là toàn cục).
 
-So, revisiting the conversations between *Engine* and *Scope*, we'd overhear:
+Vì vậy, trở lại cuộc trò chuyện giữa *Bộ máy* và *Phạm vi*, chúng ta sẽ nghe lỏm được:
 
-> ***Engine***: "Hey, *Scope* of `foo`, ever heard of `b`? Got an RHS reference for it."
+> ***Bộ máy***: "Này, *Phạm vi* của `foo`, có nghe qua về `b` chưa? Tôi có một tham chiếu RHS cho nó."
 
-> ***Scope***: "Nope, never heard of it. Go fish."
+> ***Phạm vi***: "Chưa, chưa bao giờ nghe về nó. Anh tìm chỗ khác thử xem."
 
-> ***Engine***: "Hey, *Scope* outside of `foo`, oh you're the global *Scope*, ok cool. Ever heard of `b`? Got an RHS reference for it."
+> ***Bộ máy***: "Này, *Phạm vi* bên ngoài của `foo`, à anh là *Phạm vi* toàn cục, ok tuyệt. Có nghe qua về `b` chưa? Tôi có một tham chiếu RHS cho nó."
 
-> ***Scope***: "Yep, sure have. Here ya go."
+> ***Phạm vi***: "Rồi, chắc chắn có. Đây nhé."
 
-The simple rules for traversing nested *Scope*: *Engine* starts at the currently executing *Scope*, looks for the variable there, then if not found, keeps going up one level, and so on. If the outermost global scope is reached, the search stops, whether it finds the variable or not.
+Các quy tắc đơn giản để duyệt qua *Phạm vi* lồng nhau: *Bộ máy* bắt đầu tại *Phạm vi* đang thực thi hiện tại, tìm biến ở đó, nếu không tìm thấy, tiếp tục đi lên một cấp, và cứ thế. Nếu đã đến phạm vi toàn cục ngoài cùng nhất, việc tìm kiếm sẽ dừng lại, cho dù có tìm thấy biến hay không.
 
-### Building on Metaphors
+### Xây dựng dựa trên phép ẩn dụ
 
-To visualize the process of nested *Scope* resolution, I want you to think of this tall building.
+Để hình dung quá trình phân giải *Phạm vi* lồng nhau, tôi muốn bạn nghĩ về tòa nhà cao tầng này.
 
 <img src="fig1.png" width="250">
 
-The building represents our program's nested *Scope* rule set. The first floor of the building represents your currently executing *Scope*, wherever you are. The top level of the building is the global *Scope*.
+Tòa nhà đại diện cho bộ quy tắc *Phạm vi* lồng nhau của chương trình chúng ta. Tầng một của tòa nhà đại diện cho *Phạm vi* đang thực thi hiện tại của bạn, bất kể bạn đang ở đâu. Tầng cao nhất của tòa nhà là *Phạm vi* toàn cục.
 
-You resolve LHS and RHS references by looking on your current floor, and if you don't find it, taking the elevator to the next floor, looking there, then the next, and so on. Once you get to the top floor (the global *Scope*), you either find what you're looking for, or you don't. But you have to stop regardless.
+Bạn giải quyết các tham chiếu LHS và RHS bằng cách tìm kiếm trên tầng hiện tại của mình, và nếu không tìm thấy, bạn đi thang máy lên tầng tiếp theo, tìm ở đó, rồi tầng tiếp theo, và cứ thế. Một khi bạn lên đến tầng cao nhất (Phạm vi toàn cục), bạn hoặc sẽ tìm thấy thứ mình cần, hoặc không. Nhưng dù sao bạn cũng phải dừng lại.
 
-## Errors
+## Lỗi
 
-Why does it matter whether we call it LHS or RHS?
+Tại sao việc chúng ta gọi nó là LHS hay RHS lại quan trọng?
 
-Because these two types of look-ups behave differently in the circumstance where the variable has not yet been declared (is not found in any consulted *Scope*).
+Bởi vì hai loại tra cứu này hành xử khác nhau trong trường hợp biến chưa được khai báo (không được tìm thấy trong bất kỳ *Phạm vi* nào được tham vấn).
 
-Consider:
+Xét ví dụ:
 
 ```js
 function foo(a) {
@@ -257,37 +257,37 @@ function foo(a) {
 foo( 2 );
 ```
 
-When the RHS look-up occurs for `b` the first time, it will not be found. This is said to be an "undeclared" variable, because it is not found in the scope.
+Khi tra cứu RHS cho `b` xảy ra lần đầu tiên, nó sẽ không được tìm thấy. Đây được gọi là một biến "chưa được khai báo", bởi vì nó không được tìm thấy trong phạm vi.
 
-If an RHS look-up fails to ever find a variable, anywhere in the nested *Scope*s, this results in a `ReferenceError` being thrown by the *Engine*. It's important to note that the error is of the type `ReferenceError`.
+Nếu một tra cứu RHS không bao giờ tìm thấy một biến, ở bất cứ đâu trong các *Phạm vi* lồng nhau, điều này sẽ dẫn đến một `ReferenceError` được ném ra bởi *Bộ máy*. Điều quan trọng cần lưu ý là lỗi này thuộc loại `ReferenceError`.
 
-By contrast, if the *Engine* is performing an LHS look-up and arrives at the top floor (global *Scope*) without finding it, and if the program is not running in "Strict Mode" [^note-strictmode], then the global *Scope* will create a new variable of that name **in the global scope**, and hand it back to *Engine*.
+Ngược lại, nếu *Bộ máy* đang thực hiện một tra cứu LHS và đến được tầng cao nhất (Phạm vi toàn cục) mà không tìm thấy nó, và nếu chương trình không chạy trong "Strict Mode" [^note-strictmode], thì *Phạm vi* toàn cục sẽ tạo một biến mới có tên đó **trong phạm vi toàn cục**, và trả nó lại cho *Bộ máy*.
 
-*"No, there wasn't one before, but I was helpful and created one for you."*
+*"Không, trước đây không có, nhưng tôi đã tốt bụng tạo một cái cho anh rồi."*
 
-"Strict Mode" [^note-strictmode], which was added in ES5, has a number of different behaviors from normal/relaxed/lazy mode. One such behavior is that it disallows the automatic/implicit global variable creation. In that case, there would be no global *Scope*'d variable to hand back from an LHS look-up, and *Engine* would throw a `ReferenceError` similarly to the RHS case.
+"Strict Mode" [^note-strictmode], được thêm vào trong ES5, có một số hành vi khác với chế độ bình thường/thoải mái/lười biếng. Một trong những hành vi đó là nó không cho phép tạo biến toàn cục một cách tự động/ngầm định. Trong trường hợp đó, sẽ không có biến nào trong *Phạm vi* toàn cục để trả về từ một tra cứu LHS, và *Bộ máy* sẽ ném ra một `ReferenceError` tương tự như trường hợp RHS.
 
-Now, if a variable is found for an RHS look-up, but you try to do something with its value that is impossible, such as trying to execute-as-function a non-function value, or reference a property on a `null` or `undefined` value, then *Engine* throws a different kind of error, called a `TypeError`.
+Bây giờ, nếu một biến được tìm thấy cho một tra cứu RHS, nhưng bạn cố gắng làm điều gì đó với giá trị của nó mà không thể, chẳng hạn như cố gắng thực thi một giá trị không phải là hàm như một hàm, hoặc tham chiếu một thuộc tính trên một giá trị `null` hoặc `undefined`, thì *Bộ máy* sẽ ném ra một loại lỗi khác, gọi là `TypeError`.
 
-`ReferenceError` is *Scope* resolution-failure related, whereas `TypeError` implies that *Scope* resolution was successful, but that there was an illegal/impossible action attempted against the result.
+`ReferenceError` liên quan đến thất bại trong việc phân giải *Phạm vi*, trong khi `TypeError` ngụ ý rằng việc phân giải *Phạm vi* đã thành công, nhưng đã có một hành động bất hợp pháp/không thể thực hiện được đối với kết quả.
 
-## Review (TL;DR)
+## Tổng kết (TL;DR)
 
-Scope is the set of rules that determines where and how a variable (identifier) can be looked-up. This look-up may be for the purposes of assigning to the variable, which is an LHS (left-hand-side) reference, or it may be for the purposes of retrieving its value, which is an RHS (right-hand-side) reference.
+Phạm vi là tập hợp các quy tắc xác định một biến (định danh) có thể được tra cứu ở đâu và như thế nào. Việc tra cứu này có thể nhằm mục đích gán giá trị cho biến, đó là một tham chiếu LHS (vế trái), hoặc có thể nhằm mục đích truy xuất giá trị của nó, đó là một tham chiếu RHS (vế phải).
 
-LHS references result from assignment operations. *Scope*-related assignments can occur either with the `=` operator or by passing arguments to (assign to) function parameters.
+Các tham chiếu LHS xuất phát từ các phép toán gán. Các phép gán liên quan đến *Phạm vi* có thể xảy ra với toán tử `=` hoặc bằng cách truyền đối số cho (gán cho) các tham số của hàm.
 
-The JavaScript *Engine* first compiles code before it executes, and in so doing, it splits up statements like `var a = 2;` into two separate steps:
+*Bộ máy* JavaScript đầu tiên biên dịch mã trước khi thực thi, và trong quá trình đó, nó chia các câu lệnh như `var a = 2;` thành hai bước riêng biệt:
 
-1. First, `var a` to declare it in that *Scope*. This is performed at the beginning, before code execution.
+1.  Đầu tiên, `var a` để khai báo nó trong *Phạm vi* đó. Điều này được thực hiện ngay từ đầu, trước khi thực thi mã.
 
-2. Later, `a = 2` to look up the variable (LHS reference) and assign to it if found.
+2.  Sau đó, `a = 2` để tra cứu biến (tham chiếu LHS) và gán giá trị cho nó nếu tìm thấy.
 
-Both LHS and RHS reference look-ups start at the currently executing *Scope*, and if need be (that is, they don't find what they're looking for there), they work their way up the nested *Scope*, one scope (floor) at a time, looking for the identifier, until they get to the global (top floor) and stop, and either find it, or don't.
+Cả hai tra cứu tham chiếu LHS và RHS đều bắt đầu tại *Phạm vi* đang thực thi hiện tại, và nếu cần (tức là, chúng không tìm thấy thứ chúng đang tìm ở đó), chúng sẽ đi lên theo *Phạm vi* lồng nhau, từng phạm vi (tầng) một, tìm kiếm định danh, cho đến khi chúng đến được phạm vi toàn cục (tầng trên cùng) và dừng lại, và hoặc tìm thấy nó, hoặc không.
 
-Unfulfilled RHS references result in `ReferenceError`s being thrown. Unfulfilled LHS references result in an automatic, implicitly-created global of that name (if not in "Strict Mode" [^note-strictmode]), or a `ReferenceError` (if in "Strict Mode" [^note-strictmode]).
+Các tham chiếu RHS không được đáp ứng sẽ dẫn đến việc ném ra `ReferenceError`. Các tham chiếu LHS không được đáp ứng sẽ dẫn đến việc tạo ra một biến toàn cục tự động, ngầm định có tên đó (nếu không ở trong "Strict Mode" [^note-strictmode]), hoặc một `ReferenceError` (nếu ở trong "Strict Mode" [^note-strictmode]).
 
-### Quiz Answers
+### Đáp án câu đố
 
 ```js
 function foo(a) {
@@ -298,13 +298,12 @@ function foo(a) {
 var c = foo( 2 );
 ```
 
-1. Identify all the LHS look-ups (there are 3!).
+1.  Xác định tất cả các tra cứu LHS (có 3!).
 
-	**`c = ..`, `a = 2` (implicit param assignment) and `b = ..`**
+    **`c = ..`, `a = 2` (gán ngầm cho tham số) và `b = ..`**
 
-2. Identify all the RHS look-ups (there are 4!).
+2.  Xác định tất cả các tra cứu RHS (có 4!).
 
-    **`foo(2..`, `= a;`, `a + ..` and `.. + b`**
-
+    **`foo(2..`, `= a;`, `a + ..` và `.. + b`**
 
 [^note-strictmode]: MDN: [Strict Mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode)

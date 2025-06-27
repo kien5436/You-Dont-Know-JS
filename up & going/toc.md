@@ -2,7 +2,7 @@
 
 ## Mục lục
 
-* Lời mở đầu
+* Lời tựa
 * Lời mở đầu
 * Chương 1: Bước vào con đường lập trình
 	* Mã
