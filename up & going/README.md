@@ -17,7 +17,7 @@
 [Mục lục](toc.md)
 
 * [Lời mở đầu](foreword.md) (bởi [Jenn Lukas](http://jennlukas.com))
-* [Lời mỏ đầu](../preface.md)
+* [Lời mở đầu](../preface.md)
 * [Chương 1: Bước vào con đường lập trình](ch1.md)
 * [Chương 2: Đến với JavaScript](ch2.md)
 * [Chương 3: Đến với BKHJS](ch3.md)

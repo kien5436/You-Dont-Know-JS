@@ -22,9 +22,9 @@
 * Đọc trực tuyến (miễn phí!): ["Khởi động và tiến lên"](up\%20&\%20going/README.md#you-dont-know-js-up--going)
 * Đọc trực tuyến (miễn phí!): ["Phạm vi và hàm khép kín"](scope\%20&\%20closures/README.md#you-dont-know-js-scope--closures)
 * Đọc trực tuyến (miễn phí!): ["this và nguyên mẫu đối tượng"](this\%20&\%20object\%20prototypes/README.md#you-dont-know-js-this--object-prototypes)
-* Đọc trực tuyến (miễn phí!): ["Kiểu và ngữ pháp"](types\%20&\%20grammar/README.md#you-dont-know-js-types--grammar)
+* Đọc trực tuyến (miễn phí!): ["Kiểu dữ liệu và ngữ pháp"](types\%20&\%20grammar/README.md#you-dont-know-js-types--grammar)
 * Đọc trực tuyến (miễn phí!): ["Bất đồng bộ và hiệu suất"](async\%20&\%20performance/README.md#you-dont-know-js-async--performance)
-* Đọc trực tuyến (miễn phí!): ["ES6 và thêm nữa"](es6\%20&\%20beyond/README.md#you-dont-know-js-es6--beyond)
+* Đọc trực tuyến (miễn phí!): ["ES6 và hơn thế nữa"](es6\%20&\%20beyond/README.md#you-dont-know-js-es6--beyond)
 
 ## Xuất bản
 
