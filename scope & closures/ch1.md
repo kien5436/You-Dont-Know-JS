@@ -73,39 +73,39 @@ Thay vào đó *Chương trình biên dịch* sẽ tiến hành như sau:
 
 1. Gặp `var a`, *Chương trình biên dịch* hỏi *Phạm vi* xem một biến `a` đã tồn tại trong tập hợp phạm vi cụ thể đó chưa. Nếu có, *Chương trình biên dịch* bỏ qua khai báo này và tiếp tục. Nếu không, *Chương trình biên dịch* yêu cầu *Phạm vi* khai báo một biến mới tên là `a` cho tập hợp phạm vi đó.
 
-2.  *Chương trình biên dịch* sau đó tạo ra mã cho *Bộ máy* để thực thi sau này, để xử lý phép gán `a = 2`. Mã mà *Bộ máy* chạy sẽ đầu tiên hỏi *Phạm vi* xem có biến nào tên là `a` có thể truy cập được trong tập hợp phạm vi hiện tại không. Nếu có, *Bộ máy* sử dụng biến đó. Nếu không, *Bộ máy* tìm ở *nơi khác* (xem phần *Phạm vi* lồng nhau bên dưới).
+2. Sau đó *Chương trình biên dịch* sinh ra mã cho *Bộ máy* để thực thi sau này, để xử lý phép gán `a = 2`. Đầu tiên, mã mà *Bộ máy* chạy sẽ hỏi *Phạm vi* xem có biến nào tên là `a` có thể truy cập được trong tập hợp phạm vi hiện tại không. Nếu có, *Bộ máy* sử dụng biến đó. Nếu không, *Bộ máy* sẽ tìm ở *nơi khác* (xem phần *Phạm vi* lồng nhau bên dưới).
 
-Nếu *Bộ máy* cuối cùng tìm thấy một biến, nó sẽ gán giá trị `2` cho biến đó. Nếu không, *Bộ máy* sẽ giơ tay và hét lên một lỗi!
+Nếu sau cùng *Bộ máy* tìm thấy một biến, nó sẽ gán giá trị `2` cho biến đó. Nếu không, *Bộ máy* sẽ giơ tay và hét lên một lỗi!
 
-Tóm lại: hai hành động riêng biệt được thực hiện cho một phép gán biến: Thứ nhất, *Chương trình biên dịch* khai báo một biến (nếu chưa được khai báo trước đó trong phạm vi hiện tại), và thứ hai, khi thực thi, *Bộ máy* tra cứu biến trong *Phạm vi* và gán giá trị cho nó, nếu tìm thấy.
+Tóm lại: hai hành động riêng biệt được thực hiện cho một phép gán biến: Thứ nhất, *Chương trình biên dịch* khai báo một biến (nếu chưa được khai báo trước đó trong phạm vi hiện tại), và thứ hai, khi thực thi, *Bộ máy* tìm kiếm biến trong *Phạm vi* và gán giá trị cho nó nếu tìm thấy.
 
-### Thuật ngữ Trình biên dịch
+### Ngôn ngữ của Chương trình biên dịch
 
-Chúng ta cần thêm một chút thuật ngữ trình biên dịch để tiếp tục đi sâu vào việc tìm hiểu.
+Chúng ta cần thêm một chút thuật ngữ của chương trình biên dịch để tiếp tục đi sâu vào việc tìm hiểu.
 
-Khi *Bộ máy* thực thi mã mà *Chương trình biên dịch* đã tạo ra cho bước (2), nó phải tra cứu biến `a` để xem nó đã được khai báo chưa, và việc tra cứu này là tham vấn *Phạm vi*. Nhưng loại tra cứu mà *Bộ máy* thực hiện sẽ ảnh hưởng đến kết quả của việc tra cứu.
+Khi *Bộ máy* thực thi mã mà *Chương trình biên dịch* đã tạo ra cho bước (2), nó phải tra cứu xem biến `a` đã được khai báo chưa, và việc tra cứu này được tham vấn từ *Phạm vi*. Nhưng loại tra cứu mà *Bộ máy* thực hiện sẽ ảnh hưởng đến kết quả của việc tra cứu.
 
-Trong trường hợp của chúng ta, người ta nói rằng *Bộ máy* sẽ thực hiện một tra cứu "LHS" cho biến `a`. Loại tra cứu còn lại được gọi là "RHS".
+Trong trường hợp của chúng ta, *Bộ máy* sẽ thực hiện một tra cứu "LHS" cho biến `a`. Loại tra cứu còn lại được gọi là "RHS".
 
 Tôi cá là bạn có thể đoán được "L" và "R" có nghĩa là gì. Các thuật ngữ này là viết tắt của "Left-hand Side" (Vế Trái) và "Right-hand Side" (Vế Phải).
 
-Vế... của cái gì? **Của một phép toán gán.**
+Nhưng mà là vế... của cái gì? **Của một phép gán.**
 
-Nói cách khác, một tra cứu LHS được thực hiện khi một biến xuất hiện ở vế trái của một phép toán gán, và một tra cứu RHS được thực hiện khi một biến xuất hiện ở vế phải của một phép toán gán.
+Nói cách khác, một tra cứu LHS được thực hiện khi một biến xuất hiện ở vế trái của một phép gán và một tra cứu RHS được thực hiện khi một biến xuất hiện ở vế phải của một phép gán.
 
-Thực ra, hãy nói chính xác hơn một chút. Một tra cứu RHS, đối với mục đích của chúng ta, không thể phân biệt được với việc đơn giản là tra cứu giá trị của một biến nào đó, trong khi tra cứu LHS là cố gắng tìm chính vùng chứa của biến đó, để có thể gán giá trị. Theo cách này, RHS không *thực sự* có nghĩa là "vế phải của một phép gán", mà chính xác hơn, nó chỉ có nghĩa là "không phải là vế trái".
+Thực ra, hãy nói chính xác hơn một chút. Đối với mục đích của chúng ta, một tra cứu RHS không thể phân biệt được với việc đơn giản là tra cứu giá trị của một biến nào đó, trong khi tra cứu LHS cố gắng tìm chính vùng chứa của biến đó để có thể gán giá trị. Theo cách này, RHS không *thực sự* có nghĩa là "vế phải của một phép gán", mà chính xác hơn, nó chỉ có nghĩa là "không phải là vế trái".
 
-Nói một cách ví von, bạn có thể xem "RHS" như là "lấy giá trị nguồn của nó" (retrieve his/her source value), ngụ ý rằng RHS có nghĩa là "đi lấy giá trị của...".
+Nói một cách ví von, bạn có thể xem "RHS" như là "lấy (giá trị) nguồn của nó", ngụ ý rằng RHS có nghĩa là "đi lấy giá trị của...".
 
 Hãy cùng đào sâu hơn.
 
-Khi tôi viết:
+Khi tôi nói:
 
 ```js
 console.log( a );
 ```
 
-Tham chiếu đến `a` là một tham chiếu RHS, bởi vì không có gì được gán cho `a` ở đây. Thay vào đó, chúng ta đang tra cứu để lấy giá trị của `a`, để giá trị đó có thể được truyền cho `console.log(..)`.
+Tham chiếu đến `a` là một tham chiếu RHS, bởi vì không có gì được gán cho `a` ở đây. Thay vào đó, chúng ta đang tra cứu để lấy giá trị của `a` truyền cho `console.log(..)`.
 
 Ngược lại:
 
@@ -113,9 +113,9 @@ Ngược lại:
 a = 2;
 ```
 
-Tham chiếu đến `a` ở đây là một tham chiếu LHS, bởi vì chúng ta không thực sự quan tâm đến giá trị hiện tại của nó là gì, chúng ta chỉ đơn giản muốn tìm biến đó như một mục tiêu cho phép toán gán `= 2`.
+Tham chiếu đến `a` ở đây là một tham chiếu LHS, bởi vì ta không thực sự quan tâm đến giá trị hiện tại của nó là gì, chỉ đơn giản là chúng ta muốn tìm biến đó như một mục tiêu cho phép gán `= 2`.
 
-**Lưu ý:** LHS và RHS có nghĩa là "vế trái/phải của một phép gán" không nhất thiết có nghĩa đen là "bên trái/phải của toán tử gán `=`". Có một số cách khác mà phép gán xảy ra, và vì vậy tốt hơn là nên suy nghĩ về nó một cách khái niệm là: "ai là mục tiêu của phép gán (LHS)" và "ai là nguồn của phép gán (RHS)".
+**Lưu ý:** LHS và RHS có nghĩa là "vế trái/phải của một phép gán" không nhất thiết có nghĩa đen là "bên trái/phải của toán tử gán `=`". Có một số cách khác để phép gán xảy ra, vì vậy tốt hơn hãy suy nghĩ về nó một cách khái niệm là: "ai là mục tiêu của phép gán (LHS)" và "ai là nguồn của phép gán (RHS)".
 
 Hãy xem xét chương trình này, có cả tham chiếu LHS và RHS:
 
@@ -127,19 +127,19 @@ function foo(a) {
 foo( 2 );
 ```
 
-Dòng cuối cùng gọi `foo(..)` như một lời gọi hàm đòi hỏi một tham chiếu RHS đến `foo`, có nghĩa là, "đi tra cứu giá trị của `foo`, và đưa nó cho tôi." Hơn nữa, `(..)` có nghĩa là giá trị của `foo` nên được thực thi, vì vậy tốt hơn hết nó thực sự phải là một hàm!
+Dòng cuối cùng gọi `foo(..)` như một lời gọi hàm đòi hỏi một tham chiếu RHS đến `foo`, có nghĩa là, "đi tra cứu giá trị của `foo`, và đưa nó cho tôi". Thêm vào đó, `(..)` có nghĩa là giá trị của `foo` nên được thực thi, vì vậy tốt hơn hết nó thực sự phải là một hàm!
 
 Có một phép gán tinh vi nhưng quan trọng ở đây. **Bạn có phát hiện ra không?**
 
-Bạn có thể đã bỏ lỡ phép gán ngầm `a = 2` trong đoạn mã này. Nó xảy ra khi giá trị `2` được truyền làm đối số cho hàm `foo(..)`, trong trường hợp đó giá trị `2` được **gán** cho tham số `a`. Để (ngầm) gán cho tham số `a`, một tra cứu LHS được thực hiện.
+Bạn có thể đã bỏ lỡ phép gán ngầm `a = 2` trong đoạn mã này. Nó xảy ra khi giá trị `2` được truyền như một đối số cho hàm `foo(..)`, trong trường hợp đó giá trị `2` được **gán** cho tham số `a`. Để (ngầm) gán cho tham số `a`, một tra cứu LHS được thực hiện.
 
-Cũng có một tham chiếu RHS cho giá trị của `a`, và giá trị kết quả đó được truyền cho `console.log(..)`. `console.log(..)` cần một tham chiếu để thực thi. Đó là một tra cứu RHS cho đối tượng `console`, sau đó một quá trình phân giải thuộc tính xảy ra để xem nó có một phương thức tên là `log` hay không.
+Cũng có một tham chiếu RHS cho giá trị của `a`, và giá trị kết quả đó được truyền cho `console.log(..)`. `console.log(..)` cần một tham chiếu để thực thi. Đó là một tra cứu RHS cho đối tượng `console`, sau đó một quá trình phân giải thuộc tính diễn ra để xem nó có phương thức nào tên là `log` hay không.
 
 Cuối cùng, chúng ta có thể hình dung rằng có một sự trao đổi LHS/RHS khi truyền giá trị `2` (thông qua tra cứu RHS của biến `a`) vào `log(..)`. Bên trong việc triển khai gốc của `log(..)`, chúng ta có thể giả định nó có các tham số, tham số đầu tiên (có thể gọi là `arg1`) có một tra cứu tham chiếu LHS, trước khi gán `2` cho nó.
 
-**Lưu ý:** Bạn có thể bị cám dỗ để hình dung việc khai báo hàm `function foo(a) {...` như một khai báo biến và phép gán thông thường, chẳng hạn như `var foo` và `foo = function(a){...`. Khi làm như vậy, sẽ rất dễ nghĩ rằng việc khai báo hàm này liên quan đến một tra cứu LHS.
+**Lưu ý:** Bạn có thể bị cám dỗ khi hình dung việc khai báo hàm `function foo(a) {...` như một khai báo biến và phép gán thông thường, chẳng hạn như `var foo` và `foo = function(a){...`. Khi làm như vậy, sẽ rất dễ nghĩ rằng việc khai báo hàm này liên quan đến một tra cứu LHS.
 
-Tuy nhiên, sự khác biệt tinh vi nhưng quan trọng là *Chương trình biên dịch* xử lý cả việc khai báo và định nghĩa giá trị trong quá trình sinh mã, sao cho khi *Bộ máy* đang thực thi mã, không có quá trình xử lý nào cần thiết để "gán" một giá trị hàm cho `foo`. Vì vậy, không thực sự phù hợp để nghĩ về một khai báo hàm như một phép gán tra cứu LHS theo cách chúng ta đang thảo luận ở đây.
+Tuy nhiên, sự khác biệt tinh vi nhưng quan trọng ở đây là *Chương trình biên dịch* xử lý cả việc khai báo và định nghĩa giá trị trong quá trình sinh mã, sao cho khi *Bộ máy* đang thực thi mã, không có quá trình xử lý nào cần thiết để "gán" một giá trị hàm cho `foo`. Vì vậy, không thực sự phù hợp để nghĩ về một khai báo hàm như một tra cứu LHS theo cách chúng ta đang thảo luận ở đây.
 
 ### Cuộc trò chuyện giữa Bộ máy và Phạm vi
 
@@ -151,27 +151,27 @@ function foo(a) {
 foo( 2 );
 ```
 
-Hãy tưởng tượng cuộc trao đổi ở trên (xử lý đoạn mã này) như một cuộc trò chuyện. Cuộc trò chuyện sẽ diễn ra đại loại như thế này:
+Hãy tưởng tượng cuộc trao đổi (tiến trình xử lý đoạn mã này) ở trên như một cuộc trò chuyện. Cuộc trò chuyện sẽ diễn ra đại loại như thế này:
 
 > ***Bộ máy***: Này *Phạm vi* ơi, tôi có một tham chiếu RHS cho `foo`. Có nghe qua về nó chưa?
 
 > ***Phạm vi***: Ồ có chứ. *Chương trình biên dịch* vừa mới khai báo nó một giây trước. Nó là một hàm. Của anh đây.
 
-> ***Bộ máy***: Tuyệt, cảm ơn! OK, tôi đang thực thi `foo`.
+> ***Bộ máy***: Tuyệt, cảm ơn! Được rồi, tôi đang thực thi `foo`.
 
-> ***Bộ máy***: Này, *Phạm vi*, tôi có một tham chiếu LHS cho `a`, có nghe qua về nó chưa?
+> ***Bộ máy***: *Phạm vi* ới, tôi có một tham chiếu LHS cho `a`, có nghe qua về nó chưa?
 
 > ***Phạm vi***: Ồ có chứ. *Chương trình biên dịch* vừa mới khai báo nó như một tham số chính thức cho `foo` gần đây. Của anh đây.
 
-> ***Bộ máy***: *Phạm vi* lúc nào cũng hữu ích thật. Cảm ơn lần nữa. Bây giờ, đến lúc gán `2` cho `a`.
+> ***Bộ máy***: *Phạm vi* lúc nào cũng tốt bụng thật. Cảm ơn lần nữa. Bây giờ, đến lúc gán `2` cho `a` rồi.
 
-> ***Bộ máy***: Này, *Phạm vi*, xin lỗi lại làm phiền. Tôi cần một tra cứu RHS cho `console`. Có nghe qua về nó chưa?
+> ***Bộ máy***: *Phạm vi* này, xin lỗi lại làm phiền. Tôi cần một tra cứu RHS cho `console`. Có nghe qua về nó chưa?
 
-> ***Phạm vi***: Không vấn đề gì, *Bộ máy*, đây là việc tôi làm cả ngày mà. Vâng, tôi có `console`. Nó là một đối tượng tích hợp sẵn. Đây nhé.
+> ***Phạm vi***: Không vấn đề gì đâu *Bộ máy*, đây là việc tôi làm cả ngày mà. Vâng, tôi có `console`. Nó là một đối tượng tích hợp sẵn. Đây nhé.
 
-> ***Bộ máy***: Hoàn hảo. Đang tra cứu `log(..)`. OK, tuyệt, nó là một hàm.
+> ***Bộ máy***: Hoàn hảo. Đang tra cứu `log(..)`. Đây rồi, tuyệt, nó là một hàm.
 
-> ***Bộ máy***: Yo, *Phạm vi*. Giúp tôi với một tham chiếu RHS đến `a` được không. Tôi nghĩ là tôi nhớ nó, nhưng chỉ muốn kiểm tra lại cho chắc.
+> ***Bộ máy***: Ê, *Phạm vi*. Giúp tôi với một tham chiếu RHS đến `a` được không. Tôi nghĩ là tôi nhớ nó, nhưng chỉ muốn kiểm tra lại cho chắc.
 
 > ***Phạm vi***: Anh nói đúng rồi, *Bộ máy*. Vẫn là nó, không thay đổi gì. Đây nhé.
 
@@ -192,9 +192,9 @@ function foo(a) {
 var c = foo( 2 );
 ```
 
-1.  Xác định tất cả các tra cứu LHS (có 3!).
+1.  Xác định tất cả các tra cứu LHS (có 3 cái!).
 
-2.  Xác định tất cả các tra cứu RHS (có 4!).
+2.  Xác định tất cả các tra cứu RHS (có 4 cái!).
 
 **Lưu ý:** Xem đáp án câu đố ở phần tổng kết chương!
 
@@ -202,7 +202,7 @@ var c = foo( 2 );
 
 Chúng ta đã nói rằng *Phạm vi* là một tập hợp các quy tắc để tra cứu các biến theo tên định danh của chúng. Tuy nhiên, thường có nhiều hơn một *Phạm vi* cần xem xét.
 
-Giống như một khối lệnh hoặc hàm được lồng bên trong một khối lệnh hoặc hàm khác, các phạm vi cũng được lồng bên trong các phạm vi khác. Vì vậy, nếu một biến không thể được tìm thấy trong phạm vi ngay lập tức, *Bộ máy* sẽ tham vấn phạm vi chứa nó ở bên ngoài tiếp theo, tiếp tục cho đến khi tìm thấy hoặc cho đến khi đạt đến phạm vi ngoài cùng nhất (hay còn gọi là, toàn cục).
+Giống như một khối lệnh hoặc hàm được lồng bên trong một khối lệnh hoặc hàm khác, các phạm vi cũng được lồng bên trong các phạm vi khác. Vì vậy, nếu một biến không thể được tìm thấy trong phạm vi ngay lập tức, *Bộ máy* sẽ tham vấn phạm vi tiếp theo ở bên ngoài, tiếp tục cho đến khi tìm thấy hoặc cho đến khi đạt đến phạm vi ngoài cùng (hay còn gọi là toàn cục).
 
 Xét ví dụ:
 
@@ -222,13 +222,13 @@ Vì vậy, trở lại cuộc trò chuyện giữa *Bộ máy* và *Phạm vi*, 
 
 > ***Bộ máy***: "Này, *Phạm vi* của `foo`, có nghe qua về `b` chưa? Tôi có một tham chiếu RHS cho nó."
 
-> ***Phạm vi***: "Chưa, chưa bao giờ nghe về nó. Anh tìm chỗ khác thử xem."
+> ***Phạm vi***: "Tôi chưa bao giờ nghe về nó. Anh tìm chỗ khác thử xem."
 
-> ***Bộ máy***: "Này, *Phạm vi* bên ngoài của `foo`, à anh là *Phạm vi* toàn cục, ok tuyệt. Có nghe qua về `b` chưa? Tôi có một tham chiếu RHS cho nó."
+> ***Bộ máy***: "Này, *Phạm vi* bên ngoài của `foo`, à anh là *Phạm vi* toàn cục, tuyệt. Có nghe qua về `b` chưa? Tôi có một tham chiếu RHS cho nó."
 
-> ***Phạm vi***: "Rồi, chắc chắn có. Đây nhé."
+> ***Phạm vi***: "Rồi, chắc chắn có. Đây này."
 
-Các quy tắc đơn giản để duyệt qua *Phạm vi* lồng nhau: *Bộ máy* bắt đầu tại *Phạm vi* đang thực thi hiện tại, tìm biến ở đó, nếu không tìm thấy, tiếp tục đi lên một cấp, và cứ thế. Nếu đã đến phạm vi toàn cục ngoài cùng nhất, việc tìm kiếm sẽ dừng lại, cho dù có tìm thấy biến hay không.
+Các quy tắc đơn giản để duyệt qua *Phạm vi* lồng nhau: *Bộ máy* bắt đầu tại *Phạm vi* đang thực thi hiện tại, tìm biến ở đó, nếu không tìm thấy, tiếp tục đi lên một cấp, và cứ như thế. Nếu đã đến phạm vi toàn cục ngoài cùng, việc tìm kiếm sẽ dừng lại, cho dù có tìm thấy biến hay không.
 
 ### Xây dựng dựa trên phép ẩn dụ
 
@@ -236,9 +236,9 @@ Các quy tắc đơn giản để duyệt qua *Phạm vi* lồng nhau: *Bộ má
 
 <img src="fig1.png" width="250">
 
-Tòa nhà đại diện cho bộ quy tắc *Phạm vi* lồng nhau của chương trình chúng ta. Tầng một của tòa nhà đại diện cho *Phạm vi* đang thực thi hiện tại của bạn, bất kể bạn đang ở đâu. Tầng cao nhất của tòa nhà là *Phạm vi* toàn cục.
+Tòa nhà đại diện cho bộ quy tắc *Phạm vi* lồng nhau của chương trình của chúng ta. Tầng một của tòa nhà đại diện cho *Phạm vi* đang thực thi hiện tại của bạn, bất kể bạn đang ở đâu. Tầng cao nhất của tòa nhà là *Phạm vi* toàn cục.
 
-Bạn giải quyết các tham chiếu LHS và RHS bằng cách tìm kiếm trên tầng hiện tại của mình, và nếu không tìm thấy, bạn đi thang máy lên tầng tiếp theo, tìm ở đó, rồi tầng tiếp theo, và cứ thế. Một khi bạn lên đến tầng cao nhất (Phạm vi toàn cục), bạn hoặc sẽ tìm thấy thứ mình cần, hoặc không. Nhưng dù sao bạn cũng phải dừng lại.
+Bạn giải quyết các tham chiếu LHS và RHS bằng cách tìm kiếm trên tầng hiện tại của mình, và nếu không tìm thấy, bạn đi thang máy lên tầng tiếp theo, tìm ở đó, rồi tầng tiếp theo, và cứ thế. Một khi bạn lên đến tầng cao nhất (*Phạm vi* toàn cục), bạn sẽ tìm thấy thứ mình cần, hoặc không. Nhưng dù sao bạn cũng phải dừng lại.
 
 ## Lỗi
 
@@ -259,33 +259,33 @@ foo( 2 );
 
 Khi tra cứu RHS cho `b` xảy ra lần đầu tiên, nó sẽ không được tìm thấy. Đây được gọi là một biến "chưa được khai báo", bởi vì nó không được tìm thấy trong phạm vi.
 
-Nếu một tra cứu RHS không bao giờ tìm thấy một biến, ở bất cứ đâu trong các *Phạm vi* lồng nhau, điều này sẽ dẫn đến một `ReferenceError` được ném ra bởi *Bộ máy*. Điều quan trọng cần lưu ý là lỗi này thuộc loại `ReferenceError`.
+Nếu một tra cứu RHS không bao giờ tìm thấy một biến ở bất cứ đâu trong các *Phạm vi* lồng nhau, điều này sẽ dẫn đến một `ReferenceError` được ném ra bởi *Bộ máy*. Điều quan trọng cần lưu ý là lỗi này thuộc loại `ReferenceError`.
 
-Ngược lại, nếu *Bộ máy* đang thực hiện một tra cứu LHS và đến được tầng cao nhất (Phạm vi toàn cục) mà không tìm thấy nó, và nếu chương trình không chạy trong "Strict Mode" [^note-strictmode], thì *Phạm vi* toàn cục sẽ tạo một biến mới có tên đó **trong phạm vi toàn cục**, và trả nó lại cho *Bộ máy*.
+Ngược lại, nếu *Bộ máy* đang thực hiện một tra cứu LHS và đến được tầng cao nhất (Phạm vi toàn cục) mà không tìm thấy nó, và nếu chương trình không chạy trong "Chế độ Nghiêm ngặt" [^note-strictmode], thì *Phạm vi* toàn cục sẽ tạo một biến mới có tên đó **trong phạm vi toàn cục** và trả lại cho *Bộ máy*.
 
 *"Không, trước đây không có, nhưng tôi đã tốt bụng tạo một cái cho anh rồi."*
 
-"Strict Mode" [^note-strictmode], được thêm vào trong ES5, có một số hành vi khác với chế độ bình thường/thoải mái/lười biếng. Một trong những hành vi đó là nó không cho phép tạo biến toàn cục một cách tự động/ngầm định. Trong trường hợp đó, sẽ không có biến nào trong *Phạm vi* toàn cục để trả về từ một tra cứu LHS, và *Bộ máy* sẽ ném ra một `ReferenceError` tương tự như trường hợp RHS.
+"Chế độ Nghiêm ngặt" [^note-strictmode], được thêm vào trong ES5, có một số hành vi khác với chế độ bình thường/thoải mái/lười biếng. Một trong những hành vi đó là nó không cho phép tạo biến toàn cục một cách tự động/ngầm định. Trong trường hợp đó, sẽ không có biến nào trong *Phạm vi* toàn cục để trả về từ một tra cứu LHS, và *Bộ máy* sẽ ném ra một `ReferenceError` tương tự như trường hợp RHS.
 
-Bây giờ, nếu một biến được tìm thấy cho một tra cứu RHS, nhưng bạn cố gắng làm điều gì đó với giá trị của nó mà không thể, chẳng hạn như cố gắng thực thi một giá trị không phải là hàm như một hàm, hoặc tham chiếu một thuộc tính trên một giá trị `null` hoặc `undefined`, thì *Bộ máy* sẽ ném ra một loại lỗi khác, gọi là `TypeError`.
+Bây giờ, nếu một biến được tìm thấy cho một tra cứu RHS nhưng bạn cố gắng làm điều bất khả thi với giá trị của nó, chẳng hạn như cố gắng thực thi một giá trị không phải là hàm như một hàm, hoặc tham chiếu một thuộc tính trên một giá trị `null` hoặc `undefined`, thì *Bộ máy* sẽ ném ra một loại lỗi khác gọi là `TypeError`.
 
-`ReferenceError` liên quan đến thất bại trong việc phân giải *Phạm vi*, trong khi `TypeError` ngụ ý rằng việc phân giải *Phạm vi* đã thành công, nhưng đã có một hành động bất hợp pháp/không thể thực hiện được đối với kết quả.
+`ReferenceError` liên quan đến thất bại trong việc phân giải *Phạm vi*, trong khi `TypeError` ngụ ý rằng việc phân giải *Phạm vi* đã thành công, nhưng có một hành động không hợp lệ/không thể thực hiện được đối với kết quả.
 
-## Tổng kết (TL;DR)
+## Tổng kết
 
-Phạm vi là tập hợp các quy tắc xác định một biến (định danh) có thể được tra cứu ở đâu và như thế nào. Việc tra cứu này có thể nhằm mục đích gán giá trị cho biến, đó là một tham chiếu LHS (vế trái), hoặc có thể nhằm mục đích truy xuất giá trị của nó, đó là một tham chiếu RHS (vế phải).
+Phạm vi là tập hợp các quy tắc xác định một biến (định danh) có thể được tra cứu ở đâu và như thế nào. Việc tra cứu này có thể nhằm mục đích gán giá trị cho biến, tức là một tham chiếu LHS (vế trái), hoặc có thể nhằm mục đích truy xuất giá trị của nó, tức là một tham chiếu RHS (vế phải).
 
-Các tham chiếu LHS xuất phát từ các phép toán gán. Các phép gán liên quan đến *Phạm vi* có thể xảy ra với toán tử `=` hoặc bằng cách truyền đối số cho (gán cho) các tham số của hàm.
+Các tham chiếu LHS xuất phát từ các phép gán. Các phép gán liên quan đến *Phạm vi* có thể xảy ra với toán tử `=` hoặc bằng cách truyền đối số cho (gán cho) các tham số của hàm.
 
-*Bộ máy* JavaScript đầu tiên biên dịch mã trước khi thực thi, và trong quá trình đó, nó chia các câu lệnh như `var a = 2;` thành hai bước riêng biệt:
+Đầu tiên, *Bộ máy* JavaScript biên dịch mã trước khi thực thi, và trong quá trình đó, nó chia các câu lệnh như `var a = 2;` thành hai bước riêng biệt:
 
-1.  Đầu tiên, `var a` để khai báo nó trong *Phạm vi* đó. Điều này được thực hiện ngay từ đầu, trước khi thực thi mã.
+1. Trước hết, `var a` để khai báo nó trong *Phạm vi* đó. Điều này được thực hiện ngay từ đầu, trước khi thực thi mã.
 
-2.  Sau đó, `a = 2` để tra cứu biến (tham chiếu LHS) và gán giá trị cho nó nếu tìm thấy.
+2. Sau đó, `a = 2` để tra cứu biến (tham chiếu LHS) và gán giá trị cho nó nếu tìm thấy.
 
-Cả hai tra cứu tham chiếu LHS và RHS đều bắt đầu tại *Phạm vi* đang thực thi hiện tại, và nếu cần (tức là, chúng không tìm thấy thứ chúng đang tìm ở đó), chúng sẽ đi lên theo *Phạm vi* lồng nhau, từng phạm vi (tầng) một, tìm kiếm định danh, cho đến khi chúng đến được phạm vi toàn cục (tầng trên cùng) và dừng lại, và hoặc tìm thấy nó, hoặc không.
+Cả hai tra cứu tham chiếu LHS và RHS đều bắt đầu tại *Phạm vi* đang thực thi hiện tại, và nếu cần (tức là chúng không tìm thấy thứ chúng đang tìm ở đó), chúng sẽ đi lên theo *Phạm vi* lồng nhau, từng phạm vi (tầng) một, tìm kiếm định danh, cho đến khi chúng đến được phạm vi toàn cục (tầng trên cùng) và dừng lại, và hoặc tìm thấy nó, hoặc không.
 
-Các tham chiếu RHS không được đáp ứng sẽ dẫn đến việc ném ra `ReferenceError`. Các tham chiếu LHS không được đáp ứng sẽ dẫn đến việc tạo ra một biến toàn cục tự động, ngầm định có tên đó (nếu không ở trong "Strict Mode" [^note-strictmode]), hoặc một `ReferenceError` (nếu ở trong "Strict Mode" [^note-strictmode]).
+Các tham chiếu RHS không được đáp ứng sẽ dẫn đến việc ném ra `ReferenceError`. Các tham chiếu LHS không được đáp ứng sẽ dẫn đến việc tạo ra một biến toàn cục tự động, ngầm định có tên đó (nếu không ở trong "Chế độ Nghiêm ngặt" [^note-strictmode]), hoặc một `ReferenceError` (nếu ở trong "Chế độ Nghiêm ngặt" [^note-strictmode]).
 
 ### Đáp án câu đố
 
@@ -298,12 +298,12 @@ function foo(a) {
 var c = foo( 2 );
 ```
 
-1.  Xác định tất cả các tra cứu LHS (có 3!).
+1.  Xác định tất cả các tra cứu LHS (có 3 cái!).
 
     **`c = ..`, `a = 2` (gán ngầm cho tham số) và `b = ..`**
 
-2.  Xác định tất cả các tra cứu RHS (có 4!).
+2.  Xác định tất cả các tra cứu RHS (có 4 cái!).
 
     **`foo(2..`, `= a;`, `a + ..` và `.. + b`**
 
-[^note-strictmode]: MDN: [Strict Mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode)
+[^note-strictmode]: MDN: [Chế độ Nghiêm ngặt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode)
