@@ -1,23 +1,23 @@
-# You Don't Know JS: Scope & Closures
-# Chapter 2: Lexical Scope
+# Bạn không hiểu JS: Phạm vi và Hàm khép kín
+# Chương 2: Phạm vi Từ vựng
 
-In Chapter 1, we defined "scope" as the set of rules that govern how the *Engine* can look up a variable by its identifier name and find it, either in the current *Scope*, or in any of the *Nested Scopes* it's contained within.
+Ở chương 1, chúng ta đã định nghĩa "phạm vi" là một tập hợp các quy tắc chi phối cách *Bộ máy* có thể tra cứu một biến bằng tên định danh của nó và tìm ra nó, hoặc trong *Phạm vi* hiện tại, hoặc trong bất kỳ *Phạm vi Lồng nhau* nào chứa nó.
 
-There are two predominant models for how scope works. The first of these is by far the most common, used by the vast majority of programming languages. It's called **Lexical Scope**, and we will examine it in-depth. The other model, which is still used by some languages (such as Bash scripting, some modes in Perl, etc.) is called **Dynamic Scope**.
+Có hai mô hình nổi trội về cách hoạt động của phạm vi. Mô hình đầu tiên phổ biến hơn cả, được đại đa số các ngôn ngữ lập trình sử dụng. Nó được gọi là **Phạm vi Từ vựng (Lexical Scope)**, chúng ta sẽ xem xét nó một cách sâu sắc. Mô hình còn lại, vẫn được một số ngôn ngữ sử dụng (như ngôn ngữ kịch bản Bash, một số chế độ trong Perl, v.v.) được gọi là **Phạm vi Động (Dynamic Scope)**.
 
-Dynamic Scope is covered in Appendix A. I mention it here only to provide a contrast with Lexical Scope, which is the scope model that JavaScript employs.
+Phạm vi Động được trình bày trong Phụ lục A. Tôi đề cập đến nó ở đây chỉ để tạo ra sự tương phản với Phạm vi Từ vựng, vốn là mô hình phạm vi mà JavaScript sử dụng.
 
-## Lex-time
+## Thời điểm Phân tích Từ vựng (Lex-time)
 
-As we discussed in Chapter 1, the first traditional phase of a standard language compiler is called lexing (aka, tokenizing). If you recall, the lexing process examines a string of source code characters and assigns semantic meaning to the tokens as a result of some stateful parsing.
+Như chúng ta đã thảo luận trong chương 1, giai đoạn truyền thống đầu tiên của một chương trình biên dịch ngôn ngữ tiêu chuẩn được gọi là phân tích từ vựng (hay còn gọi là phân đoạn). Nếu bạn còn nhớ, quá trình phân tích từ vựng sẽ kiểm tra một chuỗi các ký tự mã nguồn và gán ngữ nghĩa cho các đoạn như là kết quả của một quá trình phân tích có trạng thái.
 
-It is this concept which provides the foundation to understand what lexical scope is and where the name comes from.
+Chính khái niệm này cung cấp nền tảng để hiểu phạm vi từ vựng là gì và tên gọi của nó xuất phát từ đâu.
 
-To define it somewhat circularly, lexical scope is scope that is defined at lexing time. In other words, lexical scope is based on where variables and blocks of scope are authored, by you, at write time, and thus is (mostly) set in stone by the time the lexer processes your code.
+Có thể định nghĩa một cách hơi lòng vòng rằng, phạm vi từ vựng là phạm vi được xác định tại thời điểm phân tích từ vựng. Nói cách khác, phạm vi từ vựng dựa trên nơi các biến và các khối phạm vi được bạn viết ra, tại thời điểm viết mã, và do đó (hầu như) đã được định hình vào lúc chương trình phân tích từ vựng xử lý mã của bạn.
 
-**Note:** We will see in a little bit there are some ways to cheat lexical scope, thereby modifying it after the lexer has passed by, but these are frowned upon. It is considered best practice to treat lexical scope as, in fact, lexical-only, and thus entirely author-time in nature.
+**Lưu ý:** Lát nữa chúng ta sẽ thấy có một số cách để lách luật phạm vi từ vựng, qua đó sửa đổi nó sau khi chương trình phân tích từ vựng đã thông qua, nhưng những cách này không được tán thành. Cách làm tốt nhất trong thực tế là hãy đối xử với phạm vi từ vựng như đúng bản chất của nó, chỉ mang tính từ vựng, và do đó hoàn toàn phụ thuộc vào thời điểm viết mã.
 
-Let's consider this block of code:
+Hãy xem xét khối mã này:
 
 ```js
 function foo(a) {
@@ -34,65 +34,65 @@ function foo(a) {
 foo( 2 ); // 2 4 12
 ```
 
-There are three nested scopes inherent in this code example. It may be helpful to think about these scopes as bubbles inside of each other.
+Có ba phạm vi lồng nhau vốn có trong mã ví dụ này. Sẽ hữu ích nếu bạn hình dung các phạm vi này như những bong bóng lồng vào nhau.
 
 <img src="fig2.png" width="500">
 
-**Bubble 1** encompasses the global scope, and has just one identifier in it: `foo`.
+**Bong bóng 1** bao trùm phạm vi toàn cục, và chỉ có một định danh trong đó: `foo`.
 
-**Bubble 2** encompasses the scope of `foo`, which includes the three identifiers: `a`, `bar` and `b`.
+**Bong bóng 2** bao trùm phạm vi của `foo`, bao gồm ba định danh: `a`, `bar` và `b`.
 
-**Bubble 3** encompasses the scope of `bar`, and it includes just one identifier: `c`.
+**Bong bóng 3** bao trùm phạm vi của `bar`, và nó chỉ bao gồm một định danh: `c`.
 
-Scope bubbles are defined by where the blocks of scope are written, which one is nested inside the other, etc. In the next chapter, we'll discuss different units of scope, but for now, let's just assume that each function creates a new bubble of scope.
+Các bong bóng phạm vi được xác định bởi nơi các khối phạm vi được viết, cái nào được lồng bên trong cái nào, v.v. Trong chương tiếp theo, chúng ta sẽ thảo luận về các đơn vị phạm vi khác nhau, nhưng bây giờ, hãy cứ cho rằng mỗi hàm tạo ra một bong bóng phạm vi mới.
 
-The bubble for `bar` is entirely contained within the bubble for `foo`, because (and only because) that's where we chose to define the function `bar`.
+Bong bóng của `bar` hoàn toàn nằm trong bong bóng của `foo`, bởi vì (và chỉ bởi vì) đó là nơi chúng ta đã chọn để định nghĩa hàm `bar`.
 
-Notice that these nested bubbles are strictly nested. We're not talking about Venn diagrams where the bubbles can cross boundaries. In other words, no bubble for some function can simultaneously exist (partially) inside two other outer scope bubbles, just as no function can partially be inside each of two parent functions.
+Lưu ý rằng các bong bóng này được lồng nhau một cách nghiêm ngặt. Chúng ta không nói về các biểu đồ Venn nơi các bong bóng có thể cắt nhau ở viền. Nói cách khác, không có bong bóng của một hàm nào có thể đồng thời tồn tại (một phần) bên trong hai bong bóng phạm vi bên ngoài khác, cũng như không có hàm nào có thể nằm một phần bên trong hai hàm cha.
 
-### Look-ups
+### Tra cứu
 
-The structure and relative placement of these scope bubbles fully explains to the *Engine* all the places it needs to look to find an identifier.
+Cấu trúc và vị trí tương đối của các bong bóng phạm vi này giải thích đầy đủ cho *Bộ máy* tất cả những nơi nó cần để tìm thấy một định danh.
 
-In the above code snippet, the *Engine* executes the `console.log(..)` statement and goes looking for the three referenced variables `a`, `b`, and `c`. It first starts with the innermost scope bubble, the scope of the `bar(..)` function. It won't find `a` there, so it goes up one level, out to the next nearest scope bubble, the scope of `foo(..)`. It finds `a` there, and so it uses that `a`. Same thing for `b`. But `c`, it does find inside of `bar(..)`.
+Trong đoạn mã trên, *Bộ máy* thực thi câu lệnh `console.log(..)` và bắt đầu tìm kiếm ba biến được tham chiếu là `a`, `b`, và `c`. Nó bắt đầu với bong bóng phạm vi trong cùng, phạm vi của hàm `bar(..)`. Nó sẽ không tìm thấy `a` ở đó, vì vậy nó đi lên một cấp, ra bong bóng phạm vi gần nhất tiếp theo, phạm vi của `foo(..)`. Nó tìm thấy `a` ở đó, và vì vậy nó sử dụng `a` đó. Điều tương tự cũng xảy ra với `b`. Nhưng với `c`, nó tìm thấy ngay bên trong `bar(..)`.
 
-Had there been a `c` both inside of `bar(..)` and inside of `foo(..)`, the `console.log(..)` statement would have found and used the one in `bar(..)`, never getting to the one in `foo(..)`.
+Nếu có một biến `c` tồn tại cả bên trong `bar(..)` và bên trong `foo(..)`, câu lệnh `console.log(..)` sẽ tìm thấy và sử dụng biến trong `bar(..)`, không bao giờ chạm tới biến trong `foo(..)`.
 
-**Scope look-up stops once it finds the first match**. The same identifier name can be specified at multiple layers of nested scope, which is called "shadowing" (the inner identifier "shadows" the outer identifier). Regardless of shadowing, scope look-up always starts at the innermost scope being executed at the time, and works its way outward/upward until the first match, and stops.
+**Việc tra cứu phạm vi sẽ dừng lại ngay khi tìm thấy kết quả khớp đầu tiên**. Cùng một tên định danh có thể được chỉ định ở nhiều lớp phạm vi lồng nhau, điều này được gọi là "che khuất" (định danh bên trong "che khuất" định danh bên ngoài). Bất kể có sự che khuất hay không, việc tra cứu phạm vi luôn bắt đầu ở phạm vi trong cùng đang được thực thi tại thời điểm đó, và tiến dần ra ngoài/lên trên cho đến khi gặp kết quả khớp đầu tiên, và dừng lại.
 
-**Note:** Global variables are also automatically properties of the global object (`window` in browsers, etc.), so it *is* possible to reference a global variable not directly by its lexical name, but instead indirectly as a property reference of the global object.
+**Lưu ý:** Các biến toàn cục cũng tự động là thuộc tính của đối tượng toàn cục (`window` trong chương trình duyệt, v.v.), vì vậy *có thể* tham chiếu đến một biến toàn cục không phải trực tiếp bằng tên từ vựng của nó, mà thay vào đó là gián tiếp thông qua một tham chiếu thuộc tính của đối tượng toàn cục.
 
 ```js
 window.a
 ```
 
-This technique gives access to a global variable which would otherwise be inaccessible due to it being shadowed. However, non-global shadowed variables cannot be accessed.
+Kỹ thuật này cho phép truy cập vào một biến toàn cục mà nếu không có sẽ không thể truy cập được do bị che khuất. Tuy nhiên, các biến bị che khuất không phải toàn cục thì không thể truy cập được.
 
-No matter *where* a function is invoked from, or even *how* it is invoked, its lexical scope is **only** defined by where the function was declared.
+Bất kể một hàm được gọi từ *đâu*, hoặc thậm chí được gọi *như thế nào*, phạm vi từ vựng của nó **chỉ** được xác định bởi nơi hàm đó được khai báo.
 
-The lexical scope look-up process *only* applies to first-class identifiers, such as the `a`, `b`, and `c`. If you had a reference to `foo.bar.baz` in a piece of code, the lexical scope look-up would apply to finding the `foo` identifier, but once it locates that variable, object property-access rules take over to resolve the `bar` and `baz` properties, respectively.
+Quá trình tra cứu phạm vi từ vựng *chỉ* áp dụng cho các định danh hàng đầu, chẳng hạn như `a`, `b`, và `c`. Nếu bạn có một tham chiếu đến `foo.bar.baz` trong một đoạn mã, việc tra cứu phạm vi từ vựng sẽ áp dụng để tìm định danh `foo`, nhưng một khi nó đã xác định được biến đó, các quy tắc truy cập thuộc tính đối tượng sẽ tiếp quản để phân giải các thuộc tính `bar` và `baz`.
 
-## Cheating Lexical
+## Lách luật Phạm vi Từ vựng
 
-If lexical scope is defined only by where a function is declared, which is entirely an author-time decision, how could there possibly be a way to "modify" (aka, cheat) lexical scope at run-time?
+Nếu phạm vi từ vựng chỉ được xác định bởi nơi một hàm được khai báo, một quyết định hoàn toàn thuộc về thời điểm viết mã, thì làm thế nào có thể có cách để "sửa đổi" (hay, lách luật) phạm vi từ vựng tại thời điểm chạy?
 
-JavaScript has two such mechanisms. Both of them are equally frowned-upon in the wider community as bad practices to use in your code. But the typical arguments against them are often missing the most important point: **cheating lexical scope leads to poorer performance.**
+JavaScript có hai cơ chế như vậy. Cả hai đều bị cộng đồng rộng lớn xem là những thực tiễn tồi tệ để sử dụng trong mã của bạn. Nhưng những lập luận điển hình chống lại chúng thường bỏ lỡ điểm quan trọng nhất: **lách luật phạm vi từ vựng dẫn đến hiệu năng kém hơn.**
 
-Before I explain the performance issue, though, let's look at how these two mechanisms work.
+Tuy nhiên, trước khi tôi giải thích vấn đề hiệu năng, chúng ta hãy xem hai cơ chế này hoạt động như thế nào.
 
 ### `eval`
 
-The `eval(..)` function in JavaScript takes a string as an argument, and treats the contents of the string as if it had actually been authored code at that point in the program. In other words, you can programmatically generate code inside of your authored code, and run the generated code as if it had been there at author time.
+Hàm `eval(..)` trong JavaScript nhận một chuỗi làm đối số, và coi nội dung của chuỗi đó như thể nó thực sự là mã đã được viết tại điểm đó trong chương trình. Nói cách khác, bạn có thể tạo mã một cách có lập trình bên trong mã bạn đã viết, và chạy đoạn mã được tạo ra như thể nó đã ở đó từ lúc viết mã.
 
-Evaluating `eval(..)` (pun intended) in that light, it should be clear how `eval(..)` allows you to modify the lexical scope environment by cheating and pretending that author-time (aka, lexical) code was there all along.
+Nhìn nhận `eval(..)` (một cách chơi chữ) dưới lăng kính đó, hẳn sẽ rõ ràng cách `eval(..)` cho phép bạn sửa đổi môi trường phạm vi từ vựng bằng cách lách luật và giả vờ rằng mã tại thời điểm viết (tức là, từ vựng) đã luôn ở đó.
 
-On subsequent lines of code after an `eval(..)` has executed, the *Engine* will not "know" or "care" that the previous code in question was dynamically interpreted and thus modified the lexical scope environment. The *Engine* will simply perform its lexical scope look-ups as it always does.
+Trên các dòng mã tiếp theo sau khi một `eval(..)` đã thực thi, *Bộ máy* sẽ không "biết" hoặc "quan tâm" rằng đoạn mã trước đó đã được thông dịch động và do đó đã sửa đổi môi trường phạm vi từ vựng. *Bộ máy* sẽ chỉ đơn giản thực hiện các tra cứu phạm vi từ vựng của mình như mọi khi.
 
-Consider the following code:
+Hãy xem xét đoạn mã sau:
 
 ```js
 function foo(str, a) {
-	eval( str ); // cheating!
+	eval( str ); // lách luật!
 	console.log( a, b );
 }
 
@@ -101,15 +101,15 @@ var b = 2;
 foo( "var b = 3;", 1 ); // 1 3
 ```
 
-The string `"var b = 3;"` is treated, at the point of the `eval(..)` call, as code that was there all along. Because that code happens to declare a new variable `b`, it modifies the existing lexical scope of `foo(..)`. In fact, as mentioned above, this code actually creates variable `b` inside of `foo(..)` that shadows the `b` that was declared in the outer (global) scope.
+Chuỗi `"var b = 3;"` được coi, tại thời điểm gọi `eval(..)`, như là mã đã tồn tại ở đó. Bởi vì đoạn mã đó tình cờ khai báo một biến mới `b`, nó sửa đổi phạm vi từ vựng hiện có của `foo(..)`. Thực tế, như đã đề cập ở trên, đoạn mã này thực sự tạo ra biến `b` bên trong `foo(..)` mà che khuất biến `b` đã được khai báo ở phạm vi bên ngoài (toàn cục).
 
-When the `console.log(..)` call occurs, it finds both `a` and `b` in the scope of `foo(..)`, and never finds the outer `b`. Thus, we print out "1 3" instead of "1 2" as would have normally been the case.
+Khi lệnh gọi `console.log(..)` xảy ra, nó tìm thấy cả `a` và `b` trong phạm vi của `foo(..)`, và không bao giờ tìm thấy `b` bên ngoài. Do đó, chúng ta in ra "1 3" thay vì "1 2" như trường hợp thông thường.
 
-**Note:** In this example, for simplicity's sake, the string of "code" we pass in was a fixed literal. But it could easily have been programmatically created by adding characters together based on your program's logic. `eval(..)` is usually used to execute dynamically created code, as dynamically evaluating essentially static code from a string literal would provide no real benefit to just authoring the code directly.
+**Lưu ý:** Trong ví dụ này, để cho đơn giản, chuỗi "mã" chúng ta truyền vào là một chuỗi ký tự cố định. Nhưng nó có thể dễ dàng được tạo ra một cách có lập trình bằng cách nối các ký tự lại với nhau dựa trên logic của chương trình. `eval(..)` thường được sử dụng để thực thi mã được tạo động, vì việc đánh giá động một đoạn mã gần như tĩnh từ một chuỗi ký tự sẽ không mang lại lợi ích thực sự nào so với việc viết mã trực tiếp.
 
-By default, if a string of code that `eval(..)` executes contains one or more declarations (either variables or functions), this action modifies the existing lexical scope in which the `eval(..)` resides. Technically, `eval(..)` can be invoked "indirectly", through various tricks (beyond our discussion here), which causes it to instead execute in the context of the global scope, thus modifying it. But in either case, `eval(..)` can at runtime modify an author-time lexical scope.
+Theo mặc định, nếu một chuỗi mã mà `eval(..)` thực thi chứa một hoặc nhiều khai báo (biến hoặc hàm), hành động này sẽ sửa đổi phạm vi từ vựng hiện có nơi `eval(..)` cư trú. Về mặt kỹ thuật, `eval(..)` có thể được gọi "gián tiếp", thông qua các thủ thuật khác nhau (nằm ngoài phạm vi thảo luận của chúng ta ở đây), khiến nó thay vào đó thực thi trong bối cảnh của phạm vi toàn cục, do đó sửa đổi nó. Nhưng trong cả hai trường hợp, `eval(..)` có thể sửa đổi một phạm vi từ vựng vốn được xác định tại thời điểm viết mã.
 
-**Note:** `eval(..)` when used in a strict-mode program operates in its own lexical scope, which means declarations made inside of the `eval()` do not actually modify the enclosing scope.
+**Lưu ý:** `eval(..)` khi được sử dụng trong một chương trình ở chế độ nghiêm ngặt (strict mode) sẽ hoạt động trong phạm vi từ vựng riêng của nó, có nghĩa là các khai báo được thực hiện bên trong `eval()` không thực sự sửa đổi phạm vi bao quanh.
 
 ```js
 function foo(str) {
@@ -121,19 +121,19 @@ function foo(str) {
 foo( "var a = 2" );
 ```
 
-There are other facilities in JavaScript which amount to a very similar effect to `eval(..)`. `setTimeout(..)` and `setInterval(..)` *can* take a string for their respective first argument, the contents of which are `eval`uated as the code of a dynamically-generated function. This is old, legacy behavior and long-since deprecated. Don't do it!
+Có những cơ sở khác trong JavaScript tạo ra hiệu ứng rất giống với `eval(..)`. `setTimeout(..)` và `setInterval(..)` *có thể* nhận một chuỗi cho đối số đầu tiên của chúng, nội dung của chuỗi đó được `eval` như là mã của một hàm được tạo động. Đây là hành vi cũ, kế thừa và từ lâu đã không còn được dùng nữa. Đừng làm vậy!
 
-The `new Function(..)` function constructor similarly takes a string of code in its **last** argument to turn into a dynamically-generated function (the first argument(s), if any, are the named parameters for the new function). This function-constructor syntax is slightly safer than `eval(..)`, but it should still be avoided in your code.
+Hàm khởi tạo `new Function(..)` tương tự cũng nhận một chuỗi mã trong đối số **cuối cùng** của nó để biến thành một hàm được tạo động (các đối số đầu tiên, nếu có, là các tham số được đặt tên cho hàm mới). Cú pháp hàm khởi tạo này an toàn hơn một chút so với `eval(..)`, nhưng bạn vẫn nên tránh nó trong mã của mình.
 
-The use-cases for dynamically generating code inside your program are incredibly rare, as the performance degradations are almost never worth the capability.
+Các trường hợp sử dụng để tạo mã động bên trong chương trình của bạn là cực kỳ hiếm, vì sự suy giảm hiệu năng gần như không bao giờ đáng để đánh đổi lấy khả năng đó.
 
 ### `with`
 
-The other frowned-upon (and now deprecated!) feature in JavaScript which cheats lexical scope is the `with` keyword. There are multiple valid ways that `with` can be explained, but I will choose here to explain it from the perspective of how it interacts with and affects lexical scope.
+Tính năng khác bị xem là bất hảo (và bây giờ đã bị loại bỏ!) trong JavaScript mà lách luật phạm vi từ vựng là từ khóa `with`. Có nhiều cách hợp lệ để giải thích `with`, nhưng ở đây tôi sẽ chọn giải thích nó từ góc độ cách nó tương tác và ảnh hưởng đến phạm vi từ vựng.
 
-`with` is typically explained as a short-hand for making multiple property references against an object *without* repeating the object reference itself each time.
+`with` thường được giải thích như một cách viết tắt để thực hiện nhiều tham chiếu thuộc tính đối với một đối tượng *mà không* lặp lại tham chiếu đối tượng mỗi lần.
 
-For example:
+Ví dụ:
 
 ```js
 var obj = {
@@ -142,12 +142,12 @@ var obj = {
 	c: 3
 };
 
-// more "tedious" to repeat "obj"
+// "tẻ nhạt" hơn khi phải lặp lại "obj"
 obj.a = 2;
 obj.b = 3;
 obj.c = 4;
 
-// "easier" short-hand
+// cách viết tắt "dễ dàng" hơn
 with (obj) {
 	a = 3;
 	b = 4;
@@ -155,7 +155,7 @@ with (obj) {
 }
 ```
 
-However, there's much more going on here than just a convenient short-hand for object property access. Consider:
+Tuy nhiên, có nhiều điều đang diễn ra ở đây hơn là chỉ một cách viết tắt tiện lợi để truy cập thuộc tính đối tượng. Hãy xem xét:
 
 ```js
 function foo(obj) {
@@ -177,47 +177,47 @@ console.log( o1.a ); // 2
 
 foo( o2 );
 console.log( o2.a ); // undefined
-console.log( a ); // 2 -- Oops, leaked global!
+console.log( a ); // 2 -- Chà, làm rò rỉ biến toàn cục!
 ```
 
-In this code example, two objects `o1` and `o2` are created. One has an `a` property, and the other does not. The `foo(..)` function takes an object reference `obj` as an argument, and calls `with (obj) { .. }` on the reference. Inside the `with` block, we make what appears to be a normal lexical reference to a variable `a`, an LHS reference in fact (see Chapter 1), to assign to it the value of `2`.
+Trong ví dụ mã này, hai đối tượng `o1` và `o2` được tạo ra. Một cái có thuộc tính `a`, và cái kia thì không. Hàm `foo(..)` nhận một tham chiếu đối tượng `obj` làm đối số, và gọi `with (obj) { .. }` trên tham chiếu đó. Bên trong khối `with`, chúng ta thực hiện một tham chiếu có vẻ như là một tham chiếu từ vựng thông thường đến một biến `a`, thực chất là một tham chiếu LHS (xem Chương 1), để gán cho nó giá trị là `2`.
 
-When we pass in `o1`, the `a = 2` assignment finds the property `o1.a` and assigns it the value `2`, as reflected in the subsequent `console.log(o1.a)` statement. However, when we pass in `o2`, since it does not have an `a` property, no such property is created, and `o2.a` remains `undefined`.
+Khi chúng ta truyền vào `o1`, phép gán `a = 2` tìm thấy thuộc tính `o1.a` và gán cho nó giá trị `2`, như được phản ánh trong câu lệnh `console.log(o1.a)` sau đó. Tuy nhiên, khi chúng ta truyền vào `o2`, vì nó không có thuộc tính `a`, không có thuộc tính nào như vậy được tạo ra, và `o2.a` vẫn là `undefined`.
 
-But then we note a peculiar side-effect, the fact that a global variable `a` was created by the `a = 2` assignment. How can this be?
+Nhưng sau đó chúng ta lưu ý một tác dụng phụ kỳ lạ, đó là một biến toàn cục `a` đã được tạo ra bởi phép gán `a = 2`. Làm thế nào điều này có thể xảy ra?
 
-The `with` statement takes an object, one which has zero or more properties, and **treats that object as if *it* is a wholly separate lexical scope**, and thus the object's properties are treated as lexically defined identifiers in that "scope".
+Câu lệnh `with` nhận một đối tượng, một đối tượng có không hoặc nhiều thuộc tính, và **coi đối tượng đó như thể *nó* là một phạm vi từ vựng hoàn toàn riêng biệt**, và do đó các thuộc tính của đối tượng được coi như là các định danh được xác định theo quy tắc từ vựng trong "phạm vi" đó.
 
-**Note:** Even though a `with` block treats an object like a lexical scope, a normal `var` declaration inside that `with` block will not be scoped to that `with` block, but instead the containing function scope.
+**Lưu ý:** Mặc dù một khối `with` coi một đối tượng như một phạm vi từ vựng, một khai báo `var` thông thường bên trong khối `with` đó sẽ không thuộc phạm vi của khối `with`, mà thay vào đó thuộc phạm vi của hàm chứa nó.
 
-While the `eval(..)` function can modify existing lexical scope if it takes a string of code with one or more declarations in it, the `with` statement actually creates a **whole new lexical scope** out of thin air, from the object you pass to it.
+Trong khi hàm `eval(..)` có thể sửa đổi phạm vi từ vựng hiện có nếu nó nhận một chuỗi mã với một hoặc nhiều khai báo trong đó, câu lệnh `with` thực sự tạo ra một **phạm vi từ vựng hoàn toàn mới** từ hư không, từ đối tượng mà bạn truyền cho nó.
 
-Understood in this way, the "scope" declared by the `with` statement when we passed in `o1` was `o1`, and that "scope" had an "identifier" in it which corresponds to the `o1.a` property. But when we used `o2` as the "scope", it had no such `a` "identifier" in it, and so the normal rules of LHS identifier look-up (see Chapter 1) occurred.
+Hiểu theo cách này, "phạm vi" được khai báo bởi câu lệnh `with` khi chúng ta truyền `o1` chính là `o1`, và "phạm vi" đó có một "định danh" tương ứng với thuộc tính `o1.a`. Nhưng khi chúng ta sử dụng `o2` làm "phạm vi", nó không có "định danh" `a` nào như vậy, và vì vậy các quy tắc thông thường của việc tra cứu định danh LHS (xem Chương 1) đã diễn ra.
 
-Neither the "scope" of `o2`, nor the scope of `foo(..)`, nor the global scope even, has an `a` identifier to be found, so when `a = 2` is executed, it results in the automatic-global being created (since we're in non-strict mode).
+Cả "phạm vi" của `o2`, lẫn phạm vi của `foo(..)`, và ngay cả phạm vi toàn cục, đều không có định danh `a` nào để tìm thấy, vì vậy khi `a = 2` được thực thi, nó dẫn đến việc tạo ra biến toàn cục tự động (vì chúng ta đang ở chế độ không nghiêm ngặt).
 
-It is a strange sort of mind-bending thought to see `with` turning, at runtime, an object and its properties into a "scope" *with* "identifiers". But that is the clearest explanation I can give for the results we see.
+Thật là một ý tưởng kỳ lạ và khó hình dung khi thấy `with` biến, tại thời điểm chạy, một đối tượng và các thuộc tính của nó thành một "phạm vi" *với* các "định danh". Nhưng đó là lời giải thích rõ ràng nhất mà tôi có thể đưa ra cho kết quả chúng ta thấy.
 
-**Note:** In addition to being a bad idea to use, both `eval(..)` and `with` are affected (restricted) by Strict Mode. `with` is outright disallowed, whereas various forms of indirect or unsafe `eval(..)` are disallowed while retaining the core functionality.
+**Lưu ý:** Ngoài việc là một ý tưởng tồi để sử dụng, cả `eval(..)` và `with` đều bị ảnh hưởng (hạn chế) bởi Chế độ Nghiêm ngặt. `with` bị cấm hoàn toàn, trong khi các hình thức khác nhau của `eval(..)` gián tiếp hoặc không an toàn bị cấm trong khi vẫn giữ lại chức năng cốt lõi.
 
-### Performance
+### Hiệu năng
 
-Both `eval(..)` and `with` cheat the otherwise author-time defined lexical scope by modifying or creating new lexical scope at runtime.
+Cả `eval(..)` và `with` đều lách luật phạm vi từ vựng vốn được xác định tại thời điểm viết mã bằng cách sửa đổi hoặc tạo ra phạm vi từ vựng mới tại thời điểm chạy.
 
-So, what's the big deal, you ask? If they offer more sophisticated functionality and coding flexibility, aren't these *good* features? **No.**
+Vậy, có gì to tát đâu, bạn hỏi? Nếu chúng cung cấp chức năng phức tạp hơn và sự linh hoạt trong mã hóa, chẳng phải chúng là những tính năng *tốt* sao? **Không.**
 
-The JavaScript *Engine* has a number of performance optimizations that it performs during the compilation phase. Some of these boil down to being able to essentially statically analyze the code as it lexes, and pre-determine where all the variable and function declarations are, so that it takes less effort to resolve identifiers during execution.
+*Bộ máy* JavaScript thực hiện hàng loạt tối ưu hóa hiệu năng trong giai đoạn biên dịch. Mấu chốt của một vài tối ưu hóa này nằm ở khả năng phân tích tĩnh mã nguồn ngay khi nó phân tích từ vựng, và xác định trước vị trí của tất cả các khai báo biến và hàm, để tốn ít nỗ lực hơn trong việc phân giải các định danh trong quá trình thực thi.
 
-But if the *Engine* finds an `eval(..)` or `with` in the code, it essentially has to *assume* that all its awareness of identifier location may be invalid, because it cannot know at lexing time exactly what code you may pass to `eval(..)` to modify the lexical scope, or the contents of the object you may pass to `with` to create a new lexical scope to be consulted.
+Nhưng nếu *Bộ máy* tìm thấy `eval(..)` hay `with` trong mã, về cơ bản nó phải *giả định* rằng mọi nhận định của nó về vị trí của các định danh đều có thể không còn hợp lệ nữa, bởi vì nó không thể biết tại thời điểm phân tích từ vựng chính xác đoạn mã bạn có thể truyền cho `eval(..)` để sửa đổi phạm vi từ vựng, hoặc nội dung của đối tượng bạn có thể truyền cho `with` để tạo ra một phạm vi từ vựng mới để tham khảo.
 
-In other words, in the pessimistic sense, most of those optimizations it *would* make are pointless if `eval(..)` or `with` are present, so it simply doesn't perform the optimizations *at all*.
+Nói cách khác, theo hướng bi quan nhất, hầu hết các tối ưu hóa mà nó *lẽ ra sẽ* thực hiện đều trở nên vô nghĩa nếu có sự hiện diện của `eval(..)` hoặc `with`, vì vậy nó đơn giản là không thực hiện các tối ưu hóa đó *chút nào*.
 
-Your code will almost certainly tend to run slower simply by the fact that you include an `eval(..)` or `with` anywhere in the code. No matter how smart the *Engine* may be about trying to limit the side-effects of these pessimistic assumptions, **there's no getting around the fact that without the optimizations, code runs slower.**
+Mã của bạn gần như chắc chắn sẽ có xu hướng chạy chậm hơn chỉ vì bạn đưa `eval(..)` hoặc `with` vào bất kỳ đâu trong mã. Bất kể *Bộ máy* có thể thông minh đến đâu trong việc cố gắng hạn chế các tác dụng phụ của những giả định bi quan này, **không thể phủ nhận một thực tế rằng nếu không có các tối ưu hóa, mã sẽ chạy chậm hơn.**
 
-## Review (TL;DR)
+## Ôn lại (Tóm tắt)
 
-Lexical scope means that scope is defined by author-time decisions of where functions are declared. The lexing phase of compilation is essentially able to know where and how all identifiers are declared, and thus predict how they will be looked-up during execution.
+Phạm vi từ vựng có nghĩa là phạm vi được xác định bởi các quyết định tại thời điểm viết mã về nơi các hàm được khai báo. Giai đoạn phân tích từ vựng của quá trình biên dịch về cơ bản có thể biết tất cả các định danh được khai báo ở đâu và như thế nào, và do đó dự đoán cách chúng sẽ được tra cứu trong quá trình thực thi.
 
-Two mechanisms in JavaScript can "cheat" lexical scope: `eval(..)` and `with`. The former can modify existing lexical scope (at runtime) by evaluating a string of "code" which has one or more declarations in it. The latter essentially creates a whole new lexical scope (again, at runtime) by treating an object reference *as* a "scope" and that object's properties as scoped identifiers.
+Hai cơ chế trong JavaScript có thể "lách luật" phạm vi từ vựng: `eval(..)` và `with`. Cơ chế đầu tiên có thể sửa đổi phạm vi từ vựng hiện có (tại thời điểm chạy) bằng cách đánh giá một chuỗi "mã" có một hoặc nhiều khai báo trong đó. Cơ chế thứ hai về cơ bản tạo ra một phạm vi từ vựng hoàn toàn mới (cũng tại thời điểm chạy) bằng cách coi một tham chiếu đối tượng *như* một "phạm vi" và các thuộc tính của đối tượng đó như là các định danh thuộc phạm vi.
 
-The downside to these mechanisms is that it defeats the *Engine*'s ability to perform compile-time optimizations regarding scope look-up, because the *Engine* has to assume pessimistically that such optimizations will be invalid. Code *will* run slower as a result of using either feature. **Don't use them.**
+Nhược điểm của các cơ chế này là nó làm vô hiệu hóa khả năng của *Bộ máy* trong việc thực hiện các tối ưu hóa tại thời điểm biên dịch liên quan đến việc tra cứu phạm vi, bởi vì *Bộ máy* phải giả định một cách bi quan rằng các tối ưu hóa như vậy sẽ không hợp lệ. Mã *sẽ* chạy chậm hơn do sử dụng một trong hai tính năng này. **Đừng dùng chúng.**

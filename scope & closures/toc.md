@@ -5,10 +5,10 @@
 * Lời tựa
 * Lời mở đầu
 * Chương 1: Phạm vi là gì?
-	* Compiler Theory
-	* Understanding Scope
-	* Nested Scope
-	* Errors
+	* Lý thuyết chương trình biên dịch
+	* Hiểu về Phạm vi
+	* Phạm vi lồng nhau
+	* Lỗi
 * Chương 2: Phạm vi Từ vựng
 	* Lex-time
 	* Cheating Lexical
