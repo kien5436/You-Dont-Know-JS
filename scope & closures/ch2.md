@@ -76,17 +76,17 @@ Quá trình tra cứu phạm vi từ vựng *chỉ* áp dụng cho các định 
 
 Nếu phạm vi từ vựng chỉ được xác định bởi nơi một hàm được khai báo, một quyết định hoàn toàn thuộc về thời điểm viết mã, thì làm thế nào có thể có cách để "sửa đổi" (hay, lách luật) phạm vi từ vựng tại thời điểm chạy?
 
-JavaScript có hai cơ chế như vậy. Cả hai đều bị cộng đồng rộng lớn xem là những thực tiễn tồi tệ để sử dụng trong mã của bạn. Nhưng những lập luận điển hình chống lại chúng thường bỏ lỡ điểm quan trọng nhất: **lách luật phạm vi từ vựng dẫn đến hiệu năng kém hơn.**
+JavaScript có hai cơ chế như vậy. Cả hai đều bị phần lớn cộng đồng xem là những phương pháp tồi nếu sử dụng trong mã của bạn. Nhưng những lập luận điển hình chống lại chúng thường bỏ lỡ điểm quan trọng nhất: **lách luật phạm vi từ vựng dẫn đến hiệu năng kém hơn.**
 
 Tuy nhiên, trước khi tôi giải thích vấn đề hiệu năng, chúng ta hãy xem hai cơ chế này hoạt động như thế nào.
 
 ### `eval`
 
-Hàm `eval(..)` trong JavaScript nhận một chuỗi làm đối số, và coi nội dung của chuỗi đó như thể nó thực sự là mã đã được viết tại điểm đó trong chương trình. Nói cách khác, bạn có thể tạo mã một cách có lập trình bên trong mã bạn đã viết, và chạy đoạn mã được tạo ra như thể nó đã ở đó từ lúc viết mã.
+Hàm `eval(..)` trong JavaScript nhận một chuỗi làm đối số, và coi nội dung của chuỗi đó như thể nó thực sự là mã đã được viết tại điểm đó trong chương trình. Nói cách khác, bạn có thể tạo mã theo kiểu lập trình bên trong mã bạn đã viết, và chạy đoạn mã được tạo ra như thể nó đã ở đó từ lúc viết mã.
 
-Nhìn nhận `eval(..)` (một cách chơi chữ) dưới lăng kính đó, hẳn sẽ rõ ràng cách `eval(..)` cho phép bạn sửa đổi môi trường phạm vi từ vựng bằng cách lách luật và giả vờ rằng mã tại thời điểm viết (tức là, từ vựng) đã luôn ở đó.
+Nhìn nhận `eval(..)` dưới lăng kính đó, hẳn bạn nhận thấy rõ ràng cách `eval(..)` cho phép bạn sửa đổi môi trường phạm vi từ vựng bằng cách lách luật và giả vờ rằng mã tại thời điểm viết (tức là từ vựng) đã luôn ở đó.
 
-Trên các dòng mã tiếp theo sau khi một `eval(..)` đã thực thi, *Bộ máy* sẽ không "biết" hoặc "quan tâm" rằng đoạn mã trước đó đã được thông dịch động và do đó đã sửa đổi môi trường phạm vi từ vựng. *Bộ máy* sẽ chỉ đơn giản thực hiện các tra cứu phạm vi từ vựng của mình như mọi khi.
+Trên các dòng mã tiếp theo sau khi `eval(..)` đã thực thi, *Bộ máy* sẽ không "biết" hoặc "quan tâm" tới việc đoạn mã trước đó đã được thông dịch động và đã sửa đổi môi trường phạm vi từ vựng. *Bộ máy* sẽ chỉ đơn giản thực hiện các tra cứu phạm vi từ vựng của mình như mọi khi.
 
 Hãy xem xét đoạn mã sau:
 
@@ -101,15 +101,15 @@ var b = 2;
 foo( "var b = 3;", 1 ); // 1 3
 ```
 
-Chuỗi `"var b = 3;"` được coi, tại thời điểm gọi `eval(..)`, như là mã đã tồn tại ở đó. Bởi vì đoạn mã đó tình cờ khai báo một biến mới `b`, nó sửa đổi phạm vi từ vựng hiện có của `foo(..)`. Thực tế, như đã đề cập ở trên, đoạn mã này thực sự tạo ra biến `b` bên trong `foo(..)` mà che khuất biến `b` đã được khai báo ở phạm vi bên ngoài (toàn cục).
+Tại thời điểm gọi `eval(..)`, chuỗi `"var b = 3;"` được coi như là mã đã tồn tại sẵn. Bởi vì đoạn mã đó tình cờ khai báo một biến `b` mới, nó thay đổi phạm vi từ vựng hiện có của `foo(..)`. Thực tế, như đã đề cập ở trên, đoạn mã này thực sự tạo ra biến `b` bên trong `foo(..)` và che khuất biến `b` đã được khai báo ở phạm vi bên ngoài (toàn cục).
 
-Khi lệnh gọi `console.log(..)` xảy ra, nó tìm thấy cả `a` và `b` trong phạm vi của `foo(..)`, và không bao giờ tìm thấy `b` bên ngoài. Do đó, chúng ta in ra "1 3" thay vì "1 2" như trường hợp thông thường.
+Khi lệnh gọi `console.log(..)` xảy ra, nó tìm thấy cả `a` và `b` trong phạm vi của `foo(..)` và không bao giờ tìm tới `b` bên ngoài. Do đó, chúng ta in ra "1 3" thay vì "1 2" như trường hợp thông thường.
 
-**Lưu ý:** Trong ví dụ này, để cho đơn giản, chuỗi "mã" chúng ta truyền vào là một chuỗi ký tự cố định. Nhưng nó có thể dễ dàng được tạo ra một cách có lập trình bằng cách nối các ký tự lại với nhau dựa trên logic của chương trình. `eval(..)` thường được sử dụng để thực thi mã được tạo động, vì việc đánh giá động một đoạn mã gần như tĩnh từ một chuỗi ký tự sẽ không mang lại lợi ích thực sự nào so với việc viết mã trực tiếp.
+**Lưu ý:** Trong ví dụ này, để cho đơn giản, chuỗi "mã" chúng ta truyền vào là một chuỗi ký tự cố định. Nhưng rất dễ để tạo ra nó theo kiểu lập trình bằng cách ghép các ký tự lại với nhau dựa trên luồng suy luận chương trình. `eval(..)` thường được sử dụng để thực thi mã được tạo động, vì việc đánh giá động một đoạn mã gần như tĩnh từ một chuỗi ký tự sẽ không mang lại lợi ích thực sự nào so với việc viết mã trực tiếp.
 
-Theo mặc định, nếu một chuỗi mã mà `eval(..)` thực thi chứa một hoặc nhiều khai báo (biến hoặc hàm), hành động này sẽ sửa đổi phạm vi từ vựng hiện có nơi `eval(..)` cư trú. Về mặt kỹ thuật, `eval(..)` có thể được gọi "gián tiếp", thông qua các thủ thuật khác nhau (nằm ngoài phạm vi thảo luận của chúng ta ở đây), khiến nó thay vào đó thực thi trong bối cảnh của phạm vi toàn cục, do đó sửa đổi nó. Nhưng trong cả hai trường hợp, `eval(..)` có thể sửa đổi một phạm vi từ vựng vốn được xác định tại thời điểm viết mã.
+Theo mặc định, nếu một chuỗi mã mà `eval(..)` thực thi chứa một hoặc nhiều khai báo (biến hoặc hàm), hành động này sẽ sửa đổi phạm vi từ vựng hiện có nơi `eval(..)` cư trú. Về mặt kỹ thuật, `eval(..)` có thể được gọi "gián tiếp" thông qua các thủ thuật khác nhau (nằm ngoài phạm vi thảo luận của chúng ta ở đây), khiến nó thực thi trong ngữ cảnh của phạm vi toàn cục, do đó thay đổi nó. Nhưng trong cả hai trường hợp, `eval(..)` có thể sửa một phạm vi từ vựng vốn được xác định tại thời điểm viết mã.
 
-**Lưu ý:** `eval(..)` khi được sử dụng trong một chương trình ở chế độ nghiêm ngặt (strict mode) sẽ hoạt động trong phạm vi từ vựng riêng của nó, có nghĩa là các khai báo được thực hiện bên trong `eval()` không thực sự sửa đổi phạm vi bao quanh.
+**Lưu ý:** `eval(..)` khi được sử dụng trong một chương trình ở chế độ nghiêm ngặt sẽ hoạt động trong phạm vi từ vựng của riêng nó, có nghĩa là các khai báo được thực hiện bên trong `eval()` không thực sự sửa đổi phạm vi bao quanh.
 
 ```js
 function foo(str) {
@@ -121,7 +121,7 @@ function foo(str) {
 foo( "var a = 2" );
 ```
 
-Có những cơ sở khác trong JavaScript tạo ra hiệu ứng rất giống với `eval(..)`. `setTimeout(..)` và `setInterval(..)` *có thể* nhận một chuỗi cho đối số đầu tiên của chúng, nội dung của chuỗi đó được `eval` như là mã của một hàm được tạo động. Đây là hành vi cũ, kế thừa và từ lâu đã không còn được dùng nữa. Đừng làm vậy!
+Có những cơ sở khác trong JavaScript tạo ra hiệu ứng rất giống với `eval(..)`. `setTimeout(..)` và `setInterval(..)` *có thể* nhận một chuỗi cho đối số đầu tiên của chúng, nội dung của chuỗi đó được xem như là mã của một hàm được tạo động. Đây là hành vi cũ, kế thừa và từ lâu đã không còn được dùng nữa. Đừng làm vậy!
 
 Hàm khởi tạo `new Function(..)` tương tự cũng nhận một chuỗi mã trong đối số **cuối cùng** của nó để biến thành một hàm được tạo động (các đối số đầu tiên, nếu có, là các tham số được đặt tên cho hàm mới). Cú pháp hàm khởi tạo này an toàn hơn một chút so với `eval(..)`, nhưng bạn vẫn nên tránh nó trong mã của mình.
 
@@ -129,7 +129,7 @@ Các trường hợp sử dụng để tạo mã động bên trong chương tr�
 
 ### `with`
 
-Tính năng khác bị xem là bất hảo (và bây giờ đã bị loại bỏ!) trong JavaScript mà lách luật phạm vi từ vựng là từ khóa `with`. Có nhiều cách hợp lệ để giải thích `with`, nhưng ở đây tôi sẽ chọn giải thích nó từ góc độ cách nó tương tác và ảnh hưởng đến phạm vi từ vựng.
+Tính năng khác để lách luật phạm vi từ vựng cũng bị phản đối (và bây giờ đã bị loại bỏ!) trong JavaScript là từ khóa `with`. Có nhiều cách hợp lệ để giải thích `with`, nhưng ở đây tôi sẽ chọn giải thích nó từ góc độ cách nó tương tác và ảnh hưởng đến phạm vi từ vựng.
 
 `with` thường được giải thích như một cách viết tắt để thực hiện nhiều tham chiếu thuộc tính đối với một đối tượng *mà không* lặp lại tham chiếu đối tượng mỗi lần.
 
@@ -180,13 +180,13 @@ console.log( o2.a ); // undefined
 console.log( a ); // 2 -- Chà, làm rò rỉ biến toàn cục!
 ```
 
-Trong ví dụ mã này, hai đối tượng `o1` và `o2` được tạo ra. Một cái có thuộc tính `a`, và cái kia thì không. Hàm `foo(..)` nhận một tham chiếu đối tượng `obj` làm đối số, và gọi `with (obj) { .. }` trên tham chiếu đó. Bên trong khối `with`, chúng ta thực hiện một tham chiếu có vẻ như là một tham chiếu từ vựng thông thường đến một biến `a`, thực chất là một tham chiếu LHS (xem Chương 1), để gán cho nó giá trị là `2`.
+Trong mã ví dụ này, hai đối tượng `o1` và `o2` được tạo ra. Một cái có thuộc tính `a`, và cái kia thì không. Hàm `foo(..)` nhận một tham chiếu đối tượng `obj` làm đối số và gọi `with (obj) { .. }` trên tham chiếu đó. Bên trong khối `with`, chúng ta thực hiện một tham chiếu có vẻ như là một tham chiếu từ vựng thông thường đến một biến `a`, thực chất là một tham chiếu LHS (xem chương 1), để gán cho nó giá trị `2`.
 
 Khi chúng ta truyền vào `o1`, phép gán `a = 2` tìm thấy thuộc tính `o1.a` và gán cho nó giá trị `2`, như được phản ánh trong câu lệnh `console.log(o1.a)` sau đó. Tuy nhiên, khi chúng ta truyền vào `o2`, vì nó không có thuộc tính `a`, không có thuộc tính nào như vậy được tạo ra, và `o2.a` vẫn là `undefined`.
 
-Nhưng sau đó chúng ta lưu ý một tác dụng phụ kỳ lạ, đó là một biến toàn cục `a` đã được tạo ra bởi phép gán `a = 2`. Làm thế nào điều này có thể xảy ra?
+Nhưng sau đó chúng ta lưu ý tới một hiệu ứng phụ kỳ lạ, đó là một biến toàn cục `a` đã được tạo ra bởi phép gán `a = 2`. Làm thế nào điều này có thể xảy ra?
 
-Câu lệnh `with` nhận một đối tượng, một đối tượng có không hoặc nhiều thuộc tính, và **coi đối tượng đó như thể *nó* là một phạm vi từ vựng hoàn toàn riêng biệt**, và do đó các thuộc tính của đối tượng được coi như là các định danh được xác định theo quy tắc từ vựng trong "phạm vi" đó.
+Câu lệnh `with` nhận một đối tượng, một đối tượng có không hoặc nhiều thuộc tính, và **coi đối tượng đó như thể *nó* là một phạm vi từ vựng hoàn toàn riêng biệt**, do đó các thuộc tính của đối tượng được coi như là các định danh được xác định theo quy tắc từ vựng trong "phạm vi" đó.
 
 **Lưu ý:** Mặc dù một khối `with` coi một đối tượng như một phạm vi từ vựng, một khai báo `var` thông thường bên trong khối `with` đó sẽ không thuộc phạm vi của khối `with`, mà thay vào đó thuộc phạm vi của hàm chứa nó.
 
