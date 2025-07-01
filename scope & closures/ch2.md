@@ -186,38 +186,38 @@ Khi chúng ta truyền vào `o1`, phép gán `a = 2` tìm thấy thuộc tính `
 
 Nhưng sau đó chúng ta lưu ý tới một hiệu ứng phụ kỳ lạ, đó là một biến toàn cục `a` đã được tạo ra bởi phép gán `a = 2`. Làm thế nào điều này có thể xảy ra?
 
-Câu lệnh `with` nhận một đối tượng, một đối tượng có không hoặc nhiều thuộc tính, và **coi đối tượng đó như thể *nó* là một phạm vi từ vựng hoàn toàn riêng biệt**, do đó các thuộc tính của đối tượng được coi như là các định danh được xác định theo quy tắc từ vựng trong "phạm vi" đó.
+Câu lệnh `with` nhận một đối tượng chứa không hoặc nhiều thuộc tính và **coi đối tượng đó như thể *nó* là một phạm vi từ vựng hoàn toàn riêng biệt**, do đó các thuộc tính của đối tượng được coi như là các định danh được xác định theo quy tắc từ vựng trong "phạm vi" đó.
 
-**Lưu ý:** Mặc dù một khối `with` coi một đối tượng như một phạm vi từ vựng, một khai báo `var` thông thường bên trong khối `with` đó sẽ không thuộc phạm vi của khối `with`, mà thay vào đó thuộc phạm vi của hàm chứa nó.
+**Lưu ý:** Mặc dù một khối `with` coi một đối tượng như một phạm vi từ vựng, một khai báo `var` thông thường bên trong khối `with` sẽ không thuộc phạm vi của khối `with` đó, mà thay vào đó thuộc phạm vi của hàm chứa nó.
 
-Trong khi hàm `eval(..)` có thể sửa đổi phạm vi từ vựng hiện có nếu nó nhận một chuỗi mã với một hoặc nhiều khai báo trong đó, câu lệnh `with` thực sự tạo ra một **phạm vi từ vựng hoàn toàn mới** từ hư không, từ đối tượng mà bạn truyền cho nó.
+Trong khi hàm `eval(..)` có thể sửa đổi phạm vi từ vựng hiện có nếu nó nhận một chuỗi mã chứa một hoặc nhiều khai báo, câu lệnh `with` thực sự tạo ra một **phạm vi từ vựng hoàn toàn mới** từ hư không, từ đối tượng mà bạn truyền cho nó.
 
-Hiểu theo cách này, "phạm vi" được khai báo bởi câu lệnh `with` khi chúng ta truyền `o1` chính là `o1`, và "phạm vi" đó có một "định danh" tương ứng với thuộc tính `o1.a`. Nhưng khi chúng ta sử dụng `o2` làm "phạm vi", nó không có "định danh" `a` nào như vậy, và vì vậy các quy tắc thông thường của việc tra cứu định danh LHS (xem Chương 1) đã diễn ra.
+Hiểu theo cách này, "phạm vi" được khai báo bởi câu lệnh `with` khi chúng ta truyền `o1` chính là `o1`, và "phạm vi" đó có một "định danh" tương ứng với thuộc tính `o1.a`. Nhưng khi chúng ta sử dụng `o2` làm "phạm vi", nó không có "định danh" `a` nào như thế, và vì vậy các quy tắc thông thường của việc tra cứu định danh LHS (xem chương 1) đã diễn ra.
 
-Cả "phạm vi" của `o2`, lẫn phạm vi của `foo(..)`, và ngay cả phạm vi toàn cục, đều không có định danh `a` nào để tìm thấy, vì vậy khi `a = 2` được thực thi, nó dẫn đến việc tạo ra biến toàn cục tự động (vì chúng ta đang ở chế độ không nghiêm ngặt).
+Không có định danh `a` nào được tìm thấy trong "phạm vi" của `o2` lẫn phạm vi của `foo(..)`, thậm chí với cả phạm vi toàn cục, vì vậy khi `a = 2` được thực thi, nó dẫn đến việc tạo ra biến toàn cục tự động (vì chúng ta đang ở chế độ không nghiêm ngặt).
 
-Thật là một ý tưởng kỳ lạ và khó hình dung khi thấy `with` biến, tại thời điểm chạy, một đối tượng và các thuộc tính của nó thành một "phạm vi" *với* các "định danh". Nhưng đó là lời giải thích rõ ràng nhất mà tôi có thể đưa ra cho kết quả chúng ta thấy.
+Thật là một ý tưởng kỳ lạ và khó hình dung khi thấy `with`, tại thời điểm chạy, biến một đối tượng và các thuộc tính của nó thành một "phạm vi" *với* các "định danh". Nhưng đó là lời giải thích rõ ràng nhất mà tôi có thể đưa ra cho kết quả chúng ta thấy.
 
-**Lưu ý:** Ngoài việc là một ý tưởng tồi để sử dụng, cả `eval(..)` và `with` đều bị ảnh hưởng (hạn chế) bởi Chế độ Nghiêm ngặt. `with` bị cấm hoàn toàn, trong khi các hình thức khác nhau của `eval(..)` gián tiếp hoặc không an toàn bị cấm trong khi vẫn giữ lại chức năng cốt lõi.
+**Lưu ý:** Ngoài việc sử dụng chúng là ý tưởng tồi, cả `eval(..)` và `with` đều bị ảnh hưởng (hạn chế) bởi Chế độ Nghiêm ngặt. `with` bị cấm hoàn toàn, trong khi các hình thức khác nhau của `eval(..)`, dù gián tiếp hoặc không an toàn đều bị cấm trong khi vẫn giữ lại chức năng cốt lõi.
 
 ### Hiệu năng
 
 Cả `eval(..)` và `with` đều lách luật phạm vi từ vựng vốn được xác định tại thời điểm viết mã bằng cách sửa đổi hoặc tạo ra phạm vi từ vựng mới tại thời điểm chạy.
 
-Vậy, có gì to tát đâu, bạn hỏi? Nếu chúng cung cấp chức năng phức tạp hơn và sự linh hoạt trong mã hóa, chẳng phải chúng là những tính năng *tốt* sao? **Không.**
+Vậy, có gì to tát đâu, bạn hỏi? Nếu chúng cung cấp chức năng phức tạp hơn và sự linh hoạt trong viết mã, chẳng phải chúng là những tính năng *tốt* sao? **Không hề.**
 
-*Bộ máy* JavaScript thực hiện hàng loạt tối ưu hóa hiệu năng trong giai đoạn biên dịch. Mấu chốt của một vài tối ưu hóa này nằm ở khả năng phân tích tĩnh mã nguồn ngay khi nó phân tích từ vựng, và xác định trước vị trí của tất cả các khai báo biến và hàm, để tốn ít nỗ lực hơn trong việc phân giải các định danh trong quá trình thực thi.
+*Bộ máy* JavaScript thực hiện hàng loạt tối ưu hóa hiệu năng trong giai đoạn biên dịch. Mấu chốt của một vài tối ưu hóa nằm ở khả năng phân tích tĩnh mã nguồn ngay khi nó phân tích từ vựng và xác định trước vị trí của tất cả các khai báo biến và hàm để tiết kiệm công sức trong việc phân giải các định danh trong quá trình thực thi.
 
-Nhưng nếu *Bộ máy* tìm thấy `eval(..)` hay `with` trong mã, về cơ bản nó phải *giả định* rằng mọi nhận định của nó về vị trí của các định danh đều có thể không còn hợp lệ nữa, bởi vì nó không thể biết tại thời điểm phân tích từ vựng chính xác đoạn mã bạn có thể truyền cho `eval(..)` để sửa đổi phạm vi từ vựng, hoặc nội dung của đối tượng bạn có thể truyền cho `with` để tạo ra một phạm vi từ vựng mới để tham khảo.
+Nhưng nếu *Bộ máy* tìm thấy `eval(..)` hay `with` trong mã, về cơ bản nó phải *giả định* rằng mọi hiểu biết của nó về vị trí của các định danh đều có thể không còn hợp lệ nữa, bởi vì nó không thể biết tại thời điểm phân tích từ vựng, đoạn mã nào có thể truyền cho `eval(..)` để sửa đổi phạm vi từ vựng, hoặc nội dung của đối tượng nào có thể truyền cho `with` để tạo ra một phạm vi từ vựng mới.
 
 Nói cách khác, theo hướng bi quan nhất, hầu hết các tối ưu hóa mà nó *lẽ ra sẽ* thực hiện đều trở nên vô nghĩa nếu có sự hiện diện của `eval(..)` hoặc `with`, vì vậy nó đơn giản là không thực hiện các tối ưu hóa đó *chút nào*.
 
 Mã của bạn gần như chắc chắn sẽ có xu hướng chạy chậm hơn chỉ vì bạn đưa `eval(..)` hoặc `with` vào bất kỳ đâu trong mã. Bất kể *Bộ máy* có thể thông minh đến đâu trong việc cố gắng hạn chế các tác dụng phụ của những giả định bi quan này, **không thể phủ nhận một thực tế rằng nếu không có các tối ưu hóa, mã sẽ chạy chậm hơn.**
 
-## Ôn lại (Tóm tắt)
+## Tổng kết
 
 Phạm vi từ vựng có nghĩa là phạm vi được xác định bởi các quyết định tại thời điểm viết mã về nơi các hàm được khai báo. Giai đoạn phân tích từ vựng của quá trình biên dịch về cơ bản có thể biết tất cả các định danh được khai báo ở đâu và như thế nào, và do đó dự đoán cách chúng sẽ được tra cứu trong quá trình thực thi.
 
-Hai cơ chế trong JavaScript có thể "lách luật" phạm vi từ vựng: `eval(..)` và `with`. Cơ chế đầu tiên có thể sửa đổi phạm vi từ vựng hiện có (tại thời điểm chạy) bằng cách đánh giá một chuỗi "mã" có một hoặc nhiều khai báo trong đó. Cơ chế thứ hai về cơ bản tạo ra một phạm vi từ vựng hoàn toàn mới (cũng tại thời điểm chạy) bằng cách coi một tham chiếu đối tượng *như* một "phạm vi" và các thuộc tính của đối tượng đó như là các định danh thuộc phạm vi.
+Hai cơ chế trong JavaScript có thể "lách luật" phạm vi từ vựng: `eval(..)` và `with`. Cơ chế đầu tiên có thể sửa đổi phạm vi từ vựng hiện có (tại thời điểm chạy) bằng cách đánh giá một chuỗi "mã" chứa một hoặc nhiều khai báo trong đó. Cơ chế thứ hai về cơ bản tạo ra một phạm vi từ vựng hoàn toàn mới (cũng tại thời điểm chạy) bằng cách coi một tham chiếu đối tượng *như* một "phạm vi" và các thuộc tính của đối tượng đó như là các định danh thuộc phạm vi.
 
 Nhược điểm của các cơ chế này là nó làm vô hiệu hóa khả năng của *Bộ máy* trong việc thực hiện các tối ưu hóa tại thời điểm biên dịch liên quan đến việc tra cứu phạm vi, bởi vì *Bộ máy* phải giả định một cách bi quan rằng các tối ưu hóa như vậy sẽ không hợp lệ. Mã *sẽ* chạy chậm hơn do sử dụng một trong hai tính năng này. **Đừng dùng chúng.**

@@ -10,8 +10,8 @@
 	* Phạm vi lồng nhau
 	* Lỗi
 * Chương 2: Phạm vi Từ vựng
-	* Lex-time
-	* Cheating Lexical
+	* Thời điểm Phân tích Từ vựng
+	* Lách luật Phạm vi Từ vựng
 * Chương 3: Phạm vi Hàm và Phạm vi Khối
 	* Scope From Functions
 	* Hiding In Plain Scope
