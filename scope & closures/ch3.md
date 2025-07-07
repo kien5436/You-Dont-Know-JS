@@ -49,15 +49,15 @@ Mặt khác, nếu bạn không có những biện pháp phòng ngừa cẩn th�
 
 ## Ẩn mình trong Phạm vi
 
-Cách nghĩ truyền thống về hàm là bạn khai báo một hàm, rồi thêm mã vào bên trong. Nhưng tư duy ngược lại cũng mạnh mẽ và hữu ích không kém: lấy bất kỳ một đoạn mã tùy ý nào bạn đã viết, và bao bọc nó bằng một khai báo hàm, điều này thực chất là "ẩn" đoạn mã đó đi.
+Cách nghĩ truyền thống về hàm là bạn khai báo một hàm rồi thêm mã vào bên trong. Nhưng tư duy ngược lại cũng mạnh mẽ và hữu ích không kém: lấy bất kỳ một đoạn mã nào bạn đã viết và bao bọc nó bằng một khai báo hàm giúp "ẩn" đoạn mã đó đi.
 
-Kết quả thực tế là tạo ra một bong bóng phạm vi xung quanh đoạn mã đang xét, có nghĩa là bất kỳ khai báo nào (biến hoặc hàm) trong đoạn mã đó giờ đây sẽ bị ràng buộc với phạm vi của hàm bao bọc mới, thay vì phạm vi chứa nó trước đây. Nói cách khác, bạn có thể "ẩn" các biến và hàm bằng cách bao bọc chúng trong phạm vi của một hàm.
+Kết quả thực tế là tạo ra một bong bóng phạm vi xung quanh đoạn mã đang xét, có nghĩa là bất kỳ khai báo nào (biến hoặc hàm) trong đoạn mã đó giờ đây sẽ bị ràng buộc với phạm vi của hàm bao bọc mới thay vì phạm vi chứa nó trước đây. Nói cách khác, bạn có thể "ẩn" các biến và hàm bằng cách bao bọc chúng trong phạm vi của một hàm.
 
 Tại sao việc "ẩn" các biến và hàm lại là một kỹ thuật hữu ích?
 
-Có nhiều lý do thúc đẩy việc ẩn giấu dựa trên phạm vi này. Chúng thường nảy sinh từ nguyên tắc thiết kế phần mềm "Nguyên tắc Đặc quyền Tối thiểu" [^note-leastprivilege], đôi khi còn được gọi là "Thẩm quyền Tối thiểu" hoặc "Phơi bày Tối thiểu". Nguyên tắc này nêu rằng trong thiết kế phần mềm, chẳng hạn như API cho một mô-đun/đối tượng, bạn chỉ nên phơi bày những gì tối thiểu cần thiết, và "ẩn" đi mọi thứ khác.
+Có nhiều lý do thúc đẩy việc ẩn giấu dựa trên phạm vi này. Chúng thường nảy sinh từ nguyên tắc thiết kế phần mềm "Nguyên tắc Đặc quyền Tối thiểu" [^note-leastprivilege], đôi khi còn được gọi là "Thẩm quyền Tối thiểu" hoặc "Tiết lộ Tối thiểu". Nguyên tắc này nêu rằng: trong thiết kế phần mềm, chẳng hạn như API cho một khối chức năng/đối tượng, bạn chỉ nên để lộ tối thiểu những gì cần thiết và "ẩn" đi mọi thứ khác.
 
-Nguyên tắc này mở rộng đến việc lựa chọn phạm vi nào để chứa các biến và hàm. Nếu tất cả các biến và hàm đều nằm trong phạm vi toàn cục, chúng tất nhiên sẽ có thể truy cập được bởi bất kỳ phạm vi lồng nhau nào. Nhưng điều này sẽ vi phạm nguyên tắc "Tối thiểu..." ở chỗ bạn (có khả năng) đang phơi bày nhiều biến hoặc hàm mà lẽ ra bạn nên giữ riêng tư, vì việc sử dụng mã đúng cách sẽ không khuyến khích truy cập vào những biến/hàm đó.
+Nguyên tắc này mở rộng đến việc lựa chọn phạm vi nào để chứa các biến và hàm. Nếu tất cả các biến và hàm đều nằm trong phạm vi toàn cục, tất nhiên chúng sẽ có thể truy cập được bởi bất kỳ phạm vi lồng nhau nào. Nhưng điều này sẽ vi phạm nguyên tắc "Tối thiểu..." ở chỗ bạn (có khả năng) đang phơi bày nhiều biến hoặc hàm mà lẽ ra bạn nên giữ riêng tư, vì việc sử dụng mã đúng cách sẽ không khuyến khích truy cập vào những biến/hàm đó.
 
 Ví dụ:
 
@@ -97,7 +97,7 @@ function doSomething(a) {
 doSomething( 2 ); // 15
 ```
 
-Bây giờ, `b` và `doSomethingElse(..)` không thể bị ảnh hưởng từ bên ngoài, thay vào đó chỉ được kiểm soát bởi `doSomething(..)`. Chức năng và kết quả cuối cùng không bị ảnh hưởng, nhưng thiết kế này giữ cho các chi tiết riêng tư được riêng tư, điều thường được coi là phần mềm tốt hơn.
+Bây giờ, `b` và `doSomethingElse(..)` không thể bị ảnh hưởng từ bên ngoài, thay vào đó chỉ được kiểm soát bởi `doSomething(..)`. Chức năng và kết quả cuối cùng không bị ảnh hưởng nhưng thiết kế này giữ cho các chi tiết nội bộ được riêng tư, là dấu hiệu thường thấy của một phần mềm tốt.
 
 ### Tránh Xung đột
 
