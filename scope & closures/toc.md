@@ -13,10 +13,10 @@
 	* Thời điểm Phân tích Từ vựng
 	* Lách luật Phạm vi Từ vựng
 * Chương 3: Phạm vi Hàm và Phạm vi Khối
-	* Scope From Functions
-	* Hiding In Plain Scope
-	* Functions As Scopes
-	* Blocks As Scopes
+	* Phạm vi từ Hàm
+	* Ẩn mình trong Phạm vi
+	* Sử dụng Hàm làm Phạm vi
+	* Sử dụng Khối làm Phạm vi
 * Chương 4: Kéo lên
 	* Chicken Or The Egg?
 	* The Compiler Strikes Again

@@ -152,9 +152,9 @@ Cần lưu ý rằng các công cụ này không sở hữu chức năng "ma thu
 
 Như vậy, bạn có thể lập trình một cách phòng thủ và đạt được kết quả tương tự như các trình quản lý phụ thuộc mà không thực sự cần sử dụng chúng, nếu bạn chọn vậy. Xem Chương 5 để biết thêm thông tin về mẫu hình mô-đun.
 
-## Hàm như là Phạm vi
+## Sử dụng Hàm làm Phạm vi
 
-Chúng ta đã thấy rằng có thể lấy bất kỳ đoạn mã nào và bao bọc nó bằng một hàm, và điều đó thực sự "ẩn" bất kỳ khai báo biến hoặc hàm nào bên trong khỏi phạm vi bên ngoài vào trong phạm vi nội bộ của hàm đó.
+Chúng ta đã thấy rằng có thể lấy bất kỳ đoạn mã nào và bao bọc nó bằng một hàm. Điều đó "che giấu" một cách hiệu quả bất kỳ khai báo biến hoặc hàm nào từ phạm vi bên ngoài vào trong phạm vi nội bộ của hàm đó.
 
 Ví dụ:
 
@@ -172,9 +172,9 @@ foo(); // <-- và đây
 console.log( a ); // 2
 ```
 
-Mặc dù kỹ thuật này "hoạt động", nó không nhất thiết phải là lý tưởng. Nó gây ra một vài vấn đề. Thứ nhất là chúng ta phải khai báo một hàm có tên `foo()`, có nghĩa là chính tên định danh `foo` "làm ô nhiễm" phạm vi bao quanh (toàn cục, trong trường hợp này). Chúng ta cũng phải gọi hàm một cách tường minh bằng tên (`foo()`) để đoạn mã được bao bọc thực sự được thực thi.
+Mặc dù kỹ thuật này "hoạt động" nhưng nó không thực sự lý tưởng. Nó gây ra một vài vấn đề. Thứ nhất là chúng ta phải khai báo một hàm có tên `foo()`, đồng nghĩa với việc định danh `foo` "làm ô nhiễm" phạm vi bao quanh (trong trường hợp này là toàn cục). Chúng ta cũng phải gọi hàm một cách tường minh bằng tên (`foo()`) để đoạn mã bị bao bọc thực sự được thực thi.
 
-Sẽ lý tưởng hơn nếu hàm không cần tên (hoặc, đúng hơn là, tên không làm ô nhiễm phạm vi bao quanh), và nếu hàm có thể được thực thi một cách tự động.
+Nếu hàm không cần tên (hoặc đúng hơn là tên không làm ô nhiễm phạm vi bao quanh) và có thể được thực thi một cách tự động thì sẽ lý tưởng hơn .
 
 May mắn thay, JavaScript cung cấp một giải pháp cho cả hai vấn đề.
 
@@ -193,19 +193,19 @@ console.log( a ); // 2
 
 Hãy cùng phân tích những gì đang diễn ra ở đây.
 
-Đầu tiên, hãy chú ý rằng câu lệnh hàm bao bọc bắt đầu bằng `(function...` thay vì chỉ `function...`. Mặc dù điều này có vẻ như một chi tiết nhỏ, nhưng thực ra nó là một thay đổi lớn. Thay vì coi hàm như một khai báo tiêu chuẩn, hàm được coi như một biểu thức hàm.
+Đầu tiên, hãy chú ý rằng câu lệnh hàm bao bọc bắt đầu bằng `(function...` thay vì chỉ `function...`. Mặc dù điều này có vẻ chỉ là một chi tiết nhỏ nhưng thực ra nó tạo nên thay đổi lớn. Thay vì coi hàm như một khai báo tiêu chuẩn, hàm được coi như một biểu thức hàm.
 
-**Lưu ý:** Cách dễ nhất để phân biệt khai báo và biểu thức là vị trí của từ "function" trong câu lệnh (không chỉ là một dòng, mà là một câu lệnh riêng biệt). Nếu "function" là thứ đầu tiên trong câu lệnh, thì đó là một khai báo hàm. Ngược lại, đó là một biểu thức hàm.
+**Lưu ý:** Cách dễ nhất để phân biệt khai báo và biểu thức là xét vị trí của từ "function" trong câu lệnh (không chỉ là một dòng mà là một câu lệnh riêng biệt). Nếu "function" xuất hiện đầu tiên trong câu lệnh thì đó là một khai báo hàm. Ngược lại, đó là một biểu thức hàm.
 
-Sự khác biệt chính chúng ta có thể quan sát ở đây giữa một khai báo hàm và một biểu thức hàm liên quan đến nơi tên của nó được ràng buộc như một định danh.
+Sự khác biệt chính giữa một khai báo hàm và một biểu thức hàm mà chúng ta có thể quan sát ở đây liên quan đến nơi tên của nó được ràng buộc như một định danh.
 
-Hãy so sánh hai đoạn mã trước đó. Trong đoạn mã đầu tiên, tên `foo` được ràng buộc trong phạm vi bao quanh, và chúng ta gọi nó trực tiếp bằng `foo()`. Trong đoạn mã thứ hai, tên `foo` không được ràng buộc trong phạm vi bao quanh, mà thay vào đó chỉ được ràng buộc bên trong chính hàm của nó.
+Hãy so sánh hai đoạn mã trước đó. Trong đoạn mã đầu tiên, tên `foo` được ràng buộc trong phạm vi bao quanh và chúng ta gọi nó trực tiếp bằng `foo()`. Trong đoạn mã thứ hai, tên `foo` không được ràng buộc trong phạm vi bao quanh, thay vào đó chỉ được ràng buộc bên trong chính hàm của nó.
 
 Nói cách khác, `(function foo(){ .. })` như một biểu thức có nghĩa là định danh `foo` chỉ được tìm thấy *duy nhất* trong phạm vi nơi dấu `..` chỉ định, không phải trong phạm vi bên ngoài. Việc ẩn tên `foo` vào bên trong chính nó có nghĩa là nó không làm ô nhiễm phạm vi bao quanh một cách không cần thiết.
 
-### Vô danh và Có tên
+### Đặt tên hay không đặt tên
 
-Bạn có lẽ quen thuộc nhất với các biểu thức hàm dưới dạng tham số callback, chẳng hạn như:
+Có lẽ bạn quen thuộc nhất với các biểu thức hàm dưới dạng tham số hàm gọi lại, chẳng hạn như:
 
 ```js
 setTimeout( function(){
@@ -213,17 +213,17 @@ setTimeout( function(){
 }, 1000 );
 ```
 
-Đây được gọi là một "biểu thức hàm vô danh", bởi vì `function()...` không có định danh tên trên nó. Biểu thức hàm có thể vô danh, nhưng khai báo hàm không thể bỏ qua tên -- đó sẽ là ngữ pháp JavaScript không hợp lệ.
+Đây được gọi là một "biểu thức hàm vô danh", bởi vì `function()...` không có định danh tên cho nó. Biểu thức hàm có thể vô danh nhưng khai báo hàm thì không thể - đó sẽ là ngữ pháp JavaScript không hợp lệ.
 
-Biểu thức hàm vô danh nhanh và dễ gõ, và nhiều thư viện và công cụ có xu hướng khuyến khích phong cách mã hóa này. Tuy nhiên, chúng có một số nhược điểm cần xem xét:
+Biểu thức hàm vô danh nhanh và dễ gõ, nhiều thư viện và công cụ có xu hướng khuyến khích phong cách mã này. Tuy nhiên, chúng có một số nhược điểm cần xem xét:
 
-1. Các hàm vô danh không có tên hữu ích để hiển thị trong dấu vết ngăn xếp (stack traces), điều này có thể làm cho việc gỡ lỗi khó khăn hơn.
+1. Các hàm vô danh không có tên hữu ích để hiển thị trong dấu vết xếp lớp (stack traces), điều này có thể làm cho việc gỡ lỗi khó khăn hơn.
 
-2. Không có tên, nếu hàm cần tự tham chiếu đến chính nó, cho đệ quy, v.v., thì tham chiếu `arguments.callee` **đã lỗi thời** không may lại là bắt buộc. Một ví dụ khác về việc cần tự tham chiếu là khi một hàm xử lý sự kiện muốn tự hủy liên kết sau khi nó được kích hoạt.
+2. Khi không có tên, nếu hàm cần tham chiếu đến chính nó, ví dụ như để đệ quy, nó buộc phải dùng đến `arguments.callee` - một tham chiếu bị xem là **lỗi thời**. Một ví dụ khác cần đến khả năng tự tham chiếu là khi một hàm xử lý sự kiện muốn tự gỡ bỏ sau khi đã kích hoạt.
 
-3. Các hàm vô danh bỏ qua một cái tên thường hữu ích trong việc cung cấp mã dễ đọc/dễ hiểu hơn. Một cái tên mô tả giúp tự ghi lại tài liệu cho đoạn mã đang xét.
+3. Các hàm vô danh bỏ qua tên gọi, thứ thường hữu ích trong việc cung cấp mã dễ đọc/dễ hiểu hơn. Một cái tên gợi tả giúp tự ghi lại tài liệu cho đoạn mã đang xét.
 
-**Các biểu thức hàm nội tuyến** rất mạnh mẽ và hữu ích -- câu hỏi về vô danh và có tên không làm giảm đi điều đó. Việc cung cấp một cái tên cho biểu thức hàm của bạn giải quyết khá hiệu quả tất cả những nhược điểm này, nhưng không có nhược điểm hữu hình nào. Thực tiễn tốt nhất là luôn đặt tên cho các biểu thức hàm của bạn:
+**Các biểu thức hàm nội tuyến** rất mạnh mẽ và hữu ích - câu hỏi về việc có đặt tên hay không không làm giảm đi điều đó. Cung cấp tên cho biểu thức hàm sẽ khắc phục hiệu quả mọi nhược điểm kể trên mà lại không đi kèm bất kỳ bất lợi thực tế nào. Cách làm tốt nhất là luôn đặt tên cho các biểu thức hàm của bạn:
 
 ```js
 setTimeout( function timeoutHandler(){ // <-- Nhìn này, tôi có tên!
@@ -231,7 +231,7 @@ setTimeout( function timeoutHandler(){ // <-- Nhìn này, tôi có tên!
 }, 1000 );
 ```
 
-### Gọi Biểu thức Hàm Ngay lập tức
+### Gọi Biểu thức hàm ngay lập tức
 
 ```js
 var a = 2;
@@ -248,9 +248,9 @@ console.log( a ); // 2
 
 Bây giờ chúng ta đã có một hàm dưới dạng biểu thức nhờ vào việc bao bọc nó trong một cặp `( )`, chúng ta có thể thực thi hàm đó bằng cách thêm một cặp `()` khác ở cuối, như `(function foo(){ .. })()`. Cặp `( )` bao bọc đầu tiên biến hàm thành một biểu thức, và cặp `()` thứ hai thực thi hàm.
 
-Mẫu hình này phổ biến đến mức, vài năm trước cộng đồng đã đồng ý một thuật ngữ cho nó: **IIFE**, viết tắt của **I**mmediately **I**nvoked **F**unction **E**xpression (Biểu thức Hàm được Gọi Ngay lập tức).
+Mô hình này phổ biến đến mức, vài năm trước cộng đồng đã đồng ý một thuật ngữ cho nó: **IIFE**, viết tắt của **I**mmediately **I**nvoked **F**unction **E**xpression (Biểu thức hàm được gọi ngay lập tức).
 
-Tất nhiên, IIFE không nhất thiết cần tên -- dạng phổ biến nhất của IIFE là sử dụng một biểu thức hàm vô danh. Mặc dù chắc chắn ít phổ biến hơn, việc đặt tên cho một IIFE có tất cả các lợi ích đã đề cập ở trên so với các biểu thức hàm vô danh, vì vậy đó là một thực tiễn tốt để áp dụng.
+Tất nhiên, IIFE không nhất thiết phải có tên - dạng phổ biến nhất của IIFE là sử dụng một biểu thức hàm vô danh. Mặc dù chắc chắn ít phổ biến hơn, việc đặt tên cho một IIFE có tất cả các lợi ích đã đề cập ở trên so với các biểu thức hàm vô danh, vì vậy áp dụng nó là một cách làm tốt trong thực tế.
 
 ```js
 var a = 2;
@@ -265,7 +265,7 @@ var a = 2;
 console.log( a ); // 2
 ```
 
-Có một biến thể nhỏ của dạng IIFE truyền thống, mà một số người ưa thích: `(function(){ .. }())`. Hãy nhìn kỹ để thấy sự khác biệt. Trong dạng đầu tiên, biểu thức hàm được bao bọc trong `( )`, và sau đó cặp `()` gọi hàm ở ngay bên ngoài sau nó. Trong dạng thứ hai, cặp `()` gọi hàm được di chuyển vào bên trong cặp `( )` bao bọc bên ngoài.
+Có một biến thể nhỏ của dạng IIFE truyền thống mà một số người ưa thích: `(function(){ .. }())`. Hãy nhìn kỹ để thấy sự khác biệt. Ở dạng đầu tiên, biểu thức hàm được bao bọc trong `( )`, và sau đó cặp `()` gọi hàm ở bên ngoài ngay sau nó. Ở dạng thứ hai, cặp `()` gọi hàm được di chuyển vào bên trong cặp `( )` bao bọc bên ngoài.
 
 Hai dạng này giống hệt nhau về chức năng. **Việc bạn ưa thích dạng nào hoàn toàn là một lựa chọn về phong cách.**
 
@@ -287,12 +287,12 @@ var a = 2;
 console.log( a ); // 2
 ```
 
-Chúng ta truyền vào tham chiếu đối tượng `window`, nhưng chúng ta đặt tên tham số là `global`, để có một sự phân định rõ ràng về phong cách cho các tham chiếu toàn cục và không toàn cục. Tất nhiên, bạn có thể truyền vào bất cứ thứ gì từ một phạm vi bao quanh mà bạn muốn, và bạn có thể đặt tên cho các tham số bất cứ điều gì phù hợp với bạn. Điều này chủ yếu chỉ là lựa chọn về phong cách.
+Chúng ta truyền vào tham chiếu đối tượng `window` nhưng đặt tên tham số là `global` để có sự phân định rõ ràng về phong cách cho các tham chiếu toàn cục và không toàn cục. Tất nhiên, bạn có thể truyền vào bất cứ thứ gì từ một phạm vi bao quanh và có thể đặt tên cho các tham số sao cho phù hợp với bạn. Điều này chủ yếu chỉ là lựa chọn về phong cách.
 
-Một ứng dụng khác của mẫu hình này giải quyết mối lo ngại (nhỏ và đặc thù) rằng giá trị của định danh `undefined` mặc định có thể bị ghi đè không chính xác, gây ra kết quả không mong muốn. Bằng cách đặt tên một tham số là `undefined`, nhưng không truyền giá trị nào cho đối số đó, chúng ta có thể đảm bảo rằng định danh `undefined` thực sự là giá trị undefined trong một khối mã:
+Một ứng dụng khác của mô hình này giải quyết mối lo ngại (nhỏ và đặc thù) rằng giá trị của định danh `undefined` mặc định có thể bị ghi đè không chính xác, gây ra kết quả không mong muốn. Bằng cách đặt tên một tham số là `undefined` nhưng không truyền giá trị nào cho nó, chúng ta có thể đảm bảo rằng định danh `undefined` thực sự là giá trị undefined trong một khối mã:
 
 ```js
-undefined = true; // đặt một quả mìn cho mã khác! hãy tránh!
+undefined = true; // đặt một quả địa lôi cho mã khác! hãy tránh!
 
 (function IIFE( undefined ){
 
@@ -304,7 +304,7 @@ undefined = true; // đặt một quả mìn cho mã khác! hãy tránh!
 })();
 ```
 
-Vẫn còn một biến thể khác của IIFE đảo ngược thứ tự mọi thứ, trong đó hàm cần thực thi được đưa ra thứ hai, *sau khi* gọi và các tham số để truyền cho nó. Mẫu hình này được sử dụng trong dự án UMD (Universal Module Definition). Một số người thấy nó dễ hiểu hơn một chút, mặc dù nó hơi dài dòng hơn.
+Vẫn còn một biến thể khác của IIFE đảo ngược trật tự mọi thứ, trong đó hàm cần thực thi được đưa ra thứ hai, *sau khi* gọi hàm và các tham số truyền cho nó. Mô hình này được sử dụng trong dự án UMD (Universal Module Definition). Một số người thấy nó dễ hiểu hơn một chút, mặc dù nó hơi dài dòng hơn.
 
 ```js
 var a = 2;
@@ -320,15 +320,15 @@ var a = 2;
 });
 ```
 
-Biểu thức hàm `def` được định nghĩa ở nửa sau của đoạn mã, và sau đó được truyền như một tham số (cũng được gọi là `def`) cho hàm `IIFE` được định nghĩa ở nửa đầu của đoạn mã. Cuối cùng, tham số `def` (hàm) được gọi, truyền `window` vào như là tham số `global`.
+Biểu thức hàm `def` được định nghĩa ở nửa sau của đoạn mã, sau đó được truyền như một tham số (cũng được gọi là `def`) cho hàm `IIFE` được định nghĩa ở nửa đầu. Cuối cùng, tham số `def` (hàm) được gọi, truyền `window` vào cho tham số `global`.
 
-## Khối như là Phạm vi
+## Sử dụng Khối làm Phạm vi
 
 Trong khi hàm là đơn vị phạm vi phổ biến nhất, và chắc chắn là cách tiếp cận thiết kế phổ biến nhất trong phần lớn JS đang lưu hành, các đơn vị phạm vi khác cũng có thể tồn tại, và việc sử dụng các đơn vị phạm vi khác này có thể dẫn đến mã tốt hơn, dễ bảo trì hơn.
 
-Nhiều ngôn ngữ khác ngoài JavaScript hỗ trợ Phạm vi Khối, và do đó các nhà phát triển từ những ngôn ngữ đó đã quen với tư duy này, trong khi những người chủ yếu chỉ làm việc với JavaScript có thể thấy khái niệm này hơi xa lạ.
+Nhiều ngôn ngữ khác ngoài JavaScript hỗ trợ Phạm vi Khối, và do đó các nhà phát triển từ những ngôn ngữ đó đã quen với tư duy này trong khi những người chủ yếu chỉ làm việc với JavaScript có thể thấy khái niệm này hơi xa lạ.
 
-Nhưng ngay cả khi bạn chưa bao giờ viết một dòng mã nào theo kiểu phạm vi khối, bạn có lẽ vẫn quen thuộc với thành ngữ cực kỳ phổ biến này trong JavaScript:
+Nhưng ngay cả khi bạn chưa bao giờ viết một dòng mã nào theo kiểu phạm vi khối, có lẽ bạn vẫn quen thuộc với lối viết cực kỳ phổ biến này trong JavaScript:
 
 ```js
 for (var i=0; i<10; i++) {
@@ -336,7 +336,7 @@ for (var i=0; i<10; i++) {
 }
 ```
 
-Chúng ta khai báo biến `i` trực tiếp bên trong phần đầu của vòng lặp for, rất có thể vì *ý định* của chúng ta là chỉ sử dụng `i` trong bối cảnh của vòng lặp for đó, và về cơ bản bỏ qua thực tế rằng biến này thực sự tự định phạm vi của nó cho phạm vi bao quanh (hàm hoặc toàn cục).
+Chúng ta khai báo biến `i` trực tiếp bên trong phần đầu của vòng lặp for, rất có thể vì *ý định* của chúng ta là chỉ sử dụng `i` trong bối cảnh của vòng lặp for đó, và về cơ bản bỏ qua thực tế rằng biến này thực sự tự giới hạn phạm vi của nó với phạm vi bao quanh (hàm hoặc toàn cục).
 
 Đó là tất cả những gì về phạm vi khối. Khai báo các biến càng gần càng tốt, càng cục bộ càng tốt, với nơi chúng sẽ được sử dụng. Một ví dụ khác:
 
@@ -350,9 +350,9 @@ if (foo) {
 }
 ```
 
-Chúng ta đang sử dụng một biến `bar` chỉ trong bối cảnh của câu lệnh if, vì vậy có vẻ hợp lý khi chúng ta khai báo nó bên trong khối if. Tuy nhiên, nơi chúng ta khai báo biến không liên quan khi sử dụng `var`, bởi vì chúng sẽ luôn thuộc về phạm vi bao quanh. Đoạn mã này về cơ bản là phạm vi khối "giả", vì lý do phong cách, và dựa vào việc tự thực thi để không vô tình sử dụng `bar` ở một nơi khác trong phạm vi đó.
+Chúng ta đang sử dụng biến `bar` chỉ trong bối cảnh của câu lệnh if, vì vậy có vẻ hợp lý khi chúng ta khai báo nó bên trong khối if. Tuy nhiên, nơi chúng ta khai báo biến không liên quan khi sử dụng `var` bởi vì chúng sẽ luôn thuộc về phạm vi bao quanh. Đoạn mã này về cơ bản là phạm vi khối "giả", vì lý do phong cách, và dựa vào việc tự thực thi để không vô tình sử dụng `bar` ở một nơi khác trong phạm vi đó.
 
-Phạm vi khối là một công cụ để mở rộng "Nguyên tắc Phơi bày Tối thiểu" [^note-leastprivilege] trước đó từ việc ẩn thông tin trong các hàm sang việc ẩn thông tin trong các khối mã của chúng ta.
+Phạm vi khối là một công cụ để mở rộng "Nguyên tắc Đặc quyền Tối thiểu" [^note-leastprivilege] đã nhắc tới trước đó từ việc ẩn thông tin trong các hàm sang việc ẩn thông tin trong các khối mã của chúng ta.
 
 Hãy xem lại ví dụ về vòng lặp for:
 
@@ -364,25 +364,25 @@ for (var i=0; i<10; i++) {
 
 Tại sao phải làm ô nhiễm toàn bộ phạm vi của một hàm với biến `i` mà chỉ sẽ được (hoặc ít nhất *nên* được) sử dụng cho vòng lặp for?
 
-Nhưng quan trọng hơn, các nhà phát triển có thể muốn *kiểm tra* bản thân để tránh vô tình (tái) sử dụng các biến ngoài mục đích dự định của chúng, chẳng hạn như được cấp một lỗi về một biến không xác định nếu bạn cố gắng sử dụng nó sai chỗ. Phạm vi khối (nếu có thể) cho biến `i` sẽ làm cho `i` chỉ có sẵn cho vòng lặp for, gây ra lỗi nếu `i` được truy cập ở nơi khác trong hàm. Điều này giúp đảm bảo các biến không được tái sử dụng theo những cách khó hiểu hoặc khó bảo trì.
+Nhưng quan trọng hơn, các nhà phát triển có thể muốn *kiểm tra* bản thân để tránh vô tình (tái) sử dụng các biến ngoài mục đích dự định của chúng, chẳng hạn như gặp lỗi về một biến không xác định nếu bạn cố gắng sử dụng nó sai chỗ. Phạm vi khối (nếu có thể) cho biến `i` sẽ làm cho `i` chỉ tồn tại trong vòng lặp for, gây ra lỗi nếu `i` được truy cập ở nơi khác trong hàm. Điều này giúp đảm bảo các biến không được tái sử dụng theo những cách khó hiểu hoặc khó bảo trì.
 
-Nhưng, thực tế đáng buồn là, bề ngoài, JavaScript không có cơ sở cho phạm vi khối.
+Nhưng thực tế đáng buồn là, ở bề ngoài, JavaScript không có cơ sở cho phạm vi khối.
 
-Tức là, cho đến khi bạn đào sâu hơn một chút.
+Tức là cho đến khi bạn đào sâu hơn một chút.
 
 ### `with`
 
-Chúng ta đã học về `with` trong Chương 2. Mặc dù nó là một cấu trúc không được tán thành, nó *là* một ví dụ về (một dạng của) phạm vi khối, ở chỗ phạm vi được tạo ra từ đối tượng chỉ tồn tại trong vòng đời của câu lệnh `with` đó, và không tồn tại trong phạm vi bao quanh.
+Chúng ta đã học về `with` trong chương 2. Mặc dù nó là một cấu trúc không được tán thành, nó *là* một ví dụ về (một dạng của) phạm vi khối, ở chỗ phạm vi được tạo ra từ đối tượng chỉ tồn tại trong vòng đời của câu lệnh `with` đó và không tồn tại trong phạm vi bao quanh.
 
 ### `try/catch`
 
-Một sự thật *rất* ít người biết là JavaScript trong ES3 đã chỉ định khai báo biến trong mệnh đề `catch` của một `try/catch` là có phạm vi khối đối với khối `catch`.
+Một sự thật *rất* ít người biết là JavaScript trong ES3 đã chỉ định khai báo biến trong mệnh đề `catch` của một `try/catch` là phạm vi khối đối với khối `catch`.
 
 Ví dụ:
 
 ```js
 try {
-	undefined(); // hoạt động bất hợp pháp để ép một ngoại lệ!
+	undefined(); // hành động bất hợp lí để gây ra một ngoại lệ!
 }
 catch (err) {
 	console.log( err ); // hoạt động!
@@ -391,11 +391,11 @@ catch (err) {
 console.log( err ); // ReferenceError: `err` not found
 ```
 
-Như bạn có thể thấy, `err` chỉ tồn tại trong mệnh đề `catch`, và ném ra một lỗi khi bạn cố gắng tham chiếu đến nó ở nơi khác.
+Như bạn có thể thấy, `err` chỉ tồn tại trong mệnh đề `catch` và ném ra một lỗi khi bạn cố gắng tham chiếu đến nó ở nơi khác.
 
-**Lưu ý:** Mặc dù hành vi này đã được chỉ định và đúng với hầu hết tất cả các môi trường JS tiêu chuẩn (ngoại trừ có lẽ là IE cũ), nhiều công cụ kiểm tra mã (linter) dường như vẫn phàn nàn nếu bạn có hai hoặc nhiều mệnh đề `catch` trong cùng một phạm vi mà mỗi mệnh đề đều khai báo biến lỗi của mình với cùng một tên định danh. Đây thực sự không phải là một định nghĩa lại, vì các biến được định phạm vi khối một cách an toàn, nhưng các công cụ kiểm tra mã dường như vẫn, một cách khó chịu, phàn nàn về sự thật này.
+**Lưu ý:** Mặc dù hành vi này đã được chỉ định và đúng với hầu hết tất cả các môi trường JS tiêu chuẩn (ngoại trừ có lẽ là IE cũ), nhiều công cụ kiểm tra mã (linter) dường như vẫn phàn nàn nếu bạn có hai hoặc nhiều mệnh đề `catch` trong cùng một phạm vi mà mỗi mệnh đề đều khai báo biến lỗi của mình với cùng một tên định danh. Đây thực sự không phải là việc định nghĩa lại vì các biến được chỉ định phạm vi khối một cách an toàn, nhưng các công cụ kiểm tra mã dường như vẫn, một cách khó chịu, phàn nàn về sự thật này.
 
-Để tránh những cảnh báo không cần thiết này, một số nhà phát triển sẽ đặt tên cho các biến `catch` của họ là `err1`, `err2`, v.v. Các nhà phát triển khác sẽ chỉ đơn giản là tắt kiểm tra trùng lặp tên biến của công cụ kiểm tra mã.
+Để tránh những cảnh báo không cần thiết này, một số nhà phát triển sẽ đặt tên cho các biến `catch` của họ là `err1`, `err2`, v.v. Nhiều nhà phát triển sẽ chỉ đơn giản là tắt kiểm tra trùng lặp tên biến của công cụ kiểm tra mã.
 
 Bản chất phạm vi khối của `catch` có thể có vẻ như một sự thật học thuật vô dụng, nhưng hãy xem Phụ lục B để biết thêm thông tin về mức độ hữu ích của nó.
 
@@ -403,7 +403,7 @@ Bản chất phạm vi khối của `catch` có thể có vẻ như một sự t
 
 Cho đến nay, chúng ta đã thấy rằng JavaScript chỉ có một số hành vi đặc thù kỳ lạ phơi bày chức năng phạm vi khối. Nếu đó là tất cả những gì chúng ta có, và *đúng là như vậy* trong nhiều, nhiều năm, thì phạm vi khối sẽ không hữu ích lắm đối với nhà phát triển JavaScript.
 
-May mắn thay, ES6 đã thay đổi điều đó, và giới thiệu một từ khóa mới `let` song hành cùng `var` như một cách khác để khai báo các biến.
+May mắn thay, ES6 đã thay đổi điều đó và giới thiệu một từ khóa mới `let` song hành cùng `var` như một cách khác để khai báo các biến.
 
 Từ khóa `let` gắn khai báo biến vào phạm vi của bất kỳ khối nào (thường là một cặp `{ .. }`) chứa nó. Nói cách khác, `let` ngầm chiếm quyền kiểm soát phạm vi của bất kỳ khối nào cho khai báo biến của nó.
 
@@ -474,7 +474,7 @@ btn.addEventListener( "click", function click(evt){
 }, /*capturingPhase=*/false );
 ```
 
-Hàm callback xử lý sự kiện `click` không *cần* biến `someReallyBigData` chút nào. Điều đó có nghĩa là, về mặt lý thuyết, sau khi `process(..)` chạy, cấu trúc dữ liệu nặng nề về bộ nhớ có thể được thu gom rác. Tuy nhiên, rất có khả năng (mặc dù phụ thuộc vào việc triển khai) rằng bộ máy JS vẫn sẽ phải giữ lại cấu trúc này, vì hàm `click` có một hàm khép kín trên toàn bộ phạm vi.
+Hàm hàm gọi lại xử lý sự kiện `click` không *cần* biến `someReallyBigData` chút nào. Điều đó có nghĩa là, về mặt lý thuyết, sau khi `process(..)` chạy, cấu trúc dữ liệu nặng nề về bộ nhớ có thể được thu gom rác. Tuy nhiên, rất có khả năng (mặc dù phụ thuộc vào việc triển khai) rằng bộ máy JS vẫn sẽ phải giữ lại cấu trúc này, vì hàm `click` có một hàm khép kín trên toàn bộ phạm vi.
 
 Phạm vi khối có thể giải quyết mối lo ngại này, làm cho nó rõ ràng hơn với bộ máy rằng nó không cần phải giữ lại `someReallyBigData`:
 
