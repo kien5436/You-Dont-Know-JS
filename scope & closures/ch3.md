@@ -419,9 +419,9 @@ if (foo) {
 console.log( bar ); // ReferenceError
 ```
 
-Sử dụng `let` để gắn một biến vào một khối hiện có có phần ngầm định. Nó có thể làm bạn bối rối nếu bạn không chú ý kỹ đến những khối nào có biến được định phạm vi cho chúng, và có thói quen di chuyển các khối xung quanh, bao bọc chúng trong các khối khác, v.v., khi bạn phát triển và tiến hóa mã.
+Sử dụng `let` để gắn một biến vào một khối đang tồn tại có phần không tường minh. Nó có thể làm bạn bối rối nếu bạn không chú ý kỹ đến những khối nào có biến được định phạm vi cho chúng, và có thói quen di chuyển các khối qua lại, lồng các khối vào nhau, v.v., khi bạn phát triển và hoàn thiện mã.
 
-Việc tạo ra các khối tường minh cho phạm vi khối có thể giải quyết một số mối lo ngại này, làm cho việc các biến được gắn vào đâu trở nên rõ ràng hơn. Thông thường, mã tường minh được ưa thích hơn mã ngầm định hoặc tinh vi. Phong cách phạm vi khối tường minh này dễ dàng đạt được, và phù hợp tự nhiên hơn với cách phạm vi khối hoạt động trong các ngôn ngữ khác:
+Việc tạo ra các khối tường minh cho phạm vi khối có thể giải quyết một số mối lo ngại này, làm cho việc các biến được gắn vào đâu trở nên rõ ràng hơn. Thông thường, mã tường minh được ưa thích hơn mã ngầm định hoặc tinh vi. Phong cách phạm vi khối tường minh này dễ dàng đạt được và phù hợp tự nhiên hơn với cách phạm vi khối hoạt động trong các ngôn ngữ khác:
 
 ```js
 var foo = true;
@@ -437,13 +437,13 @@ if (foo) {
 console.log( bar ); // ReferenceError
 ```
 
-Chúng ta có thể tạo một khối tùy ý để `let` liên kết bằng cách chỉ cần bao gồm một cặp `{ .. }` ở bất kỳ đâu một câu lệnh là ngữ pháp hợp lệ. Trong trường hợp này, chúng ta đã tạo một khối tường minh *bên trong* câu lệnh if, điều này có thể dễ dàng hơn như một khối toàn bộ để di chuyển xung quanh sau này trong quá trình tái cấu trúc, mà không ảnh hưởng đến vị trí và ngữ nghĩa của câu lệnh if bao quanh.
+Chúng ta có thể tạo một khối tùy ý để gắn `let` vào bằng cách thêm một cặp `{ .. }` ở bất kỳ đâu mà cú pháp cho là một câu lệnh hợp lệ. Trong trường hợp này, ta đã tạo ra một khối tường minh *bên trong* câu lệnh if. Sau này, khi tái cấu trúc, di chuyển toàn bộ khối có thể dễ dàng hơn mà không ảnh hưởng đến vị trí và ngữ nghĩa của câu lệnh if bao quanh.
 
-**Lưu ý:** Để biết một cách khác để thể hiện phạm vi khối tường minh, hãy xem Phụ lục B.
+**Lưu ý:** Có một cách khác để thể hiện phạm vi khối tường minh, hãy xem Phụ lục B.
 
-Trong Chương 4, chúng ta sẽ đề cập đến hoisting, nói về việc các khai báo được coi là tồn tại trong toàn bộ phạm vi mà chúng xuất hiện.
+Trong chương 4, chúng ta sẽ đề cập đến kéo lên, nói về việc các khai báo được coi là tồn tại trong toàn bộ phạm vi mà chúng được đặt.
 
-Tuy nhiên, các khai báo được thực hiện với `let` sẽ *không* được hoist lên toàn bộ phạm vi của khối mà chúng xuất hiện. Các khai báo như vậy sẽ không "tồn tại" một cách có thể quan sát được trong khối cho đến câu lệnh khai báo.
+Tuy nhiên, các khai báo bằng `let` sẽ *không* được kéo lên toàn bộ phạm vi của khối mà chúng xuất hiện. Các khai báo như vậy sẽ không "tồn tại" một cách hiển nhiên trong khối cho đến khi gặp câu lệnh khai báo.
 
 ```js
 {
@@ -454,9 +454,9 @@ Tuy nhiên, các khai báo được thực hiện với `let` sẽ *không* đư
 
 #### Thu gom rác
 
-Một lý do khác mà phạm vi khối hữu ích liên quan đến các hàm khép kín (closures) và việc thu gom rác để giải phóng bộ nhớ. Chúng ta sẽ minh họa ngắn gọn ở đây, nhưng cơ chế hàm khép kín được giải thích chi tiết trong Chương 5.
+Một lý do khác chứng tỏ sự hữu ích của phạm vi khối liên quan đến các hàm khép kín và việc thu gom rác để giải phóng bộ nhớ. Chúng ta sẽ minh họa ngắn gọn ở đây, nhưng cơ chế hàm khép kín được giải thích chi tiết trong chương 5.
 
-Xét:
+Xét đoạn mã sau:
 
 ```js
 function process(data) {
@@ -474,9 +474,9 @@ btn.addEventListener( "click", function click(evt){
 }, /*capturingPhase=*/false );
 ```
 
-Hàm hàm gọi lại xử lý sự kiện `click` không *cần* biến `someReallyBigData` chút nào. Điều đó có nghĩa là, về mặt lý thuyết, sau khi `process(..)` chạy, cấu trúc dữ liệu nặng nề về bộ nhớ có thể được thu gom rác. Tuy nhiên, rất có khả năng (mặc dù phụ thuộc vào việc triển khai) rằng bộ máy JS vẫn sẽ phải giữ lại cấu trúc này, vì hàm `click` có một hàm khép kín trên toàn bộ phạm vi.
+Hàm gọi lại xử lý sự kiện `click` không *cần* biến `someReallyBigData` chút nào. Điều đó có nghĩa là, về mặt lý thuyết, sau khi `process(..)` chạy, cấu trúc dữ liệu nặng nề về bộ nhớ có thể trở thành rác đã được thu gom. Tuy nhiên, rất có khả năng (mặc dù phụ thuộc vào việc triển khai) rằng bộ máy JS vẫn sẽ phải giữ lại cấu trúc này, vì hàm `click` có một hàm khép kín trên toàn bộ phạm vi.
 
-Phạm vi khối có thể giải quyết mối lo ngại này, làm cho nó rõ ràng hơn với bộ máy rằng nó không cần phải giữ lại `someReallyBigData`:
+Phạm vi khối có thể giải quyết mối lo ngại này, làm cho bộ máy hiểu rằng nó không cần phải giữ lại `someReallyBigData`:
 
 ```js
 function process(data) {
@@ -497,7 +497,7 @@ btn.addEventListener( "click", function click(evt){
 }, /*capturingPhase=*/false );
 ```
 
-Việc khai báo các khối tường minh để các biến liên kết cục bộ là một công cụ mạnh mẽ mà bạn có thể thêm vào hộp công cụ mã hóa của mình.
+Việc khai báo các khối tường minh để các biến liên kết cục bộ là một công cụ mạnh mẽ mà bạn có thể thêm vào hộp công cụ viết mã của mình.
 
 #### Vòng lặp `let`
 
@@ -511,7 +511,7 @@ for (let i=0; i<10; i++) {
 console.log( i ); // ReferenceError
 ```
 
-`let` trong phần đầu của vòng lặp for không chỉ ràng buộc `i` với thân vòng lặp for, mà thực tế, nó còn **tái ràng buộc nó** với mỗi *vòng lặp*, đảm bảo tái gán cho nó giá trị từ cuối vòng lặp trước đó.
+`let` trong phần đầu của vòng lặp for không chỉ ràng buộc `i` với thân vòng lặp for, thực tế, nó còn **tái ràng buộc nó** với mỗi *vòng lặp*, đảm bảo gán lại cho nó giá trị từ cuối vòng lặp trước.
 
 Đây là một cách khác để minh họa hành vi ràng buộc theo từng vòng lặp xảy ra:
 
@@ -525,11 +525,11 @@ console.log( i ); // ReferenceError
 }
 ```
 
-Lý do tại sao việc ràng buộc theo từng vòng lặp này thú vị sẽ trở nên rõ ràng trong Chương 5 khi chúng ta thảo luận về các hàm khép kín.
+Lý do tại sao việc ràng buộc theo từng vòng lặp này thú vị sẽ trở nên rõ ràng trong chương 5 khi chúng ta thảo luận về các hàm khép kín.
 
-Bởi vì các khai báo `let` gắn với các khối tùy ý thay vì phạm vi của hàm bao quanh (hoặc toàn cục), có thể có những cạm bẫy khi mã hiện có có sự phụ thuộc ngầm vào các khai báo `var` có phạm vi hàm, và việc thay thế `var` bằng `let` có thể đòi hỏi sự cẩn thận bổ sung khi tái cấu trúc mã.
+Bởi vì các khai báo `let` gắn với các khối tùy ý thay vì phạm vi của hàm bao quanh (hoặc toàn cục), có thể có những cạm bẫy khi mã hiện tại có sự phụ thuộc ngầm vào các khai báo `var` có phạm vi hàm, việc thay thế `var` bằng `let` có thể đòi hỏi sự cẩn thận hơn khi tái cấu trúc mã.
 
-Xét:
+Xét đoạn mã:
 
 ```js
 var foo = true, baz = 10;
@@ -545,7 +545,7 @@ if (foo) {
 }
 ```
 
-Mã này khá dễ dàng được tái cấu trúc thành:
+Mã này được tái cấu trúc khá dễ dàng thành:
 
 ```js
 var foo = true, baz = 10;
@@ -561,7 +561,7 @@ if (baz > bar) {
 }
 ```
 
-Nhưng, hãy cẩn thận với những thay đổi như vậy khi sử dụng các biến có phạm vi khối:
+Nhưng hãy cẩn thận với những thay đổi như vậy khi sử dụng các biến có phạm vi khối:
 
 ```js
 var foo = true, baz = 10;
@@ -579,7 +579,7 @@ Xem Phụ lục B để biết một phong cách phạm vi khối thay thế (t�
 
 ### `const`
 
-Ngoài `let`, ES6 còn giới thiệu `const`, cũng tạo ra một biến có phạm vi khối, nhưng giá trị của nó là cố định (hằng số). Bất kỳ nỗ lực nào để thay đổi giá trị đó sau này đều dẫn đến một lỗi.
+Ngoài `let`, ES6 còn giới thiệu `const`, cũng tạo ra một biến có phạm vi khối nhưng giá trị của nó là cố định (hằng số). Bất kỳ nỗ lực nào để thay đổi giá trị đó sau này đều dẫn đến lỗi.
 
 ```js
 var foo = true;
@@ -596,16 +596,16 @@ console.log( a ); // 3
 console.log( b ); // ReferenceError!
 ```
 
-## Ôn lại (Tóm tắt)
+## Nhìn lại
 
 Hàm là đơn vị phạm vi phổ biến nhất trong JavaScript. Các biến và hàm được khai báo bên trong một hàm khác về cơ bản là "ẩn" khỏi bất kỳ "phạm vi" bao quanh nào, đó là một nguyên tắc thiết kế có chủ ý của phần mềm tốt.
 
-Nhưng hàm không phải là đơn vị phạm vi duy nhất. Phạm vi khối đề cập đến ý tưởng rằng các biến và hàm có thể thuộc về một khối mã tùy ý (thường là bất kỳ cặp `{ .. }` nào), thay vì chỉ thuộc về hàm bao quanh.
+Nhưng hàm không phải là đơn vị phạm vi duy nhất. Phạm vi khối đề cập đến ý tưởng rằng các biến và hàm có thể thuộc về một khối mã tùy ý (thường là bất kỳ cặp `{ .. }` nào) thay vì chỉ thuộc về hàm bao quanh.
 
 Bắt đầu từ ES3, cấu trúc `try/catch` có phạm vi khối trong mệnh đề `catch`.
 
 Trong ES6, từ khóa `let` (một người anh em của từ khóa `var`) được giới thiệu để cho phép khai báo các biến trong bất kỳ khối mã tùy ý nào. `if (..) { let a = 2; }` sẽ khai báo một biến `a` mà về cơ bản chiếm quyền kiểm soát phạm vi của khối `{ .. }` của `if` và tự gắn mình vào đó.
 
-Mặc dù một số người dường như tin như vậy, phạm vi khối không nên được coi là một sự thay thế hoàn toàn cho phạm vi hàm `var`. Cả hai chức năng cùng tồn tại, và các nhà phát triển có thể và nên sử dụng cả kỹ thuật phạm vi hàm và phạm vi khối ở những nơi thích hợp để tạo ra mã tốt hơn, dễ đọc/dễ bảo trì hơn.
+Mặc dù một số người dường như tin như vậy, phạm vi khối không nên được coi là một sự thay thế hoàn toàn cho phạm vi hàm `var`. Cả hai chức năng cùng tồn tại, các nhà phát triển có thể và nên sử dụng cả kỹ thuật phạm vi hàm và phạm vi khối ở những nơi thích hợp để tạo ra mã tốt hơn, dễ đọc/dễ bảo trì hơn.
 
 [^note-leastprivilege]: [Nguyên tắc Đặc quyền Tối thiểu](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
