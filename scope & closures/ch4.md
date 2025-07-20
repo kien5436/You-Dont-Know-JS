@@ -113,7 +113,7 @@ var foo = function bar() {
 
 Định danh của biến `foo` được kéo lên và gắn vào phạm vi bao ngoài (toàn cục) của chương trình này, vì vậy `foo()` không thất bại với lỗi `ReferenceError`. Nhưng `foo` chưa có giá trị (như nó đáng lẽ sẽ có nếu đây là một khai báo hàm thực sự thay vì một biểu thức hàm). Do đó, `foo()` đang cố gắng gọi đến giá trị `undefined`, đây là một thao tác bất hợp lệ và gây ra lỗi `TypeError`.
 
-Cũng hãy nhớ lại rằng mặc dù đây là một biểu thức hàm có định danh, tên định danh đó không tồn tại trong phạm vi bao ngoài:
+Và hãy nhớ lại rằng mặc dù đây là một biểu thức hàm được đặt tên, tên định danh đó không tồn tại trong phạm vi bao ngoài:
 
 ```js
 foo(); // TypeError
@@ -124,7 +124,7 @@ var foo = function bar() {
 };
 ```
 
-Đoạn mã này được diễn giải (cùng với việc kéo lên) một cách chính xác hơn là:
+Đoạn mã này được diễn giải (cùng với việc kéo lên) một cách chính xác như sau:
 
 ```js
 var foo;
@@ -172,9 +172,9 @@ foo = function() {
 };
 ```
 
-Lưu ý rằng `var foo` là phần khai báo bị trùng lặp (và do đó bị bỏ qua), mặc dù nó đứng trước khai báo `function foo()...`, bởi vì các khai báo hàm được kéo lên trước các biến thông thường.
+Lưu ý rằng `var foo` là phần khai báo bị trùng lặp (và do đó bị bỏ qua) dù nó đứng trước khai báo `function foo()...`, bởi vì các khai báo hàm được kéo lên trước các biến thông thường.
 
-Trong khi các khai báo `var` trùng lặp về cơ bản sẽ bị bỏ qua, thì các khai báo hàm sau đó *sẽ* ghi đè lên các khai báo trước đó.
+Trong khi các khai báo `var` trùng lặp về cơ bản sẽ bị bỏ qua thì các khai báo hàm liên tiếp *sẽ* ghi đè lên các khai báo trước đó.
 
 ```js
 foo(); // 3
@@ -192,9 +192,9 @@ function foo() {
 }
 ```
 
-Dù tất cả những điều này nghe có vẻ chẳng khác gì những kiến thức lý thuyết suông thú vị, nó lại nhấn mạnh một thực tế rằng việc có nhiều định nghĩa trùng lặp trong cùng một phạm vi là một ý tưởng cực kỳ tồi tệ và thường sẽ dẫn đến những kết quả khó lường.
+Dù tất cả những điều này nghe có vẻ chẳng khác gì những kiến thức lý thuyết thú vị, nó lại nhấn mạnh một thực tế rằng việc có nhiều định nghĩa trùng lặp trong cùng một phạm vi là một ý tưởng cực kỳ tồi tệ và thường dẫn đến những kết quả khó lường.
 
-Các khai báo hàm xuất hiện bên trong các khối lệnh thông thường thì thường được kéo lên phạm vi bao ngoài, thay vì mang tính điều kiện như đoạn mã này ngụ ý:
+Các khai báo hàm xuất hiện bên trong các khối lệnh thông thường thì thường được kéo lên phạm vi bao ngoài thay vì mang tính điều kiện như đoạn mã này ngụ ý:
 
 ```js
 foo(); // "b"
@@ -210,12 +210,12 @@ else {
 
 Tuy nhiên, cần phải lưu ý rằng hành vi này không đáng tin cậy và có thể thay đổi trong các phiên bản JavaScript tương lai, vì vậy tốt nhất là nên tránh khai báo hàm bên trong các khối lệnh.
 
-## Nhìn lại (TL;DR)
+## Nhìn lại
 
-Chúng ta có thể dễ dàng xem `var a = 2;` như là một câu lệnh duy nhất, nhưng *Bộ máy* JavaScript không nhìn nhận như vậy. Nó xem `var a` và `a = 2` là hai câu lệnh riêng biệt, câu lệnh đầu tiên là một tác vụ của giai đoạn biên dịch, và câu lệnh thứ hai là một tác vụ của giai đoạn thực thi.
+Chúng ta có thể dễ dàng xem `var a = 2;` như là một câu lệnh duy nhất nhưng *Bộ máy* JavaScript không nhìn nhận như vậy. Nó xem `var a` và `a = 2` là hai câu lệnh riêng biệt, câu lệnh đầu tiên là một tác vụ của giai đoạn biên dịch, và câu lệnh thứ hai là một tác vụ của giai đoạn thực thi.
 
-Điều này dẫn đến việc tất cả các khai báo trong một phạm vi, bất kể chúng xuất hiện ở đâu, đều được xử lý *trước tiên* trước khi chính đoạn mã đó được thực thi. Bạn có thể hình dung quá trình này như thể các khai báo (biến và hàm) được "di chuyển" lên đầu phạm vi tương ứng của chúng, mà chúng ta gọi là "kéo lên".
+Điều này dẫn đến việc tất cả các khai báo trong một phạm vi, bất kể chúng xuất hiện ở đâu, đều được xử lý *đầu tiên* trước khi chính đoạn mã đó được thực thi. Bạn có thể hình dung quá trình này như thể các khai báo (biến và hàm) được "di chuyển" lên đầu phạm vi tương ứng của chúng, mà chúng ta gọi là "kéo lên".
 
-Bản thân các khai báo được kéo lên, nhưng các phép gán, ngay cả phép gán các biểu thức hàm, thì *không* được kéo lên.
+Bản thân các khai báo được kéo lên, nhưng các phép gán, ngay cả phép gán các biểu thức hàm, thì *không*.
 
-Hãy cẩn trọng với các khai báo trùng lặp, đặc biệt là khi trộn lẫn giữa khai báo var thông thường và khai báo hàm -- rắc rối khôn lường đang chờ bạn phía trước
+Hãy cẩn trọng với các khai báo trùng lặp, đặc biệt là khi trộn lẫn giữa khai báo var thông thường và khai báo hàm - rắc rối khôn lường đang chờ bạn phía trước!

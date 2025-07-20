@@ -18,9 +18,9 @@
 	* Sử dụng Hàm làm Phạm vi
 	* Sử dụng Khối làm Phạm vi
 * Chương 4: Kéo lên
-	* Chicken Or The Egg?
-	* The Compiler Strikes Again
-	* Functions First
+	* Gà có trước hay trứng có trước?
+	* Chương trình biên dịch lại ra tay
+	* Hàm trước tiên
 * Chương 5: Phạm vi Hàm khép kín
 	* Enlightenment
 	* Nitty Gritty
