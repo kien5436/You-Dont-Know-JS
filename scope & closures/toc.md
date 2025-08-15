@@ -21,12 +21,12 @@
 	* Gà có trước hay trứng có trước?
 	* Chương trình biên dịch lại ra tay
 	* Hàm trước tiên
-* Chương 5: Phạm vi Hàm khép kín
-	* Enlightenment
-	* Nitty Gritty
-	* Now I Can See
-	* Loops + Closure
-	* Modules
+* Chương 5: Sự bao đóng của Phạm vi
+	* Khai sáng
+	* Đi vào cốt lõi
+	* Giờ tôi đã thấy
+	* Vòng lặp + Cơ chế bao đóng
+	* Khối chức năng
 * Phụ lục A: Phạm vi Động
 * Phụ lục B: Giả lập Phạm vi Khối
 * Phụ lục C: Từ vựng `this`
