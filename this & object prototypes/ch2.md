@@ -1,60 +1,60 @@
-# You Don't Know JS: *this* & Object Prototypes
-# Chapter 2: `this` All Makes Sense Now!
+# Bạn không hiểu JS: `this` và Nguyên mẫu Đối tượng
+# Chương 2: Giờ thì `this` đã có ý nghĩa!
 
-In Chapter 1, we discarded various misconceptions about `this` and learned instead that `this` is a binding made for each function invocation, based entirely on its **call-site** (how the function is called).
+Trong Chương 1, chúng ta đã loại bỏ những ngộ nhận khác nhau về `this` và thay vào đó học được rằng `this` là một ràng buộc được tạo ra cho mỗi lần gọi hàm, hoàn toàn dựa vào **nơi gọi** của nó (cách mà hàm được gọi).
 
-## Call-site
+## Nơi gọi 
 
-To understand `this` binding, we have to understand the call-site: the location in code where a function is called (**not where it's declared**). We must inspect the call-site to answer the question: what's *this* `this` a reference to?
+Để hiểu được ràng buộc `this`, chúng ta phải hiểu về nơi gọi: vị trí trong mã nguồn nơi một hàm được gọi (**chứ không phải nơi nó được khai báo**). Chúng ta phải xem xét kỹ nơi gọi để trả lời câu hỏi: cái `this` *này* đang tham chiếu đến cái gì?
 
-Finding the call-site is generally: "go locate where a function is called from", but it's not always that easy, as certain coding patterns can obscure the *true* call-site.
+Việc tìm ra nơi gọi nhìn chung là: "đi xác định vị trí mà từ đó một hàm được gọi", nhưng không phải lúc nào cũng dễ dàng như vậy vì một số mô hình viết mã có thể che mờ đi nơi gọi *thực sự*.
 
-What's important is to think about the **call-stack** (the stack of functions that have been called to get us to the current moment in execution). The call-site we care about is *in* the invocation *before* the currently executing function.
+Điều quan trọng là phải suy nghĩ về **ngăn xếp gọi hàm** (ngăn xếp các hàm đã được gọi để đưa chúng ta đến thời điểm thực thi hiện tại). Nơi gọi mà chúng ta quan tâm nằm *trong* lời gọi *ngay trước* hàm đang được thực thi.
 
-Let's demonstrate call-stack and call-site:
+Hãy cùng minh họa về ngăn xếp gọi hàm và nơi gọi:
 
 ```js
 function baz() {
-    // call-stack is: `baz`
-    // so, our call-site is in the global scope
+    // ngăn xếp gọi hàm là: `baz`
+    // vì vậy, nơi gọi của chúng ta nằm trong phạm vi toàn cục
 
     console.log( "baz" );
-    bar(); // <-- call-site for `bar`
+    bar(); // <-- nơi gọi cho `bar`
 }
 
 function bar() {
-    // call-stack is: `baz` -> `bar`
-    // so, our call-site is in `baz`
+    // ngăn xếp gọi hàm là: `baz` -> `bar`
+    // vì vậy, nơi gọi của chúng ta nằm trong `baz`
 
     console.log( "bar" );
-    foo(); // <-- call-site for `foo`
+    foo(); // <-- nơi gọi cho `foo`
 }
 
 function foo() {
-    // call-stack is: `baz` -> `bar` -> `foo`
-    // so, our call-site is in `bar`
+    // ngăn xếp gọi hàm là: `baz` -> `bar` -> `foo`
+    // vì vậy, nơi gọi của chúng ta nằm trong `bar`
 
     console.log( "foo" );
 }
 
-baz(); // <-- call-site for `baz`
+baz(); // <-- nơi gọi cho `baz`
 ```
 
-Take care when analyzing code to find the actual call-site (from the call-stack), because it's the only thing that matters for `this` binding.
+Cần hết sức cẩn trọng khi phân tích mã nguồn để tìm ra nơi gọi thực sự (từ ngăn xếp gọi hàm), bởi vì đó là yếu tố duy nhất có ý nghĩa đối với ràng buộc `this`.
 
-**Note:** You can visualize a call-stack in your mind by looking at the chain of function calls in order, as we did with the comments in the above snippet. But this is painstaking and error-prone. Another way of seeing the call-stack is using a debugger tool in your browser. Most modern desktop browsers have built-in developer tools, which includes a JS debugger. In the above snippet, you could have set a breakpoint in the tools for the first line of the `foo()` function, or simply inserted the `debugger;` statement on that first line. When you run the page, the debugger will pause at this location, and will show you a list of the functions that have been called to get to that line, which will be your call stack. So, if you're trying to diagnose `this` binding, use the developer tools to get the call-stack, then find the second item from the top, and that will show you the real call-site.
+**Lưu ý:** Bạn có thể hình dung một ngăn xếp lời gọi trong đầu bằng cách nhìn vào chuỗi các lời gọi hàm theo thứ tự như chúng ta đã làm với các chú thích trong đoạn mã trên. Nhưng cách này rất vất vả và dễ sai sót. Một cách khác để xem ngăn xếp lời gọi là sử dụng công cụ gỡ lỗi (debugger) trong chương trình duyệt của bạn. Hầu hết các chương trình duyệt dành cho máy tính hiện đại đều có sẵn công cụ dành cho nhà phát triển, bao gồm một chương trình gỡ lỗi JS. Trong đoạn mã trên, bạn có thể đặt một điểm ngắt trong công cụ tại dòng đầu tiên của hàm `foo()`, hoặc đơn giản là chèn câu lệnh `debugger;` vào dòng đầu tiên đó. Khi bạn chạy trang, chương trình gỡ lỗi sẽ tạm dừng tại vị trí này và hiển thị cho bạn một danh sách các hàm đã được gọi để đến được dòng đó, đó chính là ngăn xếp gọi hàm của bạn. Vì vậy, nếu bạn đang cố gắng chẩn đoán ràng buộc `this`, hãy sử dụng công cụ dành cho nhà phát triển để lấy ngăn xếp lời gọi, sau đó tìm đến mục thứ hai từ trên xuống, nó sẽ cho bạn thấy nơi gọi thực sự.
 
-## Nothing But Rules
+## Chỉ Tuân Theo Các Quy Tắc
 
-We turn our attention now to *how* the call-site determines where `this` will point during the execution of a function.
+Bây giờ, chúng ta sẽ chuyển sự chú ý sang việc *cách thức* mà nơi gọi xác định `this` sẽ trỏ đến đâu trong quá trình thực thi một hàm.
 
-You must inspect the call-site and determine which of 4 rules applies. We will first explain each of these 4 rules independently, and then we will illustrate their order of precedence, if multiple rules *could* apply to the call-site.
+Bạn phải xem xét nơi gọi và xác định quy tắc nào trong 4 quy tắc sau được áp dụng. Đầu tiên, chúng ta sẽ giải thích riêng từng quy tắc, sau đó sẽ minh họa thứ tự ưu tiên của chúng nếu có nhiều quy tắc *có thể* áp dụng cho nơi gọi đó.
 
-### Default Binding
+### Ràng buộc Mặc định
 
-The first rule we will examine comes from the most common case of function calls: standalone function invocation. Think of *this* `this` rule as the default catch-all rule when none of the other rules apply.
+Quy tắc đầu tiên chúng ta xem xét đến từ trường hợp gọi hàm phổ biến nhất: lời gọi hàm độc lập. Hãy coi quy tắc `this` *này* là quy tắc mặc định sau cùng khi không có quy tắc nào khác được áp dụng.
 
-Consider this code:
+Xét đoạn mã sau:
 
 ```js
 function foo() {
@@ -66,13 +66,13 @@ var a = 2;
 foo(); // 2
 ```
 
-The first thing to note, if you were not already aware, is that variables declared in the global scope, as `var a = 2` is, are synonymous with global-object properties of the same name. They're not copies of each other, they *are* each other. Think of it as two sides of the same coin.
+Điều đầu tiên cần lưu ý nếu bạn chưa biết, các biến được khai báo trong phạm vi toàn cục như `var a = 2` đồng nghĩa với các thuộc tính của đối tượng toàn cục có cùng tên. Chúng không phải là bản sao của nhau, chúng *chính là* một. Hãy nghĩ về nó như hai mặt của cùng một đồng xu.
 
-Secondly, we see that when `foo()` is called, `this.a` resolves to our global variable `a`. Why? Because in this case, the *default binding* for `this` applies to the function call, and so points `this` at the global object.
+Thứ hai, chúng ta thấy rằng khi `foo()` được gọi, `this.a` phân giải ra biến toàn cục `a` của chúng ta. Tại sao? Bởi vì trong trường hợp này, *ràng buộc mặc định* cho `this` được áp dụng cho lời gọi hàm và do đó trỏ `this` vào đối tượng toàn cục.
 
-How do we know that the *default binding* rule applies here? We examine the call-site to see how `foo()` is called. In our snippet, `foo()` is called with a plain, un-decorated function reference. None of the other rules we will demonstrate will apply here, so the *default binding* applies instead.
+Làm thế nào chúng ta biết quy tắc *ràng buộc mặc định* được áp dụng ở đây? Chúng ta xem xét nơi gọi để thấy `foo()` được gọi như thế nào. Trong đoạn mã của chúng ta, `foo()` được gọi bằng một tham chiếu hàm đơn thuần, không đi kèm gì cả. Không có quy tắc nào khác mà chúng ta sẽ trình bày được áp dụng ở đây, vì vậy *ràng buộc mặc định* sẽ được áp dụng.
 
-If `strict mode` is in effect, the global object is not eligible for the *default binding*, so the `this` is instead set to `undefined`.
+Nếu `chế độ nghiêm ngặt` (`strict mode`) có hiệu lực, đối tượng toàn cục không đủ điều kiện cho *ràng buộc mặc định*, vì vậy `this` thay vào đó sẽ được đặt thành `undefined`.
 
 ```js
 function foo() {
@@ -86,7 +86,7 @@ var a = 2;
 foo(); // TypeError: `this` is `undefined`
 ```
 
-A subtle but important detail is: even though the overall `this` binding rules are entirely based on the call-site, the global object is **only** eligible for the *default binding* if the **contents** of `foo()` are **not** running in `strict mode`; the `strict mode` state of the call-site of `foo()` is irrelevant.
+Một chi tiết tinh vi nhưng quan trọng là: mặc dù các quy tắc ràng buộc `this` nói chung hoàn toàn dựa vào nơi gọi, đối tượng toàn cục **chỉ** đủ điều kiện cho *ràng buộc mặc định* nếu **nội dung** của `foo()` **không** chạy trong `chế độ nghiêm ngặt`; trạng thái `chế độ nghiêm ngặt` của nơi gọi `foo()` không liên quan gì.
 
 ```js
 function foo() {
@@ -102,13 +102,13 @@ var a = 2;
 })();
 ```
 
-**Note:** Intentionally mixing `strict mode` and non-`strict mode` together in your own code is generally frowned upon. Your entire program should probably either be **Strict** or **non-Strict**. However, sometimes you include a third-party library that has different **Strict**'ness than your own code, so care must be taken over these subtle compatibility details.
+**Lưu ý:** Việc cố tình trộn lẫn `chế độ nghiêm ngặt` và không `nghiêm ngặt` với nhau trong mã của bạn thường không được khuyến khích. Toàn bộ chương trình của bạn có lẽ nên là **Nghiêm ngặt** hoặc **Không nghiêm ngặt**. Tuy nhiên, đôi khi bạn sử dụng một thư viện của bên thứ ba có độ **Nghiêm ngặt** khác với mã của riêng bạn, vì vậy cần phải cẩn thận với những chi tiết tương thích tinh vi này.
 
-### Implicit Binding
+### Ràng buộc Ngầm
 
-Another rule to consider is: does the call-site have a context object, also referred to as an owning or containing object, though *these* alternate terms could be slightly misleading.
+Một quy tắc khác cần xem xét là: nơi gọi có đối tượng ngữ cảnh, đôi khi còn được gọi là đối tượng sở hữu hoặc đối tượng chứa, hay không, dù *những* thuật ngữ này có thể hơi gây hiểu lầm.
 
-Consider:
+Xét ví dụ:
 
 ```js
 function foo() {
@@ -123,15 +123,15 @@ var obj = {
 obj.foo(); // 2
 ```
 
-Firstly, notice the manner in which `foo()` is declared and then later added as a reference property onto `obj`. Regardless of whether `foo()` is initially declared *on* `obj`, or is added as a reference later (as this snippet shows), in neither case is the **function** really "owned" or "contained" by the `obj` object.
+Trước tiên, hãy chú ý đến cách `foo()` được khai báo và sau đó được thêm vào như một thuộc tính tham chiếu trên `obj`. Bất kể ban đầu `foo()` được khai báo *trên* `obj` hay được thêm vào như một tham chiếu sau đó (như đoạn mã cho thấy), trong cả hai trường hợp, **hàm** này không thực sự được "sở hữu" hay "chứa" bởi đối tượng `obj`.
 
-However, the call-site *uses* the `obj` context to **reference** the function, so you *could* say that the `obj` object "owns" or "contains" the **function reference** at the time the function is called.
+Tuy nhiên, nơi gọi *sử dụng* ngữ cảnh `obj` để **tham chiếu** đến hàm, vì vậy bạn *có thể* nói rằng đối tượng `obj` "sở hữu" hoặc "chứa" **tham chiếu hàm** tại thời điểm hàm được gọi.
 
-Whatever you choose to call this pattern, at the point that `foo()` is called, it's preceded by an object reference to `obj`. When there is a context object for a function reference, the *implicit binding* rule says that it's *that* object which should be used for the function call's `this` binding.
+Dù bạn chọn gọi khuôn mẫu này là gì, tại thời điểm `foo()` được gọi, nó nằm sau một tham chiếu đối tượng đến `obj`. Khi có một đối tượng ngữ cảnh cho một tham chiếu hàm, quy tắc *ràng buộc ngầm* nói rằng chính đối tượng *đó* sẽ được sử dụng cho ràng buộc `this` của lời gọi hàm.
 
-Because `obj` is the `this` for the `foo()` call, `this.a` is synonymous with `obj.a`.
+Bởi vì `obj` là `this` cho lời gọi `foo()`, `this.a` đồng nghĩa với `obj.a`.
 
-Only the top/last level of an object property reference chain matters to the call-site. For instance:
+Chỉ có cấp trên cùng/cuối cùng của một chuỗi tham chiếu thuộc tính đối tượng mới ảnh hưởng tới nơi gọi. Ví dụ:
 
 ```js
 function foo() {
@@ -151,11 +151,11 @@ var obj1 = {
 obj1.obj2.foo(); // 42
 ```
 
-#### Implicitly Lost
+#### Mất ràng buộc ngầm
 
-One of the most common frustrations that `this` binding creates is when an *implicitly bound* function loses that binding, which usually means it falls back to the *default binding*, of either the global object or `undefined`, depending on `strict mode`.
+Một trong những phiền toái phổ biến nhất mà ràng buộc `this` tạo ra là khi một hàm được *ràng buộc ngầm* bị mất ràng buộc đó, điều này thường có nghĩa là nó sẽ quay về với *ràng buộc mặc định*, của đối tượng toàn cục hoặc `undefined`, tùy thuộc vào `chế độ nghiêm ngặt`.
 
-Consider:
+Xét ví dụ:
 
 ```js
 function foo() {
@@ -167,16 +167,16 @@ var obj = {
 	foo: foo
 };
 
-var bar = obj.foo; // function reference/alias!
+var bar = obj.foo; // tham chiếu/bí danh của hàm!
 
-var a = "oops, global"; // `a` also property on global object
+var a = "oops, global"; // `a` cũng là thuộc tính trên đối tượng toàn cục
 
 bar(); // "oops, global"
 ```
 
-Even though `bar` appears to be a reference to `obj.foo`, in fact, it's really just another reference to `foo` itself. Moreover, the call-site is what matters, and the call-site is `bar()`, which is a plain, un-decorated call and thus the *default binding* applies.
+Mặc dù `bar` có vẻ là một tham chiếu đến `obj.foo`, nhưng trên thực tế, nó thực sự chỉ là một tham chiếu khác đến chính `foo`. Hơn nữa, nơi gọi mới là điều quan trọng, và nơi gọi là `bar()`, một lời gọi đơn thuần, không đi kèm gì cả và do đó quy tắc *ràng buộc mặc định* được áp dụng.
 
-The more subtle, more common, and more unexpected way this occurs is when we consider passing a callback function:
+Cách thức tinh vi hơn, phổ biến hơn và bất ngờ hơn mà điều này xảy ra là khi chúng ta xem xét việc truyền vào một hàm gọi lại:
 
 ```js
 function foo() {
@@ -184,9 +184,9 @@ function foo() {
 }
 
 function doFoo(fn) {
-	// `fn` is just another reference to `foo`
+	// `fn` chỉ là một tham chiếu khác đến `foo`
 
-	fn(); // <-- call-site!
+	fn(); // <-- nơi gọi!
 }
 
 var obj = {
@@ -194,14 +194,14 @@ var obj = {
 	foo: foo
 };
 
-var a = "oops, global"; // `a` also property on global object
+var a = "oops, global"; // `a` cũng là thuộc tính trên đối tượng toàn cục
 
 doFoo( obj.foo ); // "oops, global"
 ```
 
-Parameter passing is just an implicit assignment, and since we're passing a function, it's an implicit reference assignment, so the end result is the same as the previous snippet.
+Việc truyền tham số chỉ là một phép gán ngầm, và vì chúng ta đang truyền một hàm, đó là một phép gán tham chiếu ngầm nên kết quả cuối cùng giống như đoạn mã trước.
 
-What if the function you're passing your callback to is not your own, but built-in to the language? No difference, same outcome.
+Nếu hàm mà bạn đang truyền hàm gọi lại vào không phải của riêng bạn mà được tích hợp sẵn trong ngôn ngữ thì sao? Không có gì khác biệt, kết quả tương tự.
 
 ```js
 function foo() {
@@ -213,35 +213,35 @@ var obj = {
 	foo: foo
 };
 
-var a = "oops, global"; // `a` also property on global object
+var a = "oops, global"; // `a` cũng là thuộc tính trên đối tượng toàn cục
 
 setTimeout( obj.foo, 100 ); // "oops, global"
 ```
 
-Think about this crude theoretical pseudo-implementation of `setTimeout()` provided as a built-in from the JavaScript environment:
+Hãy nghĩ về cách giả lập thô sơ về mặt lý thuyết của `setTimeout()` được cung cấp như một hàm tích hợp sẵn từ môi trường JavaScript:
 
 ```js
 function setTimeout(fn,delay) {
-	// wait (somehow) for `delay` milliseconds
-	fn(); // <-- call-site!
+	// chờ (bằng cách nào đó) trong `delay` mili giây
+	fn(); // <-- nơi gọi!
 }
 ```
 
-It's quite common that our function callbacks *lose* their `this` binding, as we've just seen. But another way that `this` can surprise us is when the function we've passed our callback to intentionally changes the `this` for the call. Event handlers in popular JavaScript libraries are quite fond of forcing your callback to have a `this` which points to, for instance, the DOM element that triggered the event. While that may sometimes be useful, other times it can be downright infuriating. Unfortunately, these tools rarely let you choose.
+Việc các hàm gọi lại của chúng ta *mất* ràng buộc `this` là khá phổ biến, như chúng ta vừa thấy. Nhưng một cách khác mà `this` có thể gây ngạc nhiên cho chúng ta là khi hàm mà chúng ta đã truyền hàm gọi lại vào cố tình thay đổi `this` cho lời gọi. Các hàm xử lý sự kiện trong các thư viện JavaScript phổ biến khá ưa thích việc ép hàm gọi lại của bạn phải có `this` trỏ đến, ví dụ, phần tử DOM đã kích hoạt sự kiện. Mặc dù điều này đôi khi có thể hữu ích, những lúc khác nó có thể cực kỳ khó chịu. Thật không may, những công cụ này hiếm khi cho phép bạn lựa chọn.
 
-Either way the `this` is changed unexpectedly, you are not really in control of how your callback function reference will be executed, so you have no way (yet) of controlling the call-site to give your intended binding. We'll see shortly a way of "fixing" that problem by *fixing* the `this`.
+Dù `this` bị thay đổi theo một cách không mong muốn, bạn cũng không thực sự kiểm soát được cách tham chiếu hàm gọi lại của mình sẽ được thực thi, vì vậy bạn không (chưa) có cách nào để điều khiển nơi gọi nhằm đưa ra ràng buộc mà bạn mong muốn. Chúng ta sẽ sớm thấy một cách để "sửa" vấn đề đó bằng cách *cố định* `this`.
 
-### Explicit Binding
+### Ràng buộc Tường minh
 
-With *implicit binding* as we just saw, we had to mutate the object in question to include a reference on itself to the function, and use this property function reference to indirectly (implicitly) bind `this` to the object.
+Với *ràng buộc ngầm* như chúng ta vừa thấy, chúng ta phải thay đổi đối tượng đang xét để chứa một tham chiếu đến hàm trên chính nó, và sử dụng tham chiếu hàm thuộc tính này để gián tiếp (ngầm) ràng buộc `this` với đối tượng.
 
-But, what if you want to force a function call to use a particular object for the `this` binding, without putting a property function reference on the object?
+Nhưng nếu bạn muốn ép một lời gọi hàm phải sử dụng một đối tượng cụ thể cho ràng buộc `this` mà không cần đặt một tham chiếu hàm thuộc tính trên đối tượng đó thì sao?
 
-"All" functions in the language have some utilities available to them (via their `[[Prototype]]` -- more on that later) which can be useful for this task. Specifically, functions have `call(..)` and `apply(..)` methods. Technically, JavaScript host environments sometimes provide functions which are special enough (a kind way of putting it!) that they do not have such functionality. But those are few. The vast majority of functions provided, and certainly all functions you will create, do have access to `call(..)` and `apply(..)`.
+"Tất cả" các hàm trong ngôn ngữ đều có một số tiện ích có sẵn (thông qua `[[Prototype]]` của chúng - sẽ nói thêm về điều này sau) có thể hữu ích cho nhiệm vụ này. Cụ thể, các hàm có phương thức `call(..)` và `apply(..)`. Về mặt kỹ thuật, các môi trường máy chủ JavaScript đôi khi cung cấp các hàm đủ đặc biệt (một cách nói giảm nói tránh!) đến mức chúng không có chức năng như vậy. Nhưng số đó rất ít. Phần lớn các hàm được cung cấp, và chắc chắn là tất cả các hàm bạn sẽ tạo, đều có quyền truy cập vào `call(..)` và `apply(..)`.
 
-How do these utilities work? They both take, as their first parameter, an object to use for the `this`, and then invoke the function with that `this` specified. Since you are directly stating what you want the `this` to be, we call it *explicit binding*.
+Các tiện ích này hoạt động như thế nào? Cả hai đều nhận tham số đầu tiên làm một đối tượng để sử dụng cho `this`, và sau đó gọi hàm với `this` đã được chỉ định. Vì bạn đang trực tiếp nêu rõ bạn muốn `this` là gì, chúng ta gọi nó là *ràng buộc tường minh*.
 
-Consider:
+Xét ví dụ:
 
 ```js
 function foo() {
@@ -255,17 +255,17 @@ var obj = {
 foo.call( obj ); // 2
 ```
 
-Invoking `foo` with *explicit binding* by `foo.call(..)` allows us to force its `this` to be `obj`.
+Việc gọi `foo` với *ràng buộc tường minh* bằng `foo.call(..)` cho phép chúng ta ép `this` của nó phải là `obj`.
 
-If you pass a simple primitive value (of type `string`, `boolean`, or `number`) as the `this` binding, the primitive value is wrapped in its object-form (`new String(..)`, `new Boolean(..)`, or `new Number(..)`, respectively). This is often referred to as "boxing".
+Nếu bạn truyền một giá trị nguyên thủy đơn giản (thuộc kiểu `string`, `boolean`, hoặc `number`) làm ràng buộc `this`, giá trị nguyên thủy đó sẽ được bao bọc trong dạng đối tượng của nó (`new String(..)`, `new Boolean(..)`, hoặc `new Number(..)` tương ứng). Điều này thường được gọi là "đóng hộp" (boxing).
 
-**Note:** With respect to `this` binding, `call(..)` and `apply(..)` are identical. They *do* behave differently with their additional parameters, but that's not something we care about presently.
+**Lưu ý:** Đối với ràng buộc `this`, `call(..)` và `apply(..)` là giống hệt nhau. Chúng *có* hoạt động khác nhau với các tham số bổ sung, nhưng đó không phải là điều chúng ta quan tâm hiện tại.
 
-Unfortunately, *explicit binding* alone still doesn't offer any solution to the issue mentioned previously, of a function "losing" its intended `this` binding, or just having it paved over by a framework, etc.
+Thật không may, chỉ riêng *ràng buộc tường minh* vẫn không đưa ra giải pháp nào cho vấn đề đã đề cập trước đó, về việc một hàm "mất" ràng buộc `this` dự định của nó, hoặc bị một bộ khung ghi đè lên, v.v.
 
-#### Hard Binding
+#### Ràng buộc cứng
 
-But a variation pattern around *explicit binding* actually does the trick. Consider:
+Nhưng một biến thể của khuôn mẫu *ràng buộc tường minh* thực sự giải quyết được vấn đề. Xét ví dụ:
 
 ```js
 function foo() {
@@ -283,14 +283,14 @@ var bar = function() {
 bar(); // 2
 setTimeout( bar, 100 ); // 2
 
-// `bar` hard binds `foo`'s `this` to `obj`
-// so that it cannot be overriden
+// `bar` ràng buộc cứng `this` của `foo` vào `obj`
+// để nó không thể bị ghi đè
 bar.call( window ); // 2
 ```
 
-Let's examine how this variation works. We create a function `bar()` which, internally, manually calls `foo.call(obj)`, thereby forcibly invoking `foo` with `obj` binding for `this`. No matter how you later invoke the function `bar`, it will always manually invoke `foo` with `obj`. This binding is both explicit and strong, so we call it *hard binding*.
+Hãy xem xét cách biến thể này hoạt động. Chúng ta tạo ra một hàm `bar()` mà bên trong nó, gọi `foo.call(obj)` một cách thủ công, do đó ép `foo` được gọi với ràng buộc `this` là `obj`. Bất kể sau này bạn gọi hàm `bar` như thế nào, nó sẽ luôn luôn gọi `foo` với `obj` một cách thủ công. Ràng buộc này vừa rõ ràng vừa mạnh mẽ, vì vậy chúng ta gọi nó là *ràng buộc cứng*.
 
-The most typical way to wrap a function with a *hard binding* creates a pass-thru of any arguments passed and any return value received:
+Cách điển hình nhất để bao bọc một hàm với *ràng buộc cứng* là tạo ra một đường thông qua cho bất kỳ đối số nào được truyền vào và bất kỳ giá trị trả về nào nhận được:
 
 ```js
 function foo(something) {
@@ -310,7 +310,7 @@ var b = bar( 3 ); // 2 3
 console.log( b ); // 5
 ```
 
-Another way to express this pattern is to create a re-usable helper:
+Một cách khác để thể hiện khuôn mẫu này là tạo một hàm trợ giúp tái sử dụng được:
 
 ```js
 function foo(something) {
@@ -318,7 +318,7 @@ function foo(something) {
 	return this.a + something;
 }
 
-// simple `bind` helper
+// hàm trợ giúp `ràng buộc` đơn giản
 function bind(fn, obj) {
 	return function() {
 		return fn.apply( obj, arguments );
@@ -335,7 +335,7 @@ var b = bar( 3 ); // 2 3
 console.log( b ); // 5
 ```
 
-Since *hard binding* is such a common pattern, it's provided with a built-in utility as of ES5: `Function.prototype.bind`, and it's used like this:
+Vì *ràng buộc cứng* là một khuôn mẫu rất phổ biến, nó được cung cấp một tiện ích tích hợp sẵn kể từ ES5: `Function.prototype.bind`, và được sử dụng như sau:
 
 ```js
 function foo(something) {
@@ -353,15 +353,15 @@ var b = bar( 3 ); // 2 3
 console.log( b ); // 5
 ```
 
-`bind(..)` returns a new function that is hard-coded to call the original function with the `this` context set as you specified.
+`bind(..)` trả về một hàm mới được mã hóa cứng để gọi hàm gốc với ngữ cảnh `this` được thiết lập như bạn đã chỉ định.
 
-**Note:** As of ES6, the hard-bound function produced by `bind(..)` has a `.name` property that derives from the original *target function*. For example: `bar = foo.bind(..)` should have a `bar.name` value of `"bound foo"`, which is the function call name that should show up in a stack trace.
+**Lưu ý:** Kể từ ES6, hàm được ràng buộc cứng do `bind(..)` tạo ra có thuộc tính `.name` bắt nguồn từ *hàm mục tiêu* ban đầu. Ví dụ: `bar = foo.bind(..)` sẽ có giá trị `bar.name` là `"bound foo"`, đây là tên lời gọi hàm sẽ hiển thị trong dấu vết ngăn xếp (stack trace).
 
-#### API Call "Contexts"
+#### Ngữ cảnh trong lời gọi API
 
-Many libraries' functions, and indeed many new built-in functions in the JavaScript language and host environment, provide an optional parameter, usually called "context", which is designed as a work-around for you not having to use `bind(..)` to ensure your callback function uses a particular `this`.
+Nhiều hàm của các thư viện, và thực sự là nhiều hàm tích hợp mới trong ngôn ngữ JavaScript và môi trường máy chủ, cung cấp một tham số tùy chọn, thường được gọi là "ngữ cảnh", được thiết kế như một giải pháp thay thế để bạn không phải sử dụng `bind(..)` nhằm đảm bảo hàm gọi lại của bạn sử dụng một `this` cụ thể.
 
-For instance:
+Ví dụ:
 
 ```js
 function foo(el) {
@@ -372,44 +372,44 @@ var obj = {
 	id: "awesome"
 };
 
-// use `obj` as `this` for `foo(..)` calls
+// sử dụng `obj` làm `this` cho các lời gọi `foo(..)`
 [1, 2, 3].forEach( foo, obj ); // 1 awesome  2 awesome  3 awesome
 ```
 
-Internally, these various functions almost certainly use *explicit binding* via `call(..)` or `apply(..)`, saving you the trouble.
+Bên trong, các hàm khác nhau này gần như chắc chắn sử dụng *ràng buộc tường minh* thông qua `call(..)` hoặc `apply(..)` để giúp bạn tiết kiệm công sức.
 
-### `new` Binding
+### Ràng buộc `new`
 
-The fourth and final rule for `this` binding requires us to re-think a very common misconception about functions and objects in JavaScript.
+Quy tắc thứ tư và cuối cùng cho ràng buộc `this` đòi hỏi chúng ta phải suy nghĩ lại về một quan niệm sai lầm rất phổ biến về hàm và đối tượng trong JavaScript.
 
-In traditional class-oriented languages, "constructors" are special methods attached to classes, that when the class is instantiated with a `new` operator, the constructor of that class is called. This usually looks something like:
+Trong các ngôn ngữ hướng lớp truyền thống, "hàm khởi tạo" là các phương thức đặc biệt được gắn vào các lớp, khi lớp được khởi tạo bằng toán tử `new`, hàm khởi tạo của lớp đó sẽ được gọi. Điều này thường có dạng:
 
 ```js
 something = new MyClass(..);
 ```
 
-JavaScript has a `new` operator, and the code pattern to use it looks basically identical to what we see in those class-oriented languages; most developers assume that JavaScript's mechanism is doing something similar. However, there really is *no connection* to class-oriented functionality implied by `new` usage in JS.
+JavaScript có toán tử `new`, và khuôn mẫu mã để sử dụng nó về cơ bản giống hệt với những gì chúng ta thấy trong các ngôn ngữ hướng lớp đó; hầu hết các nhà phát triển cho rằng cơ chế của JavaScript cũng đang làm điều tương tự. Tuy nhiên, thực sự *không có mối liên hệ nào* với chức năng hướng lớp được ngụ ý bởi việc sử dụng `new` trong JS.
 
-First, let's re-define what a "constructor" in JavaScript is. In JS, constructors are **just functions** that happen to be called with the `new` operator in front of them. They are not attached to classes, nor are they instantiating a class. They are not even special types of functions. They're just regular functions that are, in essence, hijacked by the use of `new` in their invocation.
+Trước tiên, hãy định nghĩa lại "hàm khởi tạo" trong JavaScript là gì. Trong JS, hàm khởi tạo **chỉ là các hàm** tình cờ được gọi với toán tử `new` đứng trước chúng. Chúng không được gắn vào các lớp, cũng không phải là đang khởi tạo một lớp. Chúng thậm chí không phải là các loại hàm đặc biệt. Về bản chất, chúng chỉ là các hàm thông thường bị chiếm quyền bởi việc sử dụng `new` trong lời gọi của chúng.
 
-For example, the `Number(..)` function acting as a constructor, quoting from the ES5.1 spec:
+Ví dụ, hàm `Number(..)` hoạt động như một hàm khởi tạo, trích dẫn từ đặc tả ES5.1:
 
-> 15.7.2 The Number Constructor
+> 15.7.2 Hàm khởi tạo Number
 >
-> When Number is called as part of a new expression it is a constructor: it initialises the newly created object.
+> Khi Number được gọi như một phần của một biểu thức new, nó là một hàm khởi tạo: nó khởi tạo đối tượng mới được tạo ra.
 
-So, pretty much any ol' function, including the built-in object functions like `Number(..)` (see Chapter 3) can be called with `new` in front of it, and that makes that function call a *constructor call*. This is an important but subtle distinction: there's really no such thing as "constructor functions", but rather construction calls *of* functions.
+Vì vậy, gần như bất kỳ hàm nào, bao gồm cả các hàm đối tượng tích hợp sẵn như `Number(..)` (xem Chương 3) đều có thể được gọi với `new` đứng trước nó, và điều đó làm cho lời gọi hàm đó trở thành một *lời gọi hàm khởi tạo*. Đây là một sự khác biệt quan trọng nhưng tinh vi: thực sự không có cái gọi là "hàm khởi tạo" mà là các lời gọi khởi tạo *của* các hàm.
 
-When a function is invoked with `new` in front of it, otherwise known as a constructor call, the following things are done automatically:
+Khi một hàm được gọi với `new` đứng trước nó, hay còn gọi là lời gọi hàm khởi tạo, những điều sau đây sẽ được thực hiện tự động:
 
-1. a brand new object is created (aka, constructed) out of thin air
-2. *the newly constructed object is `[[Prototype]]`-linked*
-3. the newly constructed object is set as the `this` binding for that function call
-4. unless the function returns its own alternate **object**, the `new`-invoked function call will *automatically* return the newly constructed object.
+1. một đối tượng hoàn toàn mới được tạo ra (hay còn gọi là được khởi tạo) từ hư không
+2. *đối tượng mới được khởi tạo được liên kết `[[Prototype]]`*
+3. đối tượng mới được khởi tạo được đặt làm ràng buộc `this` cho lời gọi hàm đó
+4. trừ khi hàm trả về một **đối tượng** thay thế của riêng nó, lời gọi hàm được gọi bằng `new` sẽ *tự động* trả về đối tượng mới được khởi tạo.
 
-Steps 1, 3, and 4 apply to our current discussion. We'll skip over step 2 for now and come back to it in Chapter 5.
+Các bước 1, 3 và 4 áp dụng cho cuộc thảo luận hiện tại của chúng ta. Chúng ta sẽ bỏ qua bước 2 bây giờ và quay lại nó trong Chương 5.
 
-Consider this code:
+Xét đoạn mã này:
 
 ```js
 function foo(a) {
@@ -420,15 +420,15 @@ var bar = new foo( 2 );
 console.log( bar.a ); // 2
 ```
 
-By calling `foo(..)` with `new` in front of it, we've constructed a new object and set that new object as the `this` for the call of `foo(..)`. **So `new` is the final way that a function call's `this` can be bound.** We'll call this *new binding*.
+Bằng cách gọi `foo(..)` với `new` đứng trước, chúng ta đã khởi tạo một đối tượng mới và đặt đối tượng mới đó làm `this` cho lời gọi của `foo(..)`. **Vậy `new` là cách cuối cùng mà `this` của một lời gọi hàm có thể được ràng buộc.** Chúng ta sẽ gọi đây là *ràng buộc new*.
 
-## Everything In Order
+## Thứ Tự Của Mọi Quy Tắc
 
-So, now we've uncovered the 4 rules for binding `this` in function calls. *All* you need to do is find the call-site and inspect it to see which rule applies. But, what if the call-site has multiple eligible rules? There must be an order of precedence to these rules, and so we will next demonstrate what order to apply the rules.
+Vậy là chúng ta đã khám phá ra 4 quy tắc để ràng buộc `this` trong các lời gọi hàm. *Tất cả* những gì bạn cần làm là tìm nơi gọi và xem quy tắc nào được áp dụng. Nhưng nếu nơi gọi có nhiều quy tắc đủ điều kiện thì sao? Phải có một thứ tự ưu tiên cho các quy tắc này, và vì vậy tiếp theo chúng ta sẽ chứng minh thứ tự áp dụng các quy tắc.
 
-It should be clear that the *default binding* is the lowest priority rule of the 4. So we'll just set that one aside.
+Rõ ràng là *ràng buộc mặc định* là quy tắc có độ ưu tiên thấp nhất trong 4 cái. Vì vậy, chúng ta sẽ tạm gác nó sang một bên.
 
-Which is more precedent, *implicit binding* or *explicit binding*? Let's test it:
+Cái nào có độ ưu tiên cao hơn, *ràng buộc ngầm* hay *ràng buộc tường minh*? Hãy kiểm tra:
 
 ```js
 function foo() {
@@ -452,9 +452,9 @@ obj1.foo.call( obj2 ); // 3
 obj2.foo.call( obj1 ); // 2
 ```
 
-So, *explicit binding* takes precedence over *implicit binding*, which means you should ask **first** if *explicit binding* applies before checking for *implicit binding*.
+Vậy là *ràng buộc tường minh* có độ ưu tiên cao hơn *ràng buộc ngầm*, đồng nghĩa với việc **đầu tiên** bạn nên hỏi là liệu *ràng buộc tường minh* có áp dụng hay không trước khi kiểm tra *ràng buộc ngầm*.
 
-Now, we just need to figure out where *new binding* fits in the precedence.
+Bây giờ, chúng ta chỉ cần tìm ra vị trí của *ràng buộc new* trong thứ tự ưu tiên.
 
 ```js
 function foo(something) {
@@ -478,15 +478,15 @@ console.log( obj1.a ); // 2
 console.log( bar.a ); // 4
 ```
 
-OK, *new binding* is more precedent than *implicit binding*. But do you think *new binding* is more or less precedent than *explicit binding*?
+Được rồi, *ràng buộc new* có độ ưu tiên cao hơn *ràng buộc ngầm*. Nhưng bạn nghĩ *ràng buộc new* có độ ưu tiên cao hơn hay thấp hơn *ràng buộc tường minh*?
 
-**Note:** `new` and `call`/`apply` cannot be used together, so `new foo.call(obj1)` is not allowed, to test *new binding* directly against *explicit binding*. But we can still use a *hard binding* to test the precedence of the two rules.
+**Lưu ý:** `new` và `call`/`apply` không thể được sử dụng cùng nhau, vì vậy `new foo.call(obj1)` không được phép dùng để kiểm tra *ràng buộc new* trực tiếp với *ràng buộc tường minh*. Nhưng chúng ta vẫn có thể sử dụng *ràng buộc cứng* để kiểm tra độ ưu tiên của hai quy tắc.
 
-Before we explore that in a code listing, think back to how *hard binding* physically works, which is that `Function.prototype.bind(..)` creates a new wrapper function that is hard-coded to ignore its own `this` binding (whatever it may be), and use a manual one we provide.
+Trước khi chúng ta khám phá điều đó trong một đoạn mã, hãy nghĩ lại về cách *ràng buộc cứng* hoạt động về mặt vật lý, đó là `Function.prototype.bind(..)` tạo ra một hàm bao bọc mới được mã hóa cứng để bỏ qua ràng buộc `this` của chính nó (bất kể nó là gì), và sử dụng một ràng buộc thủ công mà chúng ta cung cấp.
 
-By that reasoning, it would seem obvious to assume that *hard binding* (which is a form of *explicit binding*) is more precedent than *new binding*, and thus cannot be overridden with `new`.
+Theo lý luận đó, giả định rằng *ràng buộc cứng* (là một dạng của *ràng buộc tường minh*) có độ ưu tiên cao hơn *ràng buộc new*, và do đó không thể bị ghi đè bằng `new` dường như rõ ràng.
 
-Let's check:
+Hãy kiểm tra:
 
 ```js
 function foo(something) {
@@ -504,11 +504,11 @@ console.log( obj1.a ); // 2
 console.log( baz.a ); // 3
 ```
 
-Whoa! `bar` is hard-bound against `obj1`, but `new bar(3)` did **not** change `obj1.a` to be `3` as we would have expected. Instead, the *hard bound* (to `obj1`) call to `bar(..)` ***is*** able to be overridden with `new`. Since `new` was applied, we got the newly created object back, which we named `baz`, and we see in fact that  `baz.a` has the value `3`.
+Ồ! `bar` được ràng buộc cứng với `obj1`, nhưng `new bar(3)` đã **không** thay đổi `obj1.a` thành `3` như chúng ta mong đợi. Thay vào đó, lời gọi *ràng buộc cứng* (với `obj1`) đến `bar(..)` ***có thể*** bị ghi đè bằng `new`. Vì `new` đã được áp dụng, chúng ta nhận lại đối tượng mới được tạo ra mà chúng ta đặt tên là `baz`, và chúng ta thấy trên thực tế rằng `baz.a` có giá trị `3`.
 
-This should be surprising if you go back to our "fake" bind helper:
+Điều này sẽ gây ngạc nhiên nếu bạn quay lại hàm trợ giúp `bind` "giả" của chúng ta:
 
-```js
+```JS
 function bind(fn, obj) {
 	return function() {
 		fn.apply( obj, arguments );
@@ -516,16 +516,16 @@ function bind(fn, obj) {
 }
 ```
 
-If you reason about how the helper's code works, it does not have a way for a `new` operator call to override the hard-binding to `obj` as we just observed.
+Nếu bạn suy luận về cách mã của hàm trợ giúp hoạt động, bạn sẽ thấy rằng không có cách nào để một lời gọi toán tử `new` có thể ghi đè lên ràng buộc cứng với `obj` như chúng ta vừa quan sát.
 
-But the built-in `Function.prototype.bind(..)` as of ES5 is more sophisticated, quite a bit so in fact. Here is the (slightly reformatted) polyfill provided by the MDN page for `bind(..)`:
+Nhưng `Function.prototype.bind(..)` tích hợp sẵn kể từ ES5 thì tinh vi hơn, thực tế là tinh vi hơn khá nhiều. Đây là bản tương thích ngược (đã được định dạng lại một chút) được cung cấp bởi trang MDN cho `bind(..)`:
 
 ```js
 if (!Function.prototype.bind) {
 	Function.prototype.bind = function(oThis) {
 		if (typeof this !== "function") {
-			// closest thing possible to the ECMAScript 5
-			// internal IsCallable function
+			// hàm gần nhất với
+			// hàm IsCallable bên trong ECMAScript 5
 			throw new TypeError( "Function.prototype.bind - what " +
 				"is trying to be bound is not callable"
 			);
@@ -553,36 +553,36 @@ if (!Function.prototype.bind) {
 }
 ```
 
-**Note:** The `bind(..)` polyfill shown above differs from the built-in `bind(..)` in ES5 with respect to hard-bound functions that will be used with `new` (see below for why that's useful). Because the polyfill cannot create a function without a `.prototype` as the built-in utility does, there's some nuanced indirection to approximate the same behavior. Tread carefully if you plan to use `new` with a hard-bound function and you rely on this polyfill.
+**Lưu ý:** Hàm tương thích ngược `bind(..)` được hiển thị ở trên khác với `bind(..)` tích hợp trong ES5 đối với các hàm được ràng buộc cứng sẽ được sử dụng với `new` (xem bên dưới để biết tại sao điều đó hữu ích). Bởi vì hàm tương thích ngược không thể tạo ra một hàm không có `.prototype` như tiện ích tích hợp làm, có một số sự gián tiếp tinh vi để đạt được hành vi tương tự. Hãy cẩn thận nếu bạn dự định sử dụng `new` với một hàm được ràng buộc cứng và bạn dựa vào hàm tương thích ngược này.
 
-The part that's allowing `new` overriding is:
+Phần cho phép `new` ghi đè là:
 
 ```js
 this instanceof fNOP &&
 oThis ? this : oThis
 
-// ... and:
+// ... và:
 
 fNOP.prototype = this.prototype;
 fBound.prototype = new fNOP();
 ```
 
-We won't actually dive into explaining how this trickery works (it's complicated and beyond our scope here), but essentially the utility determines whether or not the hard-bound function has been called with `new` (resulting in a newly constructed object being its `this`), and if so, it uses *that* newly created `this` rather than the previously specified *hard binding* for `this`.
+Chúng ta sẽ không thực sự đi sâu vào giải thích cách mánh khóe này hoạt động (nó phức tạp và nằm ngoài phạm vi của chúng ta ở đây), nhưng về cơ bản, tiện ích này xác định xem hàm được ràng buộc cứng có được gọi bằng `new` hay không (dẫn đến một đối tượng mới được khởi tạo là `this` của nó), và nếu có, nó sử dụng `this` mới được tạo *đó* thay vì *ràng buộc cứng* cho `this` đã được chỉ định trước đó.
 
-Why is `new` being able to override *hard binding* useful?
+Tại sao việc `new` có thể ghi đè *ràng buộc cứng* lại hữu ích?
 
-The primary reason for this behavior is to create a function (that can be used with `new` for constructing objects) that essentially ignores the `this` *hard binding* but which presets some or all of the function's arguments. One of the capabilities of `bind(..)` is that any arguments passed after the first `this` binding argument are defaulted as standard arguments to the underlying function (technically called "partial application", which is a subset of "currying").
+Lý do chính cho hành vi này là để tạo ra một hàm (có thể được sử dụng với `new` để khởi tạo đối tượng) mà về cơ bản bỏ qua ràng buộc *cứng* của `this` nhưng lại đặt trước một số hoặc tất cả các đối số của hàm. Một trong những khả năng của `bind(..)` là bất kỳ đối số nào được truyền sau đối số ràng buộc `this` đầu tiên đều được mặc định là các đối số tiêu chuẩn cho hàm bên dưới (về mặt kỹ thuật được gọi là "ứng dụng cục bộ" (partial application), là một tập hợp con của "kĩ thuật phân rã tham số").
 
-For example:
+Ví dụ:
 
 ```js
 function foo(p1,p2) {
 	this.val = p1 + p2;
 }
 
-// using `null` here because we don't care about
-// the `this` hard-binding in this scenario, and
-// it will be overridden by the `new` call anyway!
+// sử dụng `null` ở đây vì chúng ta không quan tâm đến
+// ràng buộc cứng `this` trong kịch bản này, và
+// nó sẽ bị ghi đè bởi lời gọi `new`!
 var bar = foo.bind( null, "p1" );
 
 var baz = new bar( "p2" );
@@ -590,37 +590,37 @@ var baz = new bar( "p2" );
 baz.val; // p1p2
 ```
 
-### Determining `this`
+### Xác định `this`
 
-Now, we can summarize the rules for determining `this` from a function call's call-site, in their order of precedence. Ask these questions in this order, and stop when the first rule applies.
+Bây giờ, chúng ta có thể tóm tắt các quy tắc để xác định `this` từ nơi gọi của một lời gọi hàm, theo thứ tự ưu tiên của chúng. Hãy đặt những câu hỏi này theo thứ tự và dừng lại khi quy tắc đầu tiên được áp dụng.
 
-1. Is the function called with `new` (**new binding**)? If so, `this` is the newly constructed object.
+1. Hàm có được gọi với `new` (**ràng buộc new**) không? Nếu có, `this` là đối tượng mới được khởi tạo.
 
     `var bar = new foo()`
 
-2. Is the function called with `call` or `apply` (**explicit binding**), even hidden inside a `bind` *hard binding*? If so, `this` is the explicitly specified object.
+2. Hàm có được gọi với `call` hoặc `apply` (**ràng buộc tường minh**), ngay cả khi ẩn bên trong một *ràng buộc cứng* `bind` không? Nếu có, `this` là đối tượng được chỉ định một cách rõ ràng.
 
     `var bar = foo.call( obj2 )`
 
-3. Is the function called with a context (**implicit binding**), otherwise known as an owning or containing object? If so, `this` is *that* context object.
+3. Hàm có được gọi với một ngữ cảnh (**ràng buộc ngầm**), hay còn gọi là một đối tượng sở hữu hoặc chứa, không? Nếu có, `this` là *đối tượng ngữ cảnh đó*.
 
     `var bar = obj1.foo()`
 
-4. Otherwise, default the `this` (**default binding**). If in `strict mode`, pick `undefined`, otherwise pick the `global` object.
+4. Nếu không, mặc định `this` (**ràng buộc mặc định**). Nếu trong `chế độ nghiêm ngặt`, chọn `undefined`, nếu không thì chọn đối tượng `global`.
 
     `var bar = foo()`
 
-That's it. That's *all it takes* to understand the rules of `this` binding for normal function calls. Well... almost.
+Chỉ vậy thôi. Đó là *tất cả những gì cần thiết* để hiểu các quy tắc ràng buộc `this` cho các lời gọi hàm thông thường. Chà... gần như vậy.
 
-## Binding Exceptions
+## Các Ngoại Lệ Của Ràng Buộc
 
-As usual, there are some *exceptions* to the "rules".
+Như thường lệ, có một số *ngoại lệ* cho các "quy tắc".
 
-The `this`-binding behavior can in some scenarios be surprising, where you intended a different binding but you end up with binding behavior from the *default binding* rule (see previous).
+Hành vi ràng buộc `this` trong một số tình huống có thể gây ngạc nhiên, khi bạn dự định một ràng buộc khác nhưng cuối cùng lại nhận được hành vi ràng buộc từ quy tắc *ràng buộc mặc định* (xem phần trước).
 
-### Ignored `this`
+### `this` Bị Bỏ Qua
 
-If you pass `null` or `undefined` as a `this` binding parameter to `call`, `apply`, or `bind`, those values are effectively ignored, and instead the *default binding* rule applies to the invocation.
+Nếu bạn truyền `null` hoặc `undefined` làm tham số ràng buộc `this` cho `call`, `apply`, hoặc `bind`, những giá trị đó thực sự bị bỏ qua, và thay vào đó, quy tắc *ràng buộc mặc định* sẽ được áp dụng cho lời gọi.
 
 ```js
 function foo() {
@@ -632,64 +632,64 @@ var a = 2;
 foo.call( null ); // 2
 ```
 
-Why would you intentionally pass something like `null` for a `this` binding?
+Tại sao bạn lại cố tình truyền một cái gì đó như `null` cho một ràng buộc `this`?
 
-It's quite common to use `apply(..)` for spreading out arrays of values as parameters to a function call. Similarly, `bind(..)` can curry parameters (pre-set values), which can be very helpful.
+Việc sử dụng `apply(..)` để trải các giá trị của một mảng ra làm tham số cho một lời gọi hàm là khá phổ biến. Tương tự, `bind(..)` có thể phân rã các tham số (giá trị được đặt trước), điều này có thể rất hữu ích.
 
 ```js
 function foo(a,b) {
 	console.log( "a:" + a + ", b:" + b );
 }
 
-// spreading out array as parameters
+// trải mảng ra làm tham số
 foo.apply( null, [2, 3] ); // a:2, b:3
 
-// currying with `bind(..)`
+// phân rã tham số với `bind(..)`
 var bar = foo.bind( null, 2 );
 bar( 3 ); // a:2, b:3
 ```
 
-Both these utilities require a `this` binding for the first parameter. If the functions in question don't care about `this`, you need a placeholder value, and `null` might seem like a reasonable choice as shown in this snippet.
+Cả hai tiện ích này đều yêu cầu một ràng buộc `this` cho tham số đầu tiên. Nếu các hàm đang xét không quan tâm đến `this`, bạn cần một giá trị giữ chỗ, và `null` có vẻ là một lựa chọn hợp lý như được hiển thị trong đoạn mã này.
 
-**Note:** We don't cover it in this book, but ES6 has the `...` spread operator which will let you syntactically "spread out" an array as parameters without needing `apply(..)`, such as `foo(...[1,2])`, which amounts to `foo(1,2)` -- syntactically avoiding a `this` binding if it's unnecessary. Unfortunately, there's no ES6 syntactic substitute for currying, so the `this` parameter of the `bind(..)` call still needs attention.
+**Lưu ý:** Chúng ta không đề cập đến nó trong cuốn sách này, nhưng ES6 có toán tử phân rã `...` cho phép bạn "trải" một mảng ra làm tham số mà không cần `apply(..)`, chẳng hạn như `foo(...[1,2])`, tương đương với `foo(1,2)` - về mặt cú pháp tránh được ràng buộc `this` nếu không cần thiết. Thật không may, không có cú pháp thay thế nào trong ES6 cho kĩ thuật phân rã tham số, vì vậy tham số `this` của lời gọi `bind(..)` vẫn cần được chú ý.
 
-However, there's a slight hidden "danger" in always using `null` when you don't care about the `this` binding. If you ever use that against a function call (for instance, a third-party library function that you don't control), and that function *does* make a `this` reference, the *default binding* rule means it might inadvertently reference (or worse, mutate!) the `global` object (`window` in the browser).
+Tuy nhiên, có một "nguy cơ" tiềm ẩn nhỏ trong việc luôn sử dụng `null` khi bạn không quan tâm đến ràng buộc `this`. Nếu bạn từng sử dụng điều đó với một lời gọi hàm (ví dụ, một hàm thư viện của bên thứ ba mà bạn không kiểm soát), và hàm đó *có* thực hiện một tham chiếu `this`, quy tắc *ràng buộc mặc định* đồng nghĩa với việc nó có thể vô tình tham chiếu (hoặc tệ hơn, thay đổi!) đối tượng `global` (`window` trong trình duyệt).
 
-Obviously, such a pitfall can lead to a variety of *very difficult* to diagnose/track-down bugs.
+Rõ ràng, một cạm bẫy như vậy có thể dẫn đến một loạt các lỗi *rất khó* để chẩn đoán/truy vết.
 
-#### Safer `this`
+#### `this` An toàn hơn
 
-Perhaps a somewhat "safer" practice is to pass a specifically set up object for `this` which is guaranteed not to be an object that can create problematic side effects in your program. Borrowing terminology from networking (and the military), we can create a "DMZ" (de-militarized zone) object -- nothing more special than a completely empty, non-delegated (see Chapters 5 and 6) object.
+Có lẽ một cách làm "an toàn" hơn là truyền một đối tượng được thiết lập đặc biệt cho `this` sao cho đối tượng đó không thể tạo ra các hiệu ứng phụ có vấn đề trong chương trình của bạn. Mượn thuật ngữ từ mạng máy tính (và quân sự), chúng ta có thể tạo ra một đối tượng "DMZ" (vùng phi quân sự) - không có gì đặc biệt hơn một đối tượng hoàn toàn trống, không được ủy quyền (xem Chương 5 và 6).
 
-If we always pass a DMZ object for ignored `this` bindings we don't think we need to care about, we're sure any hidden/unexpected usage of `this` will be restricted to the empty object, which insulates our program's `global` object from side-effects.
+Nếu chúng ta luôn truyền một đối tượng DMZ để bỏ qua các ràng buộc `this` mà chúng ta nghĩ rằng không cần quan tâm, chúng ta chắc chắn rằng bất kỳ việc sử dụng `this` ẩn/bất ngờ nào cũng sẽ bị giới hạn trong đối tượng trống, điều này cách ly đối tượng `global` của chương trình chúng ta khỏi các hiệu ứng phụ.
 
-Since this object is totally empty, I personally like to give it the variable name `ø` (the lowercase mathematical symbol for the empty set). On many keyboards (like US-layout on Mac), this symbol is easily typed with `⌥`+`o` (option+`o`). Some systems also let you set up hotkeys for specific symbols. If you don't like the `ø` symbol, or your keyboard doesn't make that as easy to type, you can of course call it whatever you want.
+Vì đối tượng này hoàn toàn trống, cá nhân tôi thích đặt tên biến cho nó là `ø` (ký hiệu toán học viết thường cho tập hợp rỗng). Trên nhiều bàn phím (như bố cục US trên Mac), ký hiệu này có thể dễ dàng được gõ bằng `⌥`+`o` (option+`o`). Một số hệ thống cũng cho phép bạn thiết lập phím nóng cho các ký hiệu cụ thể. Nếu bạn không thích ký hiệu `ø`, hoặc bàn phím của bạn không dễ gõ được nó, tất nhiên bạn có thể gọi nó là bất cứ thứ gì bạn muốn.
 
-Whatever you call it, the easiest way to set it up as **totally empty** is `Object.create(null)` (see Chapter 5). `Object.create(null)` is similar to `{ }`, but without the delegation to `Object.prototype`, so it's "more empty" than just `{ }`.
+Dù bạn gọi nó là gì, cách dễ nhất để thiết lập nó **hoàn toàn trống** là `Object.create(null)` (xem Chương 5). `Object.create(null)` tương tự như `{ }`, nhưng không có sự ủy quyền cho `Object.prototype`, vì vậy nó "trống hơn" so với chỉ `{ }`.
 
 ```js
 function foo(a,b) {
 	console.log( "a:" + a + ", b:" + b );
 }
 
-// our DMZ empty object
+// đối tượng trống DMZ của chúng ta
 var ø = Object.create( null );
 
-// spreading out array as parameters
+// trải mảng ra làm tham số
 foo.apply( ø, [2, 3] ); // a:2, b:3
 
-// currying with `bind(..)`
+// phân rã tham số với `bind(..)`
 var bar = foo.bind( ø, 2 );
 bar( 3 ); // a:2, b:3
 ```
 
-Not only functionally "safer", there's a sort of stylistic benefit to `ø`, in that it semantically conveys "I want the `this` to be empty" a little more clearly than `null` might. But again, name your DMZ object whatever you prefer.
+Không chỉ "an toàn" hơn về mặt chức năng, còn có một lợi ích về phong cách với `ø`, ở chỗ nó truyền tải về mặt ngữ nghĩa "Tôi muốn `this` phải trống" một cách rõ ràng hơn một chút so với `null`. Nhưng một lần nữa, bạn có thể đặt bất cứ tên nào cho đối tượng DMZ.
 
-### Indirection
+### Tham Chiếu Gián Tiếp
 
-Another thing to be aware of is you can (intentionally or not!) create "indirect references" to functions, and in those cases,  when that function reference is invoked, the *default binding* rule also applies.
+Một điều khác cần lưu ý là bạn có thể (cố ý hoặc không!) tạo ra "tham chiếu gián tiếp" đến các hàm, và trong những trường hợp đó, khi tham chiếu hàm đó được gọi, quy tắc *ràng buộc mặc định* cũng được áp dụng.
 
-One of the most common ways that *indirect references* occur is from an assignment:
+Một trong những cách phổ biến nhất mà *tham chiếu gián tiếp* xảy ra là từ một phép gán:
 
 ```js
 function foo() {
@@ -704,17 +704,17 @@ o.foo(); // 3
 (p.foo = o.foo)(); // 2
 ```
 
-The *result value* of the assignment expression `p.foo = o.foo` is a reference to just the underlying function object. As such, the effective call-site is just `foo()`, not `p.foo()` or `o.foo()` as you might expect. Per the rules above, the *default binding* rule applies.
+*Giá trị kết quả* của biểu thức gán `p.foo = o.foo` chỉ là một tham chiếu đến đối tượng hàm bên dưới. Do đó, nơi gọi thực sự chỉ là `foo()`, không phải là `p.foo()` hay `o.foo()` như bạn có thể mong đợi. Theo các quy tắc ở trên, quy tắc *ràng buộc mặc định* được áp dụng.
 
-Reminder: regardless of how you get to a function invocation using the *default binding* rule, the `strict mode` status of the **contents** of the invoked function making the `this` reference -- not the function call-site -- determines the *default binding* value: either the `global` object if in non-`strict mode` or `undefined` if in `strict mode`.
+Nhắc lại: bất kể bạn có được một lời gọi hàm sử dụng quy tắc *ràng buộc mặc định* như thế nào, trạng thái `chế độ nghiêm ngặt` của **nội dung** của hàm được gọi đang thực hiện tham chiếu `this` - chứ không phải nơi gọi hàm - sẽ quyết định giá trị *ràng buộc mặc định*: hoặc là đối tượng `global` nếu ở chế độ không `nghiêm ngặt` hoặc `undefined` nếu ở `chế độ nghiêm ngặt`.
 
-### Softening Binding
+### Ràng Buộc Mềm 
 
-We saw earlier that *hard binding* was one strategy for preventing a function call falling back to the *default binding* rule inadvertently, by forcing it to be bound to a specific `this` (unless you use `new` to override it!). The problem is, *hard-binding* greatly reduces the flexibility of a function, preventing manual `this` override with either the *implicit binding* or even subsequent *explicit binding* attempts.
+Trước đó chúng ta đã thấy rằng *ràng buộc cứng* là một chiến lược để ngăn một lời gọi hàm quay trở lại quy tắc *ràng buộc mặc định* một cách vô ý, bằng cách ép nó phải được ràng buộc với một `this` cụ thể (trừ khi bạn sử dụng `new` để ghi đè nó!). Vấn đề là *ràng buộc cứng* làm giảm đáng kể tính linh hoạt của một hàm, ngăn cản việc ghi đè `this` thủ công bằng *ràng buộc ngầm* hoặc thậm chí các nỗ lực *ràng buộc tường minh* sau đó.
 
-It would be nice if there was a way to provide a different default for *default binding* (not `global` or `undefined`), while still leaving the function able to be manually `this` bound via *implicit binding* or *explicit binding* techniques.
+Sẽ thật tuyệt nếu có một cách để cung cấp một mặc định khác cho *ràng buộc mặc định* (không phải `global` hay `undefined`), trong khi vẫn để hàm có thể được ràng buộc `this` thủ công thông qua các kỹ thuật *ràng buộc ngầm* hoặc *ràng buộc tường minh*.
 
-We can construct a so-called *soft binding* utility which emulates our desired behavior.
+Chúng ta có thể xây dựng một tiện ích gọi là *ràng buộc mềm* để mô phỏng hành vi mong muốn của mình.
 
 ```js
 if (!Function.prototype.softBind) {
@@ -738,9 +738,9 @@ if (!Function.prototype.softBind) {
 }
 ```
 
-The `softBind(..)` utility provided here works similarly to the built-in ES5 `bind(..)` utility, except with our *soft binding* behavior. It wraps the specified function in logic that checks the `this` at call-time and if it's `global` or `undefined`, uses a pre-specified alternate *default* (`obj`). Otherwise the `this` is left untouched. It also provides optional currying (see the `bind(..)` discussion earlier).
+Tiện ích `softBind(..)` được cung cấp ở đây hoạt động tương tự như tiện ích `bind(..)` tích hợp sẵn của ES5, ngoại trừ hành vi *ràng buộc mềm* của chúng ta. Nó bao bọc hàm được chỉ định trong logic kiểm tra `this` tại thời điểm gọi và nếu nó là `global` hoặc `undefined`, nó sử dụng một *mặc định* thay thế đã được chỉ định trước (`obj`). Nếu không, `this` sẽ không bị đụng đến. Nó cũng cung cấp tùy chọn phân rã tham số (xem phần thảo luận về `bind(..)` trước đó).
 
-Let's demonstrate its usage:
+Hãy cùng minh họa cách sử dụng nó:
 
 ```js
 function foo() {
@@ -756,28 +756,28 @@ var fooOBJ = foo.softBind( obj );
 fooOBJ(); // name: obj
 
 obj2.foo = foo.softBind(obj);
-obj2.foo(); // name: obj2   <---- look!!!
+obj2.foo(); // name: obj2   <---- nhìn này!!!
 
-fooOBJ.call( obj3 ); // name: obj3   <---- look!
+fooOBJ.call( obj3 ); // name: obj3   <---- nhìn này!
 
-setTimeout( obj2.foo, 10 ); // name: obj   <---- falls back to soft-binding
+setTimeout( obj2.foo, 10 ); // name: obj   <---- quay về ràng buộc mềm
 ```
 
-The soft-bound version of the `foo()` function can be manually `this`-bound to `obj2` or `obj3` as shown, but it falls back to `obj` if the *default binding* would otherwise apply.
+Phiên bản ràng buộc mềm của hàm `foo()` có thể ràng buộc `this` thủ công với `obj2` hoặc `obj3` như trên, nhưng nó sẽ quay về `obj` nếu *ràng buộc mặc định* được áp dụng.
 
-## Lexical `this`
+## `this` Cú pháp Từ vựng
 
-Normal functions abide by the 4 rules we just covered. But ES6 introduces a special kind of function that does not use these rules: arrow-function.
+Các hàm thông thường tuân theo 4 quy tắc chúng ta vừa đề cập. Nhưng ES6 giới thiệu một loại hàm đặc biệt không sử dụng các quy tắc này: hàm mũi tên.
 
-Arrow-functions are signified not by the `function` keyword, but by the `=>` so called "fat arrow" operator. Instead of using the four standard `this` rules, arrow-functions adopt the `this` binding from the enclosing (function or global) scope.
+Hàm mũi tên được biểu thị không phải bằng từ khóa `function`, mà bằng toán tử `=>`, hay còn gọi là "mũi tên béo". Thay vì sử dụng bốn quy tắc `this` tiêu chuẩn, hàm mũi tên kế thừa ràng buộc `this` từ phạm vi bao quanh nó (hàm hoặc toàn cục).
 
-Let's illustrate arrow-function lexical scope:
+Hãy cùng minh họa phạm vi từ vựng của hàm mũi tên:
 
 ```js
 function foo() {
-	// return an arrow function
+	// trả về một hàm mũi tên
 	return (a) => {
-		// `this` here is lexically adopted from `foo()`
+		// `this` ở đây được kế thừa theo cú pháp từ vựng từ `foo()`
 		console.log( this.a );
 	};
 }
@@ -791,17 +791,17 @@ var obj2 = {
 };
 
 var bar = foo.call( obj1 );
-bar.call( obj2 ); // 2, not 3!
+bar.call( obj2 ); // 2, không phải 3!
 ```
 
-The arrow-function created in `foo()` lexically captures whatever `foo()`s `this` is at its call-time. Since `foo()` was `this`-bound to `obj1`, `bar` (a reference to the returned arrow-function) will also be `this`-bound to `obj1`. The lexical binding of an arrow-function cannot be overridden (even with `new`!).
+Hàm mũi tên được tạo trong `foo()` nắm bắt theo cú pháp từ vựng bất cứ `this` nào của `foo()` tại thời điểm nó được gọi. Vì `foo()` đã được ràng buộc `this` với `obj1`, `bar` (một tham chiếu đến hàm mũi tên được trả về) cũng sẽ được ràng buộc `this` với `obj1`. Ràng buộc từ vựng của một hàm mũi tên không thể bị ghi đè (ngay cả với `new`!).
 
-The most common use-case will likely be in the use of callbacks, such as event handlers or timers:
+Trường hợp sử dụng phổ biến nhất có lẽ là trong việc sử dụng các hàm gọi lại, chẳng hạn như hàm xử lý sự kiện hoặc bộ đếm thời gian:
 
 ```js
 function foo() {
 	setTimeout(() => {
-		// `this` here is lexically adopted from `foo()`
+		// `this` ở đây được kế thừa theo cú pháp từ vựng từ `foo()`
 		console.log( this.a );
 	},100);
 }
@@ -813,11 +813,11 @@ var obj = {
 foo.call( obj ); // 2
 ```
 
-While arrow-functions provide an alternative to using `bind(..)` on a function to ensure its `this`, which can seem attractive, it's important to note that they essentially are disabling the traditional `this` mechanism in favor of more widely-understood lexical scoping. Pre-ES6, we already have a fairly common pattern for doing so, which is basically almost indistinguishable from the spirit of ES6 arrow-functions:
+Mặc dù hàm mũi tên cung cấp một giải pháp thay thế cho việc sử dụng `bind(..)` trên một hàm để đảm bảo `this` của nó, điều này có vẻ hấp dẫn, điều quan trọng cần lưu ý là về cơ bản chúng đang vô hiệu hóa cơ chế `this` truyền thống để ủng hộ phạm vi từ vựng được hiểu rộng rãi hơn. Trước ES6, chúng ta đã có một khuôn mẫu khá phổ biến để làm như vậy, về cơ bản gần như không thể phân biệt được với tinh thần của hàm mũi tên ES6:
 
 ```js
 function foo() {
-	var self = this; // lexical capture of `this`
+	var self = this; // nắm bắt `this` theo cú pháp từ vựng
 	setTimeout( function(){
 		console.log( self.a );
 	}, 100 );
@@ -830,28 +830,28 @@ var obj = {
 foo.call( obj ); // 2
 ```
 
-While `self = this` and arrow-functions both seem like good "solutions" to not wanting to use `bind(..)`, they are essentially fleeing from `this` instead of understanding and embracing it.
+Mặc dù cả `self = this` và hàm mũi tên đều có vẻ là những "giải pháp" tốt để tránh sử dụng `bind(..)`, về cơ bản chúng đang trốn chạy khỏi `this` thay vì tìm cách thấu hiểu và nắm bắt nó.
 
-If you find yourself writing `this`-style code, but most or all the time, you defeat the `this` mechanism with lexical `self = this` or arrow-function "tricks", perhaps you should either:
+Nếu bạn thấy mình viết mã theo phong cách `this`, nhưng hầu hết hoặc tất cả thời gian, bạn lại vô hiệu hóa cơ chế `this` bằng các "mánh" từ vựng như `self = this` hoặc hàm mũi tên, có lẽ bạn nên:
 
-1. Use only lexical scope and forget the false pretense of `this`-style code.
+1. Chỉ sử dụng phạm vi từ vựng và quên đi cái cớ giả tạo của mã theo phong cách `this`.
 
-2. Embrace `this`-style mechanisms completely, including using `bind(..)` where necessary, and try to avoid `self = this` and arrow-function "lexical this" tricks.
+2. Nắm bắt hoàn toàn các cơ chế của phong cách `this`, bao gồm cả việc sử dụng `bind(..)` khi cần thiết, và cố gắng tránh các "mánh" `self = this` và "this từ vựng" của hàm mũi tên.
 
-A program can effectively use both styles of code (lexical and `this`), but inside of the same function, and indeed for the same sorts of look-ups, mixing the two mechanisms is usually asking for harder-to-maintain code, and probably working too hard to be clever.
+Một chương trình có thể sử dụng hiệu quả cả hai phong cách viết mã (từ vựng và `this`), nhưng bên trong cùng một hàm, và thực sự cho cùng một loại tra cứu, việc trộn lẫn hai cơ chế thường đòi hỏi viết mã khó bảo trì hơn, và có lẽ là đang làm việc quá sức để tỏ ra thông minh.
 
-## Review (TL;DR)
+## Tổng Kết
 
-Determining the `this` binding for an executing function requires finding the direct call-site of that function. Once examined, four rules can be applied to the call-site, in *this* order of precedence:
+Việc xác định ràng buộc `this` cho một hàm đang thực thi đòi hỏi phải tìm ra nơi gọi trực tiếp của hàm đó. Sau khi xem xét, bốn quy tắc có thể được áp dụng cho nơi gọi, theo thứ tự ưu tiên *này*:
 
-1. Called with `new`? Use the newly constructed object.
+1. Được gọi với `new`? Sử dụng đối tượng mới được khởi tạo.
 
-2. Called with `call` or `apply` (or `bind`)? Use the specified object.
+2. Được gọi với `call` hoặc `apply` (hoặc `bind`)? Sử dụng đối tượng được chỉ định.
 
-3. Called with a context object owning the call? Use that context object.
+3. Được gọi với một đối tượng ngữ cảnh sở hữu lời gọi? Sử dụng đối tượng ngữ cảnh đó.
 
-4. Default: `undefined` in `strict mode`, global object otherwise.
+4. Mặc định: `undefined` trong `chế độ nghiêm ngặt`, nếu không thì là đối tượng toàn cục.
 
-Be careful of accidental/unintentional invoking of the *default binding* rule. In cases where you want to "safely" ignore a `this` binding, a "DMZ" object like `ø = Object.create(null)` is a good placeholder value that protects the `global` object from unintended side-effects.
+Hãy cẩn thận với việc vô tình/không chủ ý gọi quy tắc *ràng buộc mặc định*. Trong những trường hợp bạn muốn "an toàn" bỏ qua một ràng buộc `this`, một đối tượng "DMZ" như `ø = Object.create(null)` là một giá trị giữ chỗ tốt để bảo vệ đối tượng `global` khỏi các hiệu ứng phụ không mong muốn.
 
-Instead of the four standard binding rules, ES6 arrow-functions use lexical scoping for `this` binding, which means they adopt the `this` binding (whatever it is) from its enclosing function call. They are essentially a syntactic replacement of `self = this` in pre-ES6 coding.
+Thay vì bốn quy tắc ràng buộc tiêu chuẩn, hàm mũi tên ES6 sử dụng phạm vi từ vựng cho ràng buộc `this`, có nghĩa là chúng kế thừa ràng buộc `this` (bất kể nó là gì) từ lời gọi hàm bao quanh nó. Về cơ bản chúng là một sự thay thế cú pháp cho `self = this` trong mã trước ES6.
